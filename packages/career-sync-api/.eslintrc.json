@@ -1,6 +1,28 @@
 {
-  "extends": ["../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
+  "extends": [
+    "../../.eslintrc.json",
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/errors",
+    "plugin:promise/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "prettier", "import", "import-helpers"],
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/ignore": ["node_modules"],
+    "import/extensions": [".ts"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts"]
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".ts"]
+      }
+    }
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -8,16 +30,6 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": [
-        "airbnb-base",
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:import/errors",
-        "plugin:promise/recommended",
-        "prettier"
-      ],
-      "plugins": ["@typescript-eslint", "prettier", "import", "import-helpers"],
-      "parser": "@typescript-eslint/parser",
       "rules": {
         "prettier/prettier": ["error"],
         "block-scoped-var": "error",
