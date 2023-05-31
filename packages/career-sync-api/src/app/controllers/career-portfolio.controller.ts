@@ -1,12 +1,13 @@
 import {
+  Body,
   Controller,
+  Delete,
   Get,
+  Param,
   Post,
   Put,
-  Delete,
-  Body,
-  Param,
 } from '@nestjs/common';
+import { DeleteResult, UpdateResult } from 'typeorm';
 
 import { CareerPortfolio } from '../entities/CareerPortfolio';
 import { CareerPortfolioService } from '../services/career-portfolio.service';
@@ -42,12 +43,12 @@ export class CareerPortfolioController {
   public async update(
     @Param('id') id: string,
     @Body() updateDto: UpdateCareerPortfolioDto
-  ): Promise<CareerPortfolio> {
+  ): Promise<UpdateResult> {
     return await this.careerPortfolioService.update(id, updateDto);
   }
 
   @Delete(':id')
-  public async remove(@Param('id') id: string): Promise<CareerPortfolio> {
+  public async remove(@Param('id') id: string): Promise<DeleteResult> {
     return await this.careerPortfolioService.remove(id);
   }
 }
