@@ -5,26 +5,26 @@ import { CareerPortfolio } from './CareerPortfolio';
 @Entity()
 export class Experience {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column()
-  companyName: string;
+  public companyName: string;
 
   @Column()
-  position: string;
+  public position: string;
 
   @Column({ nullable: true })
-  startDate: Date;
+  public startDate: Date;
 
   @Column({ nullable: true })
-  endDate: Date;
+  public endDate: Date;
 
   @Column('text')
-  description: string;
+  public description: string;
 
   @ManyToOne(
     () => CareerPortfolio,
     (careerPortfolio) => careerPortfolio.experiences
   )
-  careerPortfolio: CareerPortfolio;
+  public careerPortfolio: CareerPortfolio;
 }

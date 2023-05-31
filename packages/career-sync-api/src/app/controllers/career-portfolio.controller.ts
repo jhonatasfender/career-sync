@@ -1,34 +1,53 @@
-import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 
-import { CreateCareerPortfolioDto, UpdateCareerPortfolioDto } from './dto';
+import { CareerPortfolio } from '../entities/CareerPortfolio';
 import { CareerPortfolioService } from '../services/career-portfolio.service';
+import {
+  CreateCareerPortfolioDto,
+  UpdateCareerPortfolioDto,
+} from './career-portfolio.dto';
 
 @Controller('career-portfolio')
 export class CareerPortfolioController {
-  constructor(private readonly careerPortfolioService: CareerPortfolioService) {}
+  constructor(
+    private readonly careerPortfolioService: CareerPortfolioService
+  ) {}
 
   @Get()
-  findAll() {
-    return this.careerPortfolioService.findAll();
+  public async findAll(): Promise<CareerPortfolio[]> {
+    return await this.careerPortfolioService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.careerPortfolioService.findOne(id);
+  public async findOne(@Param('id') id: number): Promise<CareerPortfolio> {
+    return await this.careerPortfolioService.findOne(id);
   }
 
   @Post()
-  create(@Body() createDto: CreateCareerPortfolioDto) {
-    return this.careerPortfolioService.create(createDto);
+  public async create(
+    @Body() createDto: CreateCareerPortfolioDto
+  ): Promise<CareerPortfolio> {
+    return await this.careerPortfolioService.create(createDto);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateDto: UpdateCareerPortfolioDto) {
-    return this.careerPortfolioService.update(id, updateDto);
+  public async update(
+    @Param('id') id: string,
+    @Body() updateDto: UpdateCareerPortfolioDto
+  ): Promise<CareerPortfolio> {
+    return await this.careerPortfolioService.update(id, updateDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.careerPortfolioService.remove(id);
+  public async remove(@Param('id') id: string): Promise<CareerPortfolio> {
+    return await this.careerPortfolioService.remove(id);
   }
 }

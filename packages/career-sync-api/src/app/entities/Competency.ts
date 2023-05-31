@@ -12,21 +12,21 @@ import { CareerPortfolio } from './CareerPortfolio';
 @Entity()
 export class Competency {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column()
-  title: string;
+  public title: string;
 
   @ManyToOne(
     () => CareerPortfolio,
     (careerPortfolio) => careerPortfolio.competencies
   )
-  careerPortfolio: CareerPortfolio;
+  public careerPortfolio: CareerPortfolio;
 
   @ManyToOne(() => Competency, (competency) => competency.subcategories)
-  parentCategory: Competency;
+  public parentCategory: Competency;
 
   @ManyToMany(() => Competency, (competency) => competency.parentCategory)
   @JoinTable()
-  subcategories: Competency[];
+  public subcategories: Competency[];
 }

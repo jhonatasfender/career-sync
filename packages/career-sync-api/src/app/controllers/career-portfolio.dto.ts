@@ -1,94 +1,94 @@
-import { IsEmail, IsUrl, IsPhoneNumber, ArrayNotEmpty } from "class-validator";
+import { IsEmail, IsUrl, IsPhoneNumber, ArrayNotEmpty } from 'class-validator';
 
 export class CreateCareerPortfolioDto {
-  name: string;
-
   @IsEmail()
-  email: string;
+  public email: string;
 
   @IsPhoneNumber('BR')
-  whatsapp: string;
+  public whatsapp: string;
 
   @IsUrl()
-  portfolio: string;
+  public portfolio: string;
 
   @IsUrl()
-  github: string;
-
-  introduction: string;
+  public github: string;
 
   @ArrayNotEmpty()
-  competencies: CreateCompetencyDto[];
+  public competencies: CreateCompetencyDto[];
 
   @ArrayNotEmpty()
-  experiences: CreateExperienceDto[];
+  public experiences: CreateExperienceDto[];
 
   @ArrayNotEmpty()
-  academicExperiences: CreateAcademicExperienceDto[];
+  public academicExperiences: CreateAcademicExperienceDto[];
+
+  public name: string;
+
+  public introduction: string;
 }
 
 export class UpdateCareerPortfolioDto {
-  name?: string;
-
   @IsEmail()
-  email?: string;
+  public email?: string;
 
   @IsPhoneNumber('BR')
-  whatsapp?: string;
+  public whatsapp?: string;
 
   @IsUrl()
-  portfolio?: string;
+  public portfolio?: string;
 
   @IsUrl()
-  github?: string;
-
-  introduction?: string;
+  public github?: string;
 
   @ArrayNotEmpty()
-  competencies?: UpdateCompetencyDto[];
+  public competencies?: UpdateCompetencyDto[];
 
   @ArrayNotEmpty()
-  experiences?: UpdateExperienceDto[];
+  public experiences?: UpdateExperienceDto[];
 
   @ArrayNotEmpty()
-  academicExperiences?: UpdateAcademicExperienceDto[];
+  public academicExperiences?: UpdateAcademicExperienceDto[];
+
+  public name?: string;
+
+  public introduction?: string;
 }
 
 export class CreateCompetencyDto {
-  title: string;
-  parentId?: number;
+  public title: string;
+  public parentId?: number;
 }
 
 export class CreateExperienceDto {
-  companyName: string;
-  position: string;
-  startDate: Date;
-  endDate?: Date;
-  description: string;
-  careerPortfolioId: number;
+  public companyName: string;
+  public position: string;
+  public startDate: Date;
+  public endDate?: Date;
+  public description: string;
+  public careerPortfolioId: number;
 }
 
 export class CreateAcademicExperienceDto {
-  institutionName: string;
-  course: string;
-  description: string;
+  public institutionName: string;
+  public course: string;
+  public description: string;
 }
 
 export class UpdateCompetencyDto {
-  title?: string;
-  parentId?: number;
+  public title?: string;
+  public parentId?: number;
 }
 
 export class UpdateExperienceDto {
-  companyName?: string;
-  position?: string;
-  startDate?: Date;
-  endDate?: Date;
-  description?: string;
+  public companyName?: string;
+  public position?: string;
+  public startDate?: Date;
+  public endDate?: Date;
+  public description?: string;
 }
 
 export class UpdateAcademicExperienceDto {
-  institutionName?: string;
-  course?: string;
-  description?: string;
+  public institutionName?: string;
+  public course?: string;
+  public description?: string;
 }

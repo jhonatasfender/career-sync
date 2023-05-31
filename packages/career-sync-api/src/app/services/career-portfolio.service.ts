@@ -1,35 +1,43 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
-import { CreateCareerPortfolioDto, UpdateCareerPortfolioDto } from './dto';
+import {
+  CreateCareerPortfolioDto,
+  UpdateCareerPortfolioDto,
+} from '../controllers/career-portfolio.dto';
 import { CareerPortfolio } from '../entities/CareerPortfolio';
 
 @Injectable()
 export class CareerPortfolioService {
   constructor(
     @InjectRepository(CareerPortfolio)
-    private readonly careerPortfolioRepository: Repository<CareerPortfolio>,
+    private readonly careerPortfolioRepository: Repository<CareerPortfolio>
   ) {}
 
-  findAll() {
-    return this.careerPortfolioRepository.find();
+  public async findAll(): Promise<CareerPortfolio[]> {
+    return await this.careerPortfolioRepository.find();
   }
 
-  findOne(id: string) {
-    return this.careerPortfolioRepository.findOne(id);
+  public async findOne(id: number): Promise<CareerPortfolio> {
+    return await this.careerPortfolioRepository.findOne({ where: { id } });
   }
 
-  create(createDto: CreateCareerPortfolioDto) {
+  public async create(
+    createDto: CreateCareerPortfolioDto
+  ): Promise<CareerPortfolio> {
     const careerPortfolio = this.careerPortfolioRepository.create(createDto);
-    return this.careerPortfolioRepository.save(careerPortfolio);
+    return await this.careerPortfolioRepository.save(careerPortfolio);
   }
 
-  update(id: string, updateDto: UpdateCareerPortfolioDto) {
-    return this.careerPortfolioRepository.update(id, updateDto);
+  public async update(
+    id: string,
+    updateDto: UpdateCareerPortfolioDto
+  ): Promise<UpdateResult> {
+    return await this.careerPortfolioRepository.update(id, updateDto);
   }
 
-  remove(id: string) {
-    return this.careerPortfolioRepository.delete(id);
+  public async remove(id: string): Promise<DeleteResult> {
+    return await this.careerPortfolioRepository.delete(id);
   }
 }

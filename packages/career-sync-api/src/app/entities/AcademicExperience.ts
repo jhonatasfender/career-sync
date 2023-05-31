@@ -1,20 +1,24 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+
 import { CareerPortfolio } from './CareerPortfolio';
 
 @Entity()
 export class AcademicExperience {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column()
-  institutionName: string;
+  public institutionName: string;
 
   @Column()
-  courseName: string;
+  public courseName: string;
 
   @Column('text')
-  description: string;
+  public description: string;
 
-  @ManyToOne(() => CareerPortfolio, careerPortfolio => careerPortfolio.academicExperiences)
-  careerPortfolio: CareerPortfolio;
+  @ManyToOne(
+    () => CareerPortfolio,
+    (careerPortfolio) => careerPortfolio.academicExperiences
+  )
+  public careerPortfolio: CareerPortfolio;
 }

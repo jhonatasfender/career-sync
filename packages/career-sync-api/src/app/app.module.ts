@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AcademicExperience } from './entities/AcademicExperience';
 import { CareerPortfolio } from './entities/CareerPortfolio';
 import { Competency } from './entities/Competency';
@@ -17,7 +15,7 @@ import { Experience } from './entities/Experience';
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

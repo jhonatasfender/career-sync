@@ -7,32 +7,35 @@ import { Experience } from './Experience';
 @Entity()
 export class CareerPortfolio {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column()
-  username: string;
+  public username: string;
 
   @Column()
-  email: string;
+  public email: string;
 
   @Column()
-  phone: string;
+  public phone: string;
 
   @Column()
-  portfolioLink: string;
+  public portfolioLink: string;
 
   @Column()
-  githubLink: string;
+  public githubLink: string;
 
   @Column('text')
-  presentation: string;
+  public presentation: string;
 
-  @OneToMany(() => Competency, competency => competency.careerPortfolio)
-  competencies: Competency[];
+  @OneToMany(() => Competency, (competency) => competency.careerPortfolio)
+  public competencies: Competency[];
 
-  @OneToMany(() => Experience, experience => experience.careerPortfolio)
-  experiences: Experience[];
+  @OneToMany(() => Experience, (experience) => experience.careerPortfolio)
+  public experiences: Experience[];
 
-  @OneToMany(() => AcademicExperience, academicExperience => academicExperience.careerPortfolio)
-  academicExperiences: AcademicExperience[];
+  @OneToMany(
+    () => AcademicExperience,
+    (academicExperience) => academicExperience.careerPortfolio
+  )
+  public academicExperiences: AcademicExperience[];
 }

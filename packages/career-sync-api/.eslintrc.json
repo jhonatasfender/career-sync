@@ -9,20 +9,7 @@
     "plugin:promise/recommended",
     "prettier"
   ],
-  "plugins": ["@typescript-eslint", "prettier", "import", "import-helpers"],
-  "parser": "@typescript-eslint/parser",
-  "settings": {
-    "import/ignore": ["node_modules"],
-    "import/extensions": [".ts"],
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts"]
-    },
-    "import/resolver": {
-      "node": {
-        "extensions": [".ts"]
-      }
-    }
-  },
+
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
@@ -184,6 +171,7 @@
         ],
 
         "import/no-unresolved": "off",
+        "import/no-cycle": "off",
 
         "promise/catch-or-return": ["warn", { "allowThen": true }],
         "promise/no-return-wrap": ["error", { "allowReject": true }],
@@ -202,6 +190,7 @@
           {
             "accessibility": "explicit",
             "overrides": {
+              "accessors": "explicit",
               "constructors": "no-public"
             }
           }
@@ -238,6 +227,23 @@
             "leadingUnderscore": "forbid"
           }
         ]
+      },
+      "parserOptions": {
+        "project": "packages/career-sync-api/tsconfig.app.json"
+      },
+      "plugins": ["@typescript-eslint", "prettier", "import", "import-helpers"],
+      "parser": "@typescript-eslint/parser",
+      "settings": {
+        "import/ignore": ["node_modules"],
+        "import/extensions": [".ts"],
+        "import/parsers": {
+          "@typescript-eslint/parser": [".ts"]
+        },
+        "import/resolver": {
+          "node": {
+            "extensions": [".ts"]
+          }
+        }
       }
     },
     {
