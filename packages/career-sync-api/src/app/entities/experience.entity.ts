@@ -1,9 +1,9 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
-import { CareerPortfolio } from './CareerPortfolio';
+import Language from './language.entity';
 
 @Entity()
-export class Experience {
+export default class Experience {
   @PrimaryGeneratedColumn()
   public id: number;
 
@@ -22,9 +22,6 @@ export class Experience {
   @Column('text')
   public description: string;
 
-  @ManyToOne(
-    () => CareerPortfolio,
-    (careerPortfolio) => careerPortfolio.experiences
-  )
-  public careerPortfolio: CareerPortfolio;
+  @ManyToOne(() => Language, (lang) => lang.experiences)
+  public language: Language;
 }

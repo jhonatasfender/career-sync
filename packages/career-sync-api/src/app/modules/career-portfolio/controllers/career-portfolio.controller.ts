@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { DeleteResult, UpdateResult } from 'typeorm';
 
-import { CareerPortfolio } from '../entities/CareerPortfolio';
+import CareerPortfolio from '../../../entities/career-portfolio.entity';
 import { CareerPortfolioService } from '../services/career-portfolio.service';
 import {
   CreateCareerPortfolioDto,

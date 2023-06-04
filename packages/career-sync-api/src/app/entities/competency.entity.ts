@@ -7,26 +7,25 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { CareerPortfolio } from './CareerPortfolio';
+import Language from './language.entity';
 
 @Entity()
-export class Competency {
+export default class Competency {
   @PrimaryGeneratedColumn()
   public id: number;
 
   @Column()
   public title: string;
 
-  @ManyToOne(
-    () => CareerPortfolio,
-    (careerPortfolio) => careerPortfolio.competencies
-  )
-  public careerPortfolio: CareerPortfolio;
+  @ManyToOne(() => Language, (lang) => lang.competencies)
+  public language: Language;
 
   @ManyToOne(() => Competency, (competency) => competency.subcategories)
   public parentCategory: Competency;
 
-  @ManyToMany(() => Competency, (competency) => competency.parentCategory)
+  @ManyToMany(() => Competency, (competency) => competency.parentCategory, {
+    cascade: true,
+  })
   @JoinTable()
   public subcategories: Competency[];
 }

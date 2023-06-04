@@ -1,23 +1,44 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { CareerPortfolioController } from './controllers/career-portfolio.controller';
-import { AcademicExperience } from './entities/AcademicExperience';
-import { CareerPortfolio } from './entities/CareerPortfolio';
-import { Competency } from './entities/Competency';
-import { Experience } from './entities/Experience';
-import { CareerPortfolioService } from './services/career-portfolio.service';
+import AcademicExperience from './entities/academic-experience.entity';
+import CareerPortfolio from './entities/career-portfolio.entity';
+import Competency from './entities/competency.entity';
+import Experience from './entities/experience.entity';
+import Language from './entities/language.entity';
+import { CareerPortfolioModule } from './modules/career-portfolio/career-portfolio.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: './database.db',
-      entities: [CareerPortfolio, Competency, Experience, AcademicExperience],
+      database: `${__dirname}/database.db`,
+      // entities: loadEntitiesFromPath(),
+      entities: [
+        CareerPortfolio,
+        Competency,
+        Experience,
+        AcademicExperience,
+        Language,
+      ],
       synchronize: true,
     }),
+    CareerPortfolioModule,
   ],
-  controllers: [CareerPortfolioController],
-  providers: [CareerPortfolioService],
+  controllers: [],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({
+        transform: true,
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        validationError: {
+          target: false,
+        },
+      }),
+    },
+  ],
 })
 export class AppModule {}
