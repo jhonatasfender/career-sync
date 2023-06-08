@@ -37,6 +37,9 @@ import { CareerPortfolioModule } from './modules/career-portfolio/career-portfol
         validationError: {
           target: false,
         },
+        transformOptions: {
+          enableImplicitConversion: true,
+        },
       }),
     },
   ],

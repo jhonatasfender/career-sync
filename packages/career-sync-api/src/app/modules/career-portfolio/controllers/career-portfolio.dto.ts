@@ -1,15 +1,17 @@
 import { Type } from 'class-transformer';
 import {
-  IsEmail,
-  IsUrl,
-  IsPhoneNumber,
-  ArrayNotEmpty,
-  IsNotEmpty,
+  ArrayMinSize,
+  ArrayUnique,
+  IsArray,
   IsDateString,
+  IsEmail,
+  IsNotEmpty,
   IsOptional,
+  IsPhoneNumber,
+  IsUrl,
+  Length,
   ValidateIf,
   ValidateNested,
-  ArrayUnique,
 } from 'class-validator';
 
 export class CreateCareerPortfolioDto {
@@ -28,6 +30,9 @@ export class CreateCareerPortfolioDto {
   @IsUrl()
   public github: string;
 
+  @IsArray()
+  @ArrayMinSize(1)
+  @Type(() => CreateLanguageDTO)
   @ValidateNested({ each: true })
   public languages: CreateLanguageDTO[];
 }
@@ -48,36 +53,59 @@ export class UpdateCareerPortfolioDto {
   @IsUrl()
   public github?: string;
 
+  @IsArray()
+  @ArrayMinSize(1)
+  @Type(() => UpdateLanguageDTO)
   @ValidateNested({ each: true })
   public languages?: UpdateLanguageDTO[];
 }
 
 export class CreateLanguageDTO {
+  @Length(2, 5)
+  @IsNotEmpty()
+  public lang: string;
+
   @IsNotEmpty()
   public presentation: string;
 
+  @IsArray()
+  @ArrayMinSize(1)
   @ValidateNested({ each: true })
   public competencies: CreateCompetencyDto[];
 
+  @IsArray()
+  @ArrayMinSize(1)
   @ValidateNested({ each: true })
   public experiences: CreateExperienceDto[];
 
+  @IsArray()
+  @ArrayMinSize(1)
   @ValidateNested({ each: true })
   public academicExperiences: CreateAcademicExperienceDto[];
 }
 
 export class UpdateLanguageDTO {
-  @ValidateNested({ each: true })
-  public competencies?: UpdateCompetencyDto[];
-
-  @ValidateNested({ each: true })
-  public experiences?: UpdateExperienceDto[];
-
-  @ValidateNested({ each: true })
-  public academicExperiences?: UpdateAcademicExperienceDto[];
+  @Length(2, 5)
+  @IsOptional()
+  public lang?: string;
 
   @IsOptional()
   public presentation?: string;
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ValidateNested({ each: true })
+  public competencies?: UpdateCompetencyDto[];
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ValidateNested({ each: true })
+  public experiences?: UpdateExperienceDto[];
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ValidateNested({ each: true })
+  public academicExperiences?: UpdateAcademicExperienceDto[];
 }
 
 export class CreateCompetencyDto {
@@ -86,7 +114,6 @@ export class CreateCompetencyDto {
 
   @ArrayUnique()
   @IsOptional()
-  @ValidateNested({ each: true })
   public parent?: CreateCompetencyDto[];
 }
 
@@ -95,7 +122,6 @@ export class UpdateCompetencyDto {
   public title?: string;
 
   @IsOptional()
-  @ValidateNested({ each: true })
   @ArrayUnique()
   public parent?: UpdateCompetencyDto[];
 }
@@ -148,13 +174,18 @@ export class CreateAcademicExperienceDto {
   public institutionName: string;
 
   @IsNotEmpty()
-  public course: string;
+  public courseNames: string;
 
   public description: string;
 }
 
 export class UpdateAcademicExperienceDto {
+  @IsOptional()
   public institutionName?: string;
+
+  @IsOptional()
   public course?: string;
+
+  @IsOptional()
   public description?: string;
 }

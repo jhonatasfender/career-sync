@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 
 import CareerPortfolio from '../../../entities/career-portfolio.entity';
-import Language from '../../../entities/language.entity';
 import {
   CreateCareerPortfolioDto,
   UpdateCareerPortfolioDto,
@@ -17,7 +16,14 @@ export class CareerPortfolioService {
   ) {}
 
   public async findAll(): Promise<CareerPortfolio[]> {
-    return await this.careerPortfolioRepository.find();
+    return await this.careerPortfolioRepository.find({
+      relations: [
+        'languages',
+        'languages.competencies',
+        'languages.experiences',
+        'languages.academicExperiences',
+      ],
+    });
   }
 
   public async findOne(id: number): Promise<CareerPortfolio> {
