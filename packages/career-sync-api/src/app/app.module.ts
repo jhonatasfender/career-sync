@@ -2,6 +2,7 @@ import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import migrations from '../migrations-blp';
 import AcademicExperience from './entities/academic-experience.entity';
 import CareerPortfolio from './entities/career-portfolio.entity';
 import Competency from './entities/competency.entity';
@@ -14,7 +15,6 @@ import { CareerPortfolioModule } from './modules/career-portfolio/career-portfol
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: `${__dirname}/database.db`,
-      // entities: loadEntitiesFromPath(),
       entities: [
         CareerPortfolio,
         Competency,
@@ -22,7 +22,9 @@ import { CareerPortfolioModule } from './modules/career-portfolio/career-portfol
         AcademicExperience,
         Language,
       ],
-      synchronize: true,
+      migrations: [...migrations],
+      migrationsRun: true,
+      synchronize: false,
     }),
     CareerPortfolioModule,
   ],
