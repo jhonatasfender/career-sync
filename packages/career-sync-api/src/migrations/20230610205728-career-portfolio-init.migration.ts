@@ -1,11 +1,19 @@
 /* eslint-disable max-lines-per-function */
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateCareerPortfolioInit implements MigrationInterface {
+export class CreateCareerPortfolioInit20230610205728
+  implements MigrationInterface
+{
+  private readonly tableName = 'career_portfolio';
+
   public async up(queryRunner: QueryRunner): Promise<void> {
+    if (await queryRunner.hasTable(this.tableName)) {
+      return;
+    }
+
     await queryRunner.createTable(
       new Table({
-        name: 'career_portfolio',
+        name: this.tableName,
         columns: [
           {
             name: 'id',
@@ -40,6 +48,6 @@ export class CreateCareerPortfolioInit implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('career_portfolio');
+    await queryRunner.dropTable(this.tableName);
   }
 }

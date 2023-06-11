@@ -2,7 +2,7 @@ import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import migrations from '../migrations-blp';
+import migrations from '../migrations';
 import AcademicExperience from './entities/academic-experience.entity';
 import CareerPortfolio from './entities/career-portfolio.entity';
 import Competency from './entities/competency.entity';

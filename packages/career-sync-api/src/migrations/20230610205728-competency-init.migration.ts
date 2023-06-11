@@ -6,11 +6,17 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateCompetencyInit implements MigrationInterface {
+export class CreateCompetencyInit20230610205728 implements MigrationInterface {
+  private readonly tableName = 'competency';
+
   public async up(queryRunner: QueryRunner): Promise<void> {
+    if (await queryRunner.hasTable(this.tableName)) {
+      return;
+    }
+
     await queryRunner.createTable(
       new Table({
-        name: 'competency',
+        name: this.tableName,
         columns: [
           {
             name: 'id',
@@ -37,7 +43,7 @@ export class CreateCompetencyInit implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'competency',
+      this.tableName,
       new TableForeignKey({
         columnNames: ['languageId'],
         referencedTableName: 'language',
@@ -47,10 +53,10 @@ export class CreateCompetencyInit implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'competency',
+      this.tableName,
       new TableForeignKey({
         columnNames: ['parentCategoryId'],
-        referencedTableName: 'competency',
+        referencedTableName: this.tableName,
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       })
@@ -78,7 +84,7 @@ export class CreateCompetencyInit implements MigrationInterface {
       'competency_subcategories',
       new TableForeignKey({
         columnNames: ['competencyId'],
-        referencedTableName: 'competency',
+        referencedTableName: this.tableName,
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       })
@@ -88,7 +94,7 @@ export class CreateCompetencyInit implements MigrationInterface {
       'competency_subcategories',
       new TableForeignKey({
         columnNames: ['subcategoryId'],
-        referencedTableName: 'competency',
+        referencedTableName: this.tableName,
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       })
@@ -98,10 +104,10 @@ export class CreateCompetencyInit implements MigrationInterface {
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable('competency_subcategories');
     await queryRunner.dropForeignKey(
-      'competency',
+      this.tableName,
       'competency_parentCategoryId'
     );
-    await queryRunner.dropForeignKey('competency', 'competency_languageId');
-    await queryRunner.dropTable('competency');
+    await queryRunner.dropForeignKey(this.tableName, 'competency_languageId');
+    await queryRunner.dropTable(this.tableName);
   }
 }

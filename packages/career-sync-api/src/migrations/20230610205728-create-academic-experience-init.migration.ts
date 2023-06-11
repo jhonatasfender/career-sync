@@ -6,11 +6,19 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateExperienceInit implements MigrationInterface {
+export class CreateAcademicExperienceInit20230610205728
+  implements MigrationInterface
+{
+  private readonly tableName = 'academic_experience';
+
   public async up(queryRunner: QueryRunner): Promise<void> {
+    if (await queryRunner.hasTable(this.tableName)) {
+      return;
+    }
+
     await queryRunner.createTable(
       new Table({
-        name: 'experience',
+        name: this.tableName,
         columns: [
           {
             name: 'id',
@@ -20,22 +28,12 @@ export class CreateExperienceInit implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'company_name',
+            name: 'institution_name',
             type: 'varchar',
           },
           {
-            name: 'position',
+            name: 'course_name',
             type: 'varchar',
-          },
-          {
-            name: 'start_date',
-            type: 'date',
-            isNullable: true,
-          },
-          {
-            name: 'end_date',
-            type: 'date',
-            isNullable: true,
           },
           {
             name: 'description',
@@ -50,7 +48,7 @@ export class CreateExperienceInit implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'experience',
+      this.tableName,
       new TableForeignKey({
         columnNames: ['languageId'],
         referencedTableName: 'language',
@@ -61,11 +59,11 @@ export class CreateExperienceInit implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('experience');
+    const table = await queryRunner.getTable(this.tableName);
     const foreignKey = table.foreignKeys.find((fk) =>
       fk.columnNames.includes('languageId')
     );
-    await queryRunner.dropForeignKey('experience', foreignKey);
-    await queryRunner.dropTable('experience');
+    await queryRunner.dropForeignKey(this.tableName, foreignKey);
+    await queryRunner.dropTable(this.tableName);
   }
 }

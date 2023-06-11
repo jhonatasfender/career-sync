@@ -6,11 +6,17 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateAcademicExperienceInit implements MigrationInterface {
+export class CreateLanguageInit20230610205728 implements MigrationInterface {
+  private readonly tableName = 'language';
+
   public async up(queryRunner: QueryRunner): Promise<void> {
+    if (await queryRunner.hasTable(this.tableName)) {
+      return;
+    }
+
     await queryRunner.createTable(
       new Table({
-        name: 'academic_experience',
+        name: this.tableName,
         columns: [
           {
             name: 'id',
@@ -20,19 +26,16 @@ export class CreateAcademicExperienceInit implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'institution_name',
-            type: 'varchar',
-          },
-          {
-            name: 'course_name',
-            type: 'varchar',
-          },
-          {
-            name: 'description',
+            name: 'presentation',
             type: 'text',
           },
           {
-            name: 'languageId',
+            name: 'lang',
+            type: 'varchar',
+            length: '5',
+          },
+          {
+            name: 'careerPortfolioId',
             type: 'integer',
           },
         ],
@@ -40,10 +43,10 @@ export class CreateAcademicExperienceInit implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'academic_experience',
+      this.tableName,
       new TableForeignKey({
-        columnNames: ['languageId'],
-        referencedTableName: 'language',
+        columnNames: ['careerPortfolioId'],
+        referencedTableName: 'career_portfolio',
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       })
@@ -51,11 +54,11 @@ export class CreateAcademicExperienceInit implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    const table = await queryRunner.getTable('academic_experience');
+    const table = await queryRunner.getTable(this.tableName);
     const foreignKey = table.foreignKeys.find((fk) =>
-      fk.columnNames.includes('languageId')
+      fk.columnNames.includes('careerPortfolioId')
     );
-    await queryRunner.dropForeignKey('academic_experience', foreignKey);
-    await queryRunner.dropTable('academic_experience');
+    await queryRunner.dropForeignKey(this.tableName, foreignKey);
+    await queryRunner.dropTable(this.tableName);
   }
 }

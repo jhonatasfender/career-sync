@@ -7,10 +7,10 @@ export default class AcademicExperience {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column({ name: 'institution_name' })
   public institutionName: string;
 
-  @Column()
+  @Column({ name: 'course_name' })
   public courseName: string;
 
   @Column('text')

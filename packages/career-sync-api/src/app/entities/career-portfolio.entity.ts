@@ -16,10 +16,10 @@ export default class CareerPortfolio {
   @Column()
   public phone: string;
 
-  @Column()
+  @Column({ name: 'portfolio_link' })
   public portfolioLink: string;
 
-  @Column()
+  @Column({ name: 'github_link' })
   public githubLink: string;
 
   @OneToMany(() => Language, (lang) => lang.careerPortfolio, {

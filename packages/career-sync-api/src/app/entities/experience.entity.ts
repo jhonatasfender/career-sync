@@ -7,16 +7,16 @@ export default class Experience {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
+  @Column({ name: 'company_name' })
   public companyName: string;
 
   @Column()
   public position: string;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, name: 'start_date' })
   public startDate: Date;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, name: 'end_date' })
   public endDate: Date;
 
   @Column('text')
