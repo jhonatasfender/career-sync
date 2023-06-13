@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { api } from './app';
+import FormArray from './form-array';
 
 export default function Form(): JSX.Element {
-  const { register, handleSubmit, reset } = useForm();
+  const methods = useForm();
+  const { register, handleSubmit, reset, control, watch } = methods;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -36,38 +38,86 @@ export default function Form(): JSX.Element {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="hidden" {...register('id')} />
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input type="hidden" {...register('id')} />
 
-      <div>
-        <label htmlFor="username">User Name</label>
-        <input type="text" id="username" {...register('username')} />
-      </div>
+        <div>
+          <label htmlFor="username">User Name</label>
+          <input type="text" id="username" {...register('username')} />
+        </div>
 
-      <div>
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" {...register('email')} />
-      </div>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input type="text" id="email" {...register('email')} />
+        </div>
 
-      <div>
-        <label htmlFor="phone">Phone</label>
-        <input type="text" id="phone" {...register('phone')} />
-      </div>
+        <div>
+          <label htmlFor="phone">Phone</label>
+          <input type="text" id="phone" {...register('phone')} />
+        </div>
 
-      <div>
-        <label htmlFor="githubLink">GitHub Link</label>
-        <input type="text" id="githubLink" {...register('githubLink')} />
-      </div>
+        <div>
+          <label htmlFor="githubLink">GitHub Link</label>
+          <input type="text" id="githubLink" {...register('githubLink')} />
+        </div>
 
-      <div>
-        <label htmlFor="portfolioLink">Portfolio Link</label>
-        <input type="text" id="portfolioLink" {...register('portfolioLink')} />
-      </div>
+        <div>
+          <label htmlFor="portfolioLink">Portfolio Link</label>
+          <input
+            type="text"
+            id="portfolioLink"
+            {...register('portfolioLink')}
+          />
+        </div>
 
-      <div></div>
+        <FormArray
+          name="languages"
+          titleAdd="Add Language"
+          titleRemove="Remove Language"
+          control={control}
+        >
+          {({ controlForm, name, key }): JSX.Element => (
+            <div key={key}>
+              <input type="hidden" {...register(`${name}[${key}].id`)} />
 
-      <pre>{JSON.stringify(data.data, null, 2)}</pre>
-      <button type="submit">enviar</button>
-    </form>
+              <div>
+                <label>Presentation</label>
+                <textarea {...register(`${name}[${key}].presentation`)} />
+              </div>
+
+              <div>
+                <label>Lang</label>
+                <input type="text" {...register(`${name}[${key}].lang`)} />
+              </div>
+
+              <FormArray
+                titleAdd="Add Experience"
+                titleRemove="Remove Experience"
+                name={`${name}[${key}].experiences`}
+                control={controlForm}
+              >
+                {({ key: keyIndex, name }): JSX.Element => (
+                  <div key={keyIndex}>
+                    <input
+                      type="hidden"
+                      {...register(`${name}[${keyIndex}].id`)}
+                    />
+
+                    <input
+                      type="text"
+                      {...register(`${name}[${keyIndex}].companyName`)}
+                    />
+                  </div>
+                )}
+              </FormArray>
+            </div>
+          )}
+        </FormArray>
+
+        <pre>{JSON.stringify(data.data, null, 2)}</pre>
+        <button type="submit">enviar</button>
+      </form>
+    </FormProvider>
   );
 }
