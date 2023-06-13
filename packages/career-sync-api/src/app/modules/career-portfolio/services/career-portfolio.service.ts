@@ -10,6 +10,13 @@ import {
 
 @Injectable()
 export class CareerPortfolioService {
+  private readonly relations = [
+    'languages',
+    'languages.competencies',
+    'languages.experiences',
+    'languages.academicExperiences',
+  ];
+
   constructor(
     @InjectRepository(CareerPortfolio)
     private readonly careerPortfolioRepository: Repository<CareerPortfolio>
@@ -17,17 +24,15 @@ export class CareerPortfolioService {
 
   public async findAll(): Promise<CareerPortfolio[]> {
     return await this.careerPortfolioRepository.find({
-      relations: [
-        'languages',
-        'languages.competencies',
-        'languages.experiences',
-        'languages.academicExperiences',
-      ],
+      relations: this.relations,
     });
   }
 
   public async findOne(id: number): Promise<CareerPortfolio> {
-    return await this.careerPortfolioRepository.findOne({ where: { id } });
+    return await this.careerPortfolioRepository.findOne({
+      where: { id },
+      relations: this.relations,
+    });
   }
 
   public async create(

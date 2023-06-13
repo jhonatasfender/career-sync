@@ -14,7 +14,7 @@ import { CareerPortfolioModule } from './modules/career-portfolio/career-portfol
   imports: [
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: `${__dirname}/database.db`,
+      database: `packages/career-sync-api/src/app/entities/database.db`,
       entities: [
         CareerPortfolio,
         Competency,
