@@ -8,7 +8,7 @@ import FormArray from './form-array';
 
 export default function Form(): JSX.Element {
   const methods = useForm();
-  const { register, handleSubmit, reset, control, watch } = methods;
+  const { register, handleSubmit, reset, control, getValues } = methods;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -104,10 +104,83 @@ export default function Form(): JSX.Element {
                       {...register(`${name}[${keyIndex}].id`)}
                     />
 
+                    <div>
+                      <label>Company Name</label>
+                      <input
+                        type="text"
+                        {...register(`${name}[${keyIndex}].companyName`)}
+                      />
+                    </div>
+
+                    <div>
+                      <label>Position</label>
+                      <input
+                        type="text"
+                        {...register(`${name}[${keyIndex}].position`)}
+                      />
+                    </div>
+
+                    <div>
+                      <label>Start Date</label>
+                      <input
+                        type="text"
+                        {...register(`${name}[${keyIndex}].startDate`)}
+                      />
+                    </div>
+
+                    <div>
+                      <label>End Date</label>
+                      <input
+                        type="text"
+                        {...register(`${name}[${keyIndex}].endDate`)}
+                      />
+                    </div>
+
+                    <div>
+                      <label>Description</label>
+                      <textarea
+                        {...register(`${name}[${keyIndex}].description`)}
+                      />
+                    </div>
+                  </div>
+                )}
+              </FormArray>
+
+              <FormArray
+                titleAdd="Add Academic Experiences"
+                titleRemove="Remove Academic Experiences"
+                name={`${name}[${key}].academicExperiences`}
+                control={controlForm}
+              >
+                {({ key: keyIndex, name }): JSX.Element => (
+                  <div key={keyIndex}>
                     <input
-                      type="text"
-                      {...register(`${name}[${keyIndex}].companyName`)}
+                      type="hidden"
+                      {...register(`${name}[${keyIndex}].id`)}
                     />
+
+                    <div>
+                      <label>Institution Name</label>
+                      <input
+                        type="text"
+                        {...register(`${name}[${keyIndex}].institutionName`)}
+                      />
+                    </div>
+
+                    <div>
+                      <label>Course Name</label>
+                      <input
+                        type="text"
+                        {...register(`${name}[${keyIndex}].courseName`)}
+                      />
+                    </div>
+
+                    <div>
+                      <label>Description</label>
+                      <textarea
+                        {...register(`${name}[${keyIndex}].description`)}
+                      />
+                    </div>
                   </div>
                 )}
               </FormArray>
@@ -115,7 +188,7 @@ export default function Form(): JSX.Element {
           )}
         </FormArray>
 
-        <pre>{JSON.stringify(data.data, null, 2)}</pre>
+        <pre>{JSON.stringify(getValues(), null, 2)}</pre>
         <button type="submit">enviar</button>
       </form>
     </FormProvider>

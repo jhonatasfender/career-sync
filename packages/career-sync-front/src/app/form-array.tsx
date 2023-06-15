@@ -23,22 +23,36 @@ export default function FormArray({
   children,
   control,
   name,
-}: FormArrayProps): JSX.Element | JSX.Element[] {
+  titleRemove,
+  titleAdd,
+}: FormArrayProps): JSX.Element {
   const { fields, append, remove } = useFieldArray({
     control,
     name,
   });
 
+  const handleAdd = () => {
+    append({});
+  };
+
   if (typeof children === 'function') {
-    return fields.map((field, key) => (
-      <div key={key}>
-        <hr />
+    return (
+      <>
+        {fields.map((field, key) => (
+          <div key={field.id}>
+            <hr />
 
-        {children({ controlForm: control, field, key, name })}
+            {children({ controlForm: control, field, key, name })}
 
-        <button type="button">Remove</button>
-      </div>
-    ));
+            <button type="button">{titleRemove}</button>
+
+            <hr />
+          </div>
+        ))}
+
+        <button type="button" onClick={handleAdd}>{titleAdd}</button>
+      </>
+    );
   }
 
   return children;
