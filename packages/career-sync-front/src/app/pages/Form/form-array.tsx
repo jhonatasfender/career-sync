@@ -1,4 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Control, FieldValues, useFieldArray } from 'react-hook-form';
+
+import { Delete } from '@styled-icons/fluentui-system-filled';
+
+import * as S from './styles';
 
 type FormArrayProps = {
   children: ((props: FormArrayOutProps) => JSX.Element) | JSX.Element;
@@ -37,21 +42,26 @@ export default function FormArray({
 
   if (typeof children === 'function') {
     return (
-      <>
+      <S.FormArrayWrapper>
         {fields.map((field, key) => (
-          <div key={field.id}>
+          <S.FormArrayItemWrapper key={field.id}>
             <hr />
 
-            {children({ controlForm: control, field, key, name })}
+            <S.FormCol>
+              {children({ controlForm: control, field, key, name })}
+            </S.FormCol>
 
             <button type="button">{titleRemove}</button>
 
             <hr />
-          </div>
+          </S.FormArrayItemWrapper>
         ))}
 
-        <button type="button" onClick={handleAdd}>{titleAdd}</button>
-      </>
+        <button type="button" onClick={handleAdd}>
+          <Delete />
+          {titleAdd}
+        </button>
+      </S.FormArrayWrapper>
     );
   }
 

@@ -18,9 +18,9 @@ import {
 
 @Controller('career-portfolio')
 export class CareerPortfolioController {
-  constructor(
-    private readonly careerPortfolioService: CareerPortfolioService
-  ) {}
+  constructor(private readonly careerPortfolioService: CareerPortfolioService) {
+    // empty
+  }
 
   @Get()
   public async findAll(): Promise<CareerPortfolio[]> {
@@ -34,7 +34,7 @@ export class CareerPortfolioController {
 
   @Post()
   public async create(
-    @Body() createDto: CreateCareerPortfolioDto
+    @Body() createDto: CreateCareerPortfolioDto,
   ): Promise<CareerPortfolio> {
     return await this.careerPortfolioService.create(createDto);
   }
@@ -42,7 +42,7 @@ export class CareerPortfolioController {
   @Put(':id')
   public async update(
     @Param('id') id: string,
-    @Body() updateDto: UpdateCareerPortfolioDto
+    @Body() updateDto: UpdateCareerPortfolioDto,
   ): Promise<UpdateResult> {
     return await this.careerPortfolioService.update(id, updateDto);
   }

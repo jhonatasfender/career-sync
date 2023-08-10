@@ -19,8 +19,10 @@ export class CareerPortfolioService {
 
   constructor(
     @InjectRepository(CareerPortfolio)
-    private readonly careerPortfolioRepository: Repository<CareerPortfolio>
-  ) {}
+    private readonly careerPortfolioRepository: Repository<CareerPortfolio>,
+  ) {
+    // empty
+  }
 
   public async findAll(): Promise<CareerPortfolio[]> {
     return await this.careerPortfolioRepository.find({
@@ -36,7 +38,7 @@ export class CareerPortfolioService {
   }
 
   public async create(
-    createDto: CreateCareerPortfolioDto
+    createDto: CreateCareerPortfolioDto,
   ): Promise<CareerPortfolio> {
     const savedCareerPortfolio = this.careerPortfolioRepository.create({
       ...createDto,
@@ -49,7 +51,7 @@ export class CareerPortfolioService {
 
   public async update(
     id: string,
-    updateDto: UpdateCareerPortfolioDto
+    updateDto: UpdateCareerPortfolioDto,
   ): Promise<UpdateResult> {
     return await this.careerPortfolioRepository.update(id, updateDto);
   }
