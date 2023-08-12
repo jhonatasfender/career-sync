@@ -10,6 +10,7 @@ import Input from '../../components/Input';
 import ViewPDF from '../../components/ViewPDF';
 import FormArray from './form-array';
 import * as S from './styles';
+import FormDatePicker from '../../components/FormDatePicker';
 
 export default function Form(): JSX.Element {
   const methods = useForm();
@@ -80,6 +81,7 @@ export default function Form(): JSX.Element {
             titleAdd="Add Language"
             titleRemove="Remove Language"
             control={control}
+            title="Professional Summary"
           >
             {({ controlForm, name, key }): JSX.Element => (
               <>
@@ -105,6 +107,7 @@ export default function Form(): JSX.Element {
                   titleRemove="Remove Experience"
                   name={`${name}[${key}].experiences`}
                   control={controlForm}
+                  title="Employment History"
                 >
                   {({ key: keyIndex, name }): JSX.Element => (
                     <>
@@ -119,7 +122,7 @@ export default function Form(): JSX.Element {
                             name={`${name}[${keyIndex}].companyName`}
                           />
 
-                          <Input
+                          <FormDatePicker
                             label="Start Date"
                             name={`${name}[${keyIndex}].startDate`}
                           />
@@ -129,7 +132,8 @@ export default function Form(): JSX.Element {
                             label="Position"
                             name={`${name}[${keyIndex}].position`}
                           />
-                          <Input
+
+                          <FormDatePicker
                             label="End Date"
                             name={`${name}[${keyIndex}].endDate`}
                           />
@@ -149,6 +153,7 @@ export default function Form(): JSX.Element {
                   titleRemove="Remove Academic Experiences"
                   name={`${name}[${key}].academicExperiences`}
                   control={controlForm}
+                  title="Education"
                 >
                   {({ key: keyIndex, name }): JSX.Element => (
                     <>

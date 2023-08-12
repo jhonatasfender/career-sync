@@ -2,7 +2,7 @@
 import { Control, FieldValues, useFieldArray } from 'react-hook-form';
 
 import { DeleteOutline } from '@styled-icons/material-sharp';
-
+import { NoteAdd } from '@styled-icons/fluentui-system-regular';
 import * as S from './styles';
 
 type FormArrayProps = {
@@ -11,6 +11,7 @@ type FormArrayProps = {
   name: string;
   titleRemove: string;
   titleAdd: string;
+  title: string;
 };
 
 /**
@@ -30,6 +31,7 @@ export default function FormArray({
   name,
   titleRemove,
   titleAdd,
+  title,
 }: FormArrayProps): JSX.Element {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -43,26 +45,35 @@ export default function FormArray({
   if (typeof children === 'function') {
     return (
       <S.FormArrayWrapper>
+        <S.Title>{title}</S.Title>
+
         {fields.map((field, key) => (
           <S.FormArrayItemWrapper key={field.id}>
-            <hr />
+            {key === 0 && <S.Separator />}
 
-            <S.FormCol>
-              {children({ controlForm: control, field, key, name })}
-            </S.FormCol>
+            <S.FormArrayItemWrapperRow>
+              <S.FormArrayItemWrapperCol>
+                {children({ controlForm: control, field, key, name })}
+              </S.FormArrayItemWrapperCol>
 
-            <button type="button" title={titleRemove}>
-              <DeleteOutline />
-              {titleRemove}
-            </button>
+              <S.FormArrayButtonRemover type="button" title={titleRemove}>
+                <DeleteOutline />
+                <S.FormArrayButtonRemoverText>{titleRemove}</S.FormArrayButtonRemoverText>
+              </S.FormArrayButtonRemover>
+            </S.FormArrayItemWrapperRow>
 
-            <hr />
+            <S.Separator />
           </S.FormArrayItemWrapper>
         ))}
 
-        <button type="button" onClick={handleAdd} title={titleAdd}>
+        <S.FormArrayButtonAdd
+          type="button"
+          onClick={handleAdd}
+          title={titleAdd}
+        >
+          <NoteAdd />
           {titleAdd}
-        </button>
+        </S.FormArrayButtonAdd>
       </S.FormArrayWrapper>
     );
   }
