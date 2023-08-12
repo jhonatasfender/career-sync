@@ -48,16 +48,19 @@ export class UpdateCareerPortfolioDto {
   public phone?: string;
 
   @IsUrl()
-  public portfolio?: string;
+  public portfolioLink?: string;
 
   @IsUrl()
-  public github?: string;
+  public githubLink?: string;
 
   @IsArray()
   @ArrayMinSize(1)
   @Type(() => UpdateLanguageDTO)
   @ValidateNested({ each: true })
   public languages?: UpdateLanguageDTO[];
+
+  @IsNotEmpty()
+  public id: number;
 }
 
 export class CreateLanguageDTO {
@@ -67,6 +70,12 @@ export class CreateLanguageDTO {
 
   @IsNotEmpty()
   public presentation: string;
+
+  @IsNotEmpty()
+  public city: string;
+
+  @IsNotEmpty()
+  public country: string;
 
   @IsArray()
   @ArrayMinSize(1)
@@ -85,12 +94,21 @@ export class CreateLanguageDTO {
 }
 
 export class UpdateLanguageDTO {
+  @IsNotEmpty()
+  public id: number;
+
   @Length(2, 5)
   @IsOptional()
   public lang?: string;
 
   @IsOptional()
   public presentation?: string;
+
+  @IsNotEmpty()
+  public city: string;
+
+  @IsNotEmpty()
+  public country: string;
 
   @IsArray()
   @ArrayMinSize(1)
@@ -118,6 +136,9 @@ export class CreateCompetencyDto {
 }
 
 export class UpdateCompetencyDto {
+  @IsOptional()
+  public id: number;
+
   @IsOptional()
   public title?: string;
 
@@ -151,6 +172,9 @@ export class CreateExperienceDto {
 
 export class UpdateExperienceDto {
   @IsOptional()
+  public id: number;
+
+  @IsOptional()
   public companyName?: string;
 
   @IsOptional()
@@ -180,6 +204,9 @@ export class CreateAcademicExperienceDto {
 }
 
 export class UpdateAcademicExperienceDto {
+  @IsOptional()
+  public id: number;
+
   @IsOptional()
   public institutionName?: string;
 

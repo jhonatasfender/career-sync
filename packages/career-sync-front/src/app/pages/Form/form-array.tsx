@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Control, FieldValues, useFieldArray } from 'react-hook-form';
 
-import { Delete } from '@styled-icons/fluentui-system-filled';
+import { DeleteOutline } from '@styled-icons/material-sharp';
 
 import * as S from './styles';
 
@@ -51,14 +51,16 @@ export default function FormArray({
               {children({ controlForm: control, field, key, name })}
             </S.FormCol>
 
-            <button type="button">{titleRemove}</button>
+            <button type="button" title={titleRemove}>
+              <DeleteOutline />
+              {titleRemove}
+            </button>
 
             <hr />
           </S.FormArrayItemWrapper>
         ))}
 
-        <button type="button" onClick={handleAdd}>
-          <Delete />
+        <button type="button" onClick={handleAdd} title={titleAdd}>
           {titleAdd}
         </button>
       </S.FormArrayWrapper>

@@ -1,0 +1,59 @@
+{
+	"info": {
+		"_postman_id": "6911380f-c241-475b-ba77-161443989159",
+		"name": "career-sync",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3903350"
+	},
+	"item": [
+		{
+			"name": "consultar o portifloio",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/career-portfolio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"career-portfolio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar um portifolio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"jhonatas.fender@gmail.com\",\n    \"username\": \"Jônatas Rodrigues Carvalho\",\n    \"phone\": \"+55 (61) 99665-0556\",\n    \"portfolio\": \"https://jhonatasfender.github.io/\",\n    \"github\": \"https://github.com/jhonatasfender\",\n    \"languages\": [\n        {\n            \"lang\": \"pt-BR\",\n            \"presentation\": \"teste\",\n            \"city\": \"Brasilia\",\n            \"country\": \"Brasil\",\n            \"competencies\": [\n                {\n                    \"title\": \"JavaScript\",\n                    \"parent\": [\n                        {\n                            \"title\": \"React\"\n                        },\n                        {\n                            \"title\": \"Angular\"\n                        }\n                    ]\n                }\n            ],\n            \"experiences\": [\n                {\n                    \"companyName\": \"test\",\n                    \"position\": \"test\",\n                    \"startDate\": \"2005-06-03\",\n                    \"endDate\": \"2005-07-03\",\n                    \"description\": \"test\"\n                }\n            ],\n            \"academicExperiences\": [\n                {\n                    \"institutionName\": \"teste\",\n                    \"courseName\": \"test\",\n                    \"description\": \"test\"\n                }\n            ]\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/career-portfolio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"career-portfolio"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

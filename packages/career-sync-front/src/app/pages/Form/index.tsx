@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useMutation, useQuery } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -19,14 +19,25 @@ export default function Form(): JSX.Element {
   const location = useLocation();
   const id = location.state?.id;
 
+  const [message, setMessage] = useState<string[]>([]);
+
   const { data, isLoading, isError } = useQuery(
     ['careerPortfolioById', id],
     () => api.get(`/career-portfolio/${id}`)
   );
 
-  const mutation = useMutation((formData) => {
-    return api.put(`/career-portfolio/${id}`, formData);
-  });
+  const mutation = useMutation(
+    (formData) => api.put(`/career-portfolio/${id}`, formData),
+    {
+      onError: ({
+        response: {
+          data: { message },
+        },
+      }) => {
+        setMessage(message);
+      },
+    }
+  );
 
   useEffect(() => {
     data && reset(data.data);
@@ -56,12 +67,10 @@ export default function Form(): JSX.Element {
             <S.FormCol>
               <Input label="User Name" name="username" />
               <Input label="Phone" name="phone" />
-              <Input label="City" name="city" />
               <Input label="Portfolio Link" name="portfolioLink" />
             </S.FormCol>
             <S.FormCol>
               <Input label="Email" name="email" />
-              <Input label="Country" name="country" />
               <Input label="GitHub Link" name="githubLink" />
             </S.FormCol>
           </S.FormRow>
@@ -73,15 +82,23 @@ export default function Form(): JSX.Element {
             control={control}
           >
             {({ controlForm, name, key }): JSX.Element => (
-              <div key={key}>
+              <>
                 <input type="hidden" {...register(`${name}[${key}].id`)} />
+
+                <S.FormRow>
+                  <S.FormCol>
+                    <Input label="City" name={`${name}[${key}].city`} />
+                    <Input label="Lang" name={`${name}[${key}].lang`} />
+                  </S.FormCol>
+                  <S.FormCol>
+                    <Input label="Country" name={`${name}[${key}].country`} />
+                  </S.FormCol>
+                </S.FormRow>
 
                 <CKEditorField
                   name={`${name}[${key}].presentation`}
                   label="Presentation"
                 />
-
-                <Input label="Lang" name={`${name}[${key}].lang`} />
 
                 <FormArray
                   titleAdd="Add Experience"
@@ -90,7 +107,7 @@ export default function Form(): JSX.Element {
                   control={controlForm}
                 >
                   {({ key: keyIndex, name }): JSX.Element => (
-                    <div key={keyIndex}>
+                    <>
                       <input
                         type="hidden"
                         {...register(`${name}[${keyIndex}].id`)}
@@ -123,7 +140,7 @@ export default function Form(): JSX.Element {
                         name={`${name}[${keyIndex}].description`}
                         label="Description"
                       />
-                    </div>
+                    </>
                   )}
                 </FormArray>
 
@@ -134,40 +151,39 @@ export default function Form(): JSX.Element {
                   control={controlForm}
                 >
                   {({ key: keyIndex, name }): JSX.Element => (
-                    <div key={keyIndex}>
+                    <>
                       <input
                         type="hidden"
                         {...register(`${name}[${keyIndex}].id`)}
                       />
 
-                      <div>
-                        <label>Institution Name</label>
-                        <input
-                          type="text"
-                          {...register(`${name}[${keyIndex}].institutionName`)}
-                        />
-                      </div>
+                      <S.FormRow>
+                        <S.FormCol>
+                          <Input
+                            label="Institution Name"
+                            name={`${name}[${keyIndex}].institutionName`}
+                          />
+                        </S.FormCol>
+                        <S.FormCol>
+                          <Input
+                            label="Course Name"
+                            name={`${name}[${keyIndex}].courseName`}
+                          />
+                        </S.FormCol>
+                      </S.FormRow>
 
-                      <div>
-                        <label>Course Name</label>
-                        <input
-                          type="text"
-                          {...register(`${name}[${keyIndex}].courseName`)}
-                        />
-                      </div>
-
-                      <div>
-                        <label>Description</label>
-                        <textarea
-                          {...register(`${name}[${keyIndex}].description`)}
-                        />
-                      </div>
-                    </div>
+                      <CKEditorField
+                        name={`${name}[${keyIndex}].description`}
+                        label="Presentation"
+                      />
+                    </>
                   )}
                 </FormArray>
-              </div>
+              </>
             )}
           </FormArray>
+
+          <pre>{JSON.stringify(message, null, 2)}</pre>
 
           <button type="submit">enviar</button>
         </S.ContainerForm>

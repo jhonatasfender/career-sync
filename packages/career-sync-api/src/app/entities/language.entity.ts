@@ -22,6 +22,12 @@ export default class Language {
   @Column({ type: 'varchar', length: 5 })
   public lang: string;
 
+  @Column()
+  public city: string;
+
+  @Column()
+  public country: string;
+
   @OneToMany(() => Competency, (competency) => competency.language, {
     cascade: true,
   })
@@ -37,13 +43,13 @@ export default class Language {
     (academicExperience) => academicExperience.language,
     {
       cascade: true,
-    }
+    },
   )
   public academicExperiences: AcademicExperience[];
 
   @ManyToOne(
     () => CareerPortfolio,
-    (careerPortfolio) => careerPortfolio.languages
+    (careerPortfolio) => careerPortfolio.languages,
   )
   public careerPortfolio: CareerPortfolio;
 }
