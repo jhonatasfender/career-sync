@@ -24,7 +24,7 @@ import { CareerPortfolioModule } from './modules/career-portfolio/career-portfol
       ],
       migrations: [...migrations],
       migrationsRun: true,
-      synchronize: false,
+      synchronize: true,
     }),
     CareerPortfolioModule,
   ],
