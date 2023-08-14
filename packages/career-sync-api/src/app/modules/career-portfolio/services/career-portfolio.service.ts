@@ -7,6 +7,7 @@ import {
   CreateCareerPortfolioDto,
   UpdateCareerPortfolioDto,
 } from '../controllers/career-portfolio.dto';
+import { CareerPortfolioMapper } from '../mappers/career-portfolio.mapper';
 
 @Injectable()
 export class CareerPortfolioService {
@@ -53,7 +54,12 @@ export class CareerPortfolioService {
     id: string,
     updateDto: UpdateCareerPortfolioDto,
   ): Promise<UpdateResult> {
-    return await this.careerPortfolioRepository.update(id, updateDto);
+    const find = await this.findOne(Number(id));
+
+    return await this.careerPortfolioRepository.update(
+      id,
+      CareerPortfolioMapper.toEntity(updateDto, find),
+    );
   }
 
   public async remove(id: string): Promise<DeleteResult> {

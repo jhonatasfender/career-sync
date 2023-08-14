@@ -137,14 +137,14 @@ export class CreateCompetencyDto {
 
 export class UpdateCompetencyDto {
   @IsOptional()
-  public id: number;
+  public id?: number;
 
-  @IsOptional()
-  public title?: string;
+  @IsNotEmpty()
+  public title: string;
 
   @IsOptional()
   @ArrayUnique()
-  public parent?: UpdateCompetencyDto[];
+  public parentCategory?: UpdateCompetencyDto[];
 }
 
 export class CreateExperienceDto {
@@ -174,23 +174,23 @@ export class UpdateExperienceDto {
   @IsOptional()
   public id: number;
 
-  @IsOptional()
-  public companyName?: string;
+  @IsNotEmpty()
+  public companyName: string;
 
-  @IsOptional()
-  public position?: string;
+  @IsNotEmpty()
+  public position: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsDateString()
-  public startDate?: Date;
+  public startDate: Date;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsDateString()
   @ValidateIf((_, value) => value !== undefined)
-  public endDate?: Date;
+  public endDate: Date;
 
-  @IsOptional()
-  public description?: string;
+  @IsNotEmpty()
+  public description: string;
 }
 
 export class CreateAcademicExperienceDto {
@@ -198,21 +198,22 @@ export class CreateAcademicExperienceDto {
   public institutionName: string;
 
   @IsNotEmpty()
-  public courseNames: string;
+  public courseName: string;
 
+  @IsNotEmpty()
   public description: string;
 }
 
 export class UpdateAcademicExperienceDto {
   @IsOptional()
-  public id: number;
+  public id?: number;
 
-  @IsOptional()
-  public institutionName?: string;
+  @IsNotEmpty()
+  public institutionName: string;
 
-  @IsOptional()
-  public course?: string;
+  @IsNotEmpty()
+  public courseName: string;
 
-  @IsOptional()
-  public description?: string;
+  @IsNotEmpty()
+  public description: string;
 }

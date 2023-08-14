@@ -5,7 +5,7 @@ import Language from './language.entity';
 @Entity()
 export default class Experience {
   @PrimaryGeneratedColumn()
-  public id: number;
+  public id?: number;
 
   @Column({ name: 'company_name' })
   public companyName: string;
@@ -23,5 +23,5 @@ export default class Experience {
   public description: string;
 
   @ManyToOne(() => Language, (lang) => lang.experiences)
-  public language: Language;
+  public language?: Language;
 }

@@ -12,20 +12,20 @@ import Language from './language.entity';
 @Entity()
 export default class Competency {
   @PrimaryGeneratedColumn()
-  public id: number;
+  public id?: number;
 
   @Column()
   public title: string;
 
   @ManyToOne(() => Language, (lang) => lang.competencies)
-  public language: Language;
+  public language?: Language;
 
   @ManyToOne(() => Competency, (competency) => competency.subcategories)
-  public parentCategory: Competency;
+  public parentCategory?: Competency;
 
   @ManyToMany(() => Competency, (competency) => competency.parentCategory, {
     cascade: true,
   })
   @JoinTable()
-  public subcategories: Competency[];
+  public subcategories?: Competency[];
 }

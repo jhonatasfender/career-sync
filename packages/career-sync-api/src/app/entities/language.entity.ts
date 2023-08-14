@@ -51,5 +51,5 @@ export default class Language {
     () => CareerPortfolio,
     (careerPortfolio) => careerPortfolio.languages,
   )
-  public careerPortfolio: CareerPortfolio;
+  public careerPortfolio?: CareerPortfolio;
 }
