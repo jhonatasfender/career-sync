@@ -14,7 +14,7 @@ import Experience from './experience.entity';
 @Entity()
 export default class Language {
   @PrimaryGeneratedColumn()
-  public id: number;
+  public id?: number;
 
   @Column('text')
   public presentation: string;

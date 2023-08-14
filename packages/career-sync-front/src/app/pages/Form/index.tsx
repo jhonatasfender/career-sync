@@ -6,11 +6,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { api } from '../../app';
 import CKEditorField from '../../components/CKEditorField';
+import FormDatePicker from '../../components/FormDatePicker';
 import Input from '../../components/Input';
 import ViewPDF from '../../components/ViewPDF';
 import FormArray from './form-array';
 import * as S from './styles';
-import FormDatePicker from '../../components/FormDatePicker';
 
 export default function Form(): JSX.Element {
   const methods = useForm();

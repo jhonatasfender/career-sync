@@ -40,6 +40,7 @@ export class CareerPortfolioMapper {
         return {
           ...language,
           ...dtoLanguage,
+          careerPortfolio: careerPortfolioEntity,
           academicExperiences: mappedAcademicExperiences,
           competencies: mappedCompetencies,
           experiences: mappedExperiences,

@@ -9,7 +9,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/career-sync-front"
+        "outputPath": "dist/packages/career-sync-front",
+        "sourceMap": true
       },
       "configurations": {
         "development": {

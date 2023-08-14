@@ -16,7 +16,9 @@
         "tsConfig": "packages/career-sync-api/tsconfig.app.json",
         "assets": ["packages/career-sync-api/src/assets"],
         "isolatedConfig": true,
-        "webpackConfig": "packages/career-sync-api/webpack.config.js"
+        "webpackConfig": "packages/career-sync-api/webpack.config.js",
+        "inspect": true,
+        "sourceMap": true
       },
       "configurations": {
         "development": {},

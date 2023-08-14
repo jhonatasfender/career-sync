@@ -2,16 +2,75 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug all project",
       "type": "node",
       "request": "launch",
+      "name": "Debug myservice",
       "cwd": "${workspaceFolder}",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start"],
-      "outputCapture": "std",
-      "internalConsoleOptions": "openOnSessionStart",
-      "console": "internalConsole",
-      "sourceMaps": true
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["nx", "serve", "career-sync-api", "--inspect"],
+      "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/*"],
+      "outFiles": ["${workspaceFolder}/dist/**/*.js"]
     }
   ]
 }
+
+// {
+//   "version": "0.2.0",
+//   "configurations": [
+//     {
+//       "type": "node",
+//       "request": "launch",
+//       "name": "Debug myservice",
+//       "cwd": "${workspaceFolder}",
+//       "runtimeExecutable": "./node_modules/.bin/nx",
+//       "runtimeArgs": ["run-many", "--target=serve", "--inspect"],
+//       "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/*"],
+//       "outFiles": ["${workspaceFolder}/dist/**/*.js"]
+//     }
+//   ]
+// }
+
+// {
+//   "name": "Debug all project",
+//   "type": "node",
+//   "request": "launch",
+//   "cwd": "${workspaceFolder}",
+//   "runtimeExecutable": "npm",
+//   "runtimeArgs": ["run", "start"],
+//   "outputCapture": "std",
+//   "internalConsoleOptions": "openOnSessionStart",
+//   "console": "internalConsole",
+//   "sourceMaps": true,
+//   "skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/*"],
+//   "outFiles": ["${workspaceFolder}/dist/packages/**/*"]
+// }
+
+// {
+//   "version": "0.2.0",
+//   "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
+//   "configurations": [
+//     {
+//       "name": "career-sync-api – Server",
+//       "type": "node",
+//       "request": "launch",
+//       "runtimeExecutable": "yarn",
+//       "runtimeArgs": [
+//         "nx",
+//         "run",
+//         "career-sync-api:serve",
+//         "-r",
+//         "ts-node/register",
+//         "-r",
+//         "tsconfig-paths/register"
+//       ],
+//       "outputCapture": "std",
+//       "internalConsoleOptions": "openOnSessionStart",
+//       "console": "internalConsole",
+//       "env": {
+//         "TS_NODE_IGNORE": "false",
+//         "TS_NODE_PROJECT": "${workspaceFolder}/packages/career-sync-api/tsconfig.json"
+//       },
+//       "cwd": "${workspaceFolder}/packages/career-sync-api/"
+//     }
+//   ]
+// }
