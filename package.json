@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "nx run-many --target=serve --projects=front-root,career"
+  },
   "dependencies": {
     "@nestjs/common": "^10.3.8",
     "@nestjs/core": "^10.3.8",
@@ -11,7 +14,9 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "single-spa": "^6.0.1",
-    "tslib": "^2.6.2"
+    "sqlite3": "^5.1.7",
+    "tslib": "^2.6.2",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.5",
