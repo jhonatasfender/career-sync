@@ -1,1 +1,1 @@
-import './app/app.element';
+import './app/career-root-config';
