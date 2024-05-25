@@ -9,11 +9,14 @@ registerApplication({
   activeWhen: ["/"],
 });
 
-// registerApplication({
-//   name: "@career/navbar",
-//   app: () => System.import("@career/navbar"),
-//   activeWhen: ["/"]
-// });
+registerApplication({
+  name: "@career/head",
+  app: () => System.import("@career/head"),
+  activeWhen: [
+    "/test",
+    (location) => location.pathname.startsWith("/test"),
+  ],
+});
 
 start({
   urlRerouteOnly: true,

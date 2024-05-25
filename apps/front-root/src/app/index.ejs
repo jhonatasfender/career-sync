@@ -43,15 +43,14 @@
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
-  <% if (isLocal) { %>
     <script type="systemjs-importmap">
       {
         "imports": {
-          "@career/root-config": "http://localhost:51235/main.js"
+          "@career/root-config": "//localhost:51235/main.js",
+          "@career/head": "//localhost:59284/main.js"
         }
       }
     </script>
-  <% } %>
 
   <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
