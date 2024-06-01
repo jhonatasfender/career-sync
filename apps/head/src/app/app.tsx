@@ -33,6 +33,8 @@ const Content = styled.div``;
 
 const MenuList = styled.ul`
   display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
   list-style-type: none;
 `;
 
