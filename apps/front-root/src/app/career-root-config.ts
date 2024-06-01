@@ -1,5 +1,7 @@
 import { LifeCycles, registerApplication, start } from 'single-spa';
 
+console.log('test');
+
 registerApplication({
   name: '@single-spa/welcome',
   app: () =>
@@ -8,6 +10,12 @@ registerApplication({
     ),
   activeWhen: ['/'],
 });
+
+// registerApplication({
+//   name: '@career/root-config',
+//   app: () => System.import('@career/root-config'),
+//   activeWhen: ['/'],
+// });
 
 // registerApplication({
 //   name: '@career/head',
@@ -23,5 +31,5 @@ registerApplication(
 );
 
 start({
-  urlRerouteOnly: true,
+  urlRerouteOnly: false,
 });

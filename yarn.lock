@@ -2792,6 +2792,7 @@ __metadata:
     axios: "npm:^1.7.2"
     babel-jest: "npm:^29.4.1"
     babel-plugin-styled-components: "npm:1.10.7"
+    ejs-loader: "npm:^0.5.0"
     eslint: "npm:~8.57.0"
     eslint-config-prettier: "npm:^9.1.0"
     eslint-config-ts-important-stuff: "npm:^1.1.0"
@@ -8128,6 +8129,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ejs-loader@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "ejs-loader@npm:0.5.0"
+  dependencies:
+    loader-utils: "npm:^2.0.0"
+    lodash: "npm:^4.17.15"
+  checksum: 10c0/2313e3ac674f24611b377c49b6928f9c787eb583d346e5ed09dcb78726d7049dfe8f7e01e180d5417747b1a075fdf27f6db81128845f6b8358478d4ce6202d70
+  languageName: node
+  linkType: hard
+
 "ejs@npm:^3.1.7":
   version: 3.1.10
   resolution: "ejs@npm:3.1.10"
@@ -11838,7 +11849,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.20, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.11, lodash@npm:^4.17.14, lodash@npm:^4.17.15, lodash@npm:^4.17.20, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c

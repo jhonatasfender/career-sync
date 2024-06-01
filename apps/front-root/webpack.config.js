@@ -15,9 +15,15 @@ module.exports = (webpackConfigEnv, argv) => {
   });
 
   const nxConfig = {
+    entry: join(__dirname, 'src/app/career-root-config.ts'),
     output: {
       filename: '[name].js',
+      chunkFilename: '[name].[contenthash].js',
       path: join(__dirname, '../../dist/apps/front-root'),
+      libraryTarget: 'system',
+      uniqueName: 'root-config',
+      devtoolNamespace: 'root-config',
+      publicPath: '',
     },
     devServer: {
       port: 51235,
@@ -34,7 +40,12 @@ module.exports = (webpackConfigEnv, argv) => {
       new NxAppWebpackPlugin({
         tsConfig: './tsconfig.app.json',
         compiler: 'tsc',
-        main: './src/main.ts',
+        commonChunk: false,
+        runtimeChunk: false,
+        vendorChunk: false,
+        namedChunks: false,
+        outputFileName: 'career-root-config.js',
+        main: './src/app/career-root-config.ts',
         index: './src/app/index.ejs',
         baseHref: '/',
         assets: ['./src/favicon.ico', './src/assets'],
@@ -47,5 +58,7 @@ module.exports = (webpackConfigEnv, argv) => {
     ],
   };
 
-  return merge(defaultConfig, nxConfig);
+  const all = merge(defaultConfig, nxConfig);
+
+  return all;
 };

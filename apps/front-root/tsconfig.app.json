@@ -1,6 +1,6 @@
 {
   "extends": ["./tsconfig.json", "ts-config-single-spa"],
-  "files": ["src/career-root-config.ts"],
+  "files": ["src/app/career-root-config.ts"],
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "types": ["node", "src/app/types/system.d.ts","src/app/types/declarations.d.ts"]
