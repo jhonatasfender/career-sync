@@ -31,7 +31,7 @@ console.log('test');
 // );
 
 registerApplication({
-  name: '@single-spa/welcome',
+  name: '@career/head',
   app: () => System.import<LifeCycles>('@career/head'),
   activeWhen: ['/'],
 });
