@@ -1,24 +1,33 @@
 import {
-  addProjectConfiguration,
   formatFiles,
   generateFiles,
+  joinPathFragments,
   Tree,
 } from '@nx/devkit';
-import * as path from 'path';
 import { ComponentGeneratorSchema } from './schema';
+import { names } from '@nrwl/devkit';
 
 export async function componentGenerator(
   tree: Tree,
-  options: ComponentGeneratorSchema,
+  schema: ComponentGeneratorSchema,
 ) {
-  const projectRoot = `libs/${options.name}`;
-  addProjectConfiguration(tree, options.name, {
-    root: projectRoot,
-    projectType: 'library',
-    sourceRoot: `${projectRoot}/src/lib/components`,
-    targets: {},
+  const componentNames = names(schema.name);
+  const componentDirectory = `libs/ui/src/lib/components/${componentNames.className}`;
+
+  generateFiles(tree, joinPathFragments(__dirname, './files'), componentDirectory, {
+    name: componentNames.className,
+    kebabName: componentNames.fileName,
   });
-  generateFiles(tree, path.join(__dirname, 'files'), projectRoot, options);
+
+  const indexPath = `libs/ui/src/lib/components/index.ts`;
+  const exportStatement = `export * from './${componentNames.className}';\n`;
+  const buffer = tree.read(indexPath);
+  const content = buffer ? buffer.toString('utf-8') : '';
+
+  if (!content.includes(exportStatement)) {
+    tree.write(indexPath, `${content}${exportStatement}`);
+  }
+
   await formatFiles(tree);
 }
 
