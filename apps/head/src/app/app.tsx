@@ -1,4 +1,4 @@
-import { Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { Dashboard } from '@career/icons';
 
@@ -12,16 +12,16 @@ export default function Root(props: any) {
   return (
     <>
       <GlobalStyles />
-      <Routes>
-        <Router>
+      <BrowserRouter>
+        <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="work" element={<Work />} />
             <Route path="skill" element={<Skill />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
-        </Router>
-      </Routes>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

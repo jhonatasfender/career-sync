@@ -45,6 +45,7 @@ erDiagram
       int id PK "AUTO_INCREMENT"
       
       string name
+      string icon
       
       int languageId FK
     }

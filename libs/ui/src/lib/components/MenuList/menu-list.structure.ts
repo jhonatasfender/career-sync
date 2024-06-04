@@ -12,6 +12,4 @@ export type MenuListProps = {
   readonly items: MenuItemProps[];
 };
 
-
-export type MenuListAction =
-  | { type: 'SET_ACTIVE'; payload: string };
+export type MenuListAction = { type: 'SET_ACTIVE'; payload: string };
