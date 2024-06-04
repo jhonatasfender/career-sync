@@ -17,7 +17,9 @@ export const SkillFilters = styled.div`
   justify-content: space-between;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  font-size: 3.5rem;
+`;
 
 export const Test1 = styled.div`
   display: flex;
@@ -30,6 +32,7 @@ export const Tag = styled.div`
   align-items: center;
   color: #a098ae;
   font-size: 1.4rem;
+  user-select: none;
 `;
 
 type TagLegendColorProps = {

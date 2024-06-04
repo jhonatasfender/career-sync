@@ -15,6 +15,7 @@ export const ProgressCardWrapper = styled.div<ColorProps>`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  user-select: none;
 `;
 
 export const IconWrapper = styled.div<ColorProps>`

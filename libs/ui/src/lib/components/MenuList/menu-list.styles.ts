@@ -19,6 +19,7 @@ export const ItemWrapper = styled.li<ItemWrapperProps>`
   border-radius: 1.6rem;
   width: 25rem;
   cursor: pointer;
+  user-select: none;
 
   background-color: ${({ active }) => (active ? '#4cbc9a' : '#ffffff')};
   box-shadow: ${({ active }) =>
