@@ -1,0 +1,45 @@
+{
+  "[object Promise]libs/ui/vite.config.ts": {
+    "build": {
+      "command": "vite build",
+      "options": {
+        "cwd": "libs/ui"
+      },
+      "cache": true,
+      "dependsOn": [
+        "^build"
+      ],
+      "inputs": [
+        "production",
+        "^production",
+        {
+          "externalDependencies": [
+            "vite"
+          ]
+        }
+      ],
+      "outputs": [
+        "{workspaceRoot}/dist/libs/ui"
+      ]
+    },
+    "serve": {
+      "command": "vite serve",
+      "options": {
+        "cwd": "libs/ui"
+      }
+    },
+    "preview": {
+      "command": "vite preview",
+      "options": {
+        "cwd": "libs/ui"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "build",
+        "spa": true
+      }
+    }
+  }
+}

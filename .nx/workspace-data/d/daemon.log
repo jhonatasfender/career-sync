@@ -1,0 +1,364 @@
+[NX Daemon Server] - 2024-06-08T12:56:52.822Z - Started listening on: /tmp/d90837301f3f36220ce3/d.sock
+[NX Daemon Server] - 2024-06-08T12:56:52.826Z - [WATCHER]: Subscribed to changes within: /home/jonatas/projects/github/career-sync (native)
+[NX Daemon Server] - 2024-06-08T12:56:52.827Z - Established a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:56:52.829Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:56:52.833Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:56:53.011Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-06-08T12:56:53.011Z - [REQUEST]: 
+[NX Daemon Server] - 2024-06-08T12:56:53.011Z - [REQUEST]: 
+[NX Daemon Server] - 2024-06-08T12:56:57.193Z - Time taken for 'Load Nx Plugin: /home/jonatas/projects/github/career-sync/node_modules/nx/src/plugins/project-json/build-nodes/package-json-next-to-project-json' 169.68150800000876ms
+[NX Daemon Server] - 2024-06-08T12:56:57.194Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:56:57.195Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:56:57.195Z - Established a connection. Number of open connections: 3
+[NX Daemon Server] - 2024-06-08T12:56:57.203Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:57.204Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:57.204Z - Handled GLOB. Handling time: 5. Response time: 2.
+[NX Daemon Server] - 2024-06-08T12:56:57.204Z - Closed a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:56:58.283Z - Time taken for '@nx/jest/plugin:createNodes' 4710.888321999926ms
+[NX Daemon Server] - 2024-06-08T12:56:58.290Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:58.291Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:58.291Z - Handled HASH_GLOB. Handling time: 6. Response time: 1.
+[33mThe CJS build of Vite's Node API is deprecated. See https://vitejs.dev/guide/troubleshooting.html#vite-cjs-node-api-deprecated for more details.[39m
+[NX Daemon Server] - 2024-06-08T12:56:59.433Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:56:59.438Z - Time taken for 'total for creating and serializing project graph' 6600.486395000014ms
+[NX Daemon Server] - 2024-06-08T12:56:59.444Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.444Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.444Z - Handled HASH_GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.451Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.452Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.452Z - Handled HASH_GLOB. Handling time: 4. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:56:59.453Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:56:59.454Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 6600. Response time: 21.
+[NX Daemon Server] - 2024-06-08T12:56:59.476Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:56:59.480Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:56:59.635Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.636Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.636Z - Handled GLOB. Handling time: 6. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:56:59.652Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.652Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.652Z - Handled GLOB. Handling time: 6. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.705Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:56:59.705Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:56:59.711Z - Time taken for 'total for creating and serializing project graph' 0.24380700010806322ms
+[NX Daemon Server] - 2024-06-08T12:56:59.715Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:56:59.715Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 10.
+[NX Daemon Server] - 2024-06-08T12:56:59.730Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:56:59.731Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:56:59.736Z - Time taken for 'total for creating and serializing project graph' 0.2733219997026026ms
+[NX Daemon Server] - 2024-06-08T12:56:59.742Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.742Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.742Z - Handled GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.749Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.749Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.749Z - Handled GLOB. Handling time: 6. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.756Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.756Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.756Z - Handled GLOB. Handling time: 6. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.763Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.763Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.763Z - Handled GLOB. Handling time: 6. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.769Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.769Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.769Z - Handled GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.775Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.776Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.776Z - Handled GLOB. Handling time: 4. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:56:59.781Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.781Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.781Z - Handled HASH_GLOB. Handling time: 4. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:56:59.782Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:56:59.782Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 51.
+[NX Daemon Server] - 2024-06-08T12:56:59.787Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.789Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:56:59.789Z - Handled HASH_GLOB. Handling time: 4. Response time: 2.
+[NX Daemon Server] - 2024-06-08T12:56:59.795Z - Established a connection. Number of open connections: 3
+[NX Daemon Server] - 2024-06-08T12:57:00.802Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:00.802Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:00.810Z - Time taken for 'total for creating and serializing project graph' 0.4292430002242327ms
+[NX Daemon Server] - 2024-06-08T12:57:00.814Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:00.814Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 12.
+[NX Daemon Server] - 2024-06-08T12:57:00.833Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:57:00.834Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:57:00.860Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:00.860Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:00.860Z - Handled HASH_GLOB. Handling time: 6. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:00.946Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:00.947Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:00.947Z - Handled HASH_GLOB. Handling time: 5. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:01.007Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.007Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.008Z - Handled HASH_GLOB. Handling time: 5. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:01.032Z - Closed a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:57:01.033Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:01.034Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:01.042Z - Time taken for 'total for creating and serializing project graph' 0.6536240000277758ms
+[NX Daemon Server] - 2024-06-08T12:57:01.044Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:01.044Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 10.
+[NX Daemon Server] - 2024-06-08T12:57:01.055Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.055Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.055Z - Handled HASH_GLOB. Handling time: 7. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.059Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:01.059Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:01.076Z - Time taken for 'total for creating and serializing project graph' 0.35984699986875057ms
+[NX Daemon Server] - 2024-06-08T12:57:01.078Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:01.079Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 20.
+[NX Daemon Server] - 2024-06-08T12:57:01.095Z - Established a connection. Number of open connections: 3
+[NX Daemon Server] - 2024-06-08T12:57:01.111Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.111Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.111Z - Handled HASH_GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.121Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.122Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.122Z - Handled GLOB. Handling time: 8. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:01.128Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.128Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.129Z - Handled GLOB. Handling time: 4. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:01.136Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.136Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.136Z - Handled GLOB. Handling time: 6. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.142Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.142Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.142Z - Handled GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.148Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.148Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.148Z - Handled GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.153Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.154Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.154Z - Handled GLOB. Handling time: 4. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:01.159Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.159Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.159Z - Handled GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.166Z - [REQUEST]: Responding to the client. handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.166Z - Done responding to the client handleGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.166Z - Handled GLOB. Handling time: 6. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.172Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.172Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.172Z - Handled HASH_GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:01.178Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.178Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:01.178Z - Handled HASH_GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:02.231Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.231Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.231Z - Handled HASH_GLOB. Handling time: 5. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:02.237Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.237Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.237Z - Handled HASH_GLOB. Handling time: 4. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:02.243Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.243Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.243Z - Handled HASH_GLOB. Handling time: 4. Response time: 0.
+[NX Daemon Server] - 2024-06-08T12:57:02.249Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.249Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.250Z - Handled HASH_GLOB. Handling time: 4. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:02.255Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.255Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.256Z - Handled HASH_GLOB. Handling time: 4. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:02.261Z - [REQUEST]: Responding to the client. handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.263Z - Done responding to the client handleHashGlob
+[NX Daemon Server] - 2024-06-08T12:57:02.263Z - Handled HASH_GLOB. Handling time: 4. Response time: 2.
+[NX Daemon Server] - 2024-06-08T12:57:02.275Z - [REQUEST]: Responding to the client. handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-08T12:57:02.276Z - Done responding to the client handleNxWorkspaceFiles
+[NX Daemon Server] - 2024-06-08T12:57:02.276Z - Handled GET_NX_WORKSPACE_FILES. Handling time: 3. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:02.373Z - Closed a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:57:03.028Z - [WATCHER]: .yarn/install-state.gz was modified
+[NX Daemon Server] - 2024-06-08T12:57:03.032Z - [REQUEST]: Responding to the client. File watch changed
+[NX Daemon Server] - 2024-06-08T12:57:03.033Z - Done responding to the client File watch changed
+[NX Daemon Server] - 2024-06-08T12:57:03.033Z - Handled FILE-WATCH-CHANGED. Handling time: 0. Response time: 1.
+[NX Daemon Server] - 2024-06-08T12:57:03.033Z - [WATCHER]: Processing file changes in outputs
+[NX Daemon Server] - 2024-06-08T12:57:03.033Z - Time taken for 'changed-projects' 1.2780550001189113ms
+[NX Daemon Server] - 2024-06-08T12:57:03.134Z - [REQUEST]: Updated workspace context based on watched changes, recomputing project graph...
+[NX Daemon Server] - 2024-06-08T12:57:03.135Z - [REQUEST]: .yarn/install-state.gz
+[NX Daemon Server] - 2024-06-08T12:57:03.135Z - [REQUEST]: 
+[NX Daemon Server] - 2024-06-08T12:57:03.566Z - Time taken for 'hash changed files from watcher' 2.9697419996373355ms
+[NX Daemon Server] - 2024-06-08T12:57:04.039Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:04.039Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:04.044Z - Time taken for 'total for creating and serializing project graph' 0.26353299990296364ms
+[NX Daemon Server] - 2024-06-08T12:57:04.048Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:04.048Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 9.
+[NX Daemon Server] - 2024-06-08T12:57:04.068Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:57:04.069Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:57:04.236Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:57:04.238Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:04.238Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:04.248Z - Time taken for 'total for creating and serializing project graph' 0.36403000028803945ms
+[NX Daemon Server] - 2024-06-08T12:57:04.250Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:04.250Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 12.
+[NX Daemon Server] - 2024-06-08T12:57:04.261Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:04.261Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:04.270Z - Time taken for 'total for creating and serializing project graph' 0.30166299967095256ms
+[NX Daemon Server] - 2024-06-08T12:57:04.273Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:04.273Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 12.
+[NX Daemon Server] - 2024-06-08T12:57:04.284Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:57:05.100Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:05.101Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:05.109Z - Time taken for 'total for creating and serializing project graph' 0.39411599980667233ms
+[NX Daemon Server] - 2024-06-08T12:57:05.116Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:05.116Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 15.
+[NX Daemon Server] - 2024-06-08T12:57:05.129Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:57:05.131Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:57:05.287Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:57:05.288Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:05.289Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:05.297Z - Time taken for 'total for creating and serializing project graph' 0.2823079996742308ms
+[NX Daemon Server] - 2024-06-08T12:57:05.300Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:05.300Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 11.
+[NX Daemon Server] - 2024-06-08T12:57:05.311Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:05.312Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:05.328Z - Time taken for 'total for creating and serializing project graph' 0.5272599998861551ms
+[NX Daemon Server] - 2024-06-08T12:57:05.330Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:05.330Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 18.
+[NX Daemon Server] - 2024-06-08T12:57:05.341Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:57:13.291Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:13.291Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:13.300Z - Time taken for 'total for creating and serializing project graph' 0.40702500008046627ms
+[NX Daemon Server] - 2024-06-08T12:57:13.303Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:13.303Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 12.
+[NX Daemon Server] - 2024-06-08T12:57:13.322Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:57:13.323Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:57:13.489Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:57:13.490Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:13.490Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:13.499Z - Time taken for 'total for creating and serializing project graph' 0.29226400004699826ms
+[NX Daemon Server] - 2024-06-08T12:57:13.501Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:13.501Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 11.
+[NX Daemon Server] - 2024-06-08T12:57:13.513Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:13.513Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:13.522Z - Time taken for 'total for creating and serializing project graph' 0.3581199999898672ms
+[NX Daemon Server] - 2024-06-08T12:57:13.523Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:13.523Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 10.
+[NX Daemon Server] - 2024-06-08T12:57:13.534Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:57:14.540Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:14.540Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:14.553Z - Time taken for 'total for creating and serializing project graph' 0.34676000010222197ms
+[NX Daemon Server] - 2024-06-08T12:57:14.556Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:14.556Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 16.
+[NX Daemon Server] - 2024-06-08T12:57:14.573Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:57:14.574Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:57:14.766Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:57:14.767Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:14.768Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:14.776Z - Time taken for 'total for creating and serializing project graph' 0.2756189997307956ms
+[NX Daemon Server] - 2024-06-08T12:57:14.778Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:14.778Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 10.
+[NX Daemon Server] - 2024-06-08T12:57:14.792Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:14.793Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:14.811Z - Time taken for 'total for creating and serializing project graph' 0.3183309999294579ms
+[NX Daemon Server] - 2024-06-08T12:57:14.813Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:14.813Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 20.
+[NX Daemon Server] - 2024-06-08T12:57:14.828Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:57:18.835Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:18.836Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:18.847Z - Time taken for 'total for creating and serializing project graph' 0.4694169997237623ms
+[NX Daemon Server] - 2024-06-08T12:57:18.850Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:18.851Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 15.
+[NX Daemon Server] - 2024-06-08T12:57:18.874Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:57:18.875Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:57:19.061Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:57:19.062Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:19.063Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:19.074Z - Time taken for 'total for creating and serializing project graph' 0.38580300007015467ms
+[NX Daemon Server] - 2024-06-08T12:57:19.076Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:19.076Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 13.
+[NX Daemon Server] - 2024-06-08T12:57:19.090Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:19.091Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:19.101Z - Time taken for 'total for creating and serializing project graph' 0.30195700004696846ms
+[NX Daemon Server] - 2024-06-08T12:57:19.102Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:19.103Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 12.
+[NX Daemon Server] - 2024-06-08T12:57:19.116Z - Established a connection. Number of open connections: 2
+[NX Daemon Server] - 2024-06-08T12:57:28.121Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:28.122Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:28.129Z - Time taken for 'total for creating and serializing project graph' 0.47859100019559264ms
+[NX Daemon Server] - 2024-06-08T12:57:28.136Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:28.136Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 14.
+[NX Daemon Server] - 2024-06-08T12:57:28.159Z - [REQUEST]: Responding to the client with an error. Invalid payload from the client Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+Error: Unsupported payload sent to daemon server: {"type":"REQUEST_FILE_DATA"}
+    at handleMessage (/home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:125:104)
+    at /home/jonatas/projects/github/career-sync/node_modules/nx/src/daemon/server/server.js:55:15
+    at Socket.<anonymous> (/home/jonatas/projects/github/career-sync/node_modules/nx/src/utils/consume-messages-from-socket.js:13:17)
+    at Socket.emit (node:events:517:28)
+    at Socket.emit (node:domain:489:12)
+    at addChunk (node:internal/streams/readable:368:12)
+    at readableAddChunk (node:internal/streams/readable:341:9)
+    at Socket.Readable.push (node:internal/streams/readable:278:10)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:190:23)
+[NX Daemon Server] - 2024-06-08T12:57:28.162Z - Done responding to the client null
+[NX Daemon Server] - 2024-06-08T12:57:28.328Z - Closed a connection. Number of open connections: 1
+[NX Daemon Server] - 2024-06-08T12:57:28.331Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:28.332Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:28.343Z - Time taken for 'total for creating and serializing project graph' 0.3267040001228452ms
+[NX Daemon Server] - 2024-06-08T12:57:28.344Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:28.344Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 1. Response time: 12.
+[NX Daemon Server] - 2024-06-08T12:57:28.356Z - [REQUEST]: Client Request for Project Graph Received
+[NX Daemon Server] - 2024-06-08T12:57:28.356Z - [REQUEST]: Responding to the client. project-graph
+[NX Daemon Server] - 2024-06-08T12:57:28.366Z - Time taken for 'total for creating and serializing project graph' 0.3421970000490546ms
+[NX Daemon Server] - 2024-06-08T12:57:28.368Z - Done responding to the client project-graph
+[NX Daemon Server] - 2024-06-08T12:57:28.368Z - Handled REQUEST_PROJECT_GRAPH. Handling time: 0. Response time: 12.
+[NX Daemon Server] - 2024-06-08T12:57:28.378Z - Established a connection. Number of open connections: 2
