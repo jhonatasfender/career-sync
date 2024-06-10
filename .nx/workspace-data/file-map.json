@@ -151,123 +151,340 @@
   "fileMap": {
     "nonProjectFiles": [
       {
-        "file": ".yarn/versions/96f7a42c.yml",
-        "hash": "17040602099490725808"
+        "file": "jest.config.ts",
+        "hash": "8529806343087814844"
       },
       {
         "file": ".eslintignore",
         "hash": "7663861978715868291"
       },
       {
-        "file": ".vscode/settings.json",
-        "hash": "10736989266964588500"
-      },
-      {
-        "file": "database-der.md",
-        "hash": "552801498750415753"
-      },
-      {
-        "file": "jest.config.ts",
-        "hash": "8529806343087814844"
-      },
-      {
-        "file": "README.md",
-        "hash": "8706583065446360775"
-      },
-      {
-        "file": ".yarn/install-state.gz",
-        "hash": "15838270388502594343"
-      },
-      {
-        "file": "tsconfig.base.json",
-        "hash": "1613111427310620434"
-      },
-      {
         "file": ".yarnrc.yml",
         "hash": "8209047167252577447"
-      },
-      {
-        "file": "nx.json",
-        "hash": "18236038008392161444"
       },
       {
         "file": "yarn.lock",
         "hash": "18399934661046961436"
       },
       {
-        "file": "database.example.md",
-        "hash": "4795458987596977858"
+        "file": ".yarn/versions/96f7a42c.yml",
+        "hash": "17040602099490725808"
       },
       {
-        "file": ".gitignore",
-        "hash": "16877376182141465221"
+        "file": ".yarn/install-state.gz",
+        "hash": "15838270388502594343"
       },
       {
-        "file": ".editorconfig",
-        "hash": "5443105041930014821"
+        "file": "nx.json",
+        "hash": "18236038008392161444"
+      },
+      {
+        "file": "database-der.md",
+        "hash": "552801498750415753"
       },
       {
         "file": "database.md",
         "hash": "6049814235858652260"
       },
       {
-        "file": ".vscode/extensions.json",
-        "hash": "17425123947026961272"
-      },
-      {
-        "file": ".yarn/releases/yarn-4.2.2.cjs",
-        "hash": "13505783443694816522"
-      },
-      {
-        "file": ".eslintrc.json",
-        "hash": "746227632153557778"
-      },
-      {
-        "file": ".prettierignore",
-        "hash": "16448050467312557263"
+        "file": ".gitignore",
+        "hash": "16877376182141465221"
       },
       {
         "file": ".prettierrc",
         "hash": "16267754514737964994"
       },
       {
-        "file": "package.json",
-        "hash": "9864323319361515052"
+        "file": ".prettierignore",
+        "hash": "16448050467312557263"
+      },
+      {
+        "file": ".vscode/settings.json",
+        "hash": "10736989266964588500"
+      },
+      {
+        "file": "database.example.md",
+        "hash": "4795458987596977858"
+      },
+      {
+        "file": "tsconfig.base.json",
+        "hash": "1613111427310620434"
+      },
+      {
+        "file": ".eslintrc.json",
+        "hash": "746227632153557778"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "17425123947026961272"
       },
       {
         "file": "jest.preset.js",
         "hash": "14486483495769361674"
+      },
+      {
+        "file": "package.json",
+        "hash": "9864323319361515052"
+      },
+      {
+        "file": "README.md",
+        "hash": "8706583065446360775"
+      },
+      {
+        "file": ".yarn/releases/yarn-4.2.2.cjs",
+        "hash": "13505783443694816522"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "5443105041930014821"
       }
     ],
     "projectFileMap": {
-      "head-e2e": [
+      "head": [
         {
-          "file": "apps/head-e2e/.eslintrc.json",
-          "hash": "632147010597293032"
+          "file": "apps/head/.babelrc",
+          "hash": "2933256737198428138"
         },
         {
-          "file": "apps/head-e2e/playwright.config.ts",
-          "hash": "15051458071832364169",
+          "file": "apps/head/.eslintrc.json",
+          "hash": "11012487992710232822"
+        },
+        {
+          "file": "apps/head/jest.config.ts",
+          "hash": "10429986274113450129"
+        },
+        {
+          "file": "apps/head/project.json",
+          "hash": "17220677156431826833"
+        },
+        {
+          "file": "apps/head/src/app/app.tsx",
+          "hash": "11414561141607213108",
           "deps": [
-            "npm:@playwright/test",
-            "npm:@nx/playwright",
-            "npm:@nx/devkit"
+            "npm:react-router-dom",
+            "icons"
           ]
         },
         {
-          "file": "apps/head-e2e/project.json",
-          "hash": "15518793796606384251"
-        },
-        {
-          "file": "apps/head-e2e/src/example.spec.ts",
-          "hash": "16019101014373124625",
+          "file": "apps/head/src/app/career-head.tsx",
+          "hash": "5415569884422733048",
           "deps": [
-            "npm:@playwright/test"
+            "npm:react",
+            "npm:react-dom",
+            "npm:single-spa-react"
           ]
         },
         {
-          "file": "apps/head-e2e/tsconfig.json",
-          "hash": "13413400511057489941"
+          "file": "apps/head/src/app/global/styles.ts",
+          "hash": "2745476398953549544",
+          "deps": [
+            "npm:styled-components"
+          ]
+        },
+        {
+          "file": "apps/head/src/app/layout/index.tsx",
+          "hash": "5739069361030769222",
+          "deps": [
+            "npm:styled-components",
+            "icons",
+            "ui",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/head/src/app/pages/dashboard/index.tsx",
+          "hash": "14616181039818238615"
+        },
+        {
+          "file": "apps/head/src/app/pages/no-match/index.tsx",
+          "hash": "16169797386933074479",
+          "deps": [
+            "icons",
+            "npm:react-router-dom",
+            "npm:styled-components"
+          ]
+        },
+        {
+          "file": "apps/head/src/app/pages/router.tsx",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/head/src/app/pages/skill/index.tsx",
+          "hash": "2295874784052483357",
+          "deps": [
+            "icons",
+            "ui",
+            "npm:react-router-dom"
+          ]
+        },
+        {
+          "file": "apps/head/src/app/pages/skill/skill.styles.ts",
+          "hash": "11658204603680127577",
+          "deps": [
+            "npm:styled-components"
+          ]
+        },
+        {
+          "file": "apps/head/src/app/pages/work/index.tsx",
+          "hash": "4871223369348446179"
+        },
+        {
+          "file": "apps/head/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/head/src/career-head.tsx",
+          "hash": "4631563883072797265",
+          "deps": [
+            "npm:react",
+            "npm:react-dom",
+            "npm:single-spa-react"
+          ]
+        },
+        {
+          "file": "apps/head/src/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/head/tsconfig.app.json",
+          "hash": "10514678202960682525"
+        },
+        {
+          "file": "apps/head/tsconfig.json",
+          "hash": "9850153468027031608"
+        },
+        {
+          "file": "apps/head/tsconfig.spec.json",
+          "hash": "11378287594513225419"
+        },
+        {
+          "file": "apps/head/webpack.config.js",
+          "hash": "12913047693562452828",
+          "deps": [
+            "npm:@nx/webpack",
+            "npm:@nx/react",
+            "npm:webpack-merge",
+            "npm:webpack-config-single-spa-react-ts"
+          ]
+        }
+      ],
+      "front-root": [
+        {
+          "file": "apps/front-root/.eslintrc.json",
+          "hash": "13800677001662881425"
+        },
+        {
+          "file": "apps/front-root/.swcrc",
+          "hash": "9921579498929141427"
+        },
+        {
+          "file": "apps/front-root/jest.config.ts",
+          "hash": "14769474910962633216"
+        },
+        {
+          "file": "apps/front-root/project.json",
+          "hash": "412499335052460349"
+        },
+        {
+          "file": "apps/front-root/src/app/career-root-config.ts",
+          "hash": "11759341115008471073",
+          "deps": [
+            "npm:single-spa"
+          ]
+        },
+        {
+          "file": "apps/front-root/src/app/index.ejs",
+          "hash": "14315435091473697130"
+        },
+        {
+          "file": "apps/front-root/src/app/types/declarations.d.ts",
+          "hash": "9073750544042808134"
+        },
+        {
+          "file": "apps/front-root/src/app/types/system.d.ts",
+          "hash": "1191195167168076303"
+        },
+        {
+          "file": "apps/front-root/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/front-root/src/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/front-root/src/styles.scss",
+          "hash": "5195668842064076916"
+        },
+        {
+          "file": "apps/front-root/src/test-setup.ts",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/front-root/tsconfig.app.json",
+          "hash": "9144988222609512381"
+        },
+        {
+          "file": "apps/front-root/tsconfig.json",
+          "hash": "1917885434306620191"
+        },
+        {
+          "file": "apps/front-root/tsconfig.spec.json",
+          "hash": "7670846817526018622"
+        },
+        {
+          "file": "apps/front-root/webpack.config.js",
+          "hash": "7646246497022613025",
+          "deps": [
+            "npm:webpack-merge",
+            "npm:webpack-config-single-spa-ts",
+            "npm:@nx/webpack",
+            "npm:html-webpack-plugin"
+          ]
+        }
+      ],
+      "career-e2e": [
+        {
+          "file": "apps/career-e2e/.eslintrc.json",
+          "hash": "2295303304320410742"
+        },
+        {
+          "file": "apps/career-e2e/jest.config.ts",
+          "hash": "438467390624161377"
+        },
+        {
+          "file": "apps/career-e2e/project.json",
+          "hash": "5208652978510255340"
+        },
+        {
+          "file": "apps/career-e2e/src/career/career.spec.ts",
+          "hash": "4747019362565984448",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "apps/career-e2e/src/support/global-setup.ts",
+          "hash": "14688124112638150235"
+        },
+        {
+          "file": "apps/career-e2e/src/support/global-teardown.ts",
+          "hash": "10856769668484651558"
+        },
+        {
+          "file": "apps/career-e2e/src/support/test-setup.ts",
+          "hash": "9379448616442792630",
+          "deps": [
+            "npm:axios"
+          ]
+        },
+        {
+          "file": "apps/career-e2e/tsconfig.json",
+          "hash": "15443990093475294480"
+        },
+        {
+          "file": "apps/career-e2e/tsconfig.spec.json",
+          "hash": "14519349202314136898"
         }
       ],
       "ui": [
@@ -354,6 +571,36 @@
           "hash": "11485189907647936074"
         },
         {
+          "file": "libs/ui/src/lib/components/Button/button.docs.mdx",
+          "hash": "6584071205136345439"
+        },
+        {
+          "file": "libs/ui/src/lib/components/Button/button.stories.tsx",
+          "hash": "11225986550008698941",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/ui/src/lib/components/Button/button.structure.ts",
+          "hash": "10648690975771395259"
+        },
+        {
+          "file": "libs/ui/src/lib/components/Button/button.styles.ts",
+          "hash": "17109981213631083940",
+          "deps": [
+            "npm:styled-components"
+          ]
+        },
+        {
+          "file": "libs/ui/src/lib/components/Button/index.tsx",
+          "hash": "4198709822446766334",
+          "deps": [
+            "npm:react",
+            "npm:styled-components"
+          ]
+        },
+        {
           "file": "libs/ui/src/lib/components/MenuList/index.ts",
           "hash": "11012040764557098034"
         },
@@ -433,7 +680,7 @@
         },
         {
           "file": "libs/ui/src/lib/components/index.ts",
-          "hash": "15020309398298586170"
+          "hash": "4987383252787205178"
         },
         {
           "file": "libs/ui/tsconfig.json",
@@ -458,109 +705,6 @@
           ]
         }
       ],
-      "career": [
-        {
-          "file": "apps/career/.eslintrc.json",
-          "hash": "2295303304320410742"
-        },
-        {
-          "file": "apps/career/jest.config.ts",
-          "hash": "7932564033609237313"
-        },
-        {
-          "file": "apps/career/project.json",
-          "hash": "2214224601178252367"
-        },
-        {
-          "file": "apps/career/src/app/app.module.ts",
-          "hash": "5967502743974503046",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/career/src/app/commons/commons.module.ts",
-          "hash": "16560850830408576666",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/career/src/app/database/database.module.ts",
-          "hash": "15902845140382321986",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/typeorm"
-          ]
-        },
-        {
-          "file": "apps/career/src/app/integrations/integrations.module.ts",
-          "hash": "17602668193516132662",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/career/src/app/modules/modules.module.ts",
-          "hash": "10676448739246922959",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/career/src/app/modules/users/entities/user.entity.ts",
-          "hash": "16917674380485059662",
-          "deps": [
-            "npm:typeorm"
-          ]
-        },
-        {
-          "file": "apps/career/src/app/modules/users/users.module.ts",
-          "hash": "15099307337114859284",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/typeorm"
-          ]
-        },
-        {
-          "file": "apps/career/src/app/shared/shared.module.ts",
-          "hash": "11804776405392386234",
-          "deps": [
-            "npm:@nestjs/common"
-          ]
-        },
-        {
-          "file": "apps/career/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/career/src/main.ts",
-          "hash": "11275304408774266054",
-          "deps": [
-            "npm:@nestjs/common",
-            "npm:@nestjs/core"
-          ]
-        },
-        {
-          "file": "apps/career/tsconfig.app.json",
-          "hash": "17628448778285850515"
-        },
-        {
-          "file": "apps/career/tsconfig.json",
-          "hash": "3490524966360018312"
-        },
-        {
-          "file": "apps/career/tsconfig.spec.json",
-          "hash": "11550347367511341917"
-        },
-        {
-          "file": "apps/career/webpack.config.js",
-          "hash": "6336732067713496838",
-          "deps": [
-            "npm:@nx/webpack"
-          ]
-        }
-      ],
       "icons": [
         {
           "file": "libs/icons/.babelrc",
@@ -572,7 +716,7 @@
         },
         {
           "file": "libs/icons/.svgrrc",
-          "hash": "8544590278123999118"
+          "hash": "771832365760548436"
         },
         {
           "file": "libs/icons/README.md",
@@ -605,6 +749,10 @@
         {
           "file": "libs/icons/assets/c-plus.svg",
           "hash": "5590699692896384525"
+        },
+        {
+          "file": "libs/icons/assets/circle-plus.svg",
+          "hash": "11294002527799692822"
         },
         {
           "file": "libs/icons/assets/codeigniter.svg",
@@ -735,12 +883,20 @@
           "hash": "18342610678592974737"
         },
         {
+          "file": "libs/icons/assets/mic.svg",
+          "hash": "1690256833292285439"
+        },
+        {
           "file": "libs/icons/assets/microsoft-sql-server.svg",
           "hash": "4475423184259981991"
         },
         {
           "file": "libs/icons/assets/mongodb.svg",
           "hash": "5185512858697828934"
+        },
+        {
+          "file": "libs/icons/assets/more-options.svg",
+          "hash": "15738722538787192140"
         },
         {
           "file": "libs/icons/assets/mysql.svg",
@@ -775,12 +931,20 @@
           "hash": "2951493054980711517"
         },
         {
+          "file": "libs/icons/assets/phone.svg",
+          "hash": "8343313470477101110"
+        },
+        {
           "file": "libs/icons/assets/php.svg",
           "hash": "7359066385157937752"
         },
         {
           "file": "libs/icons/assets/postgresql.svg",
           "hash": "12168097901577917871"
+        },
+        {
+          "file": "libs/icons/assets/power.svg",
+          "hash": "15676885405823629590"
         },
         {
           "file": "libs/icons/assets/prometheus.svg",
@@ -815,12 +979,20 @@
           "hash": "4683664452815481660"
         },
         {
+          "file": "libs/icons/assets/send.svg",
+          "hash": "9325762310673783970"
+        },
+        {
           "file": "libs/icons/assets/spring.svg",
           "hash": "111241633149367897"
         },
         {
           "file": "libs/icons/assets/typescript.svg",
           "hash": "7041020114466817405"
+        },
+        {
+          "file": "libs/icons/assets/video-camera.svg",
+          "hash": "11297749075570081139"
         },
         {
           "file": "libs/icons/assets/vite.svg",
@@ -868,21 +1040,21 @@
         },
         {
           "file": "libs/icons/src/lib/Advpl.tsx",
-          "hash": "4939773914648204918",
+          "hash": "13363161561960132359",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Android.tsx",
-          "hash": "9516483356743084833",
+          "hash": "1626671845568203928",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Angular.tsx",
-          "hash": "5434539395558127568",
+          "hash": "11346263965375834891",
           "deps": [
             "npm:react"
           ]
@@ -896,455 +1068,504 @@
         },
         {
           "file": "libs/icons/src/lib/Azure.tsx",
-          "hash": "16240275384598332974",
+          "hash": "12638697749726277152",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Backbone.tsx",
-          "hash": "17743650310155754170",
+          "hash": "3299047036323968023",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/CPlus.tsx",
-          "hash": "14233081924265217304",
+          "hash": "8449800585586035459",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/icons/src/lib/CirclePlus.tsx",
+          "hash": "16105709218159396982",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Codeigniter.tsx",
-          "hash": "4899538199435357",
+          "hash": "15027482851665081667",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Composer.tsx",
-          "hash": "7183411433226458867",
+          "hash": "16123688032973388037",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Csharp.tsx",
-          "hash": "11032267508893968045",
+          "hash": "2197339514816843054",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Css3.tsx",
-          "hash": "4035156275537541324",
+          "hash": "7634985217674060887",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/D3Js.tsx",
-          "hash": "898176997232380592",
+          "hash": "17854503939141809867",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Dart.tsx",
-          "hash": "12737383267622902639",
+          "hash": "11347568034205544456",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Dashboard.tsx",
-          "hash": "5316873924780341651",
+          "hash": "12264606278500480209",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Datadog.tsx",
-          "hash": "11125846307533410834",
+          "hash": "6801094978777548971",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Docker.tsx",
-          "hash": "4855665663896170005",
+          "hash": "17723325013205012597",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Dotnet.tsx",
-          "hash": "1438189893688992226",
+          "hash": "11117993124534592648",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Drupal.tsx",
-          "hash": "17394210484886568086",
+          "hash": "7789738956438241851",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Elasticsearch.tsx",
-          "hash": "578393649527776340",
+          "hash": "2963283670035417247",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Express.tsx",
-          "hash": "9117915568880801464",
+          "hash": "1019058884875317035",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Extjs.tsx",
-          "hash": "9028139632630460232",
+          "hash": "15351949647257441889",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Flutter.tsx",
-          "hash": "15507373106015674061",
+          "hash": "5253344270146879857",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Git.tsx",
-          "hash": "3953828339050275420",
+          "hash": "6150010208346691609",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Github.tsx",
-          "hash": "6684470925355922605",
+          "hash": "13476872986208135935",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Gitlab.tsx",
-          "hash": "2307935279310664110",
+          "hash": "13269735163935879445",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Gradle.tsx",
-          "hash": "7027322603054953743",
+          "hash": "6267962876030722399",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Grafana.tsx",
-          "hash": "2335062453737153204",
+          "hash": "17977863511437069629",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Helm.tsx",
-          "hash": "5199118798645028123",
+          "hash": "11910180961868763211",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Html5.tsx",
-          "hash": "12459374823481057164",
+          "hash": "2058957949201415650",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Ionic.tsx",
-          "hash": "530057938563783837",
+          "hash": "11224482005715698091",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Java.tsx",
-          "hash": "12594848297073754118",
+          "hash": "4220475097949434300",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Jenkins.tsx",
-          "hash": "6406193834739596204",
+          "hash": "17856981811729775406",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Kubernetes.tsx",
-          "hash": "1032026847707749397",
+          "hash": "2232356243166432963",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Laravel.tsx",
-          "hash": "9234355981402400593",
+          "hash": "2972302147944357933",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/LernaJs.tsx",
-          "hash": "1933302233655904342",
+          "hash": "7317783073878437176",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Linkedin.tsx",
-          "hash": "1056302211739034491",
+          "hash": "18133185880235786751",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Linux.tsx",
-          "hash": "4974677576441723830",
+          "hash": "5983107115649248489",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Logo.tsx",
-          "hash": "13370042478216182737",
+          "hash": "9904365612896954426",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Maven.tsx",
-          "hash": "11405933814833254635",
+          "hash": "501328049770193444",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/icons/src/lib/Mic.tsx",
+          "hash": "12871929056593945349",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/MicrosoftSqlServer.tsx",
-          "hash": "14597182383492570568",
+          "hash": "16585958987064858873",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Mongodb.tsx",
-          "hash": "18268804991306055077",
+          "hash": "15375737856013862848",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Moodle.tsx",
-          "hash": "11845170165590126350",
+          "hash": "7048150835509500923",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/icons/src/lib/MoreOptions.tsx",
+          "hash": "2677237588744136743",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Mysql.tsx",
-          "hash": "15518549570783726293",
+          "hash": "3244530671268150223",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Nestjs.tsx",
-          "hash": "1713307568036441180",
+          "hash": "9881193079983670639",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/NextJs.tsx",
-          "hash": "7417233554070424957",
+          "hash": "5655174446178597094",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Nginx.tsx",
-          "hash": "11227996403768075194",
+          "hash": "9367338806606503269",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/NodeJs.tsx",
-          "hash": "9288359472588103334",
+          "hash": "11282850239320886038",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Npm.tsx",
-          "hash": "2734955009842922827",
+          "hash": "13762254911019702849",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Nx.tsx",
-          "hash": "14428715493647335349",
+          "hash": "17914286113958268367",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Phalcon.tsx",
-          "hash": "14703197828812925869",
+          "hash": "6074865953147333139",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/icons/src/lib/Phone.tsx",
+          "hash": "4900955132977980663",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Php.tsx",
-          "hash": "10164890208271695124",
+          "hash": "3152806631297408091",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Postgresql.tsx",
-          "hash": "6862533668623895953",
+          "hash": "6279161496895773780",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/icons/src/lib/Power.tsx",
+          "hash": "6028459795339268437",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Prometheus.tsx",
-          "hash": "17381523995814556665",
+          "hash": "16334955113510187479",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Python.tsx",
-          "hash": "14670756706978915250",
+          "hash": "10431773808342563535",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Quarkus.tsx",
-          "hash": "8147365007499499090",
+          "hash": "8407540915085669811",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Rabbitmq.tsx",
-          "hash": "17912429357732643781",
+          "hash": "1192124984372216223",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Rancher.tsx",
-          "hash": "17616530627942422816",
+          "hash": "9763459990994384641",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/React.tsx",
-          "hash": "16181508246236751901",
+          "hash": "3209548716572323915",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Redux.tsx",
-          "hash": "13527924051066052551",
+          "hash": "330892042893360051",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Ruby.tsx",
-          "hash": "5877514960622213272",
+          "hash": "12042467484973876444",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/icons/src/lib/Send.tsx",
+          "hash": "2632261752575227826",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Spring.tsx",
-          "hash": "1706122183756838230",
+          "hash": "2291613626674444741",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Typescript.tsx",
-          "hash": "5451752540346488618",
+          "hash": "15685874666776517171",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "libs/icons/src/lib/VideoCamera.tsx",
+          "hash": "10667088241238048955",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Vite.tsx",
-          "hash": "2756706014844429135",
+          "hash": "6844618730619251865",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Vue.tsx",
-          "hash": "9036283307179882513",
+          "hash": "41450979344592742",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Webpack.tsx",
-          "hash": "16857451480216055987",
+          "hash": "10077291138394030356",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Wildfly.tsx",
-          "hash": "16751673629832800475",
+          "hash": "10116160910147001748",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/Work.tsx",
-          "hash": "3294202924841901308",
+          "hash": "17288481874850213487",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/ZendFramework.tsx",
-          "hash": "2172537503253666029",
+          "hash": "12872747750522138848",
           "deps": [
             "npm:react"
           ]
         },
         {
           "file": "libs/icons/src/lib/index.ts",
-          "hash": "17001691324576218856"
+          "hash": "10631230002535774913"
         },
         {
           "file": "libs/icons/tsconfig.json",
@@ -1357,247 +1578,157 @@
         {
           "file": "libs/icons/tsconfig.spec.json",
           "hash": "6514620907549802163"
-        }
-      ],
-      "front-root": [
-        {
-          "file": "apps/front-root/.eslintrc.json",
-          "hash": "13800677001662881425"
         },
         {
-          "file": "apps/front-root/.swcrc",
-          "hash": "9921579498929141427"
-        },
-        {
-          "file": "apps/front-root/jest.config.ts",
-          "hash": "14769474910962633216"
-        },
-        {
-          "file": "apps/front-root/project.json",
-          "hash": "412499335052460349"
-        },
-        {
-          "file": "apps/front-root/src/app/career-root-config.ts",
-          "hash": "11759341115008471073",
+          "file": "libs/icons/src/lib/404.tsx",
+          "hash": "11440171660149904595",
           "deps": [
-            "npm:single-spa"
+            "npm:react"
           ]
         },
         {
-          "file": "apps/front-root/src/app/index.ejs",
-          "hash": "14315435091473697130"
+          "file": "libs/icons/assets/not-found.svg",
+          "hash": "13232809000153245937"
         },
         {
-          "file": "apps/front-root/src/app/types/declarations.d.ts",
-          "hash": "9073750544042808134"
-        },
-        {
-          "file": "apps/front-root/src/app/types/system.d.ts",
-          "hash": "1191195167168076303"
-        },
-        {
-          "file": "apps/front-root/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/front-root/src/favicon.ico",
-          "hash": "9303420814833116677"
-        },
-        {
-          "file": "apps/front-root/src/styles.scss",
-          "hash": "5195668842064076916"
-        },
-        {
-          "file": "apps/front-root/src/test-setup.ts",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/front-root/tsconfig.app.json",
-          "hash": "9144988222609512381"
-        },
-        {
-          "file": "apps/front-root/tsconfig.json",
-          "hash": "1917885434306620191"
-        },
-        {
-          "file": "apps/front-root/tsconfig.spec.json",
-          "hash": "7670846817526018622"
-        },
-        {
-          "file": "apps/front-root/webpack.config.js",
-          "hash": "7646246497022613025",
+          "file": "libs/icons/src/lib/NotFound.tsx",
+          "hash": "13229868181098452599",
           "deps": [
-            "npm:webpack-merge",
-            "npm:webpack-config-single-spa-ts",
-            "npm:@nx/webpack",
-            "npm:html-webpack-plugin"
+            "npm:react"
           ]
         }
       ],
-      "head": [
+      "career": [
         {
-          "file": "apps/head/.babelrc",
-          "hash": "2933256737198428138"
-        },
-        {
-          "file": "apps/head/.eslintrc.json",
-          "hash": "11012487992710232822"
-        },
-        {
-          "file": "apps/head/jest.config.ts",
-          "hash": "10429986274113450129"
-        },
-        {
-          "file": "apps/head/project.json",
-          "hash": "17220677156431826833"
-        },
-        {
-          "file": "apps/head/src/app/app.tsx",
-          "hash": "11414561141607213108",
-          "deps": [
-            "npm:react-router-dom",
-            "icons"
-          ]
-        },
-        {
-          "file": "apps/head/src/app/career-head.tsx",
-          "hash": "5415569884422733048",
-          "deps": [
-            "npm:react",
-            "npm:react-dom",
-            "npm:single-spa-react"
-          ]
-        },
-        {
-          "file": "apps/head/src/app/global/styles.ts",
-          "hash": "2745476398953549544",
-          "deps": [
-            "npm:styled-components"
-          ]
-        },
-        {
-          "file": "apps/head/src/app/layout/index.tsx",
-          "hash": "10114253817438388202",
-          "deps": [
-            "npm:styled-components",
-            "icons",
-            "ui",
-            "npm:react-router-dom"
-          ]
-        },
-        {
-          "file": "apps/head/src/app/pages/dashboard/index.tsx",
-          "hash": "14616181039818238615"
-        },
-        {
-          "file": "apps/head/src/app/pages/no-match/index.tsx",
-          "hash": "185228744426354712"
-        },
-        {
-          "file": "apps/head/src/app/pages/router.tsx",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/head/src/app/pages/skill/index.tsx",
-          "hash": "16200117145577547019",
-          "deps": [
-            "icons",
-            "ui"
-          ]
-        },
-        {
-          "file": "apps/head/src/app/pages/skill/skill.styles.ts",
-          "hash": "8360614987015764328",
-          "deps": [
-            "npm:styled-components"
-          ]
-        },
-        {
-          "file": "apps/head/src/app/pages/work/index.tsx",
-          "hash": "4871223369348446179"
-        },
-        {
-          "file": "apps/head/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/head/src/career-head.tsx",
-          "hash": "4631563883072797265",
-          "deps": [
-            "npm:react",
-            "npm:react-dom",
-            "npm:single-spa-react"
-          ]
-        },
-        {
-          "file": "apps/head/src/favicon.ico",
-          "hash": "9303420814833116677"
-        },
-        {
-          "file": "apps/head/tsconfig.app.json",
-          "hash": "10514678202960682525"
-        },
-        {
-          "file": "apps/head/tsconfig.json",
-          "hash": "9850153468027031608"
-        },
-        {
-          "file": "apps/head/tsconfig.spec.json",
-          "hash": "11378287594513225419"
-        },
-        {
-          "file": "apps/head/webpack.config.js",
-          "hash": "12913047693562452828",
-          "deps": [
-            "npm:@nx/webpack",
-            "npm:@nx/react",
-            "npm:webpack-merge",
-            "npm:webpack-config-single-spa-react-ts"
-          ]
-        }
-      ],
-      "career-e2e": [
-        {
-          "file": "apps/career-e2e/.eslintrc.json",
+          "file": "apps/career/.eslintrc.json",
           "hash": "2295303304320410742"
         },
         {
-          "file": "apps/career-e2e/jest.config.ts",
-          "hash": "438467390624161377"
+          "file": "apps/career/jest.config.ts",
+          "hash": "7932564033609237313"
         },
         {
-          "file": "apps/career-e2e/project.json",
-          "hash": "5208652978510255340"
+          "file": "apps/career/project.json",
+          "hash": "2214224601178252367"
         },
         {
-          "file": "apps/career-e2e/src/career/career.spec.ts",
-          "hash": "4747019362565984448",
+          "file": "apps/career/src/app/app.module.ts",
+          "hash": "5967502743974503046",
           "deps": [
-            "npm:axios"
+            "npm:@nestjs/common"
           ]
         },
         {
-          "file": "apps/career-e2e/src/support/global-setup.ts",
-          "hash": "14688124112638150235"
-        },
-        {
-          "file": "apps/career-e2e/src/support/global-teardown.ts",
-          "hash": "10856769668484651558"
-        },
-        {
-          "file": "apps/career-e2e/src/support/test-setup.ts",
-          "hash": "9379448616442792630",
+          "file": "apps/career/src/app/commons/commons.module.ts",
+          "hash": "16560850830408576666",
           "deps": [
-            "npm:axios"
+            "npm:@nestjs/common"
           ]
         },
         {
-          "file": "apps/career-e2e/tsconfig.json",
-          "hash": "15443990093475294480"
+          "file": "apps/career/src/app/database/database.module.ts",
+          "hash": "15902845140382321986",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/typeorm"
+          ]
         },
         {
-          "file": "apps/career-e2e/tsconfig.spec.json",
-          "hash": "14519349202314136898"
+          "file": "apps/career/src/app/integrations/integrations.module.ts",
+          "hash": "17602668193516132662",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/career/src/app/modules/modules.module.ts",
+          "hash": "10676448739246922959",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/career/src/app/modules/users/entities/user.entity.ts",
+          "hash": "16917674380485059662",
+          "deps": [
+            "npm:typeorm"
+          ]
+        },
+        {
+          "file": "apps/career/src/app/modules/users/users.module.ts",
+          "hash": "15099307337114859284",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/typeorm"
+          ]
+        },
+        {
+          "file": "apps/career/src/app/shared/shared.module.ts",
+          "hash": "11804776405392386234",
+          "deps": [
+            "npm:@nestjs/common"
+          ]
+        },
+        {
+          "file": "apps/career/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/career/src/main.ts",
+          "hash": "11275304408774266054",
+          "deps": [
+            "npm:@nestjs/common",
+            "npm:@nestjs/core"
+          ]
+        },
+        {
+          "file": "apps/career/tsconfig.app.json",
+          "hash": "17628448778285850515"
+        },
+        {
+          "file": "apps/career/tsconfig.json",
+          "hash": "3490524966360018312"
+        },
+        {
+          "file": "apps/career/tsconfig.spec.json",
+          "hash": "11550347367511341917"
+        },
+        {
+          "file": "apps/career/webpack.config.js",
+          "hash": "6336732067713496838",
+          "deps": [
+            "npm:@nx/webpack"
+          ]
+        }
+      ],
+      "head-e2e": [
+        {
+          "file": "apps/head-e2e/.eslintrc.json",
+          "hash": "632147010597293032"
+        },
+        {
+          "file": "apps/head-e2e/playwright.config.ts",
+          "hash": "15051458071832364169",
+          "deps": [
+            "npm:@playwright/test",
+            "npm:@nx/playwright",
+            "npm:@nx/devkit"
+          ]
+        },
+        {
+          "file": "apps/head-e2e/project.json",
+          "hash": "15518793796606384251"
+        },
+        {
+          "file": "apps/head-e2e/src/example.spec.ts",
+          "hash": "16019101014373124625",
+          "deps": [
+            "npm:@playwright/test"
+          ]
+        },
+        {
+          "file": "apps/head-e2e/tsconfig.json",
+          "hash": "13413400511057489941"
         }
       ]
     }

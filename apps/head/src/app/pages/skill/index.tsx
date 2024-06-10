@@ -1,5 +1,5 @@
 import { Java } from '@career/icons';
-import { ProgressCard } from '@career/ui';
+import { Button, ProgressCard } from '@career/ui';
 
 import {
   SkillFilters,
@@ -10,8 +10,15 @@ import {
   Test1,
   Title,
 } from './skill.styles';
+import { useNavigate } from 'react-router-dom';
 
 const Skill = () => {
+  const navigate = useNavigate();
+
+  const handleAdd = () => {
+    navigate('add');
+  };
+
   return (
     <SkillWrapper>
       <SkillFilters>
@@ -31,6 +38,15 @@ const Skill = () => {
             de 0% até 39%
           </Tag>
         </Test1>
+
+        <Button
+          variant="primary"
+          width="40rem"
+          fontWeight="bold"
+          onClick={handleAdd}
+        >
+          Adicionar Skill
+        </Button>
       </SkillFilters>
 
       <SkillsList>

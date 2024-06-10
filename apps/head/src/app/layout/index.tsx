@@ -29,7 +29,9 @@ const ContentContainer = styled.div`
   width: 100%;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  padding: 4rem;
+`;
 
 const Layout = () => {
   return (
