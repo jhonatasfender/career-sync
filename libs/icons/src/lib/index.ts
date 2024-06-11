@@ -47,7 +47,6 @@ export { default as Nestjs } from './Nestjs';
 export { default as NextJs } from './NextJs';
 export { default as Nginx } from './Nginx';
 export { default as NodeJs } from './NodeJs';
-export { default as NotFound } from './NotFound';
 export { default as Npm } from './Npm';
 export { default as Nx } from './Nx';
 export { default as Phalcon } from './Phalcon';

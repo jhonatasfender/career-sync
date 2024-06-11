@@ -4,30 +4,18 @@
   "memo": true,
   "typescript": true,
   "svgoConfig": {
+    "multipass": true,
+    "js2svg": {
+      "indent": 2,
+      "pretty": true
+    },
     "plugins": [
+      "preset-default",
+      "prefixIds",
       {
-        "name": "preset-default",
+        "name": "sortAttrs",
         "params": {
-          "overrides": {
-            "cleanupIDs": false,
-            "prefixIds": false,
-            "removeUselessDefs": false,
-            "cleanupListOfValues": false,
-            "convertShapeToPath": false,
-            "convertPathData": false,
-            "convertTransform": false,
-            "removeHiddenElems": false,
-            "removeEmptyText": false,
-            "cleanupEnableBackground": false,
-            "removeEmptyAttrs": false,
-            "removeEmptyContainers": false,
-            "removeUnusedNS": false,
-            "sortAttrs": false,
-            "removeTitle": false,
-            "removeDesc": false,
-            "removeDimensions": false,
-            "removeStyleElement": false
-          }
+          "xmlnsOrder": "alphabetical"
         }
       }
     ]
