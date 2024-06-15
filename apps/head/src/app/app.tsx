@@ -6,6 +6,7 @@ import GlobalStyles from './global/styles';
 import Layout from './layout';
 import NoMatch from './pages/no-match';
 import Skill from './pages/skill';
+import AddSkill from './pages/skill/pages/add';
 import Work from './pages/work';
 
 export default function Root(props: any) {
@@ -18,6 +19,7 @@ export default function Root(props: any) {
             <Route path="/" element={<Dashboard />} />
             <Route path="work" element={<Work />} />
             <Route path="skill" element={<Skill />} />
+            <Route path="skill/add" element={<AddSkill />} />
             <Route path="*" element={<NoMatch />} />
           </Route>
         </Routes>
