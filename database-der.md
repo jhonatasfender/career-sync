@@ -100,3 +100,20 @@ erDiagram
     Language  ||--o{ LanguageToEducation: "has"
     Education ||--o{ LanguageToEducation: "has"
 ```
+
+
+
+
+
+```mermaid
+sequenceDiagram
+  Cliente ->> Frontend: Requisição
+  Frontend ->> BFF (Backend for Frontend): Requisição
+  BFF (Backend for Frontend) ->> APIM (Gerenciador de APIs): Requisição
+  APIM (Gerenciador de APIs) ->> API: Requisição
+  API ->> APIM (Gerenciador de APIs): Resposta
+  APIM (Gerenciador de APIs) ->> BFF (Backend for Frontend): Resposta
+  BFF (Backend for Frontend) ->> Frontend: Resposta
+  Frontend ->> Cliente: Resposta
+
+```
