@@ -117,3 +117,17 @@ sequenceDiagram
   Frontend ->> Cliente: Resposta
 
 ```
+
+
+```mermaid
+graph TD
+  A[Cliente] --> B[Frontend]
+  B[Frontend] --> C[BFF (Backend for Frontend)]
+  C[BFF (Backend for Frontend)] --> D[APIM (Gerenciador de APIs)]
+  D[APIM (Gerenciador de APIs)] --> E[API]
+  E[API] --> D[APIM (Gerenciador de APIs)]
+  D[APIM (Gerenciador de APIs)] --> C[BFF (Backend for Frontend)]
+  C[BFF (Backend for Frontend)] --> B[Frontend]
+  B[Frontend] --> A[Cliente]
+
+```
