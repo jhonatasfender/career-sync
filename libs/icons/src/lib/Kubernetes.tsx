@@ -22,17 +22,13 @@ const SvgKubernetes = (props: SVGProps<SVGSVGElement>) => (
       fontFamily="Sans"
       fontWeight={400}
       overflow="visible"
-      style={
-        {
-          textIndent: 0,
-          textAlign: 'start',
-          lineHeight: 'normal',
-          textTransform: 'none',
-          blockProgression: 'tb',
-          marker: 'none',
-          InkscapeFontSpecification: 'Sans',
-        } as any
-      }
+      style={{
+        textIndent: 0,
+        textAlign: 'start',
+        lineHeight: 'normal',
+        textTransform: 'none',
+        marker: 'none',
+      }}
     />
   </svg>
 );
