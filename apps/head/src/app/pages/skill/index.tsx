@@ -22,7 +22,7 @@ const Skill = () => {
   return (
     <SkillWrapper>
       <SkillFilters>
-        <Title>Shills</Title>
+        <Title>Skills</Title>
 
         <Test1>
           <Tag>

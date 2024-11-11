@@ -26,6 +26,7 @@ const Layout = () => {
               path: '/work',
             },
             { icon: <Dashboard />, title: 'Habilidades', path: '/skill' },
+            { icon: <Dashboard />, title: 'Currículo', path: '/resume' },
           ]}
         />
       </NavBar>
