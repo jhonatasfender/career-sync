@@ -34,6 +34,8 @@
     "@babel/preset-react": "^7.25.9",
     "@nestjs/schematics": "^10.2.3",
     "@nestjs/testing": "^10.4.7",
+    "@nrwl/eslint-plugin-nx": "19.8.4",
+    "@nrwl/react": "19.8.4",
     "@nrwl/rollup": "^19.8.4",
     "@nrwl/workspace": "^19.8.4",
     "@nx/devkit": "20.1.0",
