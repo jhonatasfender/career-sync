@@ -1,10 +1,29 @@
 {
-  "extends": ["./tsconfig.json", "ts-config-single-spa"],
-  "files": ["src/app/career-root-config.ts"],
+  "extends": [
+    "./tsconfig.json",
+    "ts-config-single-spa"
+  ],
+  "files": [
+    "src/app/career-root-config.ts"
+  ],
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": ["node", "src/app/types/system.d.ts","src/app/types/declarations.d.ts"]
+    "types": [
+      "node",
+      "src/app/types/global.d.ts",
+      "src/app/types/declarations.d.ts"
+    ],
+    "module": "esnext",
+    "target": "es5",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
   },
-  "exclude": ["jest.config.ts", "src/**/*.spec.ts", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts"]
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
 }

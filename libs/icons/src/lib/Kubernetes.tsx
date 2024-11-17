@@ -27,9 +27,7 @@ const SvgKubernetes = (props: SVGProps<SVGSVGElement>) => (
         textAlign: 'start',
         lineHeight: 'normal',
         textTransform: 'none',
-        blockProgression: 'tb',
         marker: 'none',
-        InkscapeFontSpecification: 'Sans',
       }}
     />
   </svg>

@@ -110,6 +110,6 @@
   "author": "jhonatasfender <jhonatas.fender@gmail.com>",
   "packageManager": "yarn@4.5.1",
   "engines": {
-    "yarn": "^1.0.0"
+    "yarn": "^4.5.1"
   }
 }

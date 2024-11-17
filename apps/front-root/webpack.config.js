@@ -20,13 +20,18 @@ module.exports = (webpackConfigEnv, argv) => {
       filename: '[name].js',
       chunkFilename: '[name].[contenthash].js',
       path: join(__dirname, '../../dist/apps/front-root'),
-      libraryTarget: 'system',
+      libraryTarget: 'module',
       uniqueName: 'root-config',
       devtoolNamespace: 'root-config',
       publicPath: '',
+      module: true,
+    },
+    experiments: {
+      outputModule: true,
     },
     devServer: {
       port: 51235,
+      hot: true,
     },
     plugins: [
       new HtmlWebpackPlugin({
