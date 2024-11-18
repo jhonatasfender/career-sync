@@ -28,6 +28,7 @@ module.exports = (webpackConfigEnv, argv) => {
     },
     devServer: {
       port: 59284,
+      hot: true,
     },
     plugins: [
       new NxAppWebpackPlugin({

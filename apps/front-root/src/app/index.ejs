@@ -23,6 +23,16 @@
   <script src="https://cdn.jsdelivr.net/npm/@single-spa/import-map-injector"></script>
 </head>
 
+<script type="systemjs-importmap">
+  {
+    "imports": {
+      "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.0/lib/es2015/system/single-spa.min.js",
+      "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js",
+      "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"
+    }
+  }
+</script>
+
 <body>
   <noscript>
     You need to enable JavaScript to run this app.
@@ -30,7 +40,7 @@
   <main></main>
 
   <script type="module">
-    import '@career/root-config';
+    import 'http://localhost:51235/career-root-config.js';
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
