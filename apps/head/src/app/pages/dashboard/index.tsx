@@ -5,18 +5,6 @@ import { useMutation, useQueryClient } from 'react-query';
 
 const Dashboard = () => {
   const queryClient = useQueryClient();
-  const [userId, setUserId] = useState<string | null>(null);
-
-  const {
-    register: registerUserForm,
-    handleSubmit: handleSubmitUserForm,
-    reset: resetUserForm,
-  } = useForm({
-    defaultValues: {
-      email: 'jhonatas.fender@gmail.com',
-      password: 'Password@123',
-    },
-  });
 
   const {
     register: registerExperienceForm,
@@ -145,24 +133,6 @@ const Dashboard = () => {
     name: 'experiences',
   });
 
-  const registerUserMutation = useMutation(
-    (data) =>
-      axios.post('http://localhost:5000/api/Account/register', data, {
-        headers: {
-          accept: 'text/plain',
-          'Content-Type': 'application/json',
-        },
-      }),
-    {
-      onSuccess: (response) => {
-        if (response.data.success) {
-          setUserId(response.data.user.id);
-          resetUserForm();
-        }
-      },
-    },
-  );
-
   const saveExperiencesMutation = useMutation(
     (data: any) => {
       const requests = data.map((exp: any) =>
@@ -182,110 +152,83 @@ const Dashboard = () => {
     },
   );
 
-  const onSubmitUserForm = async (formData: any) => {
-    await registerUserMutation.mutateAsync(formData);
-  };
-
   const onSubmitExperienceForm = async (formData: any) => {
-    if (userId) {
-      const experiencesWithUserId = formData.experiences.map((exp: any) => ({
-        ...exp,
-        userId,
-      }));
-      saveExperiencesMutation.mutate(experiencesWithUserId);
-    } else {
-      alert('Please register the user first.');
-    }
+    // if (userId) {
+    const experiencesWithUserId = formData.experiences.map((exp: any) => ({
+      ...exp,
+      // userId,
+    }));
+    saveExperiencesMutation.mutate(experiencesWithUserId);
+    // } else {
+    //   alert('Please register the user first.');
+    // }
   };
 
   return (
     <div>
-      <h2>User Registration Form</h2>
-      <form onSubmit={handleSubmitUserForm(onSubmitUserForm)}>
-        <div>
-          <label>Email</label>
-          <input type="email" {...registerUserForm('email')} required />
-        </div>
-        <div>
-          <label>Password</label>
-          <input type="password" {...registerUserForm('password')} required />
-        </div>
-        <button type="submit">Register User</button>
-      </form>
-
-      {userId && (
-        <>
-          <h2>Work Experiences Form</h2>
-          <form onSubmit={handleSubmitExperienceForm(onSubmitExperienceForm)}>
-            {fields.map((field, index) => (
-              <div key={field.id}>
-                <div>
-                  <label>Company Name</label>
-                  <input
-                    type="text"
-                    {...registerExperienceForm(
-                      `experiences.${index}.companyName`,
-                    )}
-                    required
-                  />
-                </div>
-                <div>
-                  <label>Job Title</label>
-                  <input
-                    type="text"
-                    {...registerExperienceForm(`experiences.${index}.jobTitle`)}
-                    required
-                  />
-                </div>
-                <div>
-                  <label>Description</label>
-                  <textarea
-                    {...registerExperienceForm(
-                      `experiences.${index}.description`,
-                    )}
-                    required
-                  />
-                </div>
-                <div>
-                  <label>Start Date</label>
-                  <input
-                    type="date"
-                    {...registerExperienceForm(
-                      `experiences.${index}.startDate`,
-                    )}
-                    required
-                  />
-                </div>
-                <div>
-                  <label>End Date</label>
-                  <input
-                    type="date"
-                    {...registerExperienceForm(`experiences.${index}.endDate`)}
-                  />
-                </div>
-                <button type="button" onClick={() => remove(index)}>
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button
-              type="button"
-              onClick={() =>
-                append({
-                  companyName: '',
-                  jobTitle: '',
-                  description: '',
-                  startDate: '',
-                  endDate: '',
-                })
-              }
-            >
-              Add Experience
+      <h2>Work Experiences Form</h2>
+      <form onSubmit={handleSubmitExperienceForm(onSubmitExperienceForm)}>
+        {fields.map((field, index) => (
+          <div key={field.id}>
+            <div>
+              <label>Company Name</label>
+              <input
+                type="text"
+                {...registerExperienceForm(`experiences.${index}.companyName`)}
+                required
+              />
+            </div>
+            <div>
+              <label>Job Title</label>
+              <input
+                type="text"
+                {...registerExperienceForm(`experiences.${index}.jobTitle`)}
+                required
+              />
+            </div>
+            <div>
+              <label>Description</label>
+              <textarea
+                {...registerExperienceForm(`experiences.${index}.description`)}
+                required
+              />
+            </div>
+            <div>
+              <label>Start Date</label>
+              <input
+                type="date"
+                {...registerExperienceForm(`experiences.${index}.startDate`)}
+                required
+              />
+            </div>
+            <div>
+              <label>End Date</label>
+              <input
+                type="date"
+                {...registerExperienceForm(`experiences.${index}.endDate`)}
+              />
+            </div>
+            <button type="button" onClick={() => remove(index)}>
+              Remove
             </button>
-            <button type="submit">Save Experiences</button>
-          </form>
-        </>
-      )}
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() =>
+            append({
+              companyName: '',
+              jobTitle: '',
+              description: '',
+              startDate: '',
+              endDate: '',
+            })
+          }
+        >
+          Add Experience
+        </button>
+        <button type="submit">Save Experiences</button>
+      </form>
     </div>
   );
 };

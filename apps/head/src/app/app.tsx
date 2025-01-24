@@ -4,6 +4,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalStyles from './global/styles';
 import Layout from './layout';
 import Dashboard from './pages/dashboard';
+import LoginComponent from './pages/login';
+import Register from './pages/login/register';
 import MakeResume from './pages/make-resume';
 import NoMatch from './pages/no-match';
 import Skill from './pages/skill';
@@ -20,11 +22,13 @@ export default function Root(props: any) {
         <BrowserRouter>
           <Routes>
             <Route element={<Layout />}>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="dashboard" element={<Dashboard />} />
               <Route path="resume" element={<MakeResume />} />
               <Route path="work" element={<Work />} />
               <Route path="skill" element={<Skill />} />
               <Route path="skill/add" element={<AddSkill />} />
+              <Route path="/" element={<LoginComponent />} />
+              <Route path="register" element={<Register />} />
               <Route path="*" element={<NoMatch />} />
             </Route>
           </Routes>
