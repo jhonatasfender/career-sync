@@ -5,6 +5,7 @@
 ### Steps de Preenchimento
 
 #### Step 1 - Informações Básicas
+
 - **Campos**
   - Nome completo
   - Email
@@ -44,6 +45,7 @@
     - Proporção 1:1 (quadrada)
 
 #### Step 2 - Localização e Documentos
+
 - **Campos**
   - Endereço completo
   - Documentos (CPF, RG, etc.)
@@ -70,6 +72,7 @@
     - Formato local de data/hora
 
 #### Step 3 - Links e Redes Sociais
+
 - **Campos**
   - Links padrão
   - Links personalizados
@@ -100,6 +103,7 @@
       - Estatísticas de cliques (opcional)
 
 #### Step 4 - Experiência Profissional
+
 - **Campos**
   - Histórico de empregos
   - Descrição de atividades
@@ -156,6 +160,7 @@
       - Filtro e busca rápida de tags
 
 #### Step 5 - Formação Acadêmica
+
 - **Campos**
   - Graduações
   - Pós-graduações
@@ -184,6 +189,7 @@
     - Certificado (upload opcional)
 
 #### Step 6 - Habilidades e Competências
+
 - **Campos**
   - Hard skills
   - Soft skills
@@ -218,6 +224,7 @@
       - Associação com experiências
 
 #### Step 7 - Idiomas e Finalização
+
 - **Campos**
   - Idiomas e níveis
   - Revisão final
@@ -246,6 +253,7 @@
     - Opções de template
 
 ### Características Gerais do Fluxo
+
 - Navegação livre entre steps
 - Salvamento automático
 - Indicador de progresso
@@ -255,7 +263,9 @@
 - Sugestões automáticas
 
 ### Validações Globais
+
 - **Formatação**
+
   - Consistência de capitalização
   - Remoção de espaços extras
   - Padronização de pontuação
@@ -266,7 +276,8 @@
   - Proteção contra injeção de código
 
 ### Recursos Adicionais
+
 - Tags para organização
 - Busca avançada
 - Filtros por versão/idioma
-- Estatísticas de visualização 
+- Estatísticas de visualização

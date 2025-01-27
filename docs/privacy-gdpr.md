@@ -3,7 +3,9 @@
 ## Conformidade LGPD
 
 ### Consentimento e Transparência
+
 1. **Termos de Uso**
+
    - Linguagem clara e acessível
    - Detalhamento do uso dos dados
    - Finalidade específica de cada coleta
@@ -16,7 +18,9 @@
    - Compartilhamento com terceiros
 
 ### Direitos do Usuário
+
 1. **Acesso aos Dados**
+
    - Visualização completa dos dados armazenados
    - Download dos dados em formato legível
    - Histórico de uso e compartilhamento
@@ -29,7 +33,9 @@
    - Revogação de consentimento
 
 ### Segurança de Dados
+
 1. **Proteção Técnica**
+
    - Criptografia end-to-end
    - Anonimização de dados sensíveis
    - Backup seguro
@@ -42,7 +48,9 @@
    - Auditoria regular
 
 ### Interface do Usuário
+
 1. **Central de Privacidade**
+
    - Dashboard de privacidade
    - Configurações de compartilhamento
    - Preferências de comunicação
@@ -55,7 +63,9 @@
    - Solicitações de consentimento
 
 ### Processos de Proteção
+
 1. **Coleta de Dados**
+
    - Minimização de dados
    - Validação de necessidade
    - Tempo de retenção definido
@@ -68,7 +78,9 @@
    - Medidas de proteção
 
 ### Incidentes e Violações
+
 1. **Plano de Resposta**
+
    - Detecção de incidentes
    - Notificação aos afetados
    - Comunicação à ANPD
@@ -81,7 +93,9 @@
    - Lições aprendidas
 
 ### Relatórios e Documentação
+
 1. **Registros de Conformidade**
+
    - Inventário de dados
    - Avaliações de impacto
    - Medidas de segurança
@@ -94,7 +108,8 @@
    - Procedimentos operacionais
 
 ### Melhorias Contínuas
+
 - Atualizações regulares
 - Avaliações periódicas
 - Feedback dos usuários
-- Adaptação a novas regulamentações 
+- Adaptação a novas regulamentações

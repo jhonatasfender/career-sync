@@ -1,11 +1,7 @@
 {
   "version": "0.2",
   "language": "en,pt,pt-BR",
-  "words": [
-    "signin",
-    "signup",
-    "linkedin"
-  ],
+  "words": ["signin", "signup", "linkedin"],
   "dictionaries": [
     "en_US",
     "pt_BR",
@@ -17,15 +13,7 @@
     "css",
     "markdown"
   ],
-  "ignorePaths": [
-    "node_modules/**",
-    "dist/**",
-    "build/**",
-    ".git/**"
-  ],
+  "ignorePaths": ["node_modules/**", "dist/**", "build/**", ".git/**"],
   "allowCompoundWords": true,
-  "ignoreRegExpList": [
-    "/```[\\s\\S]*?```/",
-    "/`[^`]*`/"
-  ]
-} 
+  "ignoreRegExpList": ["/```[\\s\\S]*?```/", "/`[^`]*`/"]
+}

@@ -3,7 +3,9 @@
 ## Funcionalidades Principais
 
 ### Gestão de Cartões
+
 1. **Cadastro de Cartão**
+
    - Formulário seguro de entrada
    - Validação em tempo real
    - Detecção automática da bandeira
@@ -16,7 +18,9 @@
    - Renovação automática
 
 ### Histórico Financeiro
+
 1. **Faturas**
+
    - Listagem de todas as cobranças
    - Status de pagamento
    - Valor e data de cada fatura
@@ -29,7 +33,9 @@
    - Detalhamento de impostos
 
 ### Sistema de Notificações
+
 1. **Vencimentos**
+
    - Aviso prévio de cobrança
    - Lembrete de cartão expirando
    - Confirmação de pagamento
@@ -42,19 +48,22 @@
    - Mudanças de plano
 
 ### Interface
+
 - Design responsivo
 - Área segura de pagamento
 - Resumo de assinatura atual
 - Histórico de transações
 
 ### Segurança
+
 - Certificação PCI DSS
 - Tokenização de cartão
 - Ambiente SSL/TLS
 - Autenticação em duas etapas
 
 ### Recursos Adicionais
+
 - Mudança de plano
 - Cancelamento de assinatura
 - Reembolsos
-- Suporte financeiro 
+- Suporte financeiro

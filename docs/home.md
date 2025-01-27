@@ -3,6 +3,7 @@
 ## Layout da Área Central
 
 ### Chat de Entrada (Estado Inicial)
+
 - Posicionado centralmente na tela
 - Campo de texto adaptativo:
   - Largura máxima fixa (max-width) para manter legibilidade
@@ -19,11 +20,13 @@
 - Botão de envio para processar a requisição
 
 ### Animação de Transição
+
 - Após o envio, o chat se move para a esquerda
 - Animação suave durante a transição
 - Indicador de carregamento durante o processamento
 
 ### Estado de Processamento
+
 - Após a transição do chat, exibir na coluna direita:
   - Animação de loading centralizada
   - Mensagem informativa "Processando sua solicitação..."
@@ -32,7 +35,9 @@
   - Transição suave para a área de resultados quando concluído
 
 ### Área de Resultados (Lado Direito)
+
 1. **Seção de Carta de Apresentação**
+
    - Exibição dinâmica baseada nas opções selecionadas:
      - Versão formal para email
      - Versão adaptada para chat do LinkedIn
@@ -47,6 +52,7 @@
    - Animação de fade-in ao exibir o currículo
 
 ### Elementos de Interface
+
 - Botões claros para cada ação
 - Indicadores visuais de seleção múltipla
 - Feedback visual durante o processamento
@@ -54,6 +60,7 @@
 - Botões de ação para copiar e baixar
 
 ### Notas de Design
+
 - Design limpo e minimalista
 - Fundo claro/neutro
 - Hierarquia visual clara
@@ -62,6 +69,7 @@
 - Feedback visual claro para itens ativos/selecionados
 
 ### Fluxo de Interação
+
 1. Usuário insere descrição da vaga no chat central
 2. Seleciona um ou mais destinos (WhatsApp/LinkedIn/Email)
 3. Clica em enviar
@@ -71,7 +79,9 @@
 7. Opção de download do currículo personalizado
 
 ### Validações e Feedback
+
 1. **Validações do Campo de Texto**
+
    - Mínimo de 100 caracteres para processamento
    - Máximo de 5000 caracteres permitidos
    - Aviso visual quando texto muito curto
@@ -84,11 +94,13 @@
    - Mensagem amigável informando o limite
 
 2. **Validações de Seleção**
+
    - Pelo menos um destino deve ser selecionado
    - Feedback visual para seleções inválidas
    - Botão de envio desabilitado até validações passarem
 
 3. **Tratamento de Erros**
+
    - Mensagens de erro amigáveis em caso de falha
    - Tipos de erro:
      - Erro de conexão: "Ops! Parece que estamos com problemas de conexão. Tente novamente em alguns instantes."
@@ -99,6 +111,7 @@
    - Manter texto inserido em caso de erro
 
 4. **Estados de Loading**
+
    - Timeout máximo de 30 segundos
    - Mensagens progressivas durante espera longa:
      - "Analisando a descrição da vaga..."
@@ -113,6 +126,7 @@
    - Dicas de uso dos resultados gerados
 
 ### Acessibilidade
+
 - Suporte a leitores de tela
 - Navegação por teclado
 - Mensagens de erro legíveis por leitores de tela
