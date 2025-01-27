@@ -1,5 +1,5 @@
 # In this Docker Compose example, it assumes that you maintain a reverse proxy externally (or chose not to).
-# The only two exposed ports here are from minio (:9000) and the app itself (:3000).
+# The only two exposed ports here are from minio (:9000) and the app itself (:6174).
 # If these ports are changed, ensure that the env vars passed to the app are also changed accordingly.
 
 services:
@@ -42,30 +42,30 @@ services:
       HEALTH: "true"
       TOKEN: chrome_token
       PROXY_HOST: "chrome"
-      PROXY_PORT: 3000
+      PROXY_PORT: 6174
       PROXY_SSL: "false"
 
   app:
     image: amruthpillai/reactive-resume:latest
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "6174:6174"
     depends_on:
       - postgres
       - minio
       - chrome
     environment:
       # -- Environment Variables --
-      PORT: 3000
+      PORT: 6174
       NODE_ENV: production
 
       # -- URLs --
-      PUBLIC_URL: http://localhost:3000
+      PUBLIC_URL: http://localhost:6174
       STORAGE_URL: http://localhost:9000/default
 
       # -- Printer (Chrome) --
       CHROME_TOKEN: chrome_token
-      CHROME_URL: ws://chrome:3000
+      CHROME_URL: ws://chrome:6174
 
       # -- Database (Postgres) --
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
@@ -99,17 +99,17 @@ services:
       # -- GitHub (Optional) --
       # GITHUB_CLIENT_ID: github_client_id
       # GITHUB_CLIENT_SECRET: github_client_secret
-      # GITHUB_CALLBACK_URL: http://localhost:3000/api/auth/github/callback
+      # GITHUB_CALLBACK_URL: http://localhost:6174/api/auth/github/callback
 
       # -- Google (Optional) --
       # GOOGLE_CLIENT_ID: google_client_id
       # GOOGLE_CLIENT_SECRET: google_client_secret
-      # GOOGLE_CALLBACK_URL: http://localhost:3000/api/auth/google/callback
+      # GOOGLE_CALLBACK_URL: http://localhost:6174/api/auth/google/callback
 
       # -- OpenID (Optional) --
       # VITE_OPENID_NAME: OpenID
       # OPENID_AUTHORIZATION_URL:
-      # OPENID_CALLBACK_URL: http://localhost:3000/api/auth/openid/callback
+      # OPENID_CALLBACK_URL: http://localhost:6174/api/auth/openid/callback
       # OPENID_CLIENT_ID:
       # OPENID_CLIENT_SECRET:
       # OPENID_ISSUER:

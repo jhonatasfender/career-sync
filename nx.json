@@ -1,6 +1,9 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "nxCloudAccessToken": "MTQ1OWFiOGUtODVjZC00YzI2LTliZTgtZDBlNWJmODc4NzM0fHJlYWQ=",
+  "cli": {
+    "logLevel": "error"
+  },
   "targetDefaults": {
     "build": {
       "cache": true,

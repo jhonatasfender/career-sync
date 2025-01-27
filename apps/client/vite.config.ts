@@ -7,6 +7,7 @@ import { defineConfig, searchForWorkspaceRoot } from "vite";
 
 export default defineConfig({
   base: "/",
+  logLevel: 'error',
 
   cacheDir: "../../node_modules/.vite/client",
 
@@ -26,7 +27,7 @@ export default defineConfig({
     fs: { allow: [searchForWorkspaceRoot(process.cwd())] },
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "http://localhost:6174",
         changeOrigin: true,
       },
     },
@@ -39,7 +40,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/api": {
-        target: "http://localhost:3000",
+        target: "http://localhost:6174",
         changeOrigin: true,
       },
     },

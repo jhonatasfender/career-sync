@@ -39,9 +39,9 @@ COPY --chown=node:node --from=build /app/tools/prisma ./tools/prisma
 RUN pnpm run prisma:generate
 
 ENV TZ=UTC
-ENV PORT=3000
+ENV PORT=6174
 ENV NODE_ENV=production
 
-EXPOSE 3000
+EXPOSE 6174
 
 CMD [ "dumb-init", "pnpm", "run", "start" ]

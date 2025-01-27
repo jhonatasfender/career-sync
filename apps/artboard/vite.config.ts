@@ -6,6 +6,7 @@ import { defineConfig, searchForWorkspaceRoot } from "vite";
 
 export default defineConfig({
   base: "",
+  logLevel: "error",
 
   cacheDir: "../../node_modules/.vite/artboard",
 

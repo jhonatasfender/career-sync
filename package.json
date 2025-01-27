@@ -14,7 +14,7 @@
     "url": "https://github.com/AmruthPillai/Reactive-Resume.git"
   },
   "scripts": {
-    "dev": "nx run-many -t serve --projects=docker,server,artboard,client --parallel",
+    "dev": "nx run-many -t serve --projects=docker,server,artboard,client --parallel=4",
     "dev:down": "nx run docker:down",
     "test": "pnpm vitest run",
     "prebuild": "pnpm prisma:generate",

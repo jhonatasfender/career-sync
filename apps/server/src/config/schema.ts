@@ -4,7 +4,7 @@ export const configSchema = z.object({
   NODE_ENV: z.enum(["development", "production"]).default("production"),
 
   // Ports
-  PORT: z.coerce.number().default(3000),
+  PORT: z.coerce.number().default(6174),
 
   // URLs
   PUBLIC_URL: z.string().url(),
