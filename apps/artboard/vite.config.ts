@@ -5,17 +5,13 @@ import react from "@vitejs/plugin-react-swc";
 import { defineConfig, searchForWorkspaceRoot } from "vite";
 
 export default defineConfig({
-  base: "",
-  logLevel: "error",
+  base: "/artboard/",
 
   cacheDir: "../../node_modules/.vite/artboard",
 
   build: {
     sourcemap: true,
     emptyOutDir: true,
-    commonjsOptions: {
-      include: [/sanitize-html/, /node_modules/],
-    },
   },
 
   server: {
@@ -30,16 +26,5 @@ export default defineConfig({
     alias: {
       "@/artboard/": `${searchForWorkspaceRoot(process.cwd())}/apps/artboard/src/`,
     },
-  },
-
-  optimizeDeps: {
-    include: ["sanitize-html"],
-    esbuildOptions: {
-      target: "esnext",
-    },
-  },
-
-  define: {
-    "process.env.NODE_DEBUG": false,
   },
 });
