@@ -6,6 +6,8 @@ import react from "@vitejs/plugin-react";
 import { defineConfig, searchForWorkspaceRoot } from "vite";
 
 export default defineConfig({
+  base: "/",
+
   cacheDir: "../../node_modules/.vite/client",
 
   build: {
@@ -20,7 +22,27 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
+    strictPort: true,
     fs: { allow: [searchForWorkspaceRoot(process.cwd())] },
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
+    watch: {
+      usePolling: true,
+    },
+  },
+
+  preview: {
+    port: 5173,
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
   },
 
   optimizeDeps: {

@@ -1,0 +1,21 @@
+{
+  "name": "docker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/docker",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose -f apps/docker/docker-compose.yml up postgres minio"
+      }
+    },
+    "down": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "docker-compose -f apps/docker/docker-compose.yml down"
+      }
+    }
+  },
+  "tags": []
+} 

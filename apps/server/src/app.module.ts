@@ -19,37 +19,40 @@ import { StorageModule } from "./storage/storage.module";
 import { TranslationModule } from "./translation/translation.module";
 import { UserModule } from "./user/user.module";
 
-@Module({
-  imports: [
-    // Core Modules
-    ConfigModule,
-    DatabaseModule,
-    MailModule,
-    RavenModule,
-    HealthModule,
+const imports = [
+  // Core Modules
+  ConfigModule,
+  DatabaseModule,
+  MailModule,
+  RavenModule,
+  HealthModule,
 
-    // Feature Modules
-    AuthModule.register(),
-    UserModule,
-    ResumeModule,
-    StorageModule,
-    PrinterModule,
-    FeatureModule,
-    TranslationModule,
-    ContributorsModule,
+  // Feature Modules
+  AuthModule.register(),
+  UserModule,
+  ResumeModule,
+  StorageModule,
+  PrinterModule,
+  FeatureModule,
+  TranslationModule,
+  ContributorsModule,
+];
 
-    // Static Assets
+if (process.env.NODE_ENV === "production") {
+  imports.push(
     ServeStaticModule.forRoot({
       serveRoot: "/artboard",
-      // eslint-disable-next-line unicorn/prefer-module
-      rootPath: path.join(__dirname, "..", "artboard"),
+      rootPath: path.resolve(process.cwd(), "dist/apps/artboard"),
     }),
     ServeStaticModule.forRoot({
       renderPath: "/*",
-      // eslint-disable-next-line unicorn/prefer-module
-      rootPath: path.join(__dirname, "..", "client"),
+      rootPath: path.resolve(process.cwd(), "dist/apps/client"),
     }),
-  ],
+  );
+}
+
+@Module({
+  imports,
   providers: [
     {
       provide: APP_PIPE,
@@ -59,7 +62,6 @@ import { UserModule } from "./user/user.module";
       provide: APP_INTERCEPTOR,
       useValue: new RavenInterceptor({
         filters: [
-          // Filter all HttpException with status code <= 500
           {
             type: HttpException,
             filter: (exception: HttpException) => exception.getStatus() < 500,

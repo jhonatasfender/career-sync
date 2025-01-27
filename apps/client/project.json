@@ -24,14 +24,18 @@
     "serve": {
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
+      "dependsOn": ["^build"],
       "options": {
         "buildTarget": "client:build",
-        "proxyConfig": "apps/client/proxy.conf.json"
+        "proxyConfig": "apps/client/proxy.conf.json",
+        "port": 5173,
+        "host": true
       },
       "configurations": {
         "development": {
           "buildTarget": "client:build:development",
-          "hmr": true
+          "hmr": true,
+          "watch": true
         },
         "production": {
           "buildTarget": "client:build:production",
