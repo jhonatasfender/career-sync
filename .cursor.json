@@ -1,0 +1,25 @@
+{
+  "projectConfig": {
+    "name": "login-system",
+    "type": "web-application",
+    "spellChecker": {
+      "enabled": true,
+      "configFile": ".cspell.json",
+      "languages": ["en", "pt", "pt-BR"]
+    }
+  },
+  "fileIndex": {
+    "docs/login.md": {
+      "type": "documentation",
+      "language": "pt-BR",
+      "lastUpdated": "2024-03-20",
+      "content": "Login and registration screens documentation"
+    }
+  },
+  "features": {
+    "authentication": {
+      "screens": ["login", "registration"],
+      "socialLogin": ["facebook", "google", "linkedin"]
+    }
+  }
+} 
