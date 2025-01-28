@@ -15,8 +15,8 @@ import { Outlet } from "react-router";
 
 import { useBuilderStore } from "@/client/stores/builder";
 
-import { BuilderHeader } from "./_components/header";
-import { BuilderToolbar } from "./_components/toolbar";
+import { BuilderHeader } from "./components/header";
+import { BuilderToolbar } from "./components/toolbar";
 import { LeftSidebar } from "./sidebars/left";
 import { RightSidebar } from "./sidebars/right";
 

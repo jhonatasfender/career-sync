@@ -8,7 +8,7 @@ import { Logo } from "@/client/components/logo";
 import { ThemeSwitch } from "@/client/components/theme-switch";
 import { useAuthProviders } from "@/client/services/auth/providers";
 
-import { SocialAuth } from "./_components/social-auth";
+import { SocialAuth } from "./components/social-auth";
 
 const authRoutes = [{ path: "/auth/login" }, { path: "/auth/register" }];
 

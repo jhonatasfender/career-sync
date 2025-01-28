@@ -3,11 +3,11 @@ import { ScrollArea, Separator } from "@reactive-resume/ui";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
-import { AccountSettings } from "./_sections/account";
-import { DangerZoneSettings } from "./_sections/danger";
-import { OpenAISettings } from "./_sections/openai";
-import { ProfileSettings } from "./_sections/profile";
-import { SecuritySettings } from "./_sections/security";
+import { AccountSettings } from "./sections/account";
+import { DangerZoneSettings } from "./sections/danger";
+import { OpenAISettings } from "./sections/openai";
+import { ProfileSettings } from "./sections/profile";
+import { SecuritySettings } from "./sections/security";
 
 export const SettingsPage = () => (
   <>

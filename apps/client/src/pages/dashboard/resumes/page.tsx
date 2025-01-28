@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
 
-import { GridView } from "./_layouts/grid";
-import { ListView } from "./_layouts/list";
+import { GridView } from "./layouts/grid";
+import { ListView } from "./layouts/list";
 
 type Layout = "grid" | "list";
 

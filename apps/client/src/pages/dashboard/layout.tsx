@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Outlet } from "react-router";
 
-import { Sidebar } from "./_components/sidebar";
+import { Sidebar } from "./components/sidebar";
 
 export const DashboardLayout = () => {
   const [open, setOpen] = useState(false);
