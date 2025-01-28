@@ -1,7 +1,7 @@
 {
   "version": "0.2",
   "language": "en,pt,pt-BR",
-  "words": ["signin", "signup", "linkedin"],
+  "words": ["lingui", "linkedin", "signin", "signup"],
   "dictionaries": [
     "en_US",
     "pt_BR",
