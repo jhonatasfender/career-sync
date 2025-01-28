@@ -31,13 +31,13 @@ export class UserController {
 
   @Get("me")
   @UseGuards(TwoFactorGuard)
-  fetch(@User() user: UserDto) {
+  public fetch(@User() user: UserDto) {
     return user;
   }
 
   @Patch("me")
   @UseGuards(TwoFactorGuard)
-  async update(@User("email") email: string, @Body() updateUserDto: UpdateUserDto) {
+  public async update(@User("email") email: string, @Body() updateUserDto: UpdateUserDto) {
     try {
       // If user is updating their email, send a verification email
       if (updateUserDto.email && updateUserDto.email !== email) {
@@ -69,7 +69,7 @@ export class UserController {
 
   @Delete("me")
   @UseGuards(TwoFactorGuard)
-  async delete(@User("id") id: string, @Res({ passthrough: true }) response: Response) {
+  public async delete(@User("id") id: string, @Res({ passthrough: true }) response: Response) {
     await this.userService.deleteOneById(id);
 
     response.clearCookie("Authentication");

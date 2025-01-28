@@ -46,7 +46,7 @@ export class StorageService implements OnModuleInit {
     private readonly minioService: MinioService,
   ) {}
 
-  async onModuleInit() {
+  public async onModuleInit() {
     this.client = this.minioService.client;
     this.bucketName = this.configService.getOrThrow<string>("STORAGE_BUCKET");
 
@@ -99,7 +99,7 @@ export class StorageService implements OnModuleInit {
     }
   }
 
-  async bucketExists() {
+  public async bucketExists() {
     const exists = await this.client.bucketExists(this.bucketName);
 
     if (!exists) {
@@ -109,7 +109,7 @@ export class StorageService implements OnModuleInit {
     }
   }
 
-  async uploadObject(
+  public async uploadObject(
     userId: string,
     type: UploadType,
     buffer: Buffer,
@@ -149,7 +149,7 @@ export class StorageService implements OnModuleInit {
     }
   }
 
-  async deleteObject(userId: string, type: UploadType, filename: string) {
+  public async deleteObject(userId: string, type: UploadType, filename: string) {
     const extension = type === "resumes" ? "pdf" : "jpg";
     const path = `${userId}/${type}/${filename}.${extension}`;
 
@@ -163,7 +163,7 @@ export class StorageService implements OnModuleInit {
     }
   }
 
-  async deleteFolder(prefix: string) {
+  public async deleteFolder(prefix: string) {
     const objectsList = [];
 
     const objectsStream = this.client.listObjectsV2(this.bucketName, prefix, true);

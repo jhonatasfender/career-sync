@@ -10,15 +10,15 @@ import { UserService } from "@/server/user/user.service";
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
   constructor(
-    readonly clientID: string,
-    readonly clientSecret: string,
-    readonly callbackURL: string,
+    private readonly clientID: string,
+    private readonly clientSecret: string,
+    private readonly callbackURL: string,
     private readonly userService: UserService,
   ) {
     super({ clientID, clientSecret, callbackURL, scope: ["email", "profile"] } as StrategyOptions);
   }
 
-  async validate(
+  public async validate(
     _accessToken: string,
     _refreshToken: string,
     profile: Profile,

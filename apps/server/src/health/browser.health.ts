@@ -9,7 +9,7 @@ export class BrowserHealthIndicator extends HealthIndicator {
     super();
   }
 
-  async isHealthy(): Promise<HealthIndicatorResult> {
+  public async isHealthy(): Promise<HealthIndicatorResult> {
     try {
       const version = await this.printerService.getVersion();
 

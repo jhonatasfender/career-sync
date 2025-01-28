@@ -10,15 +10,15 @@ import { UserService } from "@/server/user/user.service";
 @Injectable()
 export class GitHubStrategy extends PassportStrategy(Strategy, "github") {
   constructor(
-    readonly clientID: string,
-    readonly clientSecret: string,
-    readonly callbackURL: string,
+    public readonly clientID: string,
+    public readonly clientSecret: string,
+    public readonly callbackURL: string,
     private readonly userService: UserService,
   ) {
     super({ clientID, clientSecret, callbackURL, scope: ["user:email"] } as StrategyOptions);
   }
 
-  async validate(
+  public async validate(
     _accessToken: string,
     _refreshToken: string,
     profile: Profile,

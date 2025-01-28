@@ -7,7 +7,7 @@ export class FeatureController {
   constructor(private readonly featureService: FeatureService) {}
 
   @Get("/flags")
-  getFeatureFlags() {
+  public getFeatureFlags() {
     return this.featureService.getFeatures();
   }
 }

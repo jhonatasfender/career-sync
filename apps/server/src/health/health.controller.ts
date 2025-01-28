@@ -27,12 +27,12 @@ export class HealthController {
 
   @Get()
   @HealthCheck()
-  check() {
+  public check() {
     return this.run();
   }
 
   @Get("environment")
-  environment() {
+  public environment() {
     if (process.env.NODE_ENV === "production") throw new NotFoundException();
     return configSchema.parse(process.env);
   }

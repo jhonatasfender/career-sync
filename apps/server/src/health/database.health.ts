@@ -8,7 +8,7 @@ export class DatabaseHealthIndicator extends HealthIndicator {
     super();
   }
 
-  async isHealthy(): Promise<HealthIndicatorResult> {
+  public async isHealthy(): Promise<HealthIndicatorResult> {
     try {
       await this.prisma.$queryRaw`SELECT 1`;
 

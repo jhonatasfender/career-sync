@@ -96,7 +96,10 @@ export class AuthController {
   }
 
   @Post("register")
-  async register(@Body() registerDto: RegisterDto, @Res({ passthrough: true }) response: Response) {
+  public async register(
+    @Body() registerDto: RegisterDto,
+    @Res({ passthrough: true }) response: Response,
+  ) {
     const user = await this.authService.register(registerDto);
 
     return this.handleAuthenticationResponse(user, response);
@@ -104,12 +107,15 @@ export class AuthController {
 
   @Post("login")
   @UseGuards(LocalGuard)
-  async login(@User() user: UserWithSecrets, @Res({ passthrough: true }) response: Response) {
+  public async login(
+    @User() user: UserWithSecrets,
+    @Res({ passthrough: true }) response: Response,
+  ) {
     return this.handleAuthenticationResponse(user, response);
   }
 
   @Get("providers")
-  getAuthProviders() {
+  public getAuthProviders() {
     return this.authService.getAuthProviders();
   }
 
@@ -117,14 +123,14 @@ export class AuthController {
   @ApiTags("OAuth", "GitHub")
   @Get("github")
   @UseGuards(GitHubGuard)
-  githubLogin() {
+  public githubLogin() {
     return;
   }
 
   @ApiTags("OAuth", "GitHub")
   @Get("github/callback")
   @UseGuards(GitHubGuard)
-  async githubCallback(
+  public async githubCallback(
     @User() user: UserWithSecrets,
     @Res({ passthrough: true }) response: Response,
   ) {
@@ -134,14 +140,14 @@ export class AuthController {
   @ApiTags("OAuth", "Google")
   @Get("google")
   @UseGuards(GoogleGuard)
-  googleLogin() {
+  public googleLogin() {
     return;
   }
 
   @ApiTags("OAuth", "Google")
   @Get("google/callback")
   @UseGuards(GoogleGuard)
-  async googleCallback(
+  public async googleCallback(
     @User() user: UserWithSecrets,
     @Res({ passthrough: true }) response: Response,
   ) {
@@ -151,14 +157,14 @@ export class AuthController {
   @ApiTags("OAuth", "OpenID")
   @Get("openid")
   @UseGuards(OpenIDGuard)
-  openidLogin() {
+  public openidLogin() {
     return;
   }
 
   @ApiTags("OAuth", "OpenID")
   @Get("openid/callback")
   @UseGuards(OpenIDGuard)
-  async openidCallback(
+  public async openidCallback(
     @User() user: UserWithSecrets,
     @Res({ passthrough: true }) response: Response,
   ) {
@@ -167,13 +173,16 @@ export class AuthController {
 
   @Post("refresh")
   @UseGuards(RefreshGuard)
-  async refresh(@User() user: UserWithSecrets, @Res({ passthrough: true }) response: Response) {
+  public async refresh(
+    @User() user: UserWithSecrets,
+    @Res({ passthrough: true }) response: Response,
+  ) {
     return this.handleAuthenticationResponse(user, response, true);
   }
 
   @Patch("password")
   @UseGuards(TwoFactorGuard)
-  async updatePassword(
+  public async updatePassword(
     @User("email") email: string,
     @Body() { currentPassword, newPassword }: UpdatePasswordDto,
   ) {
@@ -184,7 +193,10 @@ export class AuthController {
 
   @Post("logout")
   @UseGuards(TwoFactorGuard)
-  async logout(@User() user: UserWithSecrets, @Res({ passthrough: true }) response: Response) {
+  public async logout(
+    @User() user: UserWithSecrets,
+    @Res({ passthrough: true }) response: Response,
+  ) {
     await this.authService.setRefreshToken(user.email, null);
 
     response.clearCookie("Authentication");
@@ -198,7 +210,7 @@ export class AuthController {
   @ApiTags("Two-Factor Auth")
   @Post("2fa/setup")
   @UseGuards(JwtGuard)
-  async setup2FASecret(@User("email") email: string) {
+  public async setup2FASecret(@User("email") email: string) {
     return this.authService.setup2FASecret(email);
   }
 
@@ -206,7 +218,7 @@ export class AuthController {
   @HttpCode(200)
   @Post("2fa/enable")
   @UseGuards(JwtGuard)
-  async enable2FA(
+  public async enable2FA(
     @User("id") id: string,
     @User("email") email: string,
     @Body() { code }: TwoFactorDto,
@@ -227,7 +239,7 @@ export class AuthController {
   @HttpCode(200)
   @Post("2fa/disable")
   @UseGuards(TwoFactorGuard)
-  async disable2FA(@User("email") email: string) {
+  public async disable2FA(@User("email") email: string) {
     await this.authService.disable2FA(email);
 
     return { message: "Two-factor authentication has been successfully disabled on your account." };
@@ -237,7 +249,7 @@ export class AuthController {
   @HttpCode(200)
   @Post("2fa/verify")
   @UseGuards(JwtGuard)
-  async verify2FACode(
+  public async verify2FACode(
     @User() user: UserWithSecrets,
     @Body() { code }: TwoFactorDto,
     @Res({ passthrough: true }) response: Response,
@@ -256,7 +268,7 @@ export class AuthController {
   @HttpCode(200)
   @Post("2fa/backup")
   @UseGuards(JwtGuard)
-  async useBackup2FACode(
+  public async useBackup2FACode(
     @User("id") id: string,
     @User("email") email: string,
     @Body() { code }: TwoFactorBackupDto,
@@ -271,7 +283,7 @@ export class AuthController {
   @ApiTags("Password Reset")
   @HttpCode(200)
   @Post("forgot-password")
-  async forgotPassword(@Body() { email }: ForgotPasswordDto) {
+  public async forgotPassword(@Body() { email }: ForgotPasswordDto) {
     try {
       await this.authService.forgotPassword(email);
     } catch {
@@ -287,7 +299,7 @@ export class AuthController {
   @ApiTags("Password Reset")
   @HttpCode(200)
   @Post("reset-password")
-  async resetPassword(@Body() { token, password }: ResetPasswordDto) {
+  public async resetPassword(@Body() { token, password }: ResetPasswordDto) {
     try {
       await this.authService.resetPassword(token, password);
 
@@ -301,7 +313,7 @@ export class AuthController {
   @ApiTags("Email Verification")
   @Post("verify-email")
   @UseGuards(TwoFactorGuard)
-  async verifyEmail(
+  public async verifyEmail(
     @User("id") id: string,
     @User("emailVerified") emailVerified: boolean,
     @Query("token") token: string,
@@ -320,7 +332,7 @@ export class AuthController {
   @ApiTags("Email Verification")
   @Post("verify-email/resend")
   @UseGuards(TwoFactorGuard)
-  async resendVerificationEmail(
+  public async resendVerificationEmail(
     @User("email") email: string,
     @User("emailVerified") emailVerified: boolean,
   ) {

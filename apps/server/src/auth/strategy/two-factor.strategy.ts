@@ -24,7 +24,7 @@ export class TwoFactorStrategy extends PassportStrategy(Strategy, "two-factor") 
     } as StrategyOptions);
   }
 
-  async validate(payload: Payload) {
+  public async validate(payload: Payload) {
     const user = await this.userService.findOneById(payload.id);
 
     // If the user has 2FA disabled, this will follow the same route as JWT Strategy

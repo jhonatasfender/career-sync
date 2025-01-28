@@ -9,7 +9,7 @@ import { ResumeService } from "../resume.service";
 export class ResumeGuard implements CanActivate {
   constructor(private readonly resumeService: ResumeService) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean> {
+  public async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
     const user = request.user as UserWithSecrets | false;
 

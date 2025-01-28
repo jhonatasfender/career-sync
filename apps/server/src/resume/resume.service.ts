@@ -25,7 +25,7 @@ export class ResumeService {
     private readonly storageService: StorageService,
   ) {}
 
-  async create(userId: string, createResumeDto: CreateResumeDto) {
+  public async create(userId: string, createResumeDto: CreateResumeDto) {
     const { name, email, picture } = await this.prisma.user.findUniqueOrThrow({
       where: { id: userId },
       select: { name: true, email: true, picture: true },
@@ -46,7 +46,7 @@ export class ResumeService {
     });
   }
 
-  import(userId: string, importResumeDto: ImportResumeDto) {
+  public async import(userId: string, importResumeDto: ImportResumeDto) {
     const randomTitle = generateRandomName();
 
     return this.prisma.resume.create({
@@ -60,11 +60,11 @@ export class ResumeService {
     });
   }
 
-  findAll(userId: string) {
+  public async findAll(userId: string) {
     return this.prisma.resume.findMany({ where: { userId }, orderBy: { updatedAt: "desc" } });
   }
 
-  findOne(id: string, userId?: string) {
+  public async findOne(id: string, userId?: string) {
     if (userId) {
       return this.prisma.resume.findUniqueOrThrow({ where: { userId_id: { userId, id } } });
     }
@@ -72,7 +72,7 @@ export class ResumeService {
     return this.prisma.resume.findUniqueOrThrow({ where: { id } });
   }
 
-  async findOneStatistics(id: string) {
+  public async findOneStatistics(id: string) {
     const result = await this.prisma.statistics.findFirst({
       select: { views: true, downloads: true },
       where: { resumeId: id },
@@ -84,7 +84,7 @@ export class ResumeService {
     };
   }
 
-  async findOneByUsernameSlug(username: string, slug: string, userId?: string) {
+  public async findOneByUsernameSlug(username: string, slug: string, userId?: string) {
     const resume = await this.prisma.resume.findFirstOrThrow({
       where: { user: { username }, slug, visibility: "public" },
     });
@@ -101,7 +101,7 @@ export class ResumeService {
     return resume;
   }
 
-  async update(userId: string, id: string, updateResumeDto: UpdateResumeDto) {
+  public async update(userId: string, id: string, updateResumeDto: UpdateResumeDto) {
     try {
       const { locked } = await this.prisma.resume.findUniqueOrThrow({
         where: { id },
@@ -127,14 +127,14 @@ export class ResumeService {
     }
   }
 
-  lock(userId: string, id: string, set: boolean) {
+  public async lock(userId: string, id: string, set: boolean) {
     return this.prisma.resume.update({
       data: { locked: set },
       where: { userId_id: { userId, id } },
     });
   }
 
-  async remove(userId: string, id: string) {
+  public async remove(userId: string, id: string) {
     await Promise.all([
       // Remove files in storage, and their cached keys
       this.storageService.deleteObject(userId, "resumes", id),
@@ -144,7 +144,7 @@ export class ResumeService {
     return this.prisma.resume.delete({ where: { userId_id: { userId, id } } });
   }
 
-  async printResume(resume: ResumeDto, userId?: string) {
+  public async printResume(resume: ResumeDto, userId?: string) {
     const url = await this.printerService.printResume(resume);
 
     // Update statistics: increment the number of downloads by 1
@@ -159,7 +159,7 @@ export class ResumeService {
     return url;
   }
 
-  printPreview(resume: ResumeDto) {
+  public async printPreview(resume: ResumeDto) {
     return this.printerService.printPreview(resume);
   }
 }

@@ -20,7 +20,7 @@ import { TwoFactorStrategy } from "./strategy/two-factor.strategy";
 
 @Module({})
 export class AuthModule {
-  static register(): DynamicModule {
+  public static register(): DynamicModule {
     return {
       module: AuthModule,
       imports: [PassportModule, JwtModule, UserModule, MailModule],

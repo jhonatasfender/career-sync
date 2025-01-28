@@ -45,7 +45,10 @@ export class AuthService {
     }
   }
 
-  generateToken(grantType: "access" | "refresh" | "reset" | "verification", payload?: Payload) {
+  public generateToken(
+    grantType: "access" | "refresh" | "reset" | "verification",
+    payload?: Payload,
+  ) {
     switch (grantType) {
       case "access": {
         if (!payload) throw new InternalServerErrorException("InvalidTokenPayload");
@@ -70,13 +73,13 @@ export class AuthService {
     }
   }
 
-  async setLastSignedIn(email: string) {
+  public async setLastSignedIn(email: string) {
     await this.userService.updateByEmail(email, {
       secrets: { update: { lastSignedIn: new Date() } },
     });
   }
 
-  async setRefreshToken(email: string, token: string | null) {
+  public async setRefreshToken(email: string, token: string | null) {
     await this.userService.updateByEmail(email, {
       secrets: {
         update: {
@@ -87,7 +90,7 @@ export class AuthService {
     });
   }
 
-  async validateRefreshToken(payload: Payload, token: string) {
+  public async validateRefreshToken(payload: Payload, token: string) {
     const user = await this.userService.findOneById(payload.id);
     const storedRefreshToken = user.secrets?.refreshToken;
 
@@ -98,7 +101,7 @@ export class AuthService {
     if (payload.isTwoFactorAuth) return user;
   }
 
-  async register(registerDto: RegisterDto) {
+  public async register(registerDto: RegisterDto) {
     const hashedPassword = await this.hash(registerDto.password);
 
     try {
@@ -126,7 +129,7 @@ export class AuthService {
     }
   }
 
-  async authenticate({ identifier, password }: LoginDto) {
+  public async authenticate({ identifier, password }: LoginDto) {
     try {
       const user = await this.userService.findOneByIdentifierOrThrow(identifier);
 
@@ -144,7 +147,7 @@ export class AuthService {
   }
 
   // Password Reset Flows
-  async forgotPassword(email: string) {
+  public async forgotPassword(email: string) {
     const token = this.generateToken("reset");
 
     await this.userService.updateByEmail(email, {
@@ -159,7 +162,7 @@ export class AuthService {
     await this.mailService.sendEmail({ to: email, subject, text });
   }
 
-  async updatePassword(email: string, currentPassword: string, newPassword: string) {
+  public async updatePassword(email: string, currentPassword: string, newPassword: string) {
     const user = await this.userService.findOneByIdentifierOrThrow(email);
 
     if (!user.secrets?.password) {
@@ -175,7 +178,7 @@ export class AuthService {
     });
   }
 
-  async resetPassword(token: string, password: string) {
+  public async resetPassword(token: string, password: string) {
     const hashedPassword = await this.hash(password);
 
     await this.userService.updateByResetToken(token, {
@@ -184,7 +187,7 @@ export class AuthService {
     });
   }
 
-  getAuthProviders() {
+  public getAuthProviders() {
     const providers: AuthProvidersDto = [];
 
     if (!this.configService.get("DISABLE_EMAIL_AUTH")) {
@@ -224,7 +227,7 @@ export class AuthService {
   }
 
   // Email Verification Flows
-  async sendVerificationEmail(email: string) {
+  public async sendVerificationEmail(email: string) {
     try {
       const token = this.generateToken("verification");
 
@@ -245,7 +248,7 @@ export class AuthService {
     }
   }
 
-  async verifyEmail(id: string, token: string) {
+  public async verifyEmail(id: string, token: string) {
     const user = await this.userService.findOneById(id);
 
     const storedToken = user.secrets?.verificationToken;
@@ -261,7 +264,7 @@ export class AuthService {
   }
 
   // Two-Factor Authentication Flows
-  async setup2FASecret(email: string) {
+  public async setup2FASecret(email: string) {
     // If the user already has 2FA enabled, throw an error
     const user = await this.userService.findOneByIdentifierOrThrow(email);
 
@@ -279,7 +282,7 @@ export class AuthService {
     return { message: uri };
   }
 
-  async enable2FA(email: string, code: string) {
+  public async enable2FA(email: string, code: string) {
     const user = await this.userService.findOneByIdentifierOrThrow(email);
 
     // If the user already has 2FA enabled, throw an error
@@ -312,7 +315,7 @@ export class AuthService {
     return { backupCodes };
   }
 
-  async disable2FA(email: string) {
+  public async disable2FA(email: string) {
     const user = await this.userService.findOneByIdentifierOrThrow(email);
 
     // If the user doesn't have 2FA enabled, throw an error
@@ -326,7 +329,7 @@ export class AuthService {
     });
   }
 
-  async verify2FACode(email: string, code: string) {
+  public async verify2FACode(email: string, code: string) {
     const user = await this.userService.findOneByIdentifierOrThrow(email);
 
     // If the user doesn't have 2FA enabled, or does not have a 2FA secret set, throw an error
@@ -346,7 +349,7 @@ export class AuthService {
     return user;
   }
 
-  async useBackup2FACode(email: string, code: string) {
+  public async useBackup2FACode(email: string, code: string) {
     const user = await this.userService.findOneByIdentifierOrThrow(email);
 
     // If the user doesn't have 2FA enabled, or does not have a 2FA secret set, throw an error

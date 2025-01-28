@@ -18,7 +18,7 @@ export class ContributorsService {
     private readonly configService: ConfigService<Config>,
   ) {}
 
-  async fetchGitHubContributors() {
+  public async fetchGitHubContributors() {
     const response = await this.httpService.axiosRef.get(
       `https://api.github.com/repos/AmruthPillai/Reactive-Resume/contributors`,
     );
@@ -36,7 +36,7 @@ export class ContributorsService {
       });
   }
 
-  async fetchCrowdinContributors() {
+  public async fetchCrowdinContributors() {
     try {
       const projectId = this.configService.getOrThrow("CROWDIN_PROJECT_ID");
       const accessToken = this.configService.getOrThrow("CROWDIN_PERSONAL_TOKEN");

@@ -11,7 +11,7 @@ export class MailService {
     private readonly mailerService: MailerService,
   ) {}
 
-  async sendEmail(options: ISendMailOptions) {
+  public async sendEmail(options: ISendMailOptions) {
     const smtpUrl = this.configService.get("SMTP_URL");
 
     // If `SMTP_URL` is not set, log the email to the console

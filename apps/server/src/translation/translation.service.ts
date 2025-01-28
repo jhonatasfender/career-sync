@@ -21,7 +21,7 @@ export class TranslationService {
     private readonly configService: ConfigService<Config>,
   ) {}
 
-  async fetchLanguages() {
+  public async fetchLanguages() {
     try {
       const projectId = this.configService.getOrThrow("CROWDIN_PROJECT_ID");
       const accessToken = this.configService.getOrThrow("CROWDIN_PERSONAL_TOKEN");

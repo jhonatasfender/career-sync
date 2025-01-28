@@ -44,14 +44,14 @@ export class PrinterService {
     }
   }
 
-  async getVersion() {
+  public async getVersion() {
     const browser = await this.getBrowser();
     const version = await browser.version();
     await browser.disconnect();
     return version;
   }
 
-  async printResume(resume: ResumeDto) {
+  public async printResume(resume: ResumeDto) {
     const start = performance.now();
 
     const url = await retry<string | undefined>(() => this.generateResume(resume), {
@@ -70,7 +70,7 @@ export class PrinterService {
     return url;
   }
 
-  async printPreview(resume: ResumeDto) {
+  public async printPreview(resume: ResumeDto) {
     const start = performance.now();
 
     const url = await retry(() => this.generatePreview(resume), {
@@ -90,7 +90,7 @@ export class PrinterService {
     return url;
   }
 
-  async generateResume(resume: ResumeDto) {
+  public async generateResume(resume: ResumeDto) {
     try {
       const browser = await this.getBrowser();
       const page = await browser.newPage();
@@ -210,7 +210,7 @@ export class PrinterService {
     }
   }
 
-  async generatePreview(resume: ResumeDto) {
+  public async generatePreview(resume: ResumeDto) {
     const browser = await this.getBrowser();
     const page = await browser.newPage();
 

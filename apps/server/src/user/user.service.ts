@@ -12,7 +12,7 @@ export class UserService {
     private readonly storageService: StorageService,
   ) {}
 
-  async findOneById(id: string) {
+  public async findOneById(id: string) {
     const user = await this.prisma.user.findUniqueOrThrow({
       where: { id },
       include: { secrets: true },
@@ -25,7 +25,7 @@ export class UserService {
     return user;
   }
 
-  async findOneByIdentifier(identifier: string) {
+  public async findOneByIdentifier(identifier: string) {
     const user = await (async (identifier: string) => {
       // First, find the user by email
       const user = await this.prisma.user.findUnique({
@@ -47,7 +47,7 @@ export class UserService {
     return user;
   }
 
-  async findOneByIdentifierOrThrow(identifier: string) {
+  public async findOneByIdentifierOrThrow(identifier: string) {
     const user = await (async (identifier: string) => {
       // First, find the user by email
       const user = await this.prisma.user.findUnique({
@@ -69,19 +69,19 @@ export class UserService {
     return user;
   }
 
-  create(data: Prisma.UserCreateInput) {
+  public async create(data: Prisma.UserCreateInput) {
     return this.prisma.user.create({ data, include: { secrets: true } });
   }
 
-  updateByEmail(email: string, data: Prisma.UserUpdateArgs["data"]) {
+  public async updateByEmail(email: string, data: Prisma.UserUpdateArgs["data"]) {
     return this.prisma.user.update({ where: { email }, data });
   }
 
-  async updateByResetToken(resetToken: string, data: Prisma.SecretsUpdateArgs["data"]) {
+  public async updateByResetToken(resetToken: string, data: Prisma.SecretsUpdateArgs["data"]) {
     await this.prisma.secrets.update({ where: { resetToken }, data });
   }
 
-  async deleteOneById(id: string) {
+  public async deleteOneById(id: string) {
     await this.storageService.deleteFolder(id);
 
     return this.prisma.user.delete({ where: { id } });

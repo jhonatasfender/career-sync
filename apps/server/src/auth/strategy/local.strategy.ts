@@ -11,7 +11,7 @@ export class LocalStrategy extends PassportStrategy(Strategy, "local") {
     super({ usernameField: "identifier" } as IStrategyOptions);
   }
 
-  async validate(identifier: string, password: string) {
+  public async validate(identifier: string, password: string) {
     try {
       return await this.authService.authenticate({ identifier, password });
     } catch {

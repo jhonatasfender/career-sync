@@ -38,13 +38,13 @@ export class ResumeController {
   constructor(private readonly resumeService: ResumeService) {}
 
   @Get("schema")
-  getSchema() {
+  public getSchema() {
     return zodToJsonSchema(resumeDataSchema);
   }
 
   @Post()
   @UseGuards(TwoFactorGuard)
-  async create(@User() user: UserEntity, @Body() createResumeDto: CreateResumeDto) {
+  public async create(@User() user: UserEntity, @Body() createResumeDto: CreateResumeDto) {
     try {
       return await this.resumeService.create(user.id, createResumeDto);
     } catch (error) {
@@ -59,7 +59,7 @@ export class ResumeController {
 
   @Post("import")
   @UseGuards(TwoFactorGuard)
-  async import(@User() user: UserEntity, @Body() importResumeDto: unknown) {
+  public async import(@User() user: UserEntity, @Body() importResumeDto: unknown) {
     try {
       const result = importResumeSchema.parse(importResumeDto);
       return await this.resumeService.import(user.id, result);
@@ -75,25 +75,25 @@ export class ResumeController {
 
   @Get()
   @UseGuards(TwoFactorGuard)
-  findAll(@User() user: UserEntity) {
+  public findAll(@User() user: UserEntity) {
     return this.resumeService.findAll(user.id);
   }
 
   @Get(":id")
   @UseGuards(TwoFactorGuard, ResumeGuard)
-  findOne(@Resume() resume: ResumeDto) {
+  public findOne(@Resume() resume: ResumeDto) {
     return resume;
   }
 
   @Get(":id/statistics")
   @UseGuards(TwoFactorGuard)
-  findOneStatistics(@Param("id") id: string) {
+  public findOneStatistics(@Param("id") id: string) {
     return this.resumeService.findOneStatistics(id);
   }
 
   @Get("/public/:username/:slug")
   @UseGuards(OptionalGuard)
-  findOneByUsernameSlug(
+  public findOneByUsernameSlug(
     @Param("username") username: string,
     @Param("slug") slug: string,
     @User("id") userId: string,
@@ -103,7 +103,7 @@ export class ResumeController {
 
   @Patch(":id")
   @UseGuards(TwoFactorGuard)
-  update(
+  public update(
     @User() user: UserEntity,
     @Param("id") id: string,
     @Body() updateResumeDto: UpdateResumeDto,
@@ -113,19 +113,19 @@ export class ResumeController {
 
   @Patch(":id/lock")
   @UseGuards(TwoFactorGuard)
-  lock(@User() user: UserEntity, @Param("id") id: string, @Body("set") set = true) {
+  public lock(@User() user: UserEntity, @Param("id") id: string, @Body("set") set = true) {
     return this.resumeService.lock(user.id, id, set);
   }
 
   @Delete(":id")
   @UseGuards(TwoFactorGuard)
-  remove(@User() user: UserEntity, @Param("id") id: string) {
+  public remove(@User() user: UserEntity, @Param("id") id: string) {
     return this.resumeService.remove(user.id, id);
   }
 
   @Get("/print/:id")
   @UseGuards(OptionalGuard, ResumeGuard)
-  async printResume(@User("id") userId: string | undefined, @Resume() resume: ResumeDto) {
+  public async printResume(@User("id") userId: string | undefined, @Resume() resume: ResumeDto) {
     try {
       const url = await this.resumeService.printResume(resume, userId);
 
@@ -138,7 +138,7 @@ export class ResumeController {
 
   @Get("/print/:id/preview")
   @UseGuards(TwoFactorGuard, ResumeGuard)
-  async printPreview(@Resume() resume: ResumeDto) {
+  public async printPreview(@Resume() resume: ResumeDto) {
     try {
       const url = await this.resumeService.printPreview(resume);
 

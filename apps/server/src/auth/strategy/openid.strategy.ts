@@ -9,14 +9,14 @@ import { UserService } from "@/server/user/user.service";
 @Injectable()
 export class OpenIDStrategy extends PassportStrategy(Strategy, "openid") {
   constructor(
-    readonly authorizationURL: string,
-    readonly callbackURL: string,
-    readonly clientID: string,
-    readonly clientSecret: string,
-    readonly issuer: string,
-    readonly scope: string,
-    readonly tokenURL: string,
-    readonly userInfoURL: string,
+    public readonly authorizationURL: string,
+    public readonly callbackURL: string,
+    public readonly clientID: string,
+    public readonly clientSecret: string,
+    public readonly issuer: string,
+    public readonly scope: string,
+    public readonly tokenURL: string,
+    public readonly userInfoURL: string,
     private readonly userService: UserService,
   ) {
     super({
@@ -31,7 +31,7 @@ export class OpenIDStrategy extends PassportStrategy(Strategy, "openid") {
     } as StrategyOptions);
   }
 
-  async validate(
+  public async validate(
     _issuer: unknown,
     profile: Profile,
     done: (err?: string | Error | null, user?: Express.User, info?: unknown) => void,

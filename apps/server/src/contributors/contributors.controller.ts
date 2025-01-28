@@ -7,12 +7,12 @@ export class ContributorsController {
   constructor(private readonly contributorsService: ContributorsService) {}
 
   @Get("/github")
-  async githubContributors() {
+  public async githubContributors() {
     return this.contributorsService.fetchGitHubContributors();
   }
 
   @Get("/crowdin")
-  async crowdinContributors() {
+  public async crowdinContributors() {
     return this.contributorsService.fetchCrowdinContributors();
   }
 }
