@@ -19,7 +19,7 @@ import {
 } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 
-type MenuItem = {
+export type MenuItem = {
   path: string;
   name: string;
   icon: ReactNode;
@@ -44,7 +44,7 @@ const getMenuCategories = (): MenuCategory[] => [
     icon: <User weight="duotone" />,
     items: [
       {
-        path: "/dashboard/basics",
+        path: "/dashboard/basic",
         name: t`Basic Info`,
         icon: <IdentificationCard weight="duotone" />,
       },

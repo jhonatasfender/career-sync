@@ -20,6 +20,20 @@ import { Providers } from "../providers";
 import { AuthGuard } from "./guards/auth";
 import { GuestGuard } from "./guards/guest";
 import { authLoader } from "./loaders/auth";
+import { BasicPage } from "../pages/dashboard/basic/page";
+import { SummaryPage } from "../pages/dashboard/summary/page";
+import { ProfilePage } from "../pages/dashboard/profiles/page";
+import { ExperiencePage } from "../pages/dashboard/experience/page";
+import { EducationPage } from "../pages/dashboard/education/page";
+import { SkillsPage } from "../pages/dashboard/skill/page";
+import { LanguagesPage } from "../pages/dashboard/language/page";
+import { AwardsPage } from "../pages/dashboard/awards/page";
+import { CertificationsPage } from "../pages/dashboard/certifications/page";
+import { ProjectsPage } from "../pages/dashboard/project/page";
+import { PublicationsPage } from "../pages/dashboard/publications/page";
+import { InterestsPage } from "../pages/dashboard/Interests/page";
+import { VolunteerPage } from "../pages/dashboard/volunteer/page";
+import { ReferencesPage } from "../pages/dashboard/references/page";
 
 export const routes = createRoutesFromElements(
   <Route element={<Providers />}>
@@ -63,6 +77,21 @@ export const routes = createRoutesFromElements(
         <Route element={<DashboardLayout />}>
           <Route path="resumes" element={<ResumesPage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="basic" element={<BasicPage />} />
+          <Route path="summary" element={<SummaryPage />} />
+          <Route path="profiles" element={<ProfilePage />} />
+          <Route path="experience" element={<ExperiencePage />} />
+          <Route path="education" element={<EducationPage />} />
+          <Route path="skills" element={<SkillsPage />} />
+          <Route path="languages" element={<LanguagesPage />} />
+          <Route path="awards" element={<AwardsPage />} />
+          <Route path="certifications" element={<CertificationsPage />} />
+          <Route path="projects" element={<ProjectsPage/>}/> 
+          <Route path="publications" element={<PublicationsPage/>}/> 
+          <Route path="interests" element={<InterestsPage/>}/> 
+          <Route path="volunteer" element={<VolunteerPage/>}/> 
+          <Route path="references" element={<ReferencesPage/>}/> 
+
 
           <Route index element={<Navigate replace to="/dashboard/resumes" />} />
         </Route>

@@ -26,7 +26,6 @@ export const BasicsSection = () => {
         <div className="sm:col-span-2">
           <PictureSection />
         </div>
-
         <div className="space-y-4 sm:col-span-2">
           <Label htmlFor="basics.name">{t`Full Name`}</Label>
           <Input
