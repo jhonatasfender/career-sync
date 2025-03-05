@@ -86,12 +86,11 @@ export const routes = createRoutesFromElements(
           <Route path="languages" element={<LanguagesPage />} />
           <Route path="awards" element={<AwardsPage />} />
           <Route path="certifications" element={<CertificationsPage />} />
-          <Route path="projects" element={<ProjectsPage/>}/> 
-          <Route path="publications" element={<PublicationsPage/>}/> 
-          <Route path="interests" element={<InterestsPage/>}/> 
-          <Route path="volunteer" element={<VolunteerPage/>}/> 
-          <Route path="references" element={<ReferencesPage/>}/> 
-
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="publications" element={<PublicationsPage />} />
+          <Route path="interests" element={<InterestsPage />} />
+          <Route path="volunteer" element={<VolunteerPage />} />
+          <Route path="references" element={<ReferencesPage />} />
 
           <Route index element={<Navigate replace to="/dashboard/resumes" />} />
         </Route>

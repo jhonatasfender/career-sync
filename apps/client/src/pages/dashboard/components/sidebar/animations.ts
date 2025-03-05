@@ -42,4 +42,4 @@ export const itemAnimation = {
       transition: { duration: 0.2, ease: "easeInOut" },
     },
   },
-}; 
+};

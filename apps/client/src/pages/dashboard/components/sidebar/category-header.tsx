@@ -33,4 +33,4 @@ export const CategoryHeader = ({ name, icon, isOpen, isActive, onClick }: Props)
       <CaretRight className="size-4" />
     </motion.div>
   </Button>
-); 
+);

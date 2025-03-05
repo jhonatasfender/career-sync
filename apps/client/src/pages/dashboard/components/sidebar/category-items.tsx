@@ -18,4 +18,4 @@ export const CategoryItems = ({ items }: Props) => (
       ))}
     </motion.div>
   </motion.div>
-); 
+);

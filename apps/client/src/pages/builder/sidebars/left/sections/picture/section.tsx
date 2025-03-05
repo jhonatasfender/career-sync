@@ -46,7 +46,6 @@ export const PictureSection = () => {
       inputRef.current?.click();
     }
   };
-  
 
   return (
     <div className="flex items-center gap-x-4">
@@ -65,7 +64,7 @@ export const PictureSection = () => {
           </div>
         )}
       </div>
-      
+
       <div className="flex w-full flex-col gap-y-1.5">
         <Label htmlFor="basics.picture.url">{t`Picture`}</Label>
         <div className="flex items-center gap-x-2">

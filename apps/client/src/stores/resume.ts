@@ -75,13 +75,13 @@ export const useResumeStore = create<ResumeStore>()(
         limit: 100,
         wrapTemporal: (fn) => devtools(fn),
         partialize: ({ resume }) => ({ resume }),
-      }
+      },
     ),
     {
-      name: "resume-storage", // Nome do localStorage
-      getStorage: () => localStorage, // Define onde armazenar os dados
-    }
-  )
+      name: "resume-storage",
+      getStorage: () => localStorage,
+    },
+  ),
 );
 
 export const useTemporalResumeStore = <T>(
