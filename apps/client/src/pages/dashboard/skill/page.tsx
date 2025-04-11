@@ -1,10 +1,17 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { t } from "@lingui/macro";
-import { ScrollArea } from "@reactive-resume/ui";
+import { Button, ScrollArea } from "@reactive-resume/ui";
 import { SectionBase } from "../../builder/sidebars/left/sections/shared/section-base";
+import { Plus } from "@phosphor-icons/react";
+import { useDialog } from "@/client/stores/dialog";
 
 export const SkillsPage = () => {
+  const { open } = useDialog("skills");
+
+  const handleCreate = () => {
+    open("create", { id: "skills" });
+  };
   return (
     <>
       <Helmet>
@@ -35,7 +42,21 @@ export const SkillsPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            <SectionBase id="skills" title={() => "teste skills"} />
+            <footer className="flex items-center justify-start">
+              <Button
+                variant="outline"
+                className="ml-auto gap-x-2 text-xs lg:text-sm"
+                onClick={handleCreate}
+              >
+                <Plus />
+                <span>
+                  {t({
+                    message: "Add a new item",
+                    context: "For example, add a new work experience, or add a new profile.",
+                  })}
+                </span>
+              </Button>
+            </footer>
           </motion.div>
         </ScrollArea>
       </motion.div>
