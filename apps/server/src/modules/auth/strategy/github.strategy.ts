@@ -1,45 +1,32 @@
 import { BadRequestException, Injectable, Logger } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
+import { createId } from "@paralleldrive/cuid2";
 import { User } from "@prisma/client";
-import { ErrorMessage, generateRandomName, processUsername } from "@reactive-resume/utils";
-import { Profile, Strategy, StrategyOptions } from "passport-openidconnect";
+import { ErrorMessage, processUsername } from "@reactive-resume/utils";
+import { Profile, Strategy, StrategyOptions } from "passport-github2";
 
-import { UserService } from "@/server/user/user.service";
+import { UserService } from "../../user/user.service";
 
 @Injectable()
-export class OpenIDStrategy extends PassportStrategy(Strategy, "openid") {
+export class GitHubStrategy extends PassportStrategy(Strategy, "github") {
   constructor(
-    public readonly authorizationURL: string,
-    public readonly callbackURL: string,
     public readonly clientID: string,
     public readonly clientSecret: string,
-    public readonly issuer: string,
-    public readonly scope: string,
-    public readonly tokenURL: string,
-    public readonly userInfoURL: string,
+    public readonly callbackURL: string,
     private readonly userService: UserService,
   ) {
-    super({
-      authorizationURL,
-      callbackURL,
-      clientID,
-      clientSecret,
-      issuer,
-      scope,
-      tokenURL,
-      userInfoURL,
-    } as StrategyOptions);
+    super({ clientID, clientSecret, callbackURL, scope: ["user:email"] } as StrategyOptions);
   }
 
   public async validate(
-    _issuer: unknown,
+    _accessToken: string,
+    _refreshToken: string,
     profile: Profile,
     done: (err?: string | Error | null, user?: Express.User, info?: unknown) => void,
   ) {
     const { displayName, emails, photos, username } = profile;
 
-    const uniqueId = generateRandomName({ length: 2, style: "lowerCase", separator: "-" });
-    const email = emails?.[0].value ?? `${username ?? uniqueId}@openid.com`;
+    const email = emails?.[0].value ?? `${username}@github.com`;
     const picture = photos?.[0].value;
 
     let user: User | null = null;
@@ -60,8 +47,8 @@ export class OpenIDStrategy extends PassportStrategy(Strategy, "openid") {
           email,
           picture,
           locale: "en-US",
-          provider: "openid",
-          name: displayName || uniqueId,
+          provider: "github",
+          name: displayName || createId(),
           emailVerified: true, // auto-verify emails
           username: processUsername(username ?? email.split("@")[0]),
           secrets: { create: {} },

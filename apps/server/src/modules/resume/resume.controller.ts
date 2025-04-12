@@ -24,10 +24,9 @@ import { resumeDataSchema } from "@reactive-resume/schema";
 import { ErrorMessage } from "@reactive-resume/utils";
 import { zodToJsonSchema } from "zod-to-json-schema";
 
-import { User } from "@/server/user/decorators/user.decorator";
-
 import { OptionalGuard } from "../auth/guards/optional.guard";
 import { TwoFactorGuard } from "../auth/guards/two-factor.guard";
+import { User } from "../user/decorators/user.decorator";
 import { Resume } from "./decorators/resume.decorator";
 import { ResumeGuard } from "./guards/resume.guard";
 import { ResumeService } from "./resume.service";

@@ -15,8 +15,8 @@ import { ErrorMessage } from "@reactive-resume/utils";
 import * as bcryptjs from "bcryptjs";
 import { authenticator } from "otplib";
 
-import { Config } from "../config/schema";
-import { MailService } from "../mail/mail.service";
+import { Config } from "../../config/schema";
+import { MailService } from "../../mail/mail.service";
 import { UserService } from "../user/user.service";
 import { Payload } from "./utils/payload";
 

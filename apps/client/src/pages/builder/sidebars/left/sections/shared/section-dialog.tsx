@@ -22,10 +22,10 @@ import {
   Form,
   ScrollArea,
 } from "@reactive-resume/ui";
+import { FormProvider, type UseFormReturn } from "react-hook-form";
 import { produce } from "immer";
 import get from "lodash.get";
 import { useEffect } from "react";
-import type { UseFormReturn } from "react-hook-form";
 
 import type { DialogName } from "@/client/stores/dialog";
 import { useDialog } from "@/client/stores/dialog";
@@ -60,7 +60,7 @@ export const SectionDialog = <T extends SectionItem>({
 
   useEffect(() => {
     if (isOpen) onReset();
-  }, [isOpen, payload]);
+  }, [isOpen]);
 
   const onSubmit = (values: T) => {
     if (!section) return;
@@ -122,23 +122,25 @@ export const SectionDialog = <T extends SectionItem>({
     return (
       <AlertDialog open={isOpen} onOpenChange={close}>
         <AlertDialogContent className="z-50">
-          <Form {...form}>
-            <form>
-              <AlertDialogHeader>
-                <AlertDialogTitle>{t`Are you sure you want to delete this item?`}</AlertDialogTitle>
-                <AlertDialogDescription>
-                  {t`This action can be reverted by clicking on the undo button in the floating toolbar.`}
-                </AlertDialogDescription>
-              </AlertDialogHeader>
+          <FormProvider {...form}>
+            <Form {...form}>
+              <form>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>{t`Are you sure you want to delete this item?`}</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    {t`This action can be reverted by clicking on the undo button in the floating toolbar.`}
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
 
-              <AlertDialogFooter>
-                <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
-                <AlertDialogAction variant="error" onClick={form.handleSubmit(onSubmit)}>
-                  {t`Delete`}
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </form>
-          </Form>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
+                  <AlertDialogAction variant="error" onClick={form.handleSubmit(onSubmit)}>
+                    {t`Delete`}
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </form>
+            </Form>
+          </FormProvider>
         </AlertDialogContent>
       </AlertDialog>
     );
@@ -147,43 +149,45 @@ export const SectionDialog = <T extends SectionItem>({
   return (
     <Dialog open={isOpen} onOpenChange={close}>
       <DialogContent className="z-50">
-        <Form {...form}>
-          <ScrollArea>
-            <form
-              className="max-h-[60vh] space-y-6 lg:max-h-fit"
-              onSubmit={form.handleSubmit(onSubmit)}
-            >
-              <DialogHeader>
-                <DialogTitle>
-                  <div className="flex items-center space-x-2.5">
-                    {isCreate && <Plus />}
-                    {isUpdate && <PencilSimple />}
-                    {isDuplicate && <CopySimple />}
-                    <h2>
-                      {isCreate && t`Create a new item`}
-                      {isUpdate && t`Update an existing item`}
-                      {isDuplicate && t`Duplicate an existing item`}
-                    </h2>
-                  </div>
-                </DialogTitle>
+        <FormProvider {...form}>
+          <Form {...form}>
+            <ScrollArea>
+              <form
+                className="max-h-[60vh] space-y-6 lg:max-h-fit"
+                onSubmit={form.handleSubmit(onSubmit)}
+              >
+                <DialogHeader>
+                  <DialogTitle>
+                    <div className="flex items-center space-x-2.5">
+                      {isCreate && <Plus />}
+                      {isUpdate && <PencilSimple />}
+                      {isDuplicate && <CopySimple />}
+                      <h2>
+                        {isCreate && t`Create a new item`}
+                        {isUpdate && t`Update an existing item`}
+                        {isDuplicate && t`Duplicate an existing item`}
+                      </h2>
+                    </div>
+                  </DialogTitle>
 
-                <VisuallyHidden>
-                  <DialogDescription />
-                </VisuallyHidden>
-              </DialogHeader>
+                  <VisuallyHidden>
+                    <DialogDescription />
+                  </VisuallyHidden>
+                </DialogHeader>
 
-              {children}
+                {children}
 
-              <DialogFooter>
-                <Button type="submit">
-                  {isCreate && t`Create`}
-                  {isUpdate && t`Save Changes`}
-                  {isDuplicate && t`Duplicate`}
-                </Button>
-              </DialogFooter>
-            </form>
-          </ScrollArea>
-        </Form>
+                <DialogFooter>
+                  <Button type="submit">
+                    {isCreate && t`Create`}
+                    {isUpdate && t`Save Changes`}
+                    {isDuplicate && t`Duplicate`}
+                  </Button>
+                </DialogFooter>
+              </form>
+            </ScrollArea>
+          </Form>
+        </FormProvider>
       </DialogContent>
     </Dialog>
   );

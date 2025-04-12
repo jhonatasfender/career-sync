@@ -3,7 +3,7 @@ import { Prisma } from "@prisma/client";
 import { ErrorMessage } from "@reactive-resume/utils";
 import { PrismaService } from "nestjs-prisma";
 
-import { StorageService } from "../storage/storage.service";
+import { StorageService } from "@/server/storage/storage.service";
 
 @Injectable()
 export class UserService {
