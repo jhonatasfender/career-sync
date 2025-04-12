@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  NotFoundException,
-  Patch,
-  Post,
-  UseGuards,
-} from "@nestjs/common";
+import { Body, Controller, Delete, Get, Patch, Post, UseGuards } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 
 import { TwoFactorGuard } from "../../auth/guards/two-factor.guard";
@@ -24,11 +15,7 @@ export class BasicsController {
 
   @Get()
   public async findOne(@User("id") userId: string) {
-    const basics = await this.basicsService.findOneByUserId(userId);
-    if (!basics) {
-      throw new NotFoundException("Não há Basics para este usuário");
-    }
-    return basics;
+    return this.basicsService.findOneByUserId(userId);
   }
 
   @Post()
@@ -44,6 +31,5 @@ export class BasicsController {
   @Delete()
   public async delete(@User("id") userId: string) {
     await this.basicsService.delete(userId);
-    return { message: "Basics excluído com sucesso" };
   }
 }

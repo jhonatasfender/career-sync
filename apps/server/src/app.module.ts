@@ -13,6 +13,8 @@ import { MailModule } from "./mail/mail.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { BasicsModule } from "./modules/basics/basics.module";
 import { ContributorsModule } from "./modules/contributors/contributors.module";
+import { EducationModule } from "./modules/education/education.module";
+import { ExperienceModule } from "./modules/experience/experience.module";
 import { FeatureModule } from "./modules/feature/feature.module";
 import { ResumeModule } from "./modules/resume/resume.module";
 import { UserModule } from "./modules/user/user.module";
@@ -38,6 +40,8 @@ const imports = [
   TranslationModule,
   ContributorsModule,
   BasicsModule,
+  EducationModule,
+  ExperienceModule,
 ];
 
 if (process.env.NODE_ENV === "production") {

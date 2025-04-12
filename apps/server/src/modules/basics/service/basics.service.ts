@@ -25,7 +25,7 @@ export class BasicsService {
 
     const existing = await this.prisma.basics.findUnique({ where: { userId } });
     if (existing) {
-      throw new BadRequestException("Já existe um Basics para esse usuário");
+      throw new BadRequestException("Já existe dados básicos para esse usuário");
     }
 
     const data = BasicsMapper.toPrismaCreate(userId, dto);
@@ -33,8 +33,12 @@ export class BasicsService {
     return this.prisma.basics.create({ data });
   }
 
-  public async findOneByUserId(userId: string): Promise<Basics | null> {
-    return this.prisma.basics.findUnique({ where: { userId } });
+  public async findOneByUserId(userId: string): Promise<Basics> {
+    const basics = await this.prisma.basics.findUnique({ where: { userId } });
+    if (!basics) {
+      throw new NotFoundException("Não há dados básicos para este usuário");
+    }
+    return basics;
   }
 
   public async update(userId: string, dto: UpdateBasicsDto): Promise<Basics> {
@@ -42,7 +46,7 @@ export class BasicsService {
 
     const existing = await this.prisma.basics.findUnique({ where: { userId } });
     if (!existing) {
-      throw new NotFoundException("Não há Basics cadastrado para este usuário");
+      throw new NotFoundException("Não há dados básicos cadastrado para este usuário");
     }
 
     const data = BasicsMapper.toPrismaUpdate(dto);
@@ -53,9 +57,11 @@ export class BasicsService {
     });
   }
 
-  public async delete(userId: string): Promise<void> {
+  public async delete(userId: string): Promise<{ message: string }> {
     await this.checkUser(userId);
 
     await this.prisma.basics.delete({ where: { userId } });
+
+    return { message: "Dados básicos excluídos com sucesso" };
   }
 }
