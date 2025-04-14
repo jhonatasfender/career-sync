@@ -3,6 +3,7 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
+  NotFoundException,
 } from "@nestjs/common";
 import { CreateResumeDto, ImportResumeDto, ResumeDto, UpdateResumeDto } from "@reactive-resume/dto";
 import { defaultResumeData, ResumeData } from "@reactive-resume/schema";
@@ -156,5 +157,80 @@ export class ResumeService {
 
   public async printPreview(resume: ResumeDto) {
     return this.printerService.printPreview(resume);
+  }
+
+  public async findOneFullResume(userId: string, resumeId: string) {
+    const resume = await this.prisma.resume.findUnique({
+      where: {
+        userId_id: {
+          userId,
+          id: resumeId,
+        },
+      },
+      include: {
+        statistics: true,
+        user: {
+          include: {
+            basics: true,
+            summary: true,
+            experiences: true,
+            educations: true,
+            skills: true,
+            languages: true,
+            awards: true,
+            certifications: true,
+            interests: true,
+            projects: true,
+            publications: true,
+            volunteer: true,
+            references: true,
+            customSections: true,
+            profiles: true,
+          },
+        },
+      },
+    });
+
+    if (!resume) {
+      throw new NotFoundException("Resume não encontrado ou não pertence ao usuário");
+    }
+
+    const user = resume.user;
+
+    const fullData = {
+      resume: {
+        id: resume.id,
+        title: resume.title,
+        slug: resume.slug,
+        visibility: resume.visibility,
+        locked: resume.locked,
+        createdAt: resume.createdAt,
+        updatedAt: resume.updatedAt,
+        statistics: resume.statistics,
+      },
+
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        basics: user.basics,
+        summary: user.summary,
+        experiences: user.experiences,
+        educations: user.educations,
+        skills: user.skills,
+        languages: user.languages,
+        awards: user.awards,
+        certifications: user.certifications,
+        interests: user.interests,
+        projects: user.projects,
+        publications: user.publications,
+        volunteer: user.volunteer,
+        references: user.references,
+        customSections: user.customSections,
+        profiles: user.profiles,
+      },
+    };
+
+    return fullData;
   }
 }

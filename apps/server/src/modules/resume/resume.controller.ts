@@ -147,4 +147,10 @@ export class ResumeController {
       throw new InternalServerErrorException(error);
     }
   }
+
+  @Get(":id/full")
+  @UseGuards(TwoFactorGuard)
+  public async findOneFull(@User("id") userId: string, @Param("id") resumeId: string) {
+    return this.resumeService.findOneFullResume(userId, resumeId);
+  }
 }
