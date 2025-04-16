@@ -33,10 +33,10 @@ export const DialogProvider = ({ children }: Props) => {
         <LockDialog />
         <ImportDialog />
         <TwoFactorDialog />
+        <ProfilesDialog />
 
         {isResumeLoaded && (
           <>
-            <ProfilesDialog />
             <ExperienceDialog />
             <EducationDialog />
             <AwardsDialog />

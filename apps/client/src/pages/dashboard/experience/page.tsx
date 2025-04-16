@@ -1,17 +1,17 @@
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+/* eslint-disable lingui/no-unlocalized-strings */
 import { t } from "@lingui/macro";
-import { useDialog } from "@/client/stores/dialog";
-import { Button, Input } from "@reactive-resume/ui";
 import { Plus } from "@phosphor-icons/react";
+import { Button, Input } from "@reactive-resume/ui";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+
+import { useDialog } from "@/client/stores/dialog";
 
 export const ExperiencePage = () => {
-
- const { open } = useDialog("experience");
- const onCreate = () => {
-  open("create", { id:"experience" });
-};
-
+  const { open } = useDialog("experience");
+  const onCreate = () => {
+    open("create", { id: "experience" });
+  };
 
   return (
     <>
@@ -22,13 +22,13 @@ export const ExperiencePage = () => {
       </Helmet>
 
       <motion.div
-        className="flex flex-col min-h-screen p-4"
+        className="flex min-h-screen flex-col p-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
       >
-         <motion.div
-          className="max-w-3xl w-full space-y-4"
+        <motion.div
+          className="w-full max-w-3xl space-y-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.2 }}
@@ -36,42 +36,31 @@ export const ExperiencePage = () => {
           <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.3, }}
-            whileHover={{scale: 1.1, color: "#3b82f6"}} // Testando
+            transition={{ duration: 0.3, delay: 0.3 }}
+            whileHover={{ scale: 1.1, color: "#3b82f6" }} // Testando
             whileTap={{ scale: 1.9 }} // Testando
-            className="text-4xl font-bold tracking-tight text-left mb-8"
+            className="mb-8 text-left text-4xl font-bold tracking-tight"
           >
-
             {t`Experience`}
           </motion.h1>
 
-      <div>
-        <Input />
-        <Button>Buscar</Button>
-      </div>
-      <table>
-        <tr>
-          <th>
-            Company
-          </th>
-          <th>
-            Position
-          </th>
-          <th>Date or Date Range</th>
-        </tr>
-        <tr>
-          <td>
-            Teste
-          </td>
-          <td>
-            Teste
-          </td>
-          <td>
-            Teste
-            </td>
-        </tr>
-      </table>
-      <Button
+          <div>
+            <Input />
+            <Button>Buscar</Button>
+          </div>
+          <table>
+            <tr>
+              <th>Company</th>
+              <th>Position</th>
+              <th>Date or Date Range</th>
+            </tr>
+            <tr>
+              <td>Teste</td>
+              <td>Teste</td>
+              <td>Teste</td>
+            </tr>
+          </table>
+          <Button
             variant="outline"
             className="ml-auto gap-x-2 text-xs lg:text-sm"
             onClick={onCreate}
@@ -84,9 +73,8 @@ export const ExperiencePage = () => {
               })}
             </span>
           </Button>
+        </motion.div>
       </motion.div>
-      </motion.div>
-
     </>
   );
 };

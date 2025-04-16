@@ -22,10 +22,10 @@ import {
   Form,
   ScrollArea,
 } from "@reactive-resume/ui";
-import { FormProvider, type UseFormReturn } from "react-hook-form";
 import { produce } from "immer";
 import get from "lodash.get";
 import { useEffect } from "react";
+import { FormProvider, type UseFormReturn } from "react-hook-form";
 
 import type { DialogName } from "@/client/stores/dialog";
 import { useDialog } from "@/client/stores/dialog";
