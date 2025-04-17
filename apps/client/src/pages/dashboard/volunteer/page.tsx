@@ -1,10 +1,94 @@
+import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
-import { Helmet } from "react-helmet-async";
+import { Plus } from "@phosphor-icons/react";
+import { Button, ScrollArea } from "@reactive-resume/ui";
+import {
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
 import { motion } from "framer-motion";
-import { ScrollArea } from "@reactive-resume/ui";
-import { SectionBase } from "../../builder/sidebars/left/sections/shared/section-base";
+import { Helmet } from "react-helmet-async";
+
+type Volunteer = {
+  organization: string;
+  position: string;
+  dateRange: string;
+  location: string;
+  website: string;
+  summary: string;
+};
+
+const data: Volunteer[] = [
+  {
+    organization: "Environmental Action Group",
+    position: "Project Coordinator",
+    dateRange: "2023-05 - 2024-02",
+    location: "São Paulo, Brasil",
+    website: "https://enviroaction.org",
+    summary:
+      "Liderança na implementação de iniciativas sustentáveis e programas de conscientização ambiental.",
+  },
+  {
+    organization: "Tech Education for All",
+    position: "Volunteer Instructor",
+    dateRange: "2022-09 - 2023-12",
+    location: "Rio de Janeiro, Brasil",
+    website: "https://techedforall.org",
+    summary:
+      "Ministração de cursos gratuitos de programação para jovens em situação de vulnerabilidade social.",
+  },
+  {
+    organization: "Animal Welfare Foundation",
+    position: "Fundraising Volunteer",
+    dateRange: "2024-01 - Presente",
+    location: "Brasília, Brasil",
+    website: "https://animalwelfarefoundation.org",
+    summary:
+      "Organização de campanhas para arrecadação de fundos visando o resgate e cuidado de animais em risco.",
+  },
+];
 
 export const VolunteerPage = () => {
+  const { open } = useDialog("publications");
+  const handleCreate = () => {
+    open("create", { id: "publications" });
+  };
+
+  const columnHelper = createColumnHelper<Volunteer>();
+  const columns = [
+    columnHelper.accessor("organization", {
+      header: "Organization",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("position", {
+      header: "Position",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("dateRange", {
+      header: "DateRange",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("location", {
+      header: "Location",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("website", {
+      header: "Website",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("summary", {
+      header: "Summary",
+      cell: (info) => info.getValue(),
+    }),
+  ];
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
   return (
     <>
       <Helmet>
@@ -14,7 +98,7 @@ export const VolunteerPage = () => {
       </Helmet>
 
       <motion.div
-        className="max-w-3xl space-y-4"
+        className="w-full space-y-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
@@ -30,12 +114,54 @@ export const VolunteerPage = () => {
 
         <ScrollArea hideScrollbar className="h-[calc(100vh-140px)] lg:h-[calc(100vh-88px)]">
           <motion.div
-            className="max-w-lg rounded-lg bg-background p-6 shadow-sm"
+            className="w-full rounded-lg bg-background p-6 shadow-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            <SectionBase id="volunteer" title={() => "teste volunteer"} />
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
+                <thead className="bg-secondary">
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => (
+                        <th key={header.id} className="whitespace-normal px-4 py-3 text-left">
+                          {flexRender(header.column.columnDef.header, header.getContext())}
+                        </th>
+                      ))}
+                    </tr>
+                  ))}
+                </thead>
+                <tbody className="divide-y divide-border">
+                  {table.getRowModel().rows.map((row) => (
+                    <tr key={row.id} className="transition-colors hover:bg-secondary/50">
+                      {row.getVisibleCells().map((cell) => (
+                        <td
+                          key={cell.id}
+                          className="min-w-[100px] whitespace-normal break-words px-4 py-3 text-sm"
+                        >
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="flex justify-start gap-3 py-3">
+              <Button
+                variant="outline"
+                className="gap-x-2 text-xs lg:text-sm"
+                onClick={handleCreate}
+              >
+                <Plus />
+                <span>
+                  {t({
+                    message: "Add a new item",
+                  })}
+                </span>
+              </Button>
+            </div>
           </motion.div>
         </ScrollArea>
       </motion.div>

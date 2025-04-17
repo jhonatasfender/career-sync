@@ -23,7 +23,7 @@ export const ProfilePage = () => {
   const { open } = useDialog("profiles");
 
   const handleCreate = () => {
-    open("create");
+    open("create", { id: "profiles" });
   };
   const data: Profile[] = [
     {
@@ -126,7 +126,7 @@ export const ProfilePage = () => {
                   {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => (
-                        <th key={header.id} className="whitespace-nowrap px-4 py-3 text-left">
+                        <th key={header.id} className="whitespace-normal px-4 py-3 text-left">
                           {flexRender(header.column.columnDef.header, header.getContext())}
                         </th>
                       ))}
@@ -137,7 +137,10 @@ export const ProfilePage = () => {
                   {table.getRowModel().rows.map((row) => (
                     <tr key={row.id} className="transition-colors hover:bg-secondary/50">
                       {row.getVisibleCells().map((cell) => (
-                        <td key={cell.id} className="whitespace-nowrap px-4 py-3 text-sm">
+                        <td
+                          key={cell.id}
+                          className="min-w-[100px] whitespace-normal break-words px-4 py-3 text-sm"
+                        >
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </td>
                       ))}
@@ -147,21 +150,19 @@ export const ProfilePage = () => {
               </table>
             </div>
             <div className="flex justify-end gap-3 py-3">
-              <Button>Create</Button>
+              <Button
+                variant="outline"
+                className="ml-auto gap-x-2 text-xs lg:text-sm"
+                onClick={handleCreate}
+              >
+                <Plus />
+                <span>
+                  {t({
+                    message: "Add a new item",
+                  })}
+                </span>
+              </Button>
             </div>
-            <Button
-              variant="outline"
-              className="ml-auto gap-x-2 text-xs lg:text-sm"
-              onClick={handleCreate}
-            >
-              <Plus />
-              <span>
-                {t({
-                  message: "Add a new item",
-                })}
-              </span>
-            </Button>
-            <ProfilesDialog />
           </motion.div>
         </ScrollArea>
       </motion.div>
