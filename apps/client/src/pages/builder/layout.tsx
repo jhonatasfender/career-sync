@@ -13,12 +13,12 @@ import {
 import { cn } from "@reactive-resume/utils";
 import { Outlet } from "react-router";
 
-import { useBuilderStore } from "@/client/stores/builder";
-
 import { BuilderHeader } from "./components/header";
 import { BuilderToolbar } from "./components/toolbar";
 import { LeftSidebar } from "./sidebars/left";
 import { RightSidebar } from "./sidebars/right";
+
+import { useBuilderStore } from "@/client/stores/builder";
 
 const onOpenAutoFocus = (event: Event) => {
   event.preventDefault();

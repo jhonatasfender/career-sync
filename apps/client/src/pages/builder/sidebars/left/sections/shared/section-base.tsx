@@ -22,12 +22,12 @@ import { cn } from "@reactive-resume/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import get from "lodash.get";
 
-import { useDialog } from "@/client/stores/dialog";
-import { useResumeStore } from "@/client/stores/resume";
-
 import { SectionIcon } from "./section-icon";
 import { SectionListItem } from "./section-list-item";
 import { SectionOptions } from "./section-options";
+
+import { useDialog } from "@/client/stores/dialog";
+import { useResumeStore } from "@/client/stores/resume";
 
 type Props<T extends SectionItem> = {
   id: SectionKey;

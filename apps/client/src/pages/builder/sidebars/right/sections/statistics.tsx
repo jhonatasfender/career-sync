@@ -4,10 +4,10 @@ import { Alert, AlertDescription, AlertTitle } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { SectionIcon } from "../shared/section-icon";
+
 import { useResumeStatistics } from "@/client/services/resume";
 import { useResumeStore } from "@/client/stores/resume";
-
-import { SectionIcon } from "../shared/section-icon";
 
 export const StatisticsSection = () => {
   const id = useResumeStore((state) => state.resume.id);

@@ -1,9 +1,9 @@
 import { t } from "@lingui/macro";
 import { RichInput } from "@reactive-resume/ui";
 
-import { useResumeStore } from "@/client/stores/resume";
-
 import { SectionIcon } from "../shared/section-icon";
+
+import { useResumeStore } from "@/client/stores/resume";
 
 export const NotesSection = () => {
   const setValue = useResumeStore((state) => state.setValue);

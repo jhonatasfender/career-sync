@@ -19,15 +19,15 @@ import { Button, ScrollArea, Separator } from "@reactive-resume/ui";
 import { Fragment, useRef } from "react";
 import { Link } from "react-router";
 
-import { Icon } from "@/client/components/icon";
-import { UserAvatar } from "@/client/components/user-avatar";
-import { UserOptions } from "@/client/components/user-options";
-import { useResumeStore } from "@/client/stores/resume";
-
 import { BasicsSection } from "./sections/basics";
 import { SectionBase } from "./sections/shared/section-base";
 import { SectionIcon } from "./sections/shared/section-icon";
 import { SummarySection } from "./sections/summary";
+
+import { Icon } from "@/client/components/icon";
+import { UserAvatar } from "@/client/components/user-avatar";
+import { UserOptions } from "@/client/components/user-options";
+import { useResumeStore } from "@/client/stores/resume";
 
 export const LeftSidebar = () => {
   const containterRef = useRef<HTMLDivElement | null>(null);

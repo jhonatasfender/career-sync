@@ -1,7 +1,8 @@
-import { useResumes } from "@career-sync/client/services/resume";
 import type { ResumeDto } from "@reactive-resume/dto";
 import { sortByDate } from "@reactive-resume/utils";
 import { AnimatePresence, motion } from "framer-motion";
+
+import { useResumes } from "@career-sync/client/services/resume";
 
 import { BaseListItem } from "./components/base-item";
 import { CreateResumeListItem } from "./components/create-item";

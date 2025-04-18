@@ -19,7 +19,7 @@ import { InterestsPage } from "../pages/dashboard/Interests/page";
 import { LanguagesPage } from "../pages/dashboard/language/page";
 import { DashboardLayout } from "../pages/dashboard/layout";
 import { ProfilePage } from "../pages/dashboard/profiles/page";
-import { ProjectsPage } from "../pages/dashboard/project/page";
+import { ProjectPage } from "../pages/dashboard/project/page";
 import { PublicationsPage } from "../pages/dashboard/publications/page";
 import { ReferencesPage } from "../pages/dashboard/references/page";
 import { ResumesPage } from "../pages/dashboard/resumes/page";
@@ -31,6 +31,7 @@ import { HomeLayout } from "../pages/home/layout";
 import { HomePage } from "../pages/home/page";
 import { publicLoader, PublicResumePage } from "../pages/public/page";
 import { Providers } from "../providers";
+
 import { AuthGuard } from "./guards/auth";
 import { GuestGuard } from "./guards/guest";
 import { authLoader } from "./loaders/auth";
@@ -86,7 +87,7 @@ export const routes = createRoutesFromElements(
           <Route path="languages" element={<LanguagesPage />} />
           <Route path="awards" element={<AwardsPage />} />
           <Route path="certifications" element={<CertificationsPage />} />
-          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="projects" element={<ProjectPage />} />
           <Route path="publications" element={<PublicationsPage />} />
           <Route path="interests" element={<InterestsPage />} />
           <Route path="volunteer" element={<VolunteerPage />} />

@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router";
 
-import { Logo } from "@/client/components/logo";
-
 import { DonationBanner } from "./donation-banner";
+
+import { Logo } from "@/client/components/logo";
 
 export const Header = () => (
   <motion.header

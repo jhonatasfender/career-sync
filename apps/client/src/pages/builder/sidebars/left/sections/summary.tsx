@@ -2,11 +2,11 @@ import { defaultSections } from "@reactive-resume/schema";
 import { RichInput } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
 
-import { AiActions } from "@/client/components/ai-actions";
-import { useResumeStore } from "@/client/stores/resume";
-
 import { SectionIcon } from "./shared/section-icon";
 import { SectionOptions } from "./shared/section-options";
+
+import { AiActions } from "@/client/components/ai-actions";
+import { useResumeStore } from "@/client/stores/resume";
 
 export const SummarySection = () => {
   const setValue = useResumeStore((state) => state.setValue);

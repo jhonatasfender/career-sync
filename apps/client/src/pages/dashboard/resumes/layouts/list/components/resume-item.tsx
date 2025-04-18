@@ -24,7 +24,7 @@ import {
 import dayjs from "dayjs";
 import { useNavigate } from "react-router";
 
-import { useDialog } from "@/client/stores/dialog";
+import { useDialog } from "@career-sync/client/stores/dialog";
 
 import { BaseListItem } from "./base-item";
 

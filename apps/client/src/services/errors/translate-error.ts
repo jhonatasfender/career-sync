@@ -4,13 +4,13 @@ import { ErrorMessage } from "@reactive-resume/utils";
 export const translateError = (error: ErrorMessage) => {
   switch (error) {
     case ErrorMessage.InvalidCredentials: {
-      return t`It doesn't look like a user exists with the credentials you provided.`;
+      return t`It does not look like a user exists with the credentials you provided.`;
     }
     case ErrorMessage.UserAlreadyExists: {
       return t`A user with this email address and/or username already exists.`;
     }
     case ErrorMessage.SecretsNotFound: {
-      return t`User does not have an associated 'secrets' record. Please report this issue on GitHub.`;
+      return t`User does not have an associated secrets record. Please report this issue on GitHub.`;
     }
     case ErrorMessage.OAuthUser: {
       return t`This email address is associated with an OAuth account. Please sign in with your OAuth provider.`;
@@ -37,13 +37,13 @@ export const translateError = (error: ErrorMessage) => {
       return t`It looks like the backup code you provided is invalid or used. Please try again.`;
     }
     case ErrorMessage.InvalidBrowserConnection: {
-      return t`There was an error connecting to the browser. Please make sure 'chrome' is running and reachable.`;
+      return t`There was an error connecting to the browser. Please make sure chrome is running and reachable.`;
     }
     case ErrorMessage.ResumeSlugAlreadyExists: {
       return t`A resume with this slug already exists, please pick a different unique identifier.`;
     }
     case ErrorMessage.ResumeNotFound: {
-      return t`It looks like the resume you're looking for doesn't exist.`;
+      return t`It looks like the resume you are looking for does not exist.`;
     }
     case ErrorMessage.ResumeLocked: {
       return t`The resume you want to update is locked, please unlock if you wish to make any changes to it.`;

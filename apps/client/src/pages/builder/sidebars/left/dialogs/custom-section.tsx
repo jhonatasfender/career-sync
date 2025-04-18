@@ -20,11 +20,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import { AiActions } from "@/client/components/ai-actions";
-import { useDialog } from "@/client/stores/dialog";
-
 import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
+
+import { AiActions } from "@/client/components/ai-actions";
+import { useDialog } from "@/client/stores/dialog";
 
 const formSchema = customSectionSchema;
 

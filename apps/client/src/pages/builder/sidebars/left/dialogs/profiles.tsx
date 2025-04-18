@@ -14,10 +14,10 @@ import {
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
-import { BrandIcon } from "@/client/components/brand-icon";
-
 import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
+
+import { BrandIcon } from "@/client/components/brand-icon";
 
 const formSchema = profileSchema;
 

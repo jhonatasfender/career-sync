@@ -1,7 +1,8 @@
-import { axios } from "@career-sync/client/libs/axios";
 import type { ForgotPasswordDto } from "@reactive-resume/dto";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosResponse } from "axios";
+
+import { axios } from "@career-sync/client/libs/axios";
 
 export const forgotPassword = async (data: ForgotPasswordDto) => {
   return await axios.post<undefined, AxiosResponse<undefined>, ForgotPasswordDto>(

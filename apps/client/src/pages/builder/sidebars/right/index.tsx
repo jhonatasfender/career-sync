@@ -2,8 +2,6 @@ import { t } from "@lingui/macro";
 import { ScrollArea, Separator } from "@reactive-resume/ui";
 import { useRef } from "react";
 
-import { ThemeSwitch } from "@/client/components/theme-switch";
-
 import { CssSection } from "./sections/css";
 import { ExportSection } from "./sections/export";
 import { InformationSection } from "./sections/information";
@@ -16,6 +14,8 @@ import { TemplateSection } from "./sections/template";
 import { ThemeSection } from "./sections/theme";
 import { TypographySection } from "./sections/typography";
 import { SectionIcon } from "./shared/section-icon";
+
+import { ThemeSwitch } from "@/client/components/theme-switch";
 
 export const RightSidebar = () => {
   const containterRef = useRef<HTMLDivElement | null>(null);

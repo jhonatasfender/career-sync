@@ -7,9 +7,9 @@ import { cn, fonts } from "@reactive-resume/utils";
 import { useCallback, useEffect, useState } from "react";
 import webfontloader from "webfontloader";
 
-import { useResumeStore } from "@/client/stores/resume";
-
 import { SectionIcon } from "../shared/section-icon";
+
+import { useResumeStore } from "@/client/stores/resume";
 
 const localFonts = ["Arial", "Cambria", "Garamond", "Times New Roman"];
 

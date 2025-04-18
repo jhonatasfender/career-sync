@@ -2,12 +2,12 @@ import { t } from "@lingui/macro";
 import { basicsSchema } from "@reactive-resume/schema";
 import { Input, Label } from "@reactive-resume/ui";
 
-import { useResumeStore } from "@/client/stores/resume";
-
 import { CustomFieldsSection } from "./custom/section";
 import { PictureSection } from "./picture/section";
 import { SectionIcon } from "./shared/section-icon";
 import { URLInput } from "./shared/url-input";
+
+import { useResumeStore } from "@/client/stores/resume";
 
 export const BasicsSection = () => {
   const setValue = useResumeStore((state) => state.setValue);

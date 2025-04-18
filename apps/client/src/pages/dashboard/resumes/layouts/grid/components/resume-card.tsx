@@ -20,9 +20,9 @@ import dayjs from "dayjs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useNavigate } from "react-router";
 
-import { useDialog } from "@/client/stores/dialog";
-
 import { BaseCard } from "./base-card";
+
+import { useDialog } from "@/client/stores/dialog";
 
 type Props = {
   resume: ResumeDto;

@@ -10,9 +10,9 @@ import {
   Switch,
 } from "@reactive-resume/ui";
 
-import { useResumeStore } from "@/client/stores/resume";
-
 import { SectionIcon } from "../shared/section-icon";
+
+import { useResumeStore } from "@/client/stores/resume";
 
 export const PageSection = () => {
   const setValue = useResumeStore((state) => state.setValue);

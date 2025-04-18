@@ -4,6 +4,7 @@ import { Button, Popover, PopoverContent, PopoverTrigger } from "@reactive-resum
 import { useState } from "react";
 
 import { changeLanguage } from "../providers/locale";
+
 import { LocaleCombobox } from "./locale-combobox";
 
 export const LocaleSwitch = () => {

@@ -3,11 +3,11 @@ import { CopySimple } from "@phosphor-icons/react";
 import { Button, Input, Label, Switch, Tooltip } from "@reactive-resume/ui";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { SectionIcon } from "../shared/section-icon";
+
 import { useToast } from "@/client/hooks/use-toast";
 import { useUser } from "@/client/services/user";
 import { useResumeStore } from "@/client/stores/resume";
-
-import { SectionIcon } from "../shared/section-icon";
 
 export const SharingSection = () => {
   const { user } = useUser();
