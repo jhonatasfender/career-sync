@@ -1,4 +1,3 @@
-import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
@@ -11,6 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
+import { useDialog } from "@/client/stores/dialog";
+
 type Volunteer = {
   organization: string;
   position: string;
@@ -20,66 +21,63 @@ type Volunteer = {
   summary: string;
 };
 
-const data: Volunteer[] = [
-  {
-    organization: "Environmental Action Group",
-    position: "Project Coordinator",
-    dateRange: "2023-05 - 2024-02",
-    location: "São Paulo, Brasil",
-    website: "https://enviroaction.org",
-    summary:
-      "Liderança na implementação de iniciativas sustentáveis e programas de conscientização ambiental.",
-  },
-  {
-    organization: "Tech Education for All",
-    position: "Volunteer Instructor",
-    dateRange: "2022-09 - 2023-12",
-    location: "Rio de Janeiro, Brasil",
-    website: "https://techedforall.org",
-    summary:
-      "Ministração de cursos gratuitos de programação para jovens em situação de vulnerabilidade social.",
-  },
-  {
-    organization: "Animal Welfare Foundation",
-    position: "Fundraising Volunteer",
-    dateRange: "2024-01 - Presente",
-    location: "Brasília, Brasil",
-    website: "https://animalwelfarefoundation.org",
-    summary:
-      "Organização de campanhas para arrecadação de fundos visando o resgate e cuidado de animais em risco.",
-  },
-];
-
 export const VolunteerPage = () => {
   const { open } = useDialog("publications");
   const handleCreate = () => {
     open("create", { id: "publications" });
   };
 
+  const data: Volunteer[] = [
+    {
+      organization: t`Environmental Action Group`,
+      position: t`Project Coordinator`,
+      dateRange: t`2023-05 - 2024-02`,
+      location: t`São Paulo, Brasil`,
+      website: "https://enviroaction.org",
+      summary: t`Liderança na implementação de iniciativas sustentáveis e programas de conscientização ambiental.`,
+    },
+    {
+      organization: t`Tech Education for All`,
+      position: t`Volunteer Instructor`,
+      dateRange: t`2022-09 - 2023-12`,
+      location: t`Rio de Janeiro, Brasil`,
+      website: "https://techedforall.org",
+      summary: t`Ministração de cursos gratuitos de programação para jovens em situação de vulnerabilidade social.`,
+    },
+    {
+      organization: t`Animal Welfare Foundation`,
+      position: t`Fundraising Volunteer`,
+      dateRange: t`2024-01 - Presente`,
+      location: t`Brasília, Brasil`,
+      website: "https://animalwelfarefoundation.org",
+      summary: t`Organização de campanhas para arrecadação de fundos visando o resgate e cuidado de animais em risco.`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<Volunteer>();
   const columns = [
     columnHelper.accessor("organization", {
-      header: "Organization",
+      header: t`Organization`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("position", {
-      header: "Position",
+      header: t`Position`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("dateRange", {
-      header: "DateRange",
+      header: t`Date Range`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("location", {
-      header: "Location",
+      header: t`Location`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("website", {
-      header: "Website",
+      header: t`Website`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("summary", {
-      header: "Summary",
+      header: t`Summary`,
       cell: (info) => info.getValue(),
     }),
   ];

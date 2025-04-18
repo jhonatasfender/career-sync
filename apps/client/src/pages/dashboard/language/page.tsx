@@ -1,16 +1,16 @@
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
 import { t } from "@lingui/macro";
-import { Button, ScrollArea } from "@reactive-resume/ui";
-import { SectionBase } from "../../builder/sidebars/left/sections/shared/section-base";
-import { useDialog } from "@/client/stores/dialog";
 import { Plus } from "@phosphor-icons/react";
+import { Button, ScrollArea } from "@reactive-resume/ui";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+
+import { useDialog } from "@/client/stores/dialog";
 
 type Languages = {
   name: string;
@@ -18,44 +18,42 @@ type Languages = {
   level: 1 | 2 | 3 | 4 | 5;
 };
 
-const data: Languages[] = [
-  {
-    name: "JavaScript",
-    description: "Uma linguagem de programação voltada para desenvolvimento web.",
-    level: 4,
-  },
-  {
-    name: "Python",
-    description:
-      "Uma linguagem versátil, usada para automação, ciência de dados e inteligência artificial.",
-    level: 5,
-  },
-  {
-    name: "C++",
-    description:
-      "Uma linguagem poderosa, amplamente utilizada em desenvolvimento de sistemas e jogos.",
-    level: 3,
-  },
-];
-
 export const LanguagesPage = () => {
   const { open } = useDialog("languages");
   const handleCreate = () => {
     open("create", { id: "languages" });
   };
 
+  const data: Languages[] = [
+    {
+      name: t`JavaScript`,
+      description: t`Uma linguagem de programação voltada para desenvolvimento web.`,
+      level: 4,
+    },
+    {
+      name: t`Python`,
+      description: t`Uma linguagem versátil, usada para automação, ciência de dados e inteligência artificial.`,
+      level: 5,
+    },
+    {
+      name: t`C++`,
+      description: t`Uma linguagem poderosa, amplamente utilizada em desenvolvimento de sistemas e jogos.`,
+      level: 3,
+    },
+  ];
+
   const columnHelper = createColumnHelper<Languages>();
   const columns = [
     columnHelper.accessor("name", {
-      header: "Name",
+      header: t`Name`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("description", {
-      header: "Description",
+      header: t`Description`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("level", {
-      header: "Level",
+      header: t`Level`,
       cell: (info) => info.getValue(),
     }),
   ];

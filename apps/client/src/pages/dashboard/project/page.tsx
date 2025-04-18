@@ -1,16 +1,16 @@
 import { t } from "@lingui/macro";
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
-import { SectionBase } from "../../builder/sidebars/left/sections/shared/section-base";
-import { useDialog } from "@/client/stores/dialog";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Plus } from "@phosphor-icons/react";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+
+import { useDialog } from "@/client/stores/dialog";
 
 type Projects = {
   name: string;
@@ -21,69 +21,63 @@ type Projects = {
   keywords: string;
 };
 
-const data: Projects[] = [
-  {
-    name: "AI-Powered Chatbot",
-    description:
-      "Desenvolvimento de um chatbot utilizando machine learning para atendimento ao cliente.",
-    dateRange: "2023-01 - 2023-12",
-    website: "https://aiprojects.com/chatbot",
-    summary:
-      "O projeto envolve a criação de um assistente virtual com capacidade de compreensão de linguagem natural.",
-    keywords: "AI, Chatbot, NLP, Machine Learning",
-  },
-  {
-    name: "E-Commerce Analytics Dashboard",
-    description:
-      "Painel interativo para monitoramento de métricas de vendas e engajamento em plataformas de e-commerce.",
-    dateRange: "2022-06 - 2023-04",
-    website: "https://ecomanalytics.com",
-    summary:
-      "A plataforma permite a análise de dados em tempo real, otimizando estratégias de vendas.",
-    keywords: "E-Commerce, Data Analytics, Dashboard, Business Intelligence",
-  },
-  {
-    name: "Open-Source Task Manager",
-    description:
-      "Aplicação de gerenciamento de tarefas baseada em tecnologia open-source para colaboração em equipe.",
-    dateRange: "2024-02 - 2024-08",
-    website: "https://opensource-tasks.com",
-    summary:
-      "Ferramenta leve e altamente customizável para gestão de produtividade, disponível gratuitamente.",
-    keywords: "Task Management, Open-Source, Productivity, Collaboration",
-  },
-];
-
 export const ProjectsPage = () => {
   const { open } = useDialog("projects");
   const handleCreate = () => {
     open("create", { id: "projects" });
   };
 
+  const data: Projects[] = [
+    {
+      name: t`AI-Powered Chatbot`,
+      description: t`Desenvolvimento de um chatbot utilizando machine learning para atendimento ao cliente.`,
+      dateRange: "2023-01 - 2023-12",
+      website: "https://aiprojects.com/chatbot",
+      summary: t`O projeto envolve a criação de um assistente virtual com capacidade de compreensão de linguagem natural.`,
+      keywords: t`AI, Chatbot, NLP, Machine Learning`,
+    },
+    {
+      name: t`E-Commerce Analytics Dashboard`,
+      description: t`Painel interativo para monitoramento de métricas de vendas e engajamento em plataformas de e-commerce.`,
+      dateRange: "2022-06 - 2023-04",
+      website: "https://ecomanalytics.com",
+      summary: t`A plataforma permite a análise de dados em tempo real, otimizando estratégias de vendas.`,
+      keywords: t`E-Commerce, Data Analytics, Dashboard, Business Intelligence`,
+    },
+    {
+      name: t`Open-Source Task Manager`,
+      description: t`Aplicação de gerenciamento de tarefas baseada em tecnologia open-source para colaboração em equipe.`,
+      dateRange: "2024-02 - 2024-08",
+      website: "https://opensource-tasks.com",
+      summary: t`Ferramenta leve e altamente customizável para gestão de produtividade, disponível gratuitamente.`,
+      keywords: t`Task Management, Open-Source, Productivity, Collaboration`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<Projects>();
   const columns = [
     columnHelper.accessor("name", {
-      header: "Name",
+      header: t`Name`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("description", {
-      header: "Description",
+      header: t`Description`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("dateRange", {
-      header: "DateRange",
+      header: t`Date Range`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("website", {
-      header: "Website",
+      header: t`Website`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("summary", {
-      header: "Summary",
+      header: t`Summary`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("keywords", {
-      header: "KeyWords",
+      header: t`Keywords`,
       cell: (info) => info.getValue(),
     }),
   ];
@@ -123,13 +117,13 @@ export const ProjectsPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            <div className="overflow-w-auto">
-              <table className="min-x-full">
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
                 <thead className="bg-secondary">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => (
-                        <th key={header.id} className="whitespace.nowrap px-4 py-3 text-left">
+                        <th key={header.id} className="whitespace-nowrap px-4 py-3 text-left">
                           {flexRender(header.column.columnDef.header, header.getContext())}
                         </th>
                       ))}

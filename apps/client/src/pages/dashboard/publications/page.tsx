@@ -1,4 +1,3 @@
-import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
@@ -11,6 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
+import { useDialog } from "@/client/stores/dialog";
+
 type Awards = {
   name: string;
   publisher: string;
@@ -19,58 +20,56 @@ type Awards = {
   summary: string;
 };
 
-const data: Awards[] = [
-  {
-    name: "Innovator of the Year",
-    publisher: "Tech Excellence Awards",
-    date: "2023-10-05",
-    website: "https://techexcellenceawards.com",
-    summary: "Reconhecimento por contribuições excepcionais na área de inovação tecnológica.",
-  },
-  {
-    name: "Best Open-Source Contribution",
-    publisher: "Global Dev Community",
-    date: "2022-08-15",
-    website: "https://globaldevcommunity.org",
-    summary:
-      "Prêmio concedido a desenvolvedores por impactos significativos em projetos open-source.",
-  },
-  {
-    name: "Leadership in AI Research",
-    publisher: "International AI Symposium",
-    date: "2024-03-12",
-    website: "https://aisymposium.com",
-    summary:
-      "Honraria por avanços significativos na pesquisa e desenvolvimento de inteligência artificial.",
-  },
-];
-
 export const PublicationsPage = () => {
   const { open } = useDialog("publications");
   const handleCreate = () => {
     open("create", { id: "publications" });
   };
 
+  const data: Awards[] = [
+    {
+      name: t`Innovator of the Year`,
+      publisher: t`Tech Excellence Awards`,
+      date: "2023-10-05",
+      website: "https://techexcellenceawards.com",
+      summary: t`Reconhecimento por contribuições excepcionais na área de inovação tecnológica.`,
+    },
+    {
+      name: t`Best Open-Source Contribution`,
+      publisher: t`Global Dev Community`,
+      date: "2022-08-15",
+      website: "https://globaldevcommunity.org",
+      summary: t`Prêmio concedido a desenvolvedores por impactos significativos em projetos open-source.`,
+    },
+    {
+      name: t`Leadership in AI Research`,
+      publisher: t`International AI Symposium`,
+      date: "2024-03-12",
+      website: "https://aisymposium.com",
+      summary: t`Honraria por avanços significativos na pesquisa e desenvolvimento de inteligência artificial.`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<Awards>();
   const columns = [
     columnHelper.accessor("name", {
-      header: "Name",
+      header: t`Name`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("publisher", {
-      header: "Publisher",
+      header: t`Publisher`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("date", {
-      header: "Date",
+      header: t`Date`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("website", {
-      header: "Website",
+      header: t`Website`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("summary", {
-      header: "Summary",
+      header: t`Summary`,
       cell: (info) => info.getValue(),
     }),
   ];

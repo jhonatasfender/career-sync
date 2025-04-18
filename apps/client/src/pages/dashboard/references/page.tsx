@@ -1,4 +1,3 @@
-import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
@@ -11,6 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
+import { useDialog } from "@/client/stores/dialog";
+
 type References = {
   name: string;
   description: string;
@@ -18,51 +19,49 @@ type References = {
   summary: string;
 };
 
-const data: References[] = [
-  {
-    name: "Design Patterns: Elements of Reusable Object-Oriented Software",
-    description: "Livro fundamental sobre padrões de projeto em desenvolvimento de software.",
-    website: "https://www.pearson.com",
-    summary: "Apresenta soluções comuns para problemas recorrentes na engenharia de software.",
-  },
-  {
-    name: "MDN Web Docs",
-    description: "Documentação oficial para tecnologias web, incluindo HTML, CSS e JavaScript.",
-    website: "https://developer.mozilla.org",
-    summary:
-      "Fonte essencial para desenvolvedores web de todos os níveis, com tutoriais e guias detalhados.",
-  },
-  {
-    name: "The Pragmatic Programmer",
-    description: "Livro clássico sobre boas práticas e mentalidade de desenvolvimento de software.",
-    website: "https://pragprog.com",
-    summary:
-      "Explora técnicas e princípios para se tornar um programador mais eficiente e adaptável.",
-  },
-];
-
 export const ReferencesPage = () => {
   const { open } = useDialog("publications");
   const handleCreate = () => {
     open("create", { id: "publications" });
   };
 
+  const data: References[] = [
+    {
+      name: t`Design Patterns: Elements of Reusable Object-Oriented Software`,
+      description: t`Livro fundamental sobre padrões de projeto em desenvolvimento de software.`,
+      website: "https://www.pearson.com",
+      summary: t`Apresenta soluções comuns para problemas recorrentes na engenharia de software.`,
+    },
+    {
+      name: t`MDN Web Docs`,
+      description: t`Documentação oficial para tecnologias web, incluindo HTML, CSS e JavaScript.`,
+      website: "https://developer.mozilla.org",
+      summary: t`Fonte essencial para desenvolvedores web de todos os níveis, com tutoriais e guias detalhados.`,
+    },
+    {
+      name: t`The Pragmatic Programmer`,
+      description: t`Livro clássico sobre boas práticas e mentalidade de desenvolvimento de software.`,
+      website: "https://pragprog.com",
+      summary: t`Explora técnicas e princípios para se tornar um programador mais eficiente e adaptável.`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<References>();
   const columns = [
     columnHelper.accessor("name", {
-      header: "Name",
+      header: t`Name`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("description", {
-      header: "Description",
+      header: t`Description`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("website", {
-      header: "Website",
+      header: t`Website`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("summary", {
-      header: "Summary",
+      header: t`Summary`,
       cell: (info) => info.getValue(),
     }),
   ];

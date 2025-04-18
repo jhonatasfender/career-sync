@@ -1,17 +1,16 @@
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
 import { t } from "@lingui/macro";
-import { Button, ScrollArea } from "@reactive-resume/ui";
-import { SectionBase } from "../../builder/sidebars/left/sections/shared/section-base";
 import { Plus } from "@phosphor-icons/react";
-import { useDialog } from "@/client/stores/dialog";
-import { number, string } from "zod";
+import { Button, ScrollArea } from "@reactive-resume/ui";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+
+import { useDialog } from "@/client/stores/dialog";
 
 type SkillsPage = {
   name: string;
@@ -20,27 +19,6 @@ type SkillsPage = {
   keywords: string;
 };
 
-const data: SkillsPage[] = [
-  {
-    name: "JavaScript",
-    description: "Linguagem de programação usada para desenvolvimento web.",
-    level: 8,
-    keywords: "frontend, backend, web, programação",
-  },
-  {
-    name: "Design UX/UI",
-    description: "Criação de interfaces intuitivas e acessíveis.",
-    level: 7,
-    keywords: "design, usabilidade, prototipação, experiência do usuário",
-  },
-  {
-    name: "Gestão de Projetos",
-    description: "Planejamento e execução de projetos ágeis e tradicionais.",
-    level: 9,
-    keywords: "scrum, kanban, planejamento, execução",
-  },
-];
-
 export const SkillsPage = () => {
   const { open } = useDialog("skills");
 
@@ -48,22 +26,43 @@ export const SkillsPage = () => {
     open("create", { id: "skills" });
   };
 
+  const data: SkillsPage[] = [
+    {
+      name: t`JavaScript`,
+      description: t`Linguagem de programação usada para desenvolvimento web.`,
+      level: 8,
+      keywords: t`frontend, backend, web, programação`,
+    },
+    {
+      name: t`Design UX/UI`,
+      description: t`Criação de interfaces intuitivas e acessíveis.`,
+      level: 7,
+      keywords: t`design, usabilidade, prototipação, experiência do usuário`,
+    },
+    {
+      name: t`Gestão de Projetos`,
+      description: t`Planejamento e execução de projetos ágeis e tradicionais.`,
+      level: 9,
+      keywords: t`scrum, kanban, planejamento, execução`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<SkillsPage>();
   const columns = [
     columnHelper.accessor("name", {
-      header: "Name",
+      header: t`Name`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("description", {
-      header: "Description",
+      header: t`Description`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("level", {
-      header: "Level",
+      header: t`Level`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("keywords", {
-      header: "Keywords",
+      header: t`Keywords`,
       cell: (info) => info.getValue(),
     }),
   ];

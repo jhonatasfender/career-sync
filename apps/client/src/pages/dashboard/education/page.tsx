@@ -1,16 +1,16 @@
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
 import { t } from "@lingui/macro";
-import { Button, ScrollArea } from "@reactive-resume/ui";
-import { SectionBase } from "../../builder/sidebars/left/sections/shared/section-base";
-import { useDialog } from "@/client/stores/dialog";
 import { Plus } from "@phosphor-icons/react";
+import { Button } from "@reactive-resume/ui";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+
+import { useDialog } from "@/client/stores/dialog";
 
 type Education = {
   institution: string;
@@ -21,35 +21,6 @@ type Education = {
   website: string;
   summary: string;
 };
-const data: Education[] = [
-  {
-    institution: "Universidade X",
-    typeStudy: "Bacharelado",
-    areaStudy: "Engenharia Civil",
-    score: "92",
-    dateRange: "2018-2022",
-    website: "https://universidadex.com",
-    summary: "Curso focado em estruturas e planejamento urbano.",
-  },
-  {
-    institution: "Instituto Y",
-    typeStudy: "Mestrado",
-    areaStudy: "Administração",
-    score: "88",
-    dateRange: "2020-2022",
-    website: "https://institutoy.org",
-    summary: "Gestão estratégica e inovação organizacional.",
-  },
-  {
-    institution: "Faculdade Z",
-    typeStudy: "Tecnólogo",
-    areaStudy: "Design Gráfico",
-    score: "95",
-    dateRange: "2019-2021",
-    website: "https://faculdadez.edu",
-    summary: "Foco em identidade visual e UX/UI.",
-  },
-];
 
 export const EducationPage = () => {
   const { open } = useDialog("education");
@@ -57,34 +28,64 @@ export const EducationPage = () => {
     open("create", { id: "education" });
   };
 
+  const data: Education[] = [
+    {
+      institution: t`Universidade X`,
+      typeStudy: t`Bacharelado`,
+      areaStudy: t`Engenharia Civil`,
+      score: t`92`,
+      dateRange: t`2018-2022`,
+      website: "https://universidadex.com",
+      summary: t`Curso focado em estruturas e planejamento urbano.`,
+    },
+    {
+      institution: t`Instituto Y`,
+      typeStudy: t`Mestrado`,
+      areaStudy: t`Administração`,
+      score: t`88`,
+      dateRange: t`2020-2022`,
+      website: "https://institutoy.org",
+      summary: t`Gestão estratégica e inovação organizacional.`,
+    },
+    {
+      institution: t`Faculdade Z`,
+      typeStudy: t`Tecnólogo`,
+      areaStudy: t`Design Gráfico`,
+      score: t`95`,
+      dateRange: t`2019-2021`,
+      website: "https://faculdadez.edu",
+      summary: t`Foco em identidade visual e UX/UI.`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<Education>();
   const columns = [
     columnHelper.accessor("institution", {
-      header: "Institution",
+      header: t`Institution`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("typeStudy", {
-      header: "TypeStudy",
+      header: t`TypeStudy`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("areaStudy", {
-      header: "AreaStudy",
+      header: t`AreaStudy`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("score", {
-      header: "Score",
+      header: t`Score`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("dateRange", {
-      header: "DateRange",
+      header: t`DateRange`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("website", {
-      header: "Website",
+      header: t`Website`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("summary", {
-      header: "Summary",
+      header: t`Summary`,
       cell: (info) => info.getValue(),
     }),
   ];
@@ -124,13 +125,13 @@ export const EducationPage = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3, delay: 0.1 }}
         >
-          <div className="overflow-w-auto">
-            <table className="min-x-full">
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
               <thead className="bg-secondary">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
-                      <th key={header.id} className="whitespace.nowrap px-4 py-3 text-left">
+                      <th key={header.id} className="whitespace-nowrap px-4 py-3 text-left">
                         {flexRender(header.column.columnDef.header, header.getContext())}
                       </th>
                     ))}

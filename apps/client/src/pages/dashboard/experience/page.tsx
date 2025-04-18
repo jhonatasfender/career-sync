@@ -1,15 +1,16 @@
-import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Plus } from "@phosphor-icons/react";
 import { Button } from "@reactive-resume/ui";
 import {
   createColumnHelper,
-  useReactTable,
-  getCoreRowModel,
   flexRender,
+  getCoreRowModel,
+  useReactTable,
 } from "@tanstack/react-table";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
+
+import { useDialog } from "@/client/stores/dialog";
 
 type Experience = {
   company: string;
@@ -26,44 +27,44 @@ export const ExperiencePage = () => {
 
   const data: Experience[] = [
     {
-      company: "Tech Solutions Inc.",
-      position: "Desenvolvedor Front-end",
-      dateRange: "03/2022 - Presente",
-      location: "São Paulo, SP",
+      company: t`Tech Solutions Inc.`,
+      position: t`Desenvolvedor Front-end`,
+      dateRange: t`03/2022 - Presente`,
+      location: t`São Paulo, SP`,
     },
     {
-      company: "Digital Innovations",
-      position: "UI/UX Designer",
-      dateRange: "01/2020 - 02/2022",
-      location: "Remote",
+      company: t`Digital Innovations`,
+      position: t`UI/UX Designer`,
+      dateRange: t`01/2020 - 02/2022`,
+      location: t`Remote`,
     },
     {
-      company: "Software New",
-      position: "Back-end & Designer",
-      dateRange: "01/2024 - 02/2025",
-      location: "Hibrido",
+      company: t`Software New`,
+      position: t`Back-end & Designer`,
+      dateRange: t`01/2024 - 02/2025`,
+      location: t`Hibrido`,
     },
   ];
 
   const columnHelper = createColumnHelper<Experience>();
   const columns = [
     columnHelper.accessor("company", {
-      header: "Company",
+      header: t`Company`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("position", {
-      header: "Position",
+      header: t`Position`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("dateRange", {
-      header: "Date or Date Range",
+      header: t`Date or Date Range`,
       cell: (info) => info.getValue(),
       // sortingFn: (a, b) => {
       //  return customDateSort(a.original.dateRange, b.original.dateRange);
     }),
 
     columnHelper.accessor("location", {
-      header: "Location",
+      header: t`Location`,
       cell: (info) => info.getValue(),
     }),
   ];
@@ -104,12 +105,12 @@ export const ExperiencePage = () => {
           </motion.h1>
 
           <div className="overflow-x-auto">
-            <table className="min-x-full">
+            <table className="min-w-full">
               <thead className="bg-secondary">
                 {table.getHeaderGroups().map((headerGroup) => (
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
-                      <th key={header.id} className="Whitespace.nowrap px-4 py-3 text-left">
+                      <th key={header.id} className="whitespace-nowrap px-4 py-3 text-left">
                         {flexRender(header.column.columnDef.header, header.getContext())}
                       </th>
                     ))}

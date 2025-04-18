@@ -1,16 +1,16 @@
 import { t } from "@lingui/macro";
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
-import { SectionBase } from "../../builder/sidebars/left/sections/shared/section-base";
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+
 import { useDialog } from "@/client/stores/dialog";
-import { Plus } from "@phosphor-icons/react";
 
 type Certifications = {
   name: string;
@@ -19,61 +19,60 @@ type Certifications = {
   website: string;
   summary: string;
 };
-const data: Certifications[] = [
-  {
-    name: "AWS Certified Solutions Architect",
-    issuer: "Amazon Web Services",
-    date: "2023-11-10",
-    website: "https://aws.amazon.com/certification/",
-    summary:
-      "Certificação reconhecida globalmente para arquitetos de soluções que trabalham na AWS.",
-  },
-  {
-    name: "Google Professional Data Engineer",
-    issuer: "Google Cloud",
-    date: "2024-06-20",
-    website: "https://cloud.google.com/certification/data-engineer",
-    summary:
-      "Certificação voltada para engenheiros de dados especializados na infraestrutura da Google Cloud.",
-  },
-  {
-    name: "Microsoft Certified: Azure Fundamentals",
-    issuer: "Microsoft",
-    date: "2022-09-15",
-    website: "https://learn.microsoft.com/en-us/certifications/azure-fundamentals/",
-    summary:
-      "Certificação introdutória para profissionais que desejam aprender conceitos fundamentais do Azure.",
-  },
-];
-const columnHelper = createColumnHelper<Certifications>();
-const columns = [
-  columnHelper.accessor("name", {
-    header: "Name",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("issuer", {
-    header: "Issuer",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("date", {
-    header: "Date",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("website", {
-    header: "Website",
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor("summary", {
-    header: "Summary",
-    cell: (info) => info.getValue(),
-  }),
-];
 
 export const CertificationsPage = () => {
   const { open } = useDialog("certifications");
   const handleCreate = () => {
     open("create", { id: "certifications" });
   };
+
+  const data: Certifications[] = [
+    {
+      name: t`AWS Certified Solutions Architect`,
+      issuer: t`Amazon Web Services`,
+      date: "2023-11-10",
+      website: "https://aws.amazon.com/certification/",
+      summary: t`Certificação reconhecida globalmente para arquitetos de soluções que trabalham na AWS.`,
+    },
+    {
+      name: t`Google Professional Data Engineer`,
+      issuer: t`Google Cloud`,
+      date: "2024-06-20",
+      website: "https://cloud.google.com/certification/data-engineer",
+      summary: t`Certificação voltada para engenheiros de dados especializados na infraestrutura da Google Cloud.`,
+    },
+    {
+      name: t`Microsoft Certified: Azure Fundamentals`,
+      issuer: t`Microsoft`,
+      date: "2022-09-15",
+      website: "https://learn.microsoft.com/en-us/certifications/azure-fundamentals/",
+      summary: t`Certificação introdutória para profissionais que desejam aprender conceitos fundamentais do Azure.`,
+    },
+  ];
+
+  const columnHelper = createColumnHelper<Certifications>();
+  const columns = [
+    columnHelper.accessor("name", {
+      header: t`Name`,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("issuer", {
+      header: t`Issuer`,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("date", {
+      header: t`Date`,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("website", {
+      header: t`Website`,
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("summary", {
+      header: t`Summary`,
+      cell: (info) => info.getValue(),
+    }),
+  ];
 
   const table = useReactTable({
     data,

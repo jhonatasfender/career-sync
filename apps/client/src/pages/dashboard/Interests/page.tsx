@@ -1,4 +1,3 @@
-import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
@@ -11,39 +10,42 @@ import {
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
+import { useDialog } from "@/client/stores/dialog";
+
 type Projects = {
   name: string;
   keywords: string;
 };
 
-const data: Projects[] = [
-  {
-    name: "AI-Powered Recommendation System",
-    keywords: "Machine Learning, AI, Personalization",
-  },
-  {
-    name: "Blockchain-Based Voting Platform",
-    keywords: "Blockchain, Security, Decentralization",
-  },
-  {
-    name: "Real-Time Weather Forecasting App",
-    keywords: "Meteorology, Data Analysis, IoT",
-  },
-];
 export const InterestsPage = () => {
   const { open } = useDialog("projects");
   const handleCreate = () => {
     open("create", { id: "projects" });
   };
 
+  const data: Projects[] = [
+    {
+      name: t`AI-Powered Recommendation System`,
+      keywords: t`Machine Learning, AI, Personalization`,
+    },
+    {
+      name: t`Blockchain-Based Voting Platform`,
+      keywords: t`Blockchain, Security, Decentralization`,
+    },
+    {
+      name: t`Real-Time Weather Forecasting App`,
+      keywords: t`Meteorology, Data Analysis, IoT`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<Projects>();
   const columns = [
     columnHelper.accessor("name", {
-      header: "Name",
+      header: t`Name`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("keywords", {
-      header: "KeyWords",
+      header: t`Keywords`,
       cell: (info) => info.getValue(),
     }),
   ];
@@ -83,14 +85,13 @@ export const InterestsPage = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            {" "}
-            <div className="overflow-w-auto">
-              <table className="min-x-full">
+            <div className="overflow-x-auto">
+              <table className="min-w-full">
                 <thead className="bg-secondary">
                   {table.getHeaderGroups().map((headerGroup) => (
                     <tr key={headerGroup.id}>
                       {headerGroup.headers.map((header) => (
-                        <th key={header.id} className="whitespace.nowrap px-4 py-3 text-left">
+                        <th key={header.id} className="whitespace-nowrap px-4 py-3 text-left">
                           {flexRender(header.column.columnDef.header, header.getContext())}
                         </th>
                       ))}

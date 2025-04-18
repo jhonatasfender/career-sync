@@ -1,8 +1,9 @@
-import { Helmet } from "react-helmet-async";
-import { BasicsSection } from "../../builder/sidebars/left/sections/basics";
 import { t } from "@lingui/macro";
-import { motion } from "framer-motion";
 import { ScrollArea } from "@reactive-resume/ui";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
+
+import { BasicsSection } from "../../builder/sidebars/left/sections/basics";
 
 export const BasicPage = () => {
   return (

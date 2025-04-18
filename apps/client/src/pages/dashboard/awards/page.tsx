@@ -1,4 +1,3 @@
-import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
@@ -11,6 +10,8 @@ import {
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
+import { useDialog } from "@/client/stores/dialog";
+
 type Awards = {
   title: string;
   awarder: string;
@@ -19,56 +20,56 @@ type Awards = {
   summary: string;
 };
 
-const data: Awards[] = [
-  {
-    title: "Best Innovator Award",
-    awarder: "Tech Leaders Association",
-    date: "2023-09-15",
-    website: "https://techleadersawards.com",
-    summary: "Reconhecimento por contribuições inovadoras no setor de tecnologia.",
-  },
-  {
-    title: "Outstanding Researcher",
-    awarder: "Global Science Foundation",
-    date: "2022-06-10",
-    website: "https://globalsciencefoundation.org",
-    summary: "Prêmio concedido por pesquisas impactantes em inteligência artificial.",
-  },
-  {
-    title: "Community Impact Award",
-    awarder: "Social Good Network",
-    date: "2024-04-20",
-    website: "https://socialgoodnetwork.org",
-    summary: "Honraria por projetos que geraram mudanças significativas na comunidade.",
-  },
-];
-
 export const AwardsPage = () => {
   const { open } = useDialog("awards");
   const handleCreate = () => {
     open("create", { id: "awards" });
   };
 
+  const data: Awards[] = [
+    {
+      title: t`Best Innovator Award`,
+      awarder: t`Tech Leaders Association`,
+      date: "2023-09-15",
+      website: "https://techleadersawards.com",
+      summary: t`Reconhecimento por contribuições inovadoras no setor de tecnologia.`,
+    },
+    {
+      title: t`Outstanding Researcher`,
+      awarder: t`Global Science Foundation`,
+      date: "2022-06-10",
+      website: "https://globalsciencefoundation.org",
+      summary: t`Prêmio concedido por pesquisas impactantes em inteligência artificial.`,
+    },
+    {
+      title: t`Community Impact Award`,
+      awarder: t`Social Good Network`,
+      date: "2024-04-20",
+      website: "https://socialgoodnetwork.org",
+      summary: t`Honraria por projetos que geraram mudanças significativas na comunidade.`,
+    },
+  ];
+
   const columnHelper = createColumnHelper<Awards>();
   const columns = [
     columnHelper.accessor("title", {
-      header: "Title",
+      header: t`Title`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("awarder", {
-      header: "Awarder",
+      header: t`Awarder`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("date", {
-      header: "Date",
+      header: t`Date`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("website", {
-      header: "Website",
+      header: t`Website`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("summary", {
-      header: "Summary",
+      header: t`Summary`,
       cell: (info) => info.getValue(),
     }),
   ];

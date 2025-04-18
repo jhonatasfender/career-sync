@@ -1,4 +1,3 @@
-import { useDialog } from "@/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Plus } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
@@ -10,7 +9,8 @@ import {
 } from "@tanstack/react-table";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-import { ProfilesDialog } from "../../builder/sidebars/left/dialogs/profiles";
+
+import { useDialog } from "@/client/stores/dialog";
 
 type Profile = {
   network: string;
@@ -61,24 +61,24 @@ export const ProfilePage = () => {
   const columnHelper = createColumnHelper<Profile>();
   const columns = [
     columnHelper.accessor("network", {
-      header: () => t`Network`,
+      header: t`Network`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("username", {
-      header: "UserName",
+      header: t`Username`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("website", {
-      header: "website",
+      header: t`Website`,
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("icon", {
-      header: "Icon",
+      header: t`Icon`,
       cell: (info) => (
         <img
           src={`/icons/${info.getValue()}.svg`}
           alt={info.row.original.network}
-          className="h-6 w-6"
+          className="size-6"
         />
       ),
     }),

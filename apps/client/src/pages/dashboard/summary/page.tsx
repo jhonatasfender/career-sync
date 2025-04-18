@@ -1,11 +1,8 @@
-import { Helmet } from "react-helmet-async";
-import { SummarySection } from "../../builder/sidebars/left/sections/summary";
 import { t } from "@lingui/macro";
-import { motion } from "framer-motion";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Button, RichInput } from "@reactive-resume/ui";
-import { Value } from "@radix-ui/react-select";
-import Editor from "react-simple-code-editor";
+import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 export const SummaryPage = () => {
   return (
@@ -39,13 +36,13 @@ export const SummaryPage = () => {
             transition={{ duration: 0.3, delay: 0.1 }}
           >
             <RichInput
-              footer={(editor) => (
+              footer={(_editor) => (
                 <div className="flex justify-end gap-3 py-3">
-                  <Button variant={"secondary"}>Salvar</Button>
-                  <Button>Limpar</Button>
+                  <Button variant={"secondary"}>{t`Save`}</Button>
+                  <Button>{t`Clear`}</Button>
                 </div>
               )}
-              onChange={(value) => {
+              onChange={(_value) => {
                 // setValue("sections.summary.content", value);
               }}
             />
