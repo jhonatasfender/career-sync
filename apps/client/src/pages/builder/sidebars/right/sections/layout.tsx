@@ -1,3 +1,4 @@
+import { useResumeStore } from "@career-sync/client/stores/resume";
 import type { DragEndEvent, DragOverEvent, DragStartEvent } from "@dnd-kit/core";
 import {
   closestCenter,
@@ -24,8 +25,6 @@ import type { LayoutLocator, SortablePayload } from "@reactive-resume/utils";
 import { cn, moveItemInLayout, parseLayoutLocator } from "@reactive-resume/utils";
 import get from "lodash.get";
 import { useState } from "react";
-
-import { useResumeStore } from "@/client/stores/resume";
 
 import { SectionIcon } from "../shared/section-icon";
 
@@ -220,7 +219,7 @@ export const LayoutSection = () => {
 
             const main = page[0];
             const sidebar = page[1];
-            const pageNumber = pageIndex + 1;
+            const pageNumber = Number(pageIndex) + 1;
 
             return (
               <div key={pageIndex} className="rounded border p-3 pb-4">

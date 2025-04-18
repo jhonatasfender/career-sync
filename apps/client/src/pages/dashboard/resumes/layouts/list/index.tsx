@@ -1,7 +1,7 @@
+import { useResumes } from "@career-sync/client/services/resume";
+import type { ResumeDto } from "@reactive-resume/dto";
 import { sortByDate } from "@reactive-resume/utils";
 import { AnimatePresence, motion } from "framer-motion";
-
-import { useResumes } from "@/client/services/resume";
 
 import { BaseListItem } from "./components/base-item";
 import { CreateResumeListItem } from "./components/create-item";
@@ -38,8 +38,8 @@ export const ListView = () => {
       {resumes && (
         <AnimatePresence>
           {resumes
-            .sort((a, b) => sortByDate(a, b, "updatedAt"))
-            .map((resume, index) => (
+            .sort((a: ResumeDto, b: ResumeDto) => sortByDate(a, b, "updatedAt"))
+            .map((resume: ResumeDto, index: number) => (
               <motion.div
                 key={resume.id}
                 initial={{ opacity: 0, y: -50 }}

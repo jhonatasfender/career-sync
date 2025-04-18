@@ -1,9 +1,8 @@
+import { Config } from "@career-sync/server/config/schema";
 import { Logger, Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { MailerModule } from "@nestjs-modules/mailer";
 import * as nodemailer from "nodemailer";
-
-import { Config } from "@/server/config/schema";
 
 import { MailService } from "./mail.service";
 

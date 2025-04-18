@@ -1,3 +1,4 @@
+import { PrinterService } from "@career-sync/server/printer/printer.service";
 import {
   BadRequestException,
   Injectable,
@@ -12,8 +13,6 @@ import { ErrorMessage, generateRandomName } from "@reactive-resume/utils";
 import slugify from "@sindresorhus/slugify";
 import deepmerge from "deepmerge";
 import { PrismaService } from "nestjs-prisma";
-
-import { PrinterService } from "@/server/printer/printer.service";
 
 import { StorageService } from "../storage/storage.service";
 

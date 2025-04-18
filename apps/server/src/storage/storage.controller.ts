@@ -1,3 +1,5 @@
+import { TwoFactorGuard } from "@career-sync/server/auth/guards/two-factor.guard";
+import { User } from "@career-sync/server/user/decorators/user.decorator";
 import {
   BadRequestException,
   Controller,
@@ -8,9 +10,6 @@ import {
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ApiTags } from "@nestjs/swagger";
-
-import { TwoFactorGuard } from "@/server/auth/guards/two-factor.guard";
-import { User } from "@/server/user/decorators/user.decorator";
 
 import { StorageService } from "./storage.service";
 

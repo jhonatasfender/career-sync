@@ -1,10 +1,9 @@
+import { Config } from "@career-sync/server/config/schema";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import type { Request } from "express";
 import { ExtractJwt, Strategy, StrategyOptions } from "passport-jwt";
-
-import { Config } from "@/server/config/schema";
 
 import { AuthService } from "../auth.service";
 import { Payload } from "../utils/payload";

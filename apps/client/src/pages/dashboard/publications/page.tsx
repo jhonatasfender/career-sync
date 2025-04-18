@@ -1,10 +1,9 @@
+import { useDialog } from "@career-sync/client/stores/dialog";
 import { t } from "@lingui/macro";
 import { Calendar, FileText, Globe, PencilSimple, Plus, Trash } from "@phosphor-icons/react";
 import { Button, ScrollArea } from "@reactive-resume/ui";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-
-import { useDialog } from "@/client/stores/dialog";
 
 type Publication = {
   name: string;

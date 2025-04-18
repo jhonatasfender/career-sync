@@ -1,3 +1,4 @@
+import { useDialog } from "@career-sync/client/stores/dialog";
 import { t } from "@lingui/macro";
 import {
   Calendar,
@@ -11,8 +12,6 @@ import {
 import { Button, ScrollArea } from "@reactive-resume/ui";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
-
-import { useDialog } from "@/client/stores/dialog";
 
 type Volunteer = {
   organization: string;

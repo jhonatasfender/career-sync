@@ -1,3 +1,4 @@
+import { User } from "@career-sync/server/user/decorators/user.decorator";
 import {
   BadRequestException,
   Body,
@@ -23,8 +24,6 @@ import {
 import { resumeDataSchema } from "@reactive-resume/schema";
 import { ErrorMessage } from "@reactive-resume/utils";
 import { zodToJsonSchema } from "zod-to-json-schema";
-
-import { User } from "@/server/user/decorators/user.decorator";
 
 import { OptionalGuard } from "../auth/guards/optional.guard";
 import { TwoFactorGuard } from "../auth/guards/two-factor.guard";
