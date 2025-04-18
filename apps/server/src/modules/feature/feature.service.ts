@@ -1,7 +1,6 @@
+import { Config } from "@career-sync/server/config/schema";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-
-import { Config } from "@/server/config/schema";
 
 @Injectable()
 export class FeatureService {

@@ -1,9 +1,8 @@
+import { Config } from "@career-sync/server/config/schema";
 import { HttpService } from "@nestjs/axios";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { ContributorDto } from "@reactive-resume/dto";
-
-import { Config } from "@/server/config/schema";
 
 type GitHubResponse = { id: number; login: string; html_url: string; avatar_url: string }[];
 

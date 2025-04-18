@@ -1,4 +1,4 @@
-import { UserService } from "@career-sync/server/user/user.service";
+import { UserService } from "@career-sync/server/modules/user/user.service";
 import { BadRequestException, Injectable, Logger } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { createId } from "@paralleldrive/cuid2";

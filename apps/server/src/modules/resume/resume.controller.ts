@@ -1,4 +1,9 @@
-import { User } from "@career-sync/server/user/decorators/user.decorator";
+import { OptionalGuard } from "@career-sync/server/modules/auth/guards/optional.guard";
+import { TwoFactorGuard } from "@career-sync/server/modules/auth/guards/two-factor.guard";
+import { Resume } from "@career-sync/server/modules/resume/decorators/resume.decorator";
+import { ResumeGuard } from "@career-sync/server/modules/resume/guards/resume.guard";
+import { ResumeService } from "@career-sync/server/modules/resume/resume.service";
+import { User } from "@career-sync/server/modules/user/decorators/user.decorator";
 import {
   BadRequestException,
   Body,
@@ -24,13 +29,6 @@ import {
 import { resumeDataSchema } from "@reactive-resume/schema";
 import { ErrorMessage } from "@reactive-resume/utils";
 import { zodToJsonSchema } from "zod-to-json-schema";
-
-import { OptionalGuard } from "../auth/guards/optional.guard";
-import { TwoFactorGuard } from "../auth/guards/two-factor.guard";
-import { User } from "../user/decorators/user.decorator";
-import { Resume } from "./decorators/resume.decorator";
-import { ResumeGuard } from "./guards/resume.guard";
-import { ResumeService } from "./resume.service";
 
 @ApiTags("Resume")
 @Controller("resume")

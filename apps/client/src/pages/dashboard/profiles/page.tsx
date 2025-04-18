@@ -9,21 +9,12 @@ import {
   Trash,
   TwitterLogo,
 } from "@phosphor-icons/react";
+import type { Profile } from "@reactive-resume/schema";
 import { Button } from "@reactive-resume/ui";
 import { Helmet } from "react-helmet-async";
 
 import { PageLayout } from "@career-sync/client/components/page-layout";
 import { useDialog } from "@career-sync/client/stores/dialog";
-
-import { useDialog } from "@/client/stores/dialog";
-
-type ProfileForTable = {
-  network: string;
-  username: string;
-  icon: string;
-  id: string;
-  url: { href: string; label?: string };
-};
 
 const ProfileGridView = ({
   data,
@@ -95,12 +86,12 @@ const ProfileGridView = ({
           </div>
           <div className="mt-6 flex items-center justify-between">
             <a
-              href={profile.website}
+              href={profile.url.href}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-primary hover:underline"
             >
-              {profile.website}
+              {profile.url.href}
             </a>
           </div>
         </div>
@@ -156,12 +147,12 @@ const ProfileListView = ({
               <h3 className="font-semibold">{profile.network}</h3>
               <p className="text-sm text-gray-500">@{profile.username}</p>
               <a
-                href={profile.website}
+                href={profile.url.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-primary hover:underline"
               >
-                {profile.website}
+                {profile.url.href}
               </a>
             </div>
           </div>
@@ -208,33 +199,43 @@ export const ProfilePage = () => {
 
   const data: Profile[] = [
     {
+      id: "1",
+      visible: true,
       network: t`GitHub`,
       username: "john",
-      website: "https://github.com/john",
+      url: { href: "https://github.com/john", label: t`GitHub` },
       icon: "github",
     },
     {
+      id: "2",
+      visible: true,
       network: t`LinkedIn`,
       username: "mary",
-      website: "https://www.linkedin.com/in/mary",
+      url: { href: "https://www.linkedin.com/in/mary", label: t`LinkedIn` },
       icon: "linkedin",
     },
     {
+      id: "3",
+      visible: true,
       network: t`Twitter`,
       username: "john_doe",
-      website: "https://twitter.com/john_doe",
+      url: { href: "https://twitter.com/john_doe", label: t`Twitter` },
       icon: "twitter",
     },
     {
+      id: "4",
+      visible: true,
       network: t`Instagram`,
       username: "luna_art",
-      website: "https://www.instagram.com/luna_art",
+      url: { href: "https://www.instagram.com/luna_art", label: t`Instagram` },
       icon: "instagram",
     },
     {
+      id: "5",
+      visible: true,
       network: t`Facebook`,
       username: "alex_tech",
-      website: "https://www.facebook.com/alex_tech",
+      url: { href: "https://www.facebook.com/alex_tech", label: t`Facebook` },
       icon: "facebook",
     },
   ];

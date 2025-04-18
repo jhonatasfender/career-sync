@@ -1,5 +1,5 @@
 import { Config } from "@career-sync/server/config/schema";
-import { UserService } from "@career-sync/server/user/user.service";
+import { UserService } from "@career-sync/server/modules/user/user.service";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";

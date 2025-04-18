@@ -1,4 +1,5 @@
 import { PrinterService } from "@career-sync/server/printer/printer.service";
+import { StorageService } from "@career-sync/server/storage/storage.service";
 import {
   BadRequestException,
   Injectable,
@@ -14,8 +15,6 @@ import slugify from "@sindresorhus/slugify";
 import deepmerge from "deepmerge";
 import { PrismaService } from "nestjs-prisma";
 
-import { StorageService } from "../storage/storage.service";
-
 @Injectable()
 export class ResumeService {
   constructor(
@@ -30,7 +29,7 @@ export class ResumeService {
       select: { name: true, email: true, picture: true },
     });
 
-    const data = deepmerge(defaultResumeData, {
+    const _data = deepmerge(defaultResumeData, {
       basics: { name, email, picture: { url: picture ?? "" } },
     } satisfies DeepPartial<ResumeData>);
 
@@ -86,7 +85,6 @@ export class ResumeService {
       where: { user: { username }, slug, visibility: "public" },
     });
 
-    // Update statistics: increment the number of views by 1
     if (!userId) {
       await this.prisma.statistics.upsert({
         where: { resumeId: resume.id },
@@ -132,7 +130,6 @@ export class ResumeService {
 
   public async remove(userId: string, id: string) {
     await Promise.all([
-      // Remove files in storage, and their cached keys
       this.storageService.deleteObject(userId, "resumes", id),
       this.storageService.deleteObject(userId, "previews", id),
     ]);
@@ -143,7 +140,6 @@ export class ResumeService {
   public async printResume(resume: ResumeDto, userId?: string) {
     const url = await this.printerService.printResume(resume);
 
-    // Update statistics: increment the number of downloads by 1
     if (!userId) {
       await this.prisma.statistics.upsert({
         where: { resumeId: resume.id },
@@ -156,7 +152,7 @@ export class ResumeService {
   }
 
   public async printPreview(resume: ResumeDto) {
-    return this.printerService.printPreview(resume);
+    return await this.printerService.printPreview(resume);
   }
 
   public async findOneFullResume(userId: string, resumeId: string) {

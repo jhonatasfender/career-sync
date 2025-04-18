@@ -1,9 +1,8 @@
+import { StorageService } from "@career-sync/server/storage/storage.service";
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { Prisma } from "@prisma/client";
 import { ErrorMessage } from "@reactive-resume/utils";
 import { PrismaService } from "nestjs-prisma";
-
-import { StorageService } from "@/server/storage/storage.service";
 
 @Injectable()
 export class UserService {
@@ -27,17 +26,13 @@ export class UserService {
 
   public async findOneByIdentifier(identifier: string) {
     const user = await (async (identifier: string) => {
-      // First, find the user by email
       const user = await this.prisma.user.findUnique({
         where: { email: identifier },
         include: { secrets: true },
       });
 
-      // If the user exists, return it
       if (user) return user;
 
-      // Otherwise, find the user by username
-      // If the user doesn't exist, throw an error
       return this.prisma.user.findUnique({
         where: { username: identifier },
         include: { secrets: true },
@@ -49,17 +44,13 @@ export class UserService {
 
   public async findOneByIdentifierOrThrow(identifier: string) {
     const user = await (async (identifier: string) => {
-      // First, find the user by email
       const user = await this.prisma.user.findUnique({
         where: { email: identifier },
         include: { secrets: true },
       });
 
-      // If the user exists, return it
       if (user) return user;
 
-      // Otherwise, find the user by username
-      // If the user doesn't exist, throw an error
       return this.prisma.user.findUniqueOrThrow({
         where: { username: identifier },
         include: { secrets: true },

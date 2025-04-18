@@ -1,5 +1,5 @@
-import { TwoFactorGuard } from "@career-sync/server/auth/guards/two-factor.guard";
-import { User } from "@career-sync/server/user/decorators/user.decorator";
+import { TwoFactorGuard } from "@career-sync/server/modules/auth/guards/two-factor.guard";
+import { User } from "@career-sync/server/modules/user/decorators/user.decorator";
 import {
   BadRequestException,
   Controller,

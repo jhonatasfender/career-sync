@@ -1,5 +1,5 @@
-import { UserService } from "@career-sync/server/user/user.service";
-import { BadRequestException, Injectable, Logger } from "@nestjs/common";
+import { UserService } from "@career-sync/server/modules/user/user.service";
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { createId } from "@paralleldrive/cuid2";
 import { User } from "@prisma/client";
@@ -41,24 +41,18 @@ export class GitHubStrategy extends PassportStrategy(Strategy, "github") {
 
       done(null, user);
     } catch {
-      try {
-        user = await this.userService.create({
-          email,
-          picture,
-          locale: "en-US",
-          provider: "github",
-          name: displayName || createId(),
-          emailVerified: true, // auto-verify emails
-          username: processUsername(username ?? email.split("@")[0]),
-          secrets: { create: {} },
-        });
+      user = await this.userService.create({
+        email,
+        picture,
+        locale: "en-US",
+        provider: "github",
+        name: displayName || createId(),
+        emailVerified: true,
+        username: processUsername(username ?? email.split("@")[0]),
+        secrets: { create: {} },
+      });
 
-        done(null, user);
-      } catch (error) {
-        Logger.error(error);
-
-        throw new BadRequestException(ErrorMessage.UserAlreadyExists);
-      }
+      done(null, user);
     }
   }
 }

@@ -1,8 +1,8 @@
-import { AuthModule } from "@career-sync/server/auth/auth.module";
+import { AuthModule } from "@career-sync/server/modules/auth/auth.module";
 import { PrinterModule } from "@career-sync/server/printer/printer.module";
+import { StorageModule } from "@career-sync/server/storage/storage.module";
 import { Module } from "@nestjs/common";
 
-import { StorageModule } from "../storage/storage.module";
 import { ResumeController } from "./resume.controller";
 import { ResumeService } from "./resume.service";
 

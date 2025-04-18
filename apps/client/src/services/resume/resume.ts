@@ -56,4 +56,3 @@ export const findFullResumeById = async (data: { id: string }) => {
 
   return transformed;
 };
-
