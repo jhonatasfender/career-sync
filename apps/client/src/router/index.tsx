@@ -10,30 +10,31 @@ import { VerifyEmailPage } from "../pages/auth/verify-email/page";
 import { VerifyOtpPage } from "../pages/auth/verify-otp/page";
 import { BuilderLayout } from "../pages/builder/layout";
 import { builderLoader, BuilderPage } from "../pages/builder/page";
+import { AwardsPage } from "../pages/dashboard/awards/page";
+import { BasicPage } from "../pages/dashboard/basic/page";
+import { CertificationsPage } from "../pages/dashboard/certifications/page";
+import { EducationPage } from "../pages/dashboard/education/page";
+import { ExperiencePage } from "../pages/dashboard/experience/page";
+import { InterestsPage } from "../pages/dashboard/Interests/page";
+import { LanguagesPage } from "../pages/dashboard/language/page";
 import { DashboardLayout } from "../pages/dashboard/layout";
+import { ProfilePage } from "../pages/dashboard/profiles/page";
+import { ProjectPage } from "../pages/dashboard/project/page";
+import { PublicationsPage } from "../pages/dashboard/publications/page";
+import { ReferencesPage } from "../pages/dashboard/references/page";
 import { ResumesPage } from "../pages/dashboard/resumes/page";
 import { SettingsPage } from "../pages/dashboard/settings/page";
+import { SkillsPage } from "../pages/dashboard/skill/page";
+import { SummaryPage } from "../pages/dashboard/summary/page";
+import { VolunteerPage } from "../pages/dashboard/volunteer/page";
 import { HomeLayout } from "../pages/home/layout";
 import { HomePage } from "../pages/home/page";
 import { publicLoader, PublicResumePage } from "../pages/public/page";
 import { Providers } from "../providers";
+
 import { AuthGuard } from "./guards/auth";
 import { GuestGuard } from "./guards/guest";
 import { authLoader } from "./loaders/auth";
-import { BasicPage } from "../pages/dashboard/basic/page";
-import { SummaryPage } from "../pages/dashboard/summary/page";
-import { ProfilePage } from "../pages/dashboard/profiles/page";
-import { ExperiencePage } from "../pages/dashboard/experience/page";
-import { EducationPage } from "../pages/dashboard/education/page";
-import { SkillsPage } from "../pages/dashboard/skill/page";
-import { LanguagesPage } from "../pages/dashboard/language/page";
-import { AwardsPage } from "../pages/dashboard/awards/page";
-import { CertificationsPage } from "../pages/dashboard/certifications/page";
-import { ProjectsPage } from "../pages/dashboard/project/page";
-import { PublicationsPage } from "../pages/dashboard/publications/page";
-import { InterestsPage } from "../pages/dashboard/Interests/page";
-import { VolunteerPage } from "../pages/dashboard/volunteer/page";
-import { ReferencesPage } from "../pages/dashboard/references/page";
 
 export const routes = createRoutesFromElements(
   <Route element={<Providers />}>
@@ -86,7 +87,7 @@ export const routes = createRoutesFromElements(
           <Route path="languages" element={<LanguagesPage />} />
           <Route path="awards" element={<AwardsPage />} />
           <Route path="certifications" element={<CertificationsPage />} />
-          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="projects" element={<ProjectPage />} />
           <Route path="publications" element={<PublicationsPage />} />
           <Route path="interests" element={<InterestsPage />} />
           <Route path="volunteer" element={<VolunteerPage />} />

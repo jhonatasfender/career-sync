@@ -1,3 +1,4 @@
+import { User } from "@career-sync/server/user/decorators/user.decorator";
 import {
   BadRequestException,
   Body,

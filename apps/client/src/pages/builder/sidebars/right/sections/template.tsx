@@ -3,9 +3,9 @@ import { AspectRatio } from "@reactive-resume/ui";
 import { cn, templatesList } from "@reactive-resume/utils";
 import { motion } from "framer-motion";
 
-import { useResumeStore } from "@/client/stores/resume";
-
 import { SectionIcon } from "../shared/section-icon";
+
+import { useResumeStore } from "@/client/stores/resume";
 
 export const TemplateSection = () => {
   const setValue = useResumeStore((state) => state.setValue);

@@ -5,10 +5,10 @@ import { Helmet } from "react-helmet-async";
 import type { LoaderFunction } from "react-router";
 import { redirect } from "react-router";
 
-import { queryClient } from "@/client/libs/query-client";
-import { findFullResumeById } from "@/client/services/resume";
-import { useBuilderStore } from "@/client/stores/builder";
-import { useResumeStore } from "@/client/stores/resume";
+import { queryClient } from "@career-sync/client/libs/query-client";
+import { findFullResumeById } from "@career-sync/client/services/resume";
+import { useBuilderStore } from "@career-sync/client/stores/builder";
+import { useResumeStore } from "@career-sync/client/stores/resume";
 
 export const BuilderPage = () => {
   const frameRef = useBuilderStore((state) => state.frame.ref);
@@ -25,7 +25,6 @@ export const BuilderPage = () => {
     });
   }, [frameRef?.contentWindow, resume.data]);
 
-  // Send resume data to iframe on initial load
   useEffect(() => {
     if (!frameRef) return;
 
@@ -36,7 +35,6 @@ export const BuilderPage = () => {
     };
   }, [frameRef]);
 
-  // Persistently check if iframe has loaded using setInterval
   useEffect(() => {
     const interval = setInterval(() => {
       if (frameRef?.contentWindow?.document.readyState === "complete") {
@@ -50,7 +48,6 @@ export const BuilderPage = () => {
     };
   }, [frameRef]);
 
-  // Send resume data to iframe on change of resume data
   useEffect(syncResumeToArtboard, [resume.data]);
 
   return (
@@ -74,9 +71,11 @@ export const BuilderPage = () => {
 
 export const builderLoader: LoaderFunction<ResumeDto> = async ({ params }) => {
   try {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    const id = params.id!;
+    if (!params.id) {
+      throw new Error("Resume ID is required");
+    }
 
+    const id = params.id;
     const resume = await queryClient.fetchQuery({
       queryKey: ["resume", { id }],
       queryFn: () => findFullResumeById({ id }),

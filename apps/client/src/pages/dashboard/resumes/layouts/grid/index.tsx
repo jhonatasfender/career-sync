@@ -1,7 +1,8 @@
+import type { ResumeDto } from "@reactive-resume/dto";
 import { sortByDate } from "@reactive-resume/utils";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { useResumes } from "@/client/services/resume";
+import { useResumes } from "@career-sync/client/services/resume";
 
 import { BaseCard } from "./components/base-card";
 import { CreateResumeCard } from "./components/create-card";
@@ -38,8 +39,8 @@ export const GridView = () => {
       {resumes && (
         <AnimatePresence>
           {resumes
-            .sort((a, b) => sortByDate(a, b, "updatedAt"))
-            .map((resume, index) => (
+            .sort((a: ResumeDto, b: ResumeDto) => sortByDate(a, b, "updatedAt"))
+            .map((resume: ResumeDto, index: number) => (
               <motion.div
                 key={resume.id}
                 layout

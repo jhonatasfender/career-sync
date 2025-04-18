@@ -1,3 +1,4 @@
+import { Config } from "@career-sync/server/config/schema";
 import { Logger, Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import {
@@ -6,8 +7,6 @@ import {
   PrismaService,
   providePrismaClientExceptionFilter,
 } from "nestjs-prisma";
-
-import { Config } from "@/server/config/schema";
 
 @Module({
   imports: [

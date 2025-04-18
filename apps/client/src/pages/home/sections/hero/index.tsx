@@ -5,10 +5,10 @@ import { cn } from "@reactive-resume/utils";
 import { motion } from "framer-motion";
 import Tilt from "react-parallax-tilt";
 
-import { defaultTiltProps } from "@/client/constants/parallax-tilt";
-
 import { HeroCTA } from "./call-to-action";
 import { Decoration } from "./decoration";
+
+import { defaultTiltProps } from "@/client/constants/parallax-tilt";
 
 export const HeroSection = () => (
   <section id="hero" className="relative">

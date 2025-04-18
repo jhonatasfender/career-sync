@@ -5,6 +5,7 @@ import { Outlet } from "react-router";
 
 import { helmetContext } from "../constants/helmet";
 import { queryClient } from "../libs/query-client";
+
 import { AuthRefreshProvider } from "./auth-refresh";
 import { DialogProvider } from "./dialog";
 import { LocaleProvider } from "./locale";

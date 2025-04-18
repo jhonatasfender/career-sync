@@ -3,12 +3,12 @@ import { cn } from "@reactive-resume/utils";
 import { useMemo } from "react";
 import { Link, matchRoutes, Outlet, useLocation } from "react-router";
 
+import { SocialAuth } from "./components/social-auth";
+
 import { LocaleSwitch } from "@/client/components/locale-switch";
 import { Logo } from "@/client/components/logo";
 import { ThemeSwitch } from "@/client/components/theme-switch";
 import { useAuthProviders } from "@/client/services/auth/providers";
-
-import { SocialAuth } from "./components/social-auth";
 
 const authRoutes = [{ path: "/auth/login" }, { path: "/auth/register" }];
 

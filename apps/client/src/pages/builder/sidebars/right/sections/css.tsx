@@ -5,9 +5,9 @@ import Prism from "prismjs";
 import { Helmet } from "react-helmet-async";
 import CodeEditor from "react-simple-code-editor";
 
-import { useResumeStore } from "@/client/stores/resume";
-
 import { SectionIcon } from "../shared/section-icon";
+
+import { useResumeStore } from "@/client/stores/resume";
 
 export const CssSection = () => {
   const { isDarkMode } = useTheme();

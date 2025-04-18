@@ -5,12 +5,13 @@ import _axios from "axios";
 import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { redirect } from "react-router";
 
-import { refreshToken } from "@/client/services/auth";
-
 import { USER_KEY } from "../constants/query-keys";
 import { toast } from "../hooks/use-toast";
 import { translateError } from "../services/errors/translate-error";
+
 import { queryClient } from "./query-client";
+
+import { refreshToken } from "@/client/services/auth";
 
 export const axios = _axios.create({ baseURL: "/api", withCredentials: true });
 

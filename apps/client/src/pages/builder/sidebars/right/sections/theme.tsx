@@ -3,10 +3,10 @@ import { Input, Label, Popover, PopoverContent, PopoverTrigger } from "@reactive
 import { cn } from "@reactive-resume/utils";
 import { HexColorPicker } from "react-colorful";
 
+import { SectionIcon } from "../shared/section-icon";
+
 import { colors } from "@/client/constants/colors";
 import { useResumeStore } from "@/client/stores/resume";
-
-import { SectionIcon } from "../shared/section-icon";
 
 export const ThemeSection = () => {
   const setValue = useResumeStore((state) => state.setValue);

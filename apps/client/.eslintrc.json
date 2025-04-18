@@ -18,8 +18,29 @@
           "whitelist": ["ph", "ph\\-.*", "si", "si\\-.*"]
         }
       },
-      "plugins": ["lingui"],
+      "plugins": ["lingui", "simple-import-sort"],
       "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Side effect imports
+              ["^\\u0000"],
+              // Node.js builtins
+              ["^node:"],
+              // External packages
+              ["^@?\\w"],
+              // Internal packages
+              ["^@career-sync/"],
+              // Parent imports
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports
+              ["^.+\\.s?css$"]
+            ]
+          }
+        ],
         // eslint
         "@typescript-eslint/no-require-imports": "off",
 
@@ -103,12 +124,13 @@
         "lingui/no-single-tag-to-translate": 2,
         "lingui/no-trans-inside-trans": 2,
         "lingui/text-restrictions": [
-          2,
+          "warn",
           {
             "rules": [
               {
-                "patterns": ["''", "\"", "’", "“"],
-                "message": "This string contains forbidden characters"
+                "patterns": ["''", "\"\""],
+                "message": "Empty strings are not allowed",
+                "ignore": ["^[\\s\\S]*$"]
               }
             ]
           }

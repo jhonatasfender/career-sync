@@ -4,10 +4,10 @@ import { buttonVariants, Card, CardContent, CardDescription, CardTitle } from "@
 import { cn } from "@reactive-resume/utils";
 import { saveAs } from "file-saver";
 
+import { SectionIcon } from "../shared/section-icon";
+
 import { usePrintResume } from "@/client/services/resume/print";
 import { useResumeStore } from "@/client/stores/resume";
-
-import { SectionIcon } from "../shared/section-icon";
 
 const onJsonExport = () => {
   const { resume } = useResumeStore.getState();

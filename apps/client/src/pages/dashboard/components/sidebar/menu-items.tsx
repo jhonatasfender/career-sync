@@ -25,7 +25,7 @@ export type MenuItem = {
   icon: ReactNode;
 };
 
-type MenuCategory =
+export type MenuCategory =
   | {
       name: string;
       icon: ReactNode;

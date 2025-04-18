@@ -15,10 +15,10 @@ import { motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import { z } from "zod";
 
+import { PictureOptions } from "./options";
+
 import { useUploadImage } from "@/client/services/storage";
 import { useResumeStore } from "@/client/stores/resume";
-
-import { PictureOptions } from "./options";
 
 export const PictureSection = () => {
   const inputRef = useRef<HTMLInputElement>(null);

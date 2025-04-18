@@ -3,9 +3,9 @@ import { Plus } from "@phosphor-icons/react";
 import { KeyboardShortcut } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
 
-import { useDialog } from "@/client/stores/dialog";
-
 import { BaseCard } from "./base-card";
+
+import { useDialog } from "@/client/stores/dialog";
 
 export const CreateResumeCard = () => {
   const { open } = useDialog("resume");

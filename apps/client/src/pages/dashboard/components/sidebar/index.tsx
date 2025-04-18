@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Link, useNavigate } from "react-router";
 import useKeyboardShortcut from "use-keyboard-shortcut";
 
-import { Icon } from "@/client/components/icon";
-import { UserAvatar } from "@/client/components/user-avatar";
-import { UserOptions } from "@/client/components/user-options";
-import { useUser } from "@/client/services/user";
+import { Icon } from "@career-sync/client/components/icon";
+import { UserAvatar } from "@career-sync/client/components/user-avatar";
+import { UserOptions } from "@career-sync/client/components/user-options";
+import { useUser } from "@career-sync/client/services/user";
 
 import { menuCategories } from "./menu-items";
 import { SidebarCategory } from "./sidebar-category";
