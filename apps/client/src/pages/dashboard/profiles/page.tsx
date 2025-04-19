@@ -11,9 +11,9 @@ import {
 } from "@phosphor-icons/react";
 import type { Profile } from "@reactive-resume/schema";
 import { Button } from "@reactive-resume/ui";
-import { Helmet } from "react-helmet-async";
 
 import { PageLayout } from "@career-sync/client/components/page-layout";
+import { useProfiles } from "@career-sync/client/hooks/use-profile";
 import { useDialog } from "@career-sync/client/stores/dialog";
 
 const ProfileGridView = ({
@@ -184,97 +184,49 @@ const ProfileListView = ({
 
 export const ProfilePage = () => {
   const { open } = useDialog("profiles");
+  const { data: profiles = [], isLoading, isError } = useProfiles();
 
-  const handleCreate = () => {
-    open("create", { id: "profiles" });
-  };
+  const handleCreate = () => open("create", { id: "profiles" });
+  const handleEdit = (profile: Profile) => open("update", { id: "profiles", item: profile });
+  const handleDelete = (profile: Profile) => open("delete", { id: "profiles", item: profile });
 
-  const handleEdit = (profile: Profile) => {
-    open("update", { id: "profiles", item: profile });
-  };
+  const data: Profile[] = profiles.map((p) => ({
+    ...p,
+    url: { href: p.url, label: p.network },
+    icon: p.icon ?? p.network.toLowerCase(),
+    visible: true,
+  }));
 
-  const handleDelete = (profile: Profile) => {
-    open("delete", { id: "profiles", item: profile });
-  };
-
-  const data: Profile[] = [
-    {
-      id: "1",
-      visible: true,
-      network: t`GitHub`,
-      username: "john",
-      url: { href: "https://github.com/john", label: t`GitHub` },
-      icon: "github",
-    },
-    {
-      id: "2",
-      visible: true,
-      network: t`LinkedIn`,
-      username: "mary",
-      url: { href: "https://www.linkedin.com/in/mary", label: t`LinkedIn` },
-      icon: "linkedin",
-    },
-    {
-      id: "3",
-      visible: true,
-      network: t`Twitter`,
-      username: "john_doe",
-      url: { href: "https://twitter.com/john_doe", label: t`Twitter` },
-      icon: "twitter",
-    },
-    {
-      id: "4",
-      visible: true,
-      network: t`Instagram`,
-      username: "luna_art",
-      url: { href: "https://www.instagram.com/luna_art", label: t`Instagram` },
-      icon: "instagram",
-    },
-    {
-      id: "5",
-      visible: true,
-      network: t`Facebook`,
-      username: "alex_tech",
-      url: { href: "https://www.facebook.com/alex_tech", label: t`Facebook` },
-      icon: "facebook",
-    },
-  ];
+  if (isLoading) return <p>{t`Loading profiles ...`}</p>;
+  if (isError) return <p>{t`Could not load profiles.`}</p>;
 
   return (
-    <>
-      <Helmet>
-        <title>
-          {t`Profiles`} - {t`Reactive Resume`}
-        </title>
-      </Helmet>
-
-      <div className="w-full space-y-6">
-        <PageLayout
-          title={t`Profiles`}
-          gridView={
-            <>
-              <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
-                  <Plus weight="bold" />
-                  <span>{t`Add Profile`}</span>
-                </Button>
-              </div>
-              <ProfileGridView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
-            </>
-          }
-          listView={
-            <>
-              <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
-                  <Plus weight="bold" />
-                  <span>{t`Add Profile`}</span>
-                </Button>
-              </div>
-              <ProfileListView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
-            </>
-          }
-        />
-      </div>
-    </>
+    <div className="w-full space-y-6">
+      <PageLayout
+        title={t`Profiles`}
+        gridView={
+          <>
+            <div className="mb-4 flex justify-end">
+              <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Plus weight="bold" />
+                <span>{t`Add Profile`}</span>
+              </Button>
+            </div>
+            <ProfileGridView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
+          </>
+        }
+        listView={
+          <>
+            <div className="mb-4 flex justify-end">
+              <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Plus weight="bold" />
+                <span>{t`Add Profile`}</span>
+              </Button>
+            </div>
+            <ProfileListView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
+          </>
+        }
+      />
+    </div>
   );
 };

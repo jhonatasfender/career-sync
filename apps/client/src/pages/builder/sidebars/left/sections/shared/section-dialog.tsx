@@ -27,9 +27,9 @@ import get from "lodash.get";
 import { useEffect } from "react";
 import { FormProvider, type UseFormReturn } from "react-hook-form";
 
-import type { DialogName } from "@/client/stores/dialog";
-import { useDialog } from "@/client/stores/dialog";
-import { useResumeStore } from "@/client/stores/resume";
+import type { DialogName } from "@career-sync/client/stores/dialog";
+import { useDialog } from "@career-sync/client/stores/dialog";
+import { useResumeStore } from "@career-sync/client/stores/resume";
 
 type Props<T extends SectionItem> = {
   id: DialogName;
@@ -37,6 +37,7 @@ type Props<T extends SectionItem> = {
   defaultValues: T;
   pendingKeyword?: string;
   children: React.ReactNode;
+  onSubmit?: (values: T) => void | Promise<void>;
 };
 
 export const SectionDialog = <T extends SectionItem>({
@@ -45,13 +46,14 @@ export const SectionDialog = <T extends SectionItem>({
   defaultValues,
   pendingKeyword,
   children,
+  onSubmit,
 }: Props<T>) => {
   const { isOpen, mode, close, payload } = useDialog<T>(id);
 
-  const setValue = useResumeStore((state) => state.setValue);
-  const section = useResumeStore((state) => {
-    return get(state.resume.data.sections, id);
-  }) as SectionWithItem<T> | null;
+  const setValue = useResumeStore((s) => s.setValue);
+  const section = useResumeStore((s) =>
+    get(s.resume.data.sections, id),
+  ) as SectionWithItem<T> | null;
 
   const isCreate = mode === "create";
   const isUpdate = mode === "update";
@@ -62,17 +64,14 @@ export const SectionDialog = <T extends SectionItem>({
     if (isOpen) onReset();
   }, [isOpen]);
 
-  const onSubmit = (values: T) => {
+  const internalSubmit = (values: T) => {
     if (!section) return;
 
     if (isCreate || isDuplicate) {
-      if (pendingKeyword && "keywords" in values) {
-        values.keywords.push(pendingKeyword);
-      }
-
+      if (pendingKeyword && "keywords" in values) values.keywords.push(pendingKeyword);
       setValue(
         `sections.${id}.items`,
-        produce(section.items, (draft: T[]): void => {
+        produce(section.items, (draft: T[]) => {
           draft.push({ ...values, id: createId() });
         }),
       );
@@ -80,36 +79,31 @@ export const SectionDialog = <T extends SectionItem>({
 
     if (isUpdate) {
       if (!payload.item?.id) return;
-
-      if (pendingKeyword && "keywords" in values) {
-        values.keywords.push(pendingKeyword);
-      }
-
+      if (pendingKeyword && "keywords" in values) values.keywords.push(pendingKeyword);
       setValue(
         `sections.${id}.items`,
-        produce(section.items, (draft: T[]): void => {
-          const index = draft.findIndex((item) => item.id === payload.item?.id);
-          if (index === -1) return;
-          draft[index] = values;
+        produce(section.items, (draft: T[]) => {
+          const idx = draft.findIndex((it) => it.id === payload.item?.id);
+          if (idx !== -1) draft[idx] = values;
         }),
       );
     }
 
     if (isDelete) {
       if (!payload.item?.id) return;
-
       setValue(
         `sections.${id}.items`,
-        produce(section.items, (draft: T[]): void => {
-          const index = draft.findIndex((item) => item.id === payload.item?.id);
-          if (index === -1) return;
-          draft.splice(index, 1);
+        produce(section.items, (draft: T[]) => {
+          const idx = draft.findIndex((it) => it.id === payload.item?.id);
+          if (idx !== -1) draft.splice(idx, 1);
         }),
       );
     }
 
     close();
   };
+
+  const handleSubmit = onSubmit ?? internalSubmit;
 
   const onReset = () => {
     if (isCreate) form.reset({ ...defaultValues, id: createId() } as T);
@@ -134,7 +128,7 @@ export const SectionDialog = <T extends SectionItem>({
 
                 <AlertDialogFooter>
                   <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
-                  <AlertDialogAction variant="error" onClick={form.handleSubmit(onSubmit)}>
+                  <AlertDialogAction variant="error" onClick={form.handleSubmit(handleSubmit)}>
                     {t`Delete`}
                   </AlertDialogAction>
                 </AlertDialogFooter>
@@ -154,7 +148,7 @@ export const SectionDialog = <T extends SectionItem>({
             <ScrollArea>
               <form
                 className="max-h-[60vh] space-y-6 lg:max-h-fit"
-                onSubmit={form.handleSubmit(onSubmit)}
+                onSubmit={form.handleSubmit(handleSubmit)}
               >
                 <DialogHeader>
                   <DialogTitle>
@@ -169,7 +163,6 @@ export const SectionDialog = <T extends SectionItem>({
                       </h2>
                     </div>
                   </DialogTitle>
-
                   <VisuallyHidden>
                     <DialogDescription />
                   </VisuallyHidden>

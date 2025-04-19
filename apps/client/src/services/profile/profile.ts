@@ -1,4 +1,4 @@
-import { axios } from "@/client/libs/axios";
+import { axios } from "@career-sync/client/libs/axios";
 
 export type ProfileModel = {
   id: string;
