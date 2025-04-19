@@ -122,6 +122,8 @@ model Experience {
   summary    String?
   highlights String[]  @default([])
   userId     String
+  location   String?
+  website    String?
   user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

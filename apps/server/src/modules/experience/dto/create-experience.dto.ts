@@ -10,6 +10,14 @@ export class CreateExperienceDto {
   @IsNotEmpty()
   public position: string;
 
+  @IsString()
+  @IsOptional()
+  public location?: string;
+
+  @IsOptional()
+  @IsString()
+  public summary?: string;
+
   @Transform(({ value }) => new Date(value))
   @IsDate()
   public startDate: Date;
@@ -22,7 +30,7 @@ export class CreateExperienceDto {
 
   @IsOptional()
   @IsString()
-  public summary?: string;
+  public website?: string;
 
   @IsOptional()
   @IsArray()

@@ -13,17 +13,9 @@ import { Button } from "@reactive-resume/ui";
 import { Helmet } from "react-helmet-async";
 
 import { PageLayout } from "@career-sync/client/components/page-layout";
+import type { Experience } from "@career-sync/client/hooks/use-experiences";
+import { useExperiences } from "@career-sync/client/hooks/use-experiences";
 import { useDialog } from "@career-sync/client/stores/dialog";
-
-type Experience = {
-  company: string;
-  position: string;
-  startDate: string;
-  endDate: string;
-  description: string;
-  technologies: string[];
-  website: string;
-};
 
 const ExperienceGridView = ({
   data,
@@ -178,39 +170,14 @@ const ExperienceListView = ({
 
 export const ExperiencePage = () => {
   const { open } = useDialog("experience");
+  const { data: experiences = [], isLoading, isError } = useExperiences();
 
-  const handleCreate = () => {
-    open("create", { id: "experience" });
-  };
+  const handleCreate = () => open("create", { id: "experience" });
+  const handleEdit = (exp: Experience) => open("update", { id: "experience", item: exp });
+  const handleDelete = (exp: Experience) => open("delete", { id: "experience", item: exp });
 
-  const handleEdit = (experience: Experience) => {
-    open("update", { id: "experience", item: experience });
-  };
-
-  const handleDelete = (experience: Experience) => {
-    open("delete", { id: "experience", item: experience });
-  };
-
-  const data: Experience[] = [
-    {
-      company: t`Career Sync`,
-      position: t`Senior Software Engineer`,
-      startDate: t`2023`,
-      endDate: t`Present`,
-      description: t`Leading the development of a modern resume builder and career management platform.`,
-      technologies: [t`React`, t`TypeScript`, t`Tailwind CSS`, t`Node.js`, t`PostgreSQL`],
-      website: "https://career-sync.com",
-    },
-    {
-      company: t`Tech Corp`,
-      position: t`Software Engineer`,
-      startDate: t`2021`,
-      endDate: t`2023`,
-      description: t`Developed and maintained web applications using modern technologies.`,
-      technologies: [t`Next.js`, t`TypeScript`, t`Tailwind CSS`, t`GraphQL`],
-      website: "https://techcorp.com",
-    },
-  ];
+  if (isLoading) return <p>{t`Loading experiences ...`}</p>;
+  if (isError) return <p>{t`Could not load experiences.`}</p>;
 
   return (
     <>
@@ -231,7 +198,11 @@ export const ExperiencePage = () => {
                   <span>{t`Add Experience`}</span>
                 </Button>
               </div>
-              <ExperienceGridView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
+              <ExperienceGridView
+                data={experiences}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
             </>
           }
           listView={
@@ -242,7 +213,11 @@ export const ExperiencePage = () => {
                   <span>{t`Add Experience`}</span>
                 </Button>
               </div>
-              <ExperienceListView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
+              <ExperienceListView
+                data={experiences}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
             </>
           }
         />

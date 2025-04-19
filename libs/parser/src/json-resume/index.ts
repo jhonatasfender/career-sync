@@ -94,7 +94,7 @@ export class JsonResumeParser implements Parser<Json, JsonResume> {
           position: work.position ?? "",
           summary: work.summary ?? "",
           date: `${work.startDate} - ${work.endDate}`,
-          url: { ...defaultExperience.url, href: work.url ?? "" },
+          url: { ...defaultExperience.website, href: work.url ?? "" },
         });
       }
     }

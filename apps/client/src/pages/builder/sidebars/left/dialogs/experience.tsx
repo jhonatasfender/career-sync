@@ -2,6 +2,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/macro";
 import { defaultExperience, experienceSchema } from "@reactive-resume/schema";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
   FormControl,
   FormField,
   FormItem,
@@ -10,26 +18,86 @@ import {
   Input,
   RichInput,
 } from "@reactive-resume/ui";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
+import { AiActions } from "@career-sync/client/components/ai-actions";
+import { useExperiences } from "@career-sync/client/hooks/use-experiences";
+import type { ExperienceModel } from "@career-sync/client/services/experience/experience";
+import { useDialog } from "@career-sync/client/stores/dialog";
+
 import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
-
-import { AiActions } from "@/client/components/ai-actions";
 
 const formSchema = experienceSchema;
 
 type FormValues = z.infer<typeof formSchema>;
 
 export const ExperienceDialog = () => {
+  const { mode = "create", payload, close } = useDialog<FormValues>("experience");
+  const { create, update, remove } = useExperiences();
+  const [pendingTech, setPendingTech] = useState("");
+
   const form = useForm<FormValues>({
-    defaultValues: defaultExperience,
+    defaultValues: mode === "update" && payload?.item ? payload.item : defaultExperience,
     resolver: zodResolver(formSchema),
   });
 
+  const onSubmit = (values: FormValues) => {
+    const payloadForApi: Omit<ExperienceModel, "id"> = {
+      ...values,
+      startDate: values.startDate ? new Date(values.startDate).toISOString() : null,
+      endDate: values.endDate ? new Date(values.endDate).toISOString() : null,
+      website: values.website.href || undefined,
+    };
+
+    if (mode === "create") {
+      create.mutate(payloadForApi, { onSuccess: close });
+    } else {
+      update.mutate(
+        { id: (payload?.item as FormValues).id, payload: payloadForApi },
+        { onSuccess: close },
+      );
+    }
+  };
+
+  if (mode === "delete") {
+    return (
+      <AlertDialog open onOpenChange={close}>
+        <AlertDialogContent className="z-50">
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t`Delete Experience?`}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t`Are you sure you want to delete this experience? This action cannot be undone.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
+            <AlertDialogAction
+              variant="error"
+              onClick={() => {
+                if (payload?.item?.id) {
+                  remove.mutate(payload.item.id, { onSuccess: close });
+                }
+              }}
+            >
+              {t`Delete`}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+  }
+
   return (
-    <SectionDialog<FormValues> id="experience" form={form} defaultValues={defaultExperience}>
+    <SectionDialog<FormValues>
+      id="experience"
+      form={form}
+      defaultValues={defaultExperience}
+      onSubmit={onSubmit}
+    >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           name="company"
@@ -50,12 +118,7 @@ export const ExperienceDialog = () => {
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                {t({
-                  message: "Position",
-                  context: "Position held at a company, for example, Software Engineer",
-                })}
-              </FormLabel>
+              <FormLabel>{t`Position`}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -65,13 +128,13 @@ export const ExperienceDialog = () => {
         />
 
         <FormField
-          name="date"
+          name="startDate"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t`Date or Date Range`}</FormLabel>
+              <FormLabel>{t`Start Date`}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder={t`March 2023 - Present`} />
+                <Input type="date" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -79,13 +142,13 @@ export const ExperienceDialog = () => {
         />
 
         <FormField
-          name="location"
+          name="endDate"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t`Location`}</FormLabel>
+              <FormLabel>{t`End Date`}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input type="date" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -93,11 +156,11 @@ export const ExperienceDialog = () => {
         />
 
         <FormField
-          name="url"
+          name="website"
           control={form.control}
           render={({ field }) => (
             <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Website`}</FormLabel>
+              <FormLabel>{t`Company Website`}</FormLabel>
               <FormControl>
                 <URLInput {...field} />
               </FormControl>
