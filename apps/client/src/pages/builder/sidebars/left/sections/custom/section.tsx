@@ -13,7 +13,7 @@ import {
 import { cn } from "@reactive-resume/utils";
 import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
 
-import { useResumeStore } from "@/client/stores/resume";
+import { useResumeStore } from "@career-sync/client/stores/resume";
 
 type CustomFieldProps = {
   field: ICustomField;
@@ -122,7 +122,7 @@ type Props = {
 
 export const CustomFieldsSection = ({ className }: Props) => {
   const setValue = useResumeStore((state) => state.setValue);
-  const customFields = useResumeStore((state) => state.resume.data.basics.customFields);
+  const customFields = useResumeStore((state) => state.resume.data.basics?.customFields ?? []);
 
   const onAddCustomField = () => {
     setValue("basics.customFields", [

@@ -2,8 +2,8 @@ import type { UpdateUserDto, UserDto } from "@reactive-resume/dto";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosResponse } from "axios";
 
-import { axios } from "@/client/libs/axios";
-import { queryClient } from "@/client/libs/query-client";
+import { axios } from "@career-sync/client/libs/axios";
+import { queryClient } from "@career-sync/client/libs/query-client";
 
 export const updateUser = async (data: UpdateUserDto) => {
   const response = await axios.patch<UserDto, AxiosResponse<UserDto>, UpdateUserDto>(

@@ -11,7 +11,7 @@ export const basicsSchema = z.object({
   phone: z.string(),
   location: z.string(),
   url: urlSchema,
-  customFields: z.array(customFieldSchema),
+  customFields: z.array(customFieldSchema).default([]),
   picture: z.object({
     url: z.string(),
     size: z.number().default(64),

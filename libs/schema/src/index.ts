@@ -21,6 +21,18 @@ export const defaultResumeData: ResumeData = {
   metadata: defaultMetadata,
 };
 
+export const customFieldsSchema = z.record(
+  z.object({
+    id: z.string(),
+    label: z.string(),
+    value: z.string(),
+  }),
+);
+
+export type CustomFields = z.infer<typeof customFieldsSchema>;
+
+export const defaultCustomFields: CustomFields = {};
+
 export * from "./basics";
 export * from "./metadata";
 export * from "./sample";

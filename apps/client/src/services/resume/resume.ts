@@ -1,6 +1,6 @@
 import type { ResumeDto } from "@reactive-resume/dto";
 
-import { axios } from "@/client/libs/axios";
+import { axios } from "@career-sync/client/libs/axios";
 
 export const findResumeById = async (data: { id: string }) => {
   const response = await axios.get<ResumeDto>(`/resume/${data.id}`);

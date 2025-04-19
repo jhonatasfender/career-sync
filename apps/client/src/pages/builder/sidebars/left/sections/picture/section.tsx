@@ -1,5 +1,6 @@
 import { t } from "@lingui/macro";
 import { Aperture, Trash, UploadSimple } from "@phosphor-icons/react";
+import { defaultBasics } from "@reactive-resume/schema";
 import {
   Avatar,
   AvatarImage,
@@ -15,17 +16,17 @@ import { motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import { z } from "zod";
 
-import { PictureOptions } from "./options";
+import { useUploadImage } from "@career-sync/client/services/storage";
+import { useResumeStore } from "@career-sync/client/stores/resume";
 
-import { useUploadImage } from "@/client/services/storage";
-import { useResumeStore } from "@/client/stores/resume";
+import { PictureOptions } from "./options";
 
 export const PictureSection = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const { uploadImage } = useUploadImage();
 
   const setValue = useResumeStore((state) => state.setValue);
-  const picture = useResumeStore((state) => state.resume.data.basics.picture);
+  const picture = useResumeStore((s) => s.resume.data.basics?.picture ?? defaultBasics.picture);
 
   const isValidUrl = useMemo(() => z.string().url().safeParse(picture.url).success, [picture.url]);
 
