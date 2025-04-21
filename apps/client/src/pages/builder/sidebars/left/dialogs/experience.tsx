@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/macro";
 import { defaultExperience, experienceSchema } from "@reactive-resume/schema";
@@ -18,7 +19,6 @@ import {
   Input,
   RichInput,
 } from "@reactive-resume/ui";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
@@ -37,10 +37,9 @@ type FormValues = z.infer<typeof formSchema>;
 export const ExperienceDialog = () => {
   const { mode = "create", payload, close } = useDialog<FormValues>("experience");
   const { create, update, remove } = useExperiences();
-  const [pendingTech, setPendingTech] = useState("");
 
   const form = useForm<FormValues>({
-    defaultValues: mode === "update" && payload?.item ? payload.item : defaultExperience,
+    defaultValues: mode === "update" && payload.item ? payload.item : defaultExperience,
     resolver: zodResolver(formSchema),
   });
 
@@ -56,7 +55,7 @@ export const ExperienceDialog = () => {
       create.mutate(payloadForApi, { onSuccess: close });
     } else {
       update.mutate(
-        { id: (payload?.item as FormValues).id, payload: payloadForApi },
+        { id: (payload.item as FormValues).id, payload: payloadForApi },
         { onSuccess: close },
       );
     }
@@ -78,7 +77,7 @@ export const ExperienceDialog = () => {
             <AlertDialogAction
               variant="error"
               onClick={() => {
-                if (payload?.item?.id) {
+                if (payload.item?.id) {
                   remove.mutate(payload.item.id, { onSuccess: close });
                 }
               }}

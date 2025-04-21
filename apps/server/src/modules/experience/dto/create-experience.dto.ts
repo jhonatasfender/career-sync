@@ -1,5 +1,5 @@
 import { Transform } from "class-transformer";
-import { IsArray, IsDate, IsNotEmpty, IsOptional, IsString, ValidateIf } from "class-validator";
+import { IsDate, IsNotEmpty, IsOptional, IsString, ValidateIf } from "class-validator";
 
 export class CreateExperienceDto {
   @IsString()
@@ -9,10 +9,6 @@ export class CreateExperienceDto {
   @IsString()
   @IsNotEmpty()
   public position: string;
-
-  @IsString()
-  @IsOptional()
-  public location?: string;
 
   @IsOptional()
   @IsString()
@@ -31,9 +27,4 @@ export class CreateExperienceDto {
   @IsOptional()
   @IsString()
   public website?: string;
-
-  @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  public highlights?: string[];
 }

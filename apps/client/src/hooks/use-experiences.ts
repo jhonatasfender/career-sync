@@ -17,9 +17,11 @@ export type Experience = {
   position: string;
   startDate: string | null;
   endDate: string | null;
-  description: string;
-  technologies: string[];
-  website: string;
+  summary: string;
+  website: {
+    label: string;
+    href: string;
+  };
   visible: boolean;
 };
 
@@ -27,11 +29,10 @@ const toExperience = (e: ExperienceModel): Experience => ({
   id: e.id,
   company: e.company,
   position: e.position,
-  startDate: e.startDate,
-  endDate: e.endDate ?? null,
-  description: e.summary ?? "",
-  technologies: e.highlights ?? [],
-  website: e.website ?? "",
+  startDate: e.startDate?.split("T")[0] ?? null,
+  endDate: e.endDate?.split("T")[0] ?? null,
+  summary: e.summary ?? "",
+  website: { label: e.website ?? "", href: e.website ?? "" },
   visible: true,
 });
 

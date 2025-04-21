@@ -110,7 +110,6 @@ export const sampleResume: ResumeData = {
           visible: true,
           company: "Creative Solutions Inc.",
           position: "Senior Web Developer",
-          location: "San Francisco, CA",
           startDate: "2019-01-01",
           endDate: "2024-04-01",
           summary:
@@ -122,7 +121,6 @@ export const sampleResume: ResumeData = {
           visible: true,
           company: "TechAdvancers",
           position: "Web Developer",
-          location: "San Jose, CA",
           startDate: "2019-01-01",
           endDate: "2024-01-01",
           summary:

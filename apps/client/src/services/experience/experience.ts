@@ -4,11 +4,9 @@ export type ExperienceModel = {
   id: string;
   company: string;
   position: string;
-  location: string;
   startDate: string | null;
   endDate: string | null;
   summary?: string;
-  highlights?: string[];
   website?: string;
 };
 

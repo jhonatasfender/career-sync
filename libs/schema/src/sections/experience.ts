@@ -6,7 +6,6 @@ import { defaultItem, defaultUrl, itemSchema } from "../shared";
 export const experienceSchema = itemSchema.extend({
   company: z.string().min(1),
   position: z.string(),
-  location: z.string(),
   summary: z.string(),
   startDate: z.string(),
   endDate: z.string().optional(),
@@ -24,7 +23,6 @@ export const defaultExperience: Experience = {
   ...defaultItem,
   company: "",
   position: "",
-  location: "",
   summary: "",
   startDate: "",
   endDate: undefined,

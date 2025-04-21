@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
 import { t } from "@lingui/macro";
 import {
   AmazonLogo,
@@ -88,20 +89,13 @@ const ExperienceGridView = ({
             </div>
           </div>
           <div className="mt-6 space-y-4">
-            <p className="text-sm text-gray-600">{experience.description}</p>
-            <div className="flex flex-wrap gap-2">
-              {experience.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full bg-secondary/50 px-3 py-1 text-xs font-medium text-gray-700"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-            {experience.website && (
+            <div
+              dangerouslySetInnerHTML={{ __html: experience.summary }}
+              className="text-sm text-gray-600"
+            />
+            {experience.website.href && (
               <a
-                href={experience.website}
+                href={experience.website.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-primary hover:underline"
@@ -139,7 +133,10 @@ const ExperienceListView = ({
               <p className="text-sm text-gray-500">
                 {experience.startDate} - {experience.endDate}
               </p>
-              <p className="mt-2 text-sm text-gray-600">{experience.description}</p>
+              <div
+                dangerouslySetInnerHTML={{ __html: experience.summary }}
+                className="text-sm text-gray-600"
+              />
             </div>
           </div>
           <div className="flex items-center gap-2">

@@ -7,12 +7,10 @@ export class ExperienceMapper {
       userId,
       company: dto.company,
       position: dto.position,
-      location: dto.location,
       summary: dto.summary,
       startDate: dto.startDate,
       endDate: dto.endDate,
       website: dto.website,
-      highlights: dto.highlights ?? [],
     };
   }
 
@@ -20,12 +18,10 @@ export class ExperienceMapper {
     return {
       company: dto.company,
       position: dto.position,
-      location: dto.location,
       summary: dto.summary,
       startDate: dto.startDate,
       endDate: dto.endDate,
       website: dto.website,
-      highlights: dto.highlights,
     };
   }
 }
