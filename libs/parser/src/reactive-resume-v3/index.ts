@@ -174,7 +174,7 @@ export class ReactiveResumeV3Parser implements Parser<Json, ReactiveResumeV3> {
           score: education.score ?? "",
           summary: education.summary ?? "",
           date: `${education.date?.start} - ${education.date?.end}`,
-          url: { ...defaultEducation.url, href: isUrl(education.url) ? education.url! : "" },
+          url: { ...defaultEducation.website, href: isUrl(education.url) ? education.url! : "" },
         });
       }
     }

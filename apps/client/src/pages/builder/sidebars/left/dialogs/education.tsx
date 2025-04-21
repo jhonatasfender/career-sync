@@ -1,7 +1,17 @@
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/macro";
 import { defaultEducation, educationSchema } from "@reactive-resume/schema";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
   FormControl,
   FormField,
   FormItem,
@@ -13,23 +23,86 @@ import {
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
+import { AiActions } from "@career-sync/client/components/ai-actions";
+import { useEducations } from "@career-sync/client/hooks/use-education";
+import type { EducationModel } from "@career-sync/client/services/education/education";
+import { useDialog } from "@career-sync/client/stores/dialog";
+
 import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
-
-import { AiActions } from "@/client/components/ai-actions";
 
 const formSchema = educationSchema;
 
 type FormValues = z.infer<typeof formSchema>;
 
 export const EducationDialog = () => {
+  const { mode = "create", payload, close } = useDialog<FormValues>("education");
+  const { create, update, remove } = useEducations();
+
   const form = useForm<FormValues>({
-    defaultValues: defaultEducation,
+    defaultValues: mode === "update" && payload.item ? payload.item : defaultEducation,
     resolver: zodResolver(formSchema),
   });
 
+  const onSubmit = (values: FormValues) => {
+    const payloadForApi: Omit<EducationModel, "id"> = {
+      institution: values.institution,
+      area: values.area,
+      studyType: values.studyType || undefined,
+      startDate: values.startDate ? new Date(values.startDate).toISOString() : null,
+      endDate: values.endDate ? new Date(values.endDate).toISOString() : null,
+      gpa: values.gpa ? Number(values.gpa) : undefined,
+      website: values.website?.href || undefined,
+      summary: values.summary || undefined,
+    };
+
+    if (mode === "create") {
+      create.mutate(payloadForApi, { onSuccess: close });
+    } else {
+      update.mutate(
+        { id: (payload.item as FormValues).id, payload: payloadForApi },
+        { onSuccess: close },
+      );
+    }
+  };
+
+  // Delete dialog
+  if (mode === "delete") {
+    return (
+      <AlertDialog open onOpenChange={close}>
+        <AlertDialogContent className="z-50">
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t`Delete Education?`}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t`Are you sure you want to delete this education entry? This action cannot be undone.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
+            <AlertDialogAction
+              variant="error"
+              onClick={() => {
+                if (payload.item?.id) {
+                  remove.mutate(payload.item.id, { onSuccess: close });
+                }
+              }}
+            >
+              {t`Delete`}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+  }
+
   return (
-    <SectionDialog<FormValues> id="education" form={form} defaultValues={defaultEducation}>
+    <SectionDialog<FormValues>
+      id="education"
+      form={form}
+      defaultValues={defaultEducation}
+      onSubmit={onSubmit}
+    >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           name="institution"
@@ -46,35 +119,11 @@ export const EducationDialog = () => {
         />
 
         <FormField
-          name="studyType"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>
-                {t({
-                  message: "Type of Study",
-                  comment: "For example, Bachelor's Degree or Master's Degree",
-                })}
-              </FormLabel>
-              <FormControl>
-                <Input {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
           name="area"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                {t({
-                  message: "Area of Study",
-                  comment: "For example, Computer Science or Business Administration",
-                })}
-              </FormLabel>
+              <FormLabel>{t`Area of Study`}</FormLabel>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -84,18 +133,13 @@ export const EducationDialog = () => {
         />
 
         <FormField
-          name="score"
+          name="studyType"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>
-                {t({
-                  message: "Score",
-                  comment: "Score or honors for the degree, for example, CGPA or magna cum laude",
-                })}
-              </FormLabel>
+              <FormLabel>{t`Type of Study`}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder="9.2 GPA" />
+                <Input {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -103,13 +147,13 @@ export const EducationDialog = () => {
         />
 
         <FormField
-          name="date"
+          name="gpa"
           control={form.control}
           render={({ field }) => (
-            <FormItem className="sm:col-span-2">
-              <FormLabel>{t`Date or Date Range`}</FormLabel>
+            <FormItem>
+              <FormLabel>GPA</FormLabel>
               <FormControl>
-                <Input {...field} placeholder={t`March 2023 - Present`} />
+                <Input type="number" step="0.01" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -117,7 +161,7 @@ export const EducationDialog = () => {
         />
 
         <FormField
-          name="url"
+          name="website"
           control={form.control}
           render={({ field }) => (
             <FormItem className="sm:col-span-2">
@@ -149,10 +193,36 @@ export const EducationDialog = () => {
                       }}
                     />
                   )}
-                  onChange={(value) => {
-                    field.onChange(value);
-                  }}
+                  onChange={(value) => field.onChange(value)}
                 />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="startDate"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`Start Date`}</FormLabel>
+              <FormControl>
+                <Input type="date" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="endDate"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`End Date`}</FormLabel>
+              <FormControl>
+                <Input type="date" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

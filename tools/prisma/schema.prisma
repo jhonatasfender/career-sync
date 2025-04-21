@@ -133,8 +133,9 @@ model Education {
   startDate   DateTime
   endDate     DateTime?
   gpa         Float?
-  courses     String[]  @default([])
   userId      String
+  website     String?
+  summary     String?
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

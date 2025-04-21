@@ -18,6 +18,26 @@ import type { Experience } from "@career-sync/client/hooks/use-experiences";
 import { useExperiences } from "@career-sync/client/hooks/use-experiences";
 import { useDialog } from "@career-sync/client/stores/dialog";
 
+const getIcon = (icon: string) => {
+  switch (icon.toLowerCase()) {
+    case "amazon": {
+      return <AmazonLogo className="size-6" weight="duotone" />;
+    }
+    case "google": {
+      return <GoogleLogo className="size-6" weight="duotone" />;
+    }
+    case "microsoft": {
+      return <MicrosoftWordLogo className="size-6" weight="duotone" />;
+    }
+    case "apple": {
+      return <AppleLogo className="size-6" weight="duotone" />;
+    }
+    default: {
+      return <Building className="size-6" weight="duotone" />;
+    }
+  }
+};
+
 const ExperienceGridView = ({
   data,
   handleEdit,
@@ -27,26 +47,6 @@ const ExperienceGridView = ({
   handleEdit: (experience: Experience) => void;
   handleDelete: (experience: Experience) => void;
 }) => {
-  const getIcon = (icon: string) => {
-    switch (icon.toLowerCase()) {
-      case "amazon": {
-        return <AmazonLogo className="size-6" weight="duotone" />;
-      }
-      case "google": {
-        return <GoogleLogo className="size-6" weight="duotone" />;
-      }
-      case "microsoft": {
-        return <MicrosoftWordLogo className="size-6" weight="duotone" />;
-      }
-      case "apple": {
-        return <AppleLogo className="size-6" weight="duotone" />;
-      }
-      default: {
-        return <Building className="size-6" weight="duotone" />;
-      }
-    }
-  };
-
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {data.map((experience) => (
@@ -127,18 +127,32 @@ const ExperienceListView = ({
           className="flex items-center justify-between rounded-lg border bg-background p-4"
         >
           <div className="flex items-center gap-4">
-            <div className="flex-1">
-              <h3 className="font-semibold">{experience.company}</h3>
-              <p className="text-sm text-gray-500">{experience.position}</p>
-              <p className="text-sm text-gray-500">
-                {experience.startDate} - {experience.endDate}
-              </p>
-              <div
-                dangerouslySetInnerHTML={{ __html: experience.summary }}
-                className="text-sm text-gray-600"
-              />
+            {getIcon(experience.company)}
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <h3 className="font-semibold">{experience.company}</h3>
+                <p className="text-sm text-gray-500">{experience.position}</p>
+                <p className="text-sm text-gray-500">
+                  {experience.startDate} - {experience.endDate}
+                </p>
+                <div
+                  dangerouslySetInnerHTML={{ __html: experience.summary }}
+                  className="text-sm text-gray-600"
+                />
+                {experience.website.href && (
+                  <a
+                    href={experience.website.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-primary hover:underline"
+                  >
+                    {t`Visit Company Website`}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
+
           <div className="flex items-center gap-2">
             <button
               className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"

@@ -125,7 +125,7 @@ export class JsonResumeParser implements Parser<Json, JsonResume> {
           area: education.area ?? "",
           score: education.score ?? "",
           date: `${education.startDate} - ${education.endDate}`,
-          url: { ...defaultEducation.url, href: education.url ?? "" },
+          url: { ...defaultEducation.website, href: education.url ?? "" },
         });
       }
     }

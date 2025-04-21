@@ -1,13 +1,5 @@
 import { Transform } from "class-transformer";
-import {
-  IsArray,
-  IsDate,
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  ValidateIf,
-} from "class-validator";
+import { IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateIf } from "class-validator";
 
 export class CreateEducationDto {
   @IsString()
@@ -37,7 +29,10 @@ export class CreateEducationDto {
   public gpa?: number;
 
   @IsOptional()
-  @IsArray()
-  @IsString({ each: true })
-  public courses?: string[];
+  @IsString()
+  public website?: string;
+
+  @IsOptional()
+  @IsString()
+  public summary?: string;
 }

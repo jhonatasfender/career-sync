@@ -11,7 +11,8 @@ export class EducationMapper {
       startDate: dto.startDate,
       endDate: dto.endDate,
       gpa: dto.gpa,
-      courses: dto.courses ?? [],
+      website: dto.website,
+      summary: dto.summary,
     };
   }
 
@@ -23,7 +24,8 @@ export class EducationMapper {
       startDate: dto.startDate,
       endDate: dto.endDate,
       gpa: dto.gpa,
-      courses: dto.courses,
+      website: dto.website,
+      summary: dto.summary,
     };
   }
 }

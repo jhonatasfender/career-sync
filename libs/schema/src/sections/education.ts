@@ -7,10 +7,11 @@ export const educationSchema = itemSchema.extend({
   institution: z.string().min(1),
   studyType: z.string(),
   area: z.string(),
-  score: z.string(),
-  date: z.string(),
+  gpa: z.string(),
+  startDate: z.string(),
+  endDate: z.string().optional(),
   summary: z.string(),
-  url: urlSchema,
+  website: urlSchema,
 });
 
 // Type
@@ -23,8 +24,9 @@ export const defaultEducation: Education = {
   institution: "",
   studyType: "",
   area: "",
-  score: "",
-  date: "",
+  gpa: "",
+  startDate: "",
+  endDate: undefined,
   summary: "",
-  url: defaultUrl,
+  website: defaultUrl,
 };

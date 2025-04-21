@@ -88,10 +88,10 @@ export const sampleResume: ResumeData = {
           institution: "University of California",
           studyType: "Bachelor's in Computer Science",
           area: "Berkeley, CA",
-          score: "",
-          date: "August 2012 to May 2016",
+          gpa: "",
+          startDate: "August 2012 to May 2016",
           summary: "",
-          url: {
+          website: {
             label: "",
             href: "",
           },
