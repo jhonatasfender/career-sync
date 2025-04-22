@@ -142,7 +142,7 @@ model Education {
 model Skill {
   id          String   @id @default(cuid())
   name        String
-  level       String?
+  level       Int?
   description String?
   keywords    String[] @default([])
   userId      String

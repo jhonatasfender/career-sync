@@ -52,7 +52,7 @@ export const EducationDialog = () => {
       startDate: values.startDate ? new Date(values.startDate).toISOString() : null,
       endDate: values.endDate ? new Date(values.endDate).toISOString() : null,
       gpa: values.gpa ? Number(values.gpa) : undefined,
-      website: values.website?.href || undefined,
+      website: values.website.href || undefined,
       summary: values.summary || undefined,
     };
 

@@ -1,12 +1,12 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateSkillDto {
   @IsString()
   public name: string;
 
   @IsOptional()
-  @IsString()
-  public level?: string;
+  @IsNumber()
+  public level?: number;
 
   @IsOptional()
   @IsString()
