@@ -16,4 +16,8 @@ export class CreateAwardDto {
   @IsOptional()
   @IsString()
   public summary?: string;
+
+  @IsOptional()
+  @IsString()
+  public website?: string;
 }

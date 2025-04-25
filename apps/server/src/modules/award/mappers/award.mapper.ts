@@ -9,6 +9,7 @@ export class AwardMapper {
       date: dto.date,
       awarder: dto.awarder,
       summary: dto.summary,
+      website: dto.website,
     };
   }
 
@@ -18,6 +19,7 @@ export class AwardMapper {
       date: dto.date,
       awarder: dto.awarder,
       summary: dto.summary,
+      website: dto.website,
     };
   }
 }

@@ -8,7 +8,7 @@ export const awardSchema = itemSchema.extend({
   awarder: z.string(),
   date: z.string(),
   summary: z.string(),
-  url: urlSchema,
+  website: urlSchema,
 });
 
 // Type
@@ -21,5 +21,5 @@ export const defaultAward: Award = {
   awarder: "",
   date: "",
   summary: "",
-  url: defaultUrl,
+  website: defaultUrl,
 };
