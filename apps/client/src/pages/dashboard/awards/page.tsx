@@ -56,7 +56,7 @@ const AwardGridView = ({
         </div>
 
         <div className="mt-6 space-y-4">
-          {award.website?.href && (
+          {award.website.href && (
             <a
               href={award.website.href}
               target="_blank"
@@ -103,7 +103,7 @@ const AwardListView = ({
             <h3 className="font-semibold">{award.title}</h3>
             {award.awarder && <p className="text-sm text-gray-500">{award.awarder}</p>}
             {award.date && <p className="text-sm text-gray-500">{award.date}</p>}
-            {award.website?.href && (
+            {award.website.href && (
               <a
                 href={award.website.href}
                 target="_blank"

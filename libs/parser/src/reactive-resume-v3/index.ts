@@ -117,7 +117,7 @@ export class ReactiveResumeV3Parser implements Parser<Json, ReactiveResumeV3> {
           awarder: award.awarder ?? "",
           date: award.date ?? "",
           summary: award.summary ?? "",
-          url: { ...defaultAward.url, href: isUrl(award.url) ? award.url! : "" },
+          url: { ...defaultAward.website, href: isUrl(award.url) ? award.url! : "" },
         });
       }
     }

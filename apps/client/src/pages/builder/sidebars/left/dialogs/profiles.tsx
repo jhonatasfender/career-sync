@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 // dialogs/ProfilesDialog.tsx
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t, Trans } from "@lingui/macro";
@@ -39,7 +40,7 @@ export const ProfilesDialog = () => {
   const { create, update, remove } = useProfiles();
 
   const form = useForm<FormValues>({
-    defaultValues: mode === "update" && payload?.item ? payload.item : defaultProfile,
+    defaultValues: mode === "update" && payload.item ? payload.item : defaultProfile,
     resolver: zodResolver(formSchema),
   });
 
@@ -53,7 +54,7 @@ export const ProfilesDialog = () => {
       create.mutate(payloadToApi, { onSuccess: close });
     } else {
       update.mutate(
-        { id: (payload?.item as FormValues).id, payload: payloadToApi },
+        { id: (payload.item as FormValues).id, payload: payloadToApi },
         { onSuccess: close },
       );
     }
@@ -75,7 +76,7 @@ export const ProfilesDialog = () => {
             <AlertDialogAction
               variant="error"
               onClick={() => {
-                if (payload?.item?.id) {
+                if (payload.item?.id) {
                   remove.mutate(payload.item.id, { onSuccess: close });
                 }
               }}

@@ -176,6 +176,7 @@ model Certification {
   date    DateTime?
   issuer  String
   summary String?
+  website String?
   userId  String
   user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -192,9 +193,9 @@ model Project {
   id          String    @id @default(cuid())
   name        String
   description String?
-  highlights  String[]  @default([])
   keywords    String[]  @default([])
-  url         String?
+  summary     String?
+  website     String?
   startDate   DateTime?
   endDate     DateTime?
   userId      String

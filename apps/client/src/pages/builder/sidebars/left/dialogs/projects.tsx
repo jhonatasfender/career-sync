@@ -1,8 +1,18 @@
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/macro";
 import { X } from "@phosphor-icons/react";
 import { defaultProject, projectSchema } from "@reactive-resume/schema";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
   Badge,
   BadgeInput,
   FormControl,
@@ -19,22 +29,76 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
+import { AiActions } from "@career-sync/client/components/ai-actions";
+import { useProjects } from "@career-sync/client/hooks/use-project";
+import type { ProjectModel } from "@career-sync/client/services/project/project";
+import { useDialog } from "@career-sync/client/stores/dialog";
+
 import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
-
-import { AiActions } from "@/client/components/ai-actions";
 
 const formSchema = projectSchema;
 
 type FormValues = z.infer<typeof formSchema>;
 
 export const ProjectsDialog = () => {
+  const { mode = "create", payload, close } = useDialog<FormValues>("projects");
+  const { create, update, remove } = useProjects();
+
   const form = useForm<FormValues>({
-    defaultValues: defaultProject,
+    defaultValues: mode === "update" && payload.item ? payload.item : defaultProject,
     resolver: zodResolver(formSchema),
   });
 
   const [pendingKeyword, setPendingKeyword] = useState("");
+
+  const onSubmit = (values: FormValues) => {
+    const payloadForApi: Omit<ProjectModel, "id"> = {
+      name: values.name,
+      description: values.description || undefined,
+      keywords: values.keywords.length > 0 ? values.keywords : undefined,
+      website: values.website.href || undefined,
+      summary: values.summary || undefined,
+      startDate: values.startDate ? new Date(values.startDate).toISOString() : null,
+      endDate: values.endDate ? new Date(values.endDate).toISOString() : null,
+    };
+
+    if (mode === "create") {
+      create.mutate(payloadForApi, { onSuccess: close });
+    } else {
+      update.mutate(
+        { id: (payload.item as FormValues).id, payload: payloadForApi },
+        { onSuccess: close },
+      );
+    }
+  };
+
+  if (mode === "delete") {
+    return (
+      <AlertDialog open onOpenChange={close}>
+        <AlertDialogContent className="z-50">
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t`Delete Project?`}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t`Are you sure you want to delete this project? This action cannot be undone.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
+            <AlertDialogAction
+              variant="error"
+              onClick={() => {
+                if (payload.item?.id) remove.mutate(payload.item.id, { onSuccess: close });
+              }}
+            >
+              {t`Delete`}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+  }
 
   return (
     <SectionDialog<FormValues>
@@ -42,6 +106,7 @@ export const ProjectsDialog = () => {
       form={form}
       defaultValues={defaultProject}
       pendingKeyword={pendingKeyword}
+      onSubmit={onSubmit}
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
@@ -73,13 +138,13 @@ export const ProjectsDialog = () => {
         />
 
         <FormField
-          name="date"
+          name="startDate"
           control={form.control}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t`Date or Date Range`}</FormLabel>
+              <FormLabel>{t`Start Date`}</FormLabel>
               <FormControl>
-                <Input {...field} placeholder={t`March 2023 - Present`} />
+                <Input type="date" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,13 +152,27 @@ export const ProjectsDialog = () => {
         />
 
         <FormField
-          name="url"
+          name="endDate"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t`End Date`}</FormLabel>
+              <FormControl>
+                <Input type="date" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          name="website"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t`Website`}</FormLabel>
               <FormControl>
-                <URLInput {...field} placeholder="https://rxresu.me" />
+                <URLInput {...field} placeholder="https://myproject.com" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -113,15 +192,13 @@ export const ProjectsDialog = () => {
                   footer={(editor) => (
                     <AiActions
                       value={editor.getText()}
-                      onChange={(value) => {
-                        editor.commands.setContent(value, true);
-                        field.onChange(value);
+                      onChange={(val) => {
+                        editor.commands.setContent(val, true);
+                        field.onChange(val);
                       }}
                     />
                   )}
-                  onChange={(value) => {
-                    field.onChange(value);
-                  }}
+                  onChange={(val) => field.onChange(val)}
                 />
               </FormControl>
               <FormMessage />
@@ -157,9 +234,7 @@ export const ProjectsDialog = () => {
                     >
                       <Badge
                         className="cursor-pointer"
-                        onClick={() => {
-                          field.onChange(field.value.filter((v) => item !== v));
-                        }}
+                        onClick={() => field.onChange(field.value.filter((v) => v !== item))}
                       >
                         <span className="mr-1">{item}</span>
                         <X size={12} weight="bold" />

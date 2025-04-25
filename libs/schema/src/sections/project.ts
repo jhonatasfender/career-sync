@@ -6,10 +6,11 @@ import { defaultItem, defaultUrl, itemSchema, urlSchema } from "../shared";
 export const projectSchema = itemSchema.extend({
   name: z.string().min(1),
   description: z.string(),
-  date: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
   summary: z.string(),
   keywords: z.array(z.string()).default([]),
-  url: urlSchema,
+  website: urlSchema,
 });
 
 // Type
@@ -20,8 +21,9 @@ export const defaultProject: Project = {
   ...defaultItem,
   name: "",
   description: "",
-  date: "",
+  startDate: "",
+  endDate: "",
   summary: "",
   keywords: [],
-  url: defaultUrl,
+  website: defaultUrl,
 };

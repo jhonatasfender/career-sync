@@ -11,15 +11,15 @@ export class CreateProjectDto {
 
   @IsOptional()
   @IsArray()
-  public highlights?: string[];
-
-  @IsOptional()
-  @IsArray()
   public keywords?: string[];
 
   @IsOptional()
   @IsUrl()
-  public url?: string;
+  public website?: string;
+
+  @IsOptional()
+  @IsString()
+  public summary?: string;
 
   @IsOptional()
   @Transform(({ value }) => (value ? new Date(value) : null))

@@ -10,7 +10,7 @@ export type Award = {
   id: string;
   title: string;
   awarder: string;
-  date: string | null;
+  date: string;
   website: { label: string; href: string };
   summary: string;
   visible: boolean;
@@ -20,7 +20,7 @@ const toAward = (a: AwardModel): Award => ({
   id: a.id,
   title: a.title,
   awarder: a.awarder ?? "",
-  date: a.date ?? "",
+  date: a.date ? a.date.split("T")[0] : "",
   summary: a.summary ?? "",
   website: { label: a.website ?? "", href: a.website ?? "" },
   visible: true,

@@ -8,7 +8,7 @@ export const certificationSchema = itemSchema.extend({
   issuer: z.string(),
   date: z.string(),
   summary: z.string(),
-  url: urlSchema,
+  website: urlSchema,
 });
 
 // Type
@@ -21,5 +21,5 @@ export const defaultCertification: Certification = {
   issuer: "",
   date: "",
   summary: "",
-  url: defaultUrl,
+  website: defaultUrl,
 };

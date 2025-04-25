@@ -56,7 +56,7 @@ export const sampleResume: ResumeData = {
           issuer: "CodeAcademy",
           date: "2020",
           summary: "",
-          url: {
+          website: {
             label: "",
             href: "",
           },
@@ -68,7 +68,7 @@ export const sampleResume: ResumeData = {
           issuer: "Amazon Web Services",
           date: "2019",
           summary: "",
-          url: {
+          website: {
             label: "",
             href: "",
           },
@@ -196,11 +196,12 @@ export const sampleResume: ResumeData = {
           visible: true,
           name: "E-Commerce Platform",
           description: "Project Lead",
-          date: "",
+          startDate: "",
+          endDate: "",
           summary:
             "<p>Led the development of a full-stack e-commerce platform, improving sales conversion by 25%.</p>",
           keywords: [],
-          url: {
+          website: {
             label: "",
             href: "",
           },
@@ -210,11 +211,12 @@ export const sampleResume: ResumeData = {
           visible: true,
           name: "Interactive Dashboard",
           description: "Frontend Developer",
-          date: "",
+          startDate: "",
+          endDate: "",
           summary:
             "<p>Created an interactive analytics dashboard for a SaaS application, enhancing data visualization for clients.</p>",
           keywords: [],
-          url: {
+          website: {
             label: "",
             href: "",
           },

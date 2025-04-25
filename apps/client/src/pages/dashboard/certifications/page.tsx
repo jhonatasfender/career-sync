@@ -1,18 +1,14 @@
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+
 import { t } from "@lingui/macro";
-import { Calendar, Certificate, Globe, PencilSimple, Plus, Trash } from "@phosphor-icons/react";
+import { Certificate, PencilSimple, Plus, Trash } from "@phosphor-icons/react";
 import { Button } from "@reactive-resume/ui";
 import { Helmet } from "react-helmet-async";
 
 import { PageLayout } from "@career-sync/client/components/page-layout";
+import type { Certification } from "@career-sync/client/hooks/use-certifications";
+import { useCertifications } from "@career-sync/client/hooks/use-certifications";
 import { useDialog } from "@career-sync/client/stores/dialog";
-
-type Certification = {
-  name: string;
-  issuer: string;
-  date: string;
-  website: string;
-  summary: string;
-};
 
 const CertificationGridView = ({
   data,
@@ -22,68 +18,63 @@ const CertificationGridView = ({
   data: Certification[];
   handleEdit: (certification: Certification) => void;
   handleDelete: (certification: Certification) => void;
-}) => {
-  return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {data.map((certification) => (
-        <div
-          key={certification.name}
-          className="group flex flex-col rounded-lg border bg-background p-6 shadow-sm transition-all hover:shadow-md"
-        >
+}) => (
+  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {data.map((cert) => (
+      <div
+        key={cert.id}
+        className="group flex flex-col rounded-lg border bg-background p-6 shadow-sm transition-all hover:shadow-md"
+      >
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="flex size-12 items-center justify-center rounded-full bg-secondary/50">
               <Certificate className="size-6" weight="duotone" />
             </div>
             <div className="flex-1">
-              <h3 className="font-semibold">{certification.name}</h3>
-              <p className="text-sm text-gray-500">{certification.issuer}</p>
-            </div>
-            <div className="flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-              <button
-                className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"
-                title={t`Edit Certification`}
-                onClick={() => {
-                  handleEdit(certification);
-                }}
-              >
-                <PencilSimple className="size-4" weight="duotone" />
-              </button>
-              <button
-                className="rounded-full p-2 text-gray-500 hover:bg-red-100 hover:text-red-500"
-                title={t`Delete Certification`}
-                onClick={() => {
-                  handleDelete(certification);
-                }}
-              >
-                <Trash className="size-4" weight="duotone" />
-              </button>
+              <h3 className="font-semibold">{cert.name}</h3>
+              {cert.issuer && <p className="text-sm text-gray-500">{cert.issuer}</p>}
+              {cert.date && <p className="text-sm text-gray-500">{cert.date}</p>}
             </div>
           </div>
-          <div className="mt-6 space-y-4">
-            <p className="text-sm text-gray-600">{certification.summary}</p>
-            <div className="flex items-center gap-4 text-sm text-gray-500">
-              <div className="flex items-center gap-1">
-                <Calendar className="size-4" weight="duotone" />
-                <span>{certification.date}</span>
-              </div>
-              {certification.website && (
-                <a
-                  href={certification.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-primary hover:underline"
-                >
-                  <Globe className="size-4" weight="duotone" />
-                  <span>{t`Website`}</span>
-                </a>
-              )}
-            </div>
+          <div className="flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+            <button
+              className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"
+              title={t`Edit Certification`}
+              onClick={() => handleEdit(cert)}
+            >
+              <PencilSimple className="size-4" weight="duotone" />
+            </button>
+            <button
+              className="rounded-full p-2 text-gray-500 hover:bg-red-100 hover:text-red-500"
+              title={t`Delete Certification`}
+              onClick={() => handleDelete(cert)}
+            >
+              <Trash className="size-4" weight="duotone" />
+            </button>
           </div>
         </div>
-      ))}
-    </div>
-  );
-};
+        <div className="mt-6 space-y-4">
+          {cert.website.href && (
+            <a
+              href={cert.website.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-primary hover:underline"
+            >
+              {t`Visit Website`}
+            </a>
+          )}
+          {cert.summary && (
+            <div
+              dangerouslySetInnerHTML={{ __html: cert.summary }}
+              className="text-sm text-gray-600"
+            />
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
 const CertificationListView = ({
   data,
@@ -93,105 +84,71 @@ const CertificationListView = ({
   data: Certification[];
   handleEdit: (certification: Certification) => void;
   handleDelete: (certification: Certification) => void;
-}) => {
-  return (
-    <div className="space-y-4">
-      {data.map((certification) => (
-        <div
-          key={certification.name}
-          className="flex items-center justify-between rounded-lg border bg-background p-4"
-        >
-          <div className="flex items-center gap-4">
-            <div className="flex size-12 items-center justify-center rounded-full bg-secondary/50">
-              <Certificate className="size-6" weight="duotone" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold">{certification.name}</h3>
-              <p className="text-sm text-gray-500">{certification.issuer}</p>
-              <p className="mt-2 text-sm text-gray-600">{certification.summary}</p>
-              <div className="mt-2 flex items-center gap-4 text-sm text-gray-500">
-                <div className="flex items-center gap-1">
-                  <Calendar className="size-4" weight="duotone" />
-                  <span>{certification.date}</span>
-                </div>
-                {certification.website && (
-                  <a
-                    href={certification.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-primary hover:underline"
-                  >
-                    <Globe className="size-4" weight="duotone" />
-                    <span>{t`Website`}</span>
-                  </a>
-                )}
-              </div>
-            </div>
+}) => (
+  <div className="space-y-4">
+    {data.map((cert) => (
+      <div
+        key={cert.id}
+        className="flex items-center justify-between rounded-lg border bg-background p-4"
+      >
+        <div className="flex items-start gap-4">
+          <div className="flex size-12 items-center justify-center rounded-full bg-secondary/50">
+            <Certificate className="size-6" weight="duotone" />
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"
-              title={t`Edit Certification`}
-              onClick={() => {
-                handleEdit(certification);
-              }}
-            >
-              <PencilSimple className="size-4" weight="duotone" />
-            </button>
-            <button
-              className="rounded-full p-2 text-gray-500 hover:bg-red-100 hover:text-red-500"
-              title={t`Delete Certification`}
-              onClick={() => {
-                handleDelete(certification);
-              }}
-            >
-              <Trash className="size-4" weight="duotone" />
-            </button>
+          <div className="flex-1">
+            <h3 className="font-semibold">{cert.name}</h3>
+            {cert.issuer && <p className="text-sm text-gray-500">{cert.issuer}</p>}
+            {cert.date && <p className="text-sm text-gray-500">{cert.date}</p>}
+            {cert.website.href && (
+              <a
+                href={cert.website.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-primary hover:underline"
+              >
+                {t`Visit Website`}
+              </a>
+            )}
+            {cert.summary && (
+              <p
+                dangerouslySetInnerHTML={{ __html: cert.summary }}
+                className="mt-2 text-sm text-gray-600"
+              />
+            )}
           </div>
         </div>
-      ))}
-    </div>
-  );
-};
+        <div className="flex items-center gap-2">
+          <button
+            className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"
+            title={t`Edit Certification`}
+            onClick={() => handleEdit(cert)}
+          >
+            <PencilSimple className="size-4" weight="duotone" />
+          </button>
+          <button
+            className="rounded-full p-2 text-gray-500 hover:bg-red-100 hover:text-red-500"
+            title={t`Delete Certification`}
+            onClick={() => handleDelete(cert)}
+          >
+            <Trash className="size-4" weight="duotone" />
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
 export const CertificationsPage = () => {
   const { open } = useDialog("certifications");
+  const { data: certifications = [], isLoading, isError } = useCertifications();
 
-  const handleCreate = () => {
-    open("create", { id: "certifications" });
-  };
+  const handleCreate = () => open("create", { id: "certifications" });
+  const handleEdit = (cert: Certification) => open("update", { id: "certifications", item: cert });
+  const handleDelete = (cert: Certification) =>
+    open("delete", { id: "certifications", item: cert });
 
-  const handleEdit = (certification: Certification) => {
-    open("update", { id: "certifications", item: certification });
-  };
-
-  const handleDelete = (certification: Certification) => {
-    open("delete", { id: "certifications", item: certification });
-  };
-
-  const data: Certification[] = [
-    {
-      name: t`AWS Certified Solutions Architect`,
-      issuer: t`Amazon Web Services`,
-      date: "2023-11-10",
-      website: "https://aws.amazon.com/certification/",
-      summary: t`Certificação reconhecida globalmente para arquitetos de soluções que trabalham na AWS.`,
-    },
-    {
-      name: t`Google Professional Data Engineer`,
-      issuer: t`Google Cloud`,
-      date: "2024-06-20",
-      website: "https://cloud.google.com/certification/data-engineer",
-      summary: t`Certificação voltada para engenheiros de dados especializados na infraestrutura da Google Cloud.`,
-    },
-    {
-      name: t`Microsoft Certified: Azure Fundamentals`,
-      issuer: t`Microsoft`,
-      date: "2022-09-15",
-      website: "https://learn.microsoft.com/en-us/certifications/azure-fundamentals/",
-      summary: t`Certificação introdutória para profissionais que desejam aprender conceitos fundamentais do Azure.`,
-    },
-  ];
+  if (isLoading) return <p>{t`Loading certifications ...`}</p>;
+  if (isError) return <p>{t`Could not load certifications.`}</p>;
 
   return (
     <>
@@ -213,7 +170,7 @@ export const CertificationsPage = () => {
                 </Button>
               </div>
               <CertificationGridView
-                data={data}
+                data={certifications}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
               />
@@ -228,7 +185,7 @@ export const CertificationsPage = () => {
                 </Button>
               </div>
               <CertificationListView
-                data={data}
+                data={certifications}
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
               />

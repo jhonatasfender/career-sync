@@ -9,6 +9,7 @@ export class CertificationMapper {
       date: dto.date,
       issuer: dto.issuer,
       summary: dto.summary,
+      website: dto.website,
     };
   }
 
@@ -18,6 +19,7 @@ export class CertificationMapper {
       date: dto.date,
       issuer: dto.issuer,
       summary: dto.summary,
+      website: dto.website,
     };
   }
 }

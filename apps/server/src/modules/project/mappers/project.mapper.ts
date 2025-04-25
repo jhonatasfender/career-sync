@@ -7,9 +7,9 @@ export class ProjectMapper {
       userId,
       name: dto.name,
       description: dto.description,
-      highlights: dto.highlights ?? [],
       keywords: dto.keywords ?? [],
-      url: dto.url,
+      website: dto.website,
+      summary: dto.summary,
       startDate: dto.startDate,
       endDate: dto.endDate,
     };
@@ -19,9 +19,9 @@ export class ProjectMapper {
     return {
       name: dto.name,
       description: dto.description,
-      highlights: dto.highlights,
       keywords: dto.keywords,
-      url: dto.url,
+      website: dto.website,
+      summary: dto.summary,
       startDate: dto.startDate,
       endDate: dto.endDate,
     };
