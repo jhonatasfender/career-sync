@@ -1,8 +1,19 @@
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/macro";
 import { defaultLanguage, languageSchema } from "@reactive-resume/schema";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -13,20 +24,77 @@ import {
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
+import { useLanguages } from "@career-sync/client/hooks/use-languages";
+import type { LanguageModel } from "@career-sync/client/services/languages/languages";
+import { useDialog } from "@career-sync/client/stores/dialog";
+
 import { SectionDialog } from "../sections/shared/section-dialog";
 
 const formSchema = languageSchema;
-
 type FormValues = z.infer<typeof formSchema>;
 
 export const LanguagesDialog = () => {
+  const { mode = "create", payload, close } = useDialog<FormValues>("languages");
+  const { create, update, remove } = useLanguages();
+
   const form = useForm<FormValues>({
-    defaultValues: defaultLanguage,
+    defaultValues: mode === "update" && payload.item ? payload.item : defaultLanguage,
     resolver: zodResolver(formSchema),
   });
 
+  const onSubmit = (values: FormValues) => {
+    const payloadForApi: Omit<LanguageModel, "id"> = {
+      name: values.name,
+      description: values.description || undefined,
+      level: values.level,
+    };
+
+    if (mode === "create") {
+      create.mutate(payloadForApi, { onSuccess: close });
+    } else {
+      update.mutate(
+        { id: (payload.item as FormValues).id, payload: payloadForApi },
+        { onSuccess: close },
+      );
+    }
+  };
+
+  if (mode === "delete") {
+    return (
+      <AlertDialog open onOpenChange={close}>
+        <AlertDialogContent className="z-50">
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t`Delete Language?`}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t`Are you sure you want to delete this language? This action cannot be undone.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
+            <AlertDialogAction
+              variant="error"
+              onClick={() => {
+                if (payload.item?.id) {
+                  remove.mutate(payload.item.id, { onSuccess: close });
+                }
+              }}
+            >
+              {t`Delete`}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+  }
+
   return (
-    <SectionDialog<FormValues> id="languages" form={form} defaultValues={defaultLanguage}>
+    <SectionDialog<FormValues>
+      id="languages"
+      form={form}
+      defaultValues={defaultLanguage}
+      onSubmit={onSubmit}
+    >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField
           name="name"
@@ -69,11 +137,8 @@ export const LanguagesDialog = () => {
                     min={0}
                     max={5}
                     value={[field.value]}
-                    onValueChange={(value) => {
-                      field.onChange(value[0]);
-                    }}
+                    onValueChange={(value) => field.onChange(value[0])}
                   />
-
                   {field.value > 0 ? (
                     <span className="text-base font-bold">{field.value}</span>
                   ) : (
@@ -81,6 +146,9 @@ export const LanguagesDialog = () => {
                   )}
                 </div>
               </FormControl>
+              <FormDescription>
+                {t`0 = oculto, 1 = iniciante, 5 = fluente. Ajuste livremente.`}
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

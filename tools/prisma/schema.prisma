@@ -83,17 +83,18 @@ model Statistics {
 }
 
 model Basics {
-  id       String  @id @default(cuid())
-  name     String
-  label    String?
-  image    String?
-  email    String?
-  phone    String?
-  url      String?
-  summary  String?
-  location String?
-  userId   String  @unique
-  user     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String  @id @default(cuid())
+  name         String
+  image        String?
+  email        String?
+  phone        String?
+  url          String?
+  summary      String?
+  location     String?
+  userId       String  @unique
+  customFields Json?
+  headline     String?
+  user         User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Summary {
@@ -142,19 +143,19 @@ model Education {
 model Skill {
   id          String   @id @default(cuid())
   name        String
-  level       Int?
   description String?
   keywords    String[] @default([])
   userId      String
+  level       Int?
   user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Language {
   id          String  @id @default(cuid())
   name        String
-  level       String?
   description String?
   userId      String
+  level       Int?
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -165,6 +166,7 @@ model Award {
   awarder String?
   summary String?
   userId  String
+  website String?
   user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

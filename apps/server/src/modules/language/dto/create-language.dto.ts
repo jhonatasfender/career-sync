@@ -1,12 +1,14 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsInt, IsOptional, IsString, Max, Min } from "class-validator";
 
 export class CreateLanguageDto {
   @IsString()
   public name: string;
 
   @IsOptional()
-  @IsString()
-  public level?: string;
+  @IsInt()
+  @Min(0)
+  @Max(5)
+  public level?: number;
 
   @IsOptional()
   @IsString()
