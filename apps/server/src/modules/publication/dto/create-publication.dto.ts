@@ -11,7 +11,7 @@ export class CreatePublicationDto {
   @IsOptional()
   @Transform(({ value }) => (value ? new Date(value) : null))
   @IsDate()
-  public releaseDate?: Date;
+  public date?: Date;
 
   @IsOptional()
   @IsUrl()

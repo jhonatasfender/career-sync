@@ -155,7 +155,7 @@ export class ReactiveResumeV3Parser implements Parser<Json, ReactiveResumeV3> {
           keywords: Array.isArray(project.keywords)
             ? (project.keywords.filter(Boolean) as string[])
             : [],
-          url: { ...defaultProject.url, href: isUrl(project.url) ? project.url! : "" },
+          url: { ...defaultProject.website, href: isUrl(project.url) ? project.url! : "" },
         });
       }
     }
@@ -271,7 +271,7 @@ export class ReactiveResumeV3Parser implements Parser<Json, ReactiveResumeV3> {
           summary: certification.summary ?? "",
           date: certification.date ?? "",
           url: {
-            ...defaultCertification.url,
+            ...defaultCertification.website,
             href: isUrl(certification.url) ? certification.url! : "",
           },
         });

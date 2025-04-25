@@ -2,7 +2,6 @@ import { z } from "zod";
 
 import { defaultItem, defaultUrl, itemSchema, urlSchema } from "../shared";
 
-// Schema
 export const publicationSchema = itemSchema.extend({
   name: z.string().min(1),
   publisher: z.string(),
@@ -11,10 +10,8 @@ export const publicationSchema = itemSchema.extend({
   url: urlSchema,
 });
 
-// Type
 export type Publication = z.infer<typeof publicationSchema>;
 
-// Defaults
 export const defaultPublication: Publication = {
   ...defaultItem,
   name: "",

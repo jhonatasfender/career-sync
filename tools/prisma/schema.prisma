@@ -206,7 +206,7 @@ model Publication {
   id          String    @id @default(cuid())
   name        String
   publisher   String
-  releaseDate DateTime?
+  date        DateTime?
   url         String?
   summary     String?
   userId      String

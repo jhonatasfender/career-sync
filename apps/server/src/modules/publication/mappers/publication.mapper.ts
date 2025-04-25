@@ -7,7 +7,7 @@ export class PublicationMapper {
       userId,
       name: dto.name,
       publisher: dto.publisher,
-      releaseDate: dto.releaseDate,
+      date: dto.date,
       url: dto.url,
       summary: dto.summary,
     };
@@ -17,7 +17,7 @@ export class PublicationMapper {
     return {
       name: dto.name,
       publisher: dto.publisher,
-      releaseDate: dto.releaseDate,
+      date: dto.date,
       url: dto.url,
       summary: dto.summary,
     };
