@@ -45,15 +45,11 @@ import { useDialog } from "@/client/stores/dialog";
 // - "duplicate" mode is used to display the backup codes after initial verification.
 // - "delete" mode is used to disable 2FA.
 
-const formSchema = z.object({
-  uri: z.literal("").or(z.string().optional()),
-  code: z
-    .literal("")
-    .or(z.string().regex(/^\d{6}$/, i18n._(msg`Code must be exactly 6 digits long.`))),
-  backupCodes: z.array(z.string()),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+type FormValues = {
+  uri: string;
+  code: string;
+  backupCodes: string[];
+};
 
 export const TwoFactorDialog = () => {
   const { toast } = useToast();
@@ -69,6 +65,12 @@ export const TwoFactorDialog = () => {
   const { disable2FA, loading: disableLoading } = useDisable2FA();
 
   const loading = setupLoading || enableLoading || disableLoading;
+
+  const formSchema = z.object({
+    uri: z.string(),
+    code: z.string().regex(/^\d{6}$/, i18n._(msg`Code must be exactly 6 digits long.`)),
+    backupCodes: z.array(z.string()),
+  });
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -198,9 +200,16 @@ export const TwoFactorDialog = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t`Code`}</FormLabel>
+                    <FormLabel>{t`Verification Code`}</FormLabel>
                     <FormControl>
-                      <Input type="number" placeholder="123456" {...field} />
+                      <Input
+                        type="text"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        maxLength={6}
+                        placeholder="000000"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -209,44 +218,33 @@ export const TwoFactorDialog = () => {
             )}
 
             {isDuplicate && (
-              <>
-                <FormField
-                  name="backupCodes"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="mx-auto grid max-w-xs grid-cols-2 rounded-sm bg-secondary/50 p-4 text-center font-mono leading-loose">
-                        {field.value.map((code) => (
-                          <p key={code}>{code}</p>
+              <FormField
+                name="backupCodes"
+                control={form.control}
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t`Backup Codes`}</FormLabel>
+                    <FormControl>
+                      <div className="space-y-2">
+                        {field.value.map((code, index) => (
+                          <Input key={index} readOnly value={code} className="font-mono" />
                         ))}
                       </div>
-                    </FormItem>
-                  )}
-                />
-
-                <p className="text-xs leading-relaxed">
-                  {t`Please store your backup codes in a secure location. You can use one of these one-time use codes to login in case you lose access to your authenticator app.`}
-                </p>
-              </>
+                    </FormControl>
+                    <FormDescription>
+                      {t`These backup codes can be used to access your account if you lose access to your authenticator app. Store them in a secure place.`}
+                    </FormDescription>
+                  </FormItem>
+                )}
+              />
             )}
 
             <DialogFooter>
-              {isCreate && <Button disabled={loading}>{t`Continue`}</Button>}
-              {isUpdate && (
-                <>
-                  <Button
-                    variant="ghost"
-                    onClick={() => {
-                      open("create");
-                    }}
-                  >
-                    {t`Back`}
-                  </Button>
-
-                  <Button disabled={loading}>{t`Continue`}</Button>
-                </>
-              )}
-              {isDuplicate && <Button disabled={loading}>{t`Close`}</Button>}
+              <Button type="submit" disabled={loading}>
+                {isCreate && t`Continue`}
+                {isUpdate && t`Verify`}
+                {isDuplicate && t`Done`}
+              </Button>
             </DialogFooter>
           </form>
         </Form>

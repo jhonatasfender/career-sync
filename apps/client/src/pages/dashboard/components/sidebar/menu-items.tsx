@@ -33,7 +33,7 @@ export type MenuCategory =
     }
   | MenuItem;
 
-const getMenuCategories = (): MenuCategory[] => [
+export const getMenuCategories = (): MenuCategory[] => [
   {
     path: "/dashboard/resumes",
     name: t`Home`,
@@ -140,5 +140,3 @@ const getMenuCategories = (): MenuCategory[] => [
     ],
   },
 ];
-
-export const menuCategories = getMenuCategories();

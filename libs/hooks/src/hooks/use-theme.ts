@@ -15,7 +15,16 @@ type UseThemeOutput = {
 export const useTheme = (): UseThemeOutput => {
   const isDarkOS = useMediaQuery(COLOR_SCHEME_QUERY);
   const [isDarkMode, setDarkMode] = useState<boolean>(isDarkOS);
-  const [theme, setTheme] = useLocalStorage<Theme>("theme", "system");
+  const [theme, setTheme] = useLocalStorage<Theme>("theme", "system", {
+    serializer: (value) => JSON.stringify(value),
+    deserializer: (value) => {
+      try {
+        return JSON.parse(value) as Theme;
+      } catch {
+        return "system";
+      }
+    },
+  });
 
   useEffect(() => {
     if (theme === "system") setDarkMode((prev) => !prev);

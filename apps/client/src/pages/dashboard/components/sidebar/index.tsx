@@ -8,7 +8,7 @@ import { UserAvatar } from "@career-sync/client/components/user-avatar";
 import { UserOptions } from "@career-sync/client/components/user-options";
 import { useUser } from "@career-sync/client/services/user";
 
-import { menuCategories } from "./menu-items";
+import { getMenuCategories } from "./menu-items";
 import { SidebarCategory } from "./sidebar-category";
 
 type Props = {
@@ -18,6 +18,7 @@ type Props = {
 export const Sidebar = ({ setOpen }: Props) => {
   const { user } = useUser();
   const navigate = useNavigate();
+  const menuCategories = getMenuCategories();
 
   useKeyboardShortcut(["shift", "r"], () => {
     void navigate("/dashboard/resumes");
