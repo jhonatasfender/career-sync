@@ -1,21 +1,23 @@
 import { Injectable } from "@nestjs/common";
-import { HealthIndicator, HealthIndicatorResult } from "@nestjs/terminus";
+import { HealthIndicatorService } from "@nestjs/terminus";
 
 import { PrinterService } from "../printer/printer.service";
 
 @Injectable()
-export class BrowserHealthIndicator extends HealthIndicator {
-  constructor(private readonly printerService: PrinterService) {
-    super();
-  }
+export class BrowserHealthIndicator {
+  constructor(
+    private readonly printerService: PrinterService,
+    private readonly healthIndicatorService: HealthIndicatorService,
+  ) {}
 
-  public async isHealthy(): Promise<HealthIndicatorResult> {
+  public async isHealthy() {
+    const indicator = this.healthIndicatorService.check("browser");
+
     try {
       const version = await this.printerService.getVersion();
-
-      return this.getStatus("browser", true, { version });
+      return indicator.up({ version });
     } catch (error) {
-      return this.getStatus("browser", false, { message: error.message });
+      return indicator.down({ message: error.message });
     }
   }
 }

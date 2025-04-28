@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { PencilSimple, Plus, Trash, Trophy } from "@phosphor-icons/react";
 import type { Award } from "@reactive-resume/schema";
 import { Button } from "@reactive-resume/ui";

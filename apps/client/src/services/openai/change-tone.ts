@@ -1,6 +1,6 @@
 /* eslint-disable lingui/text-restrictions */
 
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 
 import { openai } from "./client";
 

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 // dialogs/ProfilesDialog.tsx
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react";
 import { defaultProfile, profileSchema } from "@reactive-resume/schema";
 import {
   AlertDialog,

@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { i18n } from "@lingui/core";
-import { msg, t } from "@lingui/macro";
+import { msg, t } from "@lingui/core/macro";
 import { QrCode } from "@phosphor-icons/react";
 import {
   Alert,

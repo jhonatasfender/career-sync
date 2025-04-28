@@ -7,7 +7,7 @@ import { ResumeController } from "./resume.controller";
 import { ResumeService } from "./resume.service";
 
 @Module({
-  imports: [AuthModule, PrinterModule, StorageModule],
+  imports: [AuthModule.register(), PrinterModule, StorageModule],
   controllers: [ResumeController],
   providers: [ResumeService],
   exports: [ResumeService],

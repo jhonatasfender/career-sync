@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Button, RichInput } from "@reactive-resume/ui";
 import { motion } from "framer-motion";

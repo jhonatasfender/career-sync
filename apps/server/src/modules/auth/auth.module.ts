@@ -1,4 +1,4 @@
-import { DynamicModule, Module } from "@nestjs/common";
+import { DynamicModule, forwardRef, Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
@@ -23,15 +23,17 @@ export class AuthModule {
   public static register(): DynamicModule {
     return {
       module: AuthModule,
-      imports: [PassportModule, JwtModule, UserModule, MailModule],
+      imports: [PassportModule, JwtModule, forwardRef(() => UserModule), MailModule],
       controllers: [AuthController],
       providers: [
-        AuthService,
+        {
+          provide: AuthService,
+          useClass: AuthService,
+        },
         LocalStrategy,
         JwtStrategy,
         RefreshStrategy,
         TwoFactorStrategy,
-
         // OAuth2 Strategies
         {
           provide: GitHubStrategy,
@@ -48,7 +50,6 @@ export class AuthModule {
             }
           },
         },
-
         {
           provide: GoogleStrategy,
           inject: [ConfigService, UserService],
@@ -64,7 +65,6 @@ export class AuthModule {
             }
           },
         },
-
         {
           provide: OpenIDStrategy,
           inject: [ConfigService, UserService],
@@ -97,6 +97,7 @@ export class AuthModule {
         },
       ],
       exports: [AuthService],
+      global: true
     };
   }
 }

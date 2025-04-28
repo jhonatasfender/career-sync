@@ -1,6 +1,5 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Aperture, Trash, UploadSimple } from "@phosphor-icons/react";
-import { defaultBasics } from "@reactive-resume/schema";
 import {
   Avatar,
   AvatarImage,
@@ -12,6 +11,7 @@ import {
   PopoverTrigger,
 } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
+import type { AxiosResponse } from "axios";
 import { motion } from "framer-motion";
 import { useMemo, useRef } from "react";
 import { z } from "zod";
@@ -26,14 +26,14 @@ export const PictureSection = () => {
   const { uploadImage } = useUploadImage();
 
   const setValue = useResumeStore((state) => state.setValue);
-  const picture = useResumeStore((s) => s.resume.data.basics?.picture ?? defaultBasics.picture);
+  const picture = useResumeStore((s) => s.resume.data.basics.picture);
 
   const isValidUrl = useMemo(() => z.string().url().safeParse(picture.url).success, [picture.url]);
 
   const onSelectImage = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      const response = await uploadImage(file);
+      const response = (await uploadImage(file)) as AxiosResponse<string>;
       const url = response.data;
 
       setValue("basics.picture.url", url);

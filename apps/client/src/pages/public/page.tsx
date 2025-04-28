@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { CircleNotch, FilePdf } from "@phosphor-icons/react";
 import type { ResumeDto } from "@reactive-resume/dto";
 import { Button } from "@reactive-resume/ui";

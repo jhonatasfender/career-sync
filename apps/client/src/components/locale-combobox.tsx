@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { CaretDown, Check } from "@phosphor-icons/react";
 import {
   Button,

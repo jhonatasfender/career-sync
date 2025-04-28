@@ -1,4 +1,4 @@
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { createId } from "@paralleldrive/cuid2";
 import { DotsSixVertical, Envelope, Plus, X } from "@phosphor-icons/react";
 import type { CustomField as ICustomField } from "@reactive-resume/schema";
@@ -67,18 +67,16 @@ export const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => 
             />
 
             <p className="text-xs opacity-80">
-              <Trans>
-                Visit{" "}
-                <a
-                  href="https://phosphoricons.com/"
-                  target="_blank"
-                  className="underline"
-                  rel="noopener noreferrer nofollow"
-                >
-                  Phosphor Icons
-                </a>{" "}
-                for a list of available icons
-              </Trans>
+              {t`Visit `}
+              <a
+                href="https://phosphoricons.com/"
+                target="_blank"
+                className="underline"
+                rel="noopener noreferrer nofollow"
+              >
+                {t`Phosphor Icons`}
+              </a>
+              {t` for a list of available icons`}
             </p>
           </PopoverContent>
         </Popover>
@@ -122,7 +120,7 @@ type Props = {
 
 export const CustomFieldsSection = ({ className }: Props) => {
   const setValue = useResumeStore((state) => state.setValue);
-  const customFields = useResumeStore((state) => state.resume.data.basics?.customFields ?? []);
+  const customFields = useResumeStore((state) => state.resume.data.basics.customFields);
 
   const onAddCustomField = () => {
     setValue("basics.customFields", [

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { X } from "@phosphor-icons/react";
 import { defaultSkill, skillSchema } from "@reactive-resume/schema";
 import {

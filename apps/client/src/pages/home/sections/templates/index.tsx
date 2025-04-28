@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { templatesList } from "@reactive-resume/utils";
 import { motion } from "framer-motion";
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { defaultExperience, experienceSchema } from "@reactive-resume/schema";
 import {
   AlertDialog,

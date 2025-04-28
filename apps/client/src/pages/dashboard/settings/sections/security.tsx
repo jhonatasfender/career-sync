@@ -1,5 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t, Trans } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react";
 import {
   Accordion,
   AccordionContent,
@@ -91,7 +92,7 @@ export const SecuritySettings = () => {
                 <FormField
                   name="newPassword"
                   control={form.control}
-                  render={({ field, _fieldState }) => (
+                  render={({ field }) => (
                     <FormItem>
                       <FormLabel>{t`New Password`}</FormLabel>
                       <FormControl>

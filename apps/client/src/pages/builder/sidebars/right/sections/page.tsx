@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-condition */
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import {
   Label,
   Select,

@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Check, UploadSimple, Warning } from "@phosphor-icons/react";
 import type { UpdateUserDto } from "@reactive-resume/dto";
 import { updateUserSchema } from "@reactive-resume/dto";

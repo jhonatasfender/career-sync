@@ -1,5 +1,5 @@
-import { t } from "@lingui/macro";
-import { basicsSchema, defaultBasics } from "@reactive-resume/schema";
+import { t } from "@lingui/core/macro";
+import { basicsSchema } from "@reactive-resume/schema";
 import { Input, Label } from "@reactive-resume/ui";
 
 import { useResumeStore } from "@career-sync/client/stores/resume";
@@ -11,7 +11,7 @@ import { URLInput } from "./shared/url-input";
 
 export const BasicsSection = () => {
   const setValue = useResumeStore((state) => state.setValue);
-  const basics = useResumeStore((state) => state.resume.data.basics ?? defaultBasics);
+  const basics = useResumeStore((state) => state.resume.data.basics);
 
   return (
     <section id="basics" className="grid gap-y-6">

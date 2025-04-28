@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Info } from "@phosphor-icons/react";
 import { Alert, AlertDescription, AlertTitle } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";

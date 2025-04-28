@@ -25,8 +25,8 @@ import { UserService } from "./user.service";
 @Controller("user")
 export class UserController {
   constructor(
-    private readonly authService: AuthService,
     private readonly userService: UserService,
+    private readonly authService: AuthService,
   ) {}
 
   @Get("me")

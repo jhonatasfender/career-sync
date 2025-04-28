@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Fingerprint, GithubLogo, GoogleLogo } from "@phosphor-icons/react";
 import { Button } from "@reactive-resume/ui";
 

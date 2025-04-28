@@ -150,8 +150,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("bold")}
-          disabled={!editor.can().chain().toggleBold().run()}
-          onPressedChange={() => editor.chain().focus().toggleBold().run()}
+          disabled={!editor.can().chain().focus().toggleMark("bold").run()}
+          onPressedChange={() => editor.chain().focus().toggleMark("bold").run()}
         >
           <TextB />
         </Toggle>
@@ -162,8 +162,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("italic")}
-          disabled={!editor.can().chain().focus().toggleItalic().run()}
-          onPressedChange={() => editor.chain().focus().toggleItalic().run()}
+          disabled={!editor.can().chain().focus().toggleMark("italic").run()}
+          onPressedChange={() => editor.chain().focus().toggleMark("italic").run()}
         >
           <TextItalic />
         </Toggle>
@@ -174,8 +174,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("strike")}
-          disabled={!editor.can().chain().focus().toggleStrike().run()}
-          onPressedChange={() => editor.chain().focus().toggleStrike().run()}
+          disabled={!editor.can().chain().focus().toggleMark("strike").run()}
+          onPressedChange={() => editor.chain().focus().toggleMark("strike").run()}
         >
           <TextStrikethrough />
         </Toggle>
@@ -186,8 +186,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("underline")}
-          disabled={!editor.can().chain().focus().toggleUnderline().run()}
-          onPressedChange={() => editor.chain().focus().toggleUnderline().run()}
+          disabled={!editor.can().chain().focus().toggleMark("underline").run()}
+          onPressedChange={() => editor.chain().focus().toggleMark("underline").run()}
         >
           <TextAUnderline />
         </Toggle>
@@ -198,8 +198,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("highlight")}
-          disabled={!editor.can().chain().focus().toggleHighlight().run()}
-          onPressedChange={() => editor.chain().focus().toggleHighlight().run()}
+          disabled={!editor.can().chain().focus().toggleMark("highlight").run()}
+          onPressedChange={() => editor.chain().focus().toggleMark("highlight").run()}
         >
           <HighlighterCircle />
         </Toggle>
@@ -216,8 +216,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("code")}
-          disabled={!editor.can().chain().focus().toggleCode().run()}
-          onPressedChange={() => editor.chain().focus().toggleCode().run()}
+          disabled={!editor.can().chain().focus().toggleMark("code").run()}
+          onPressedChange={() => editor.chain().focus().toggleMark("code").run()}
         >
           <CodeIcon />
         </Toggle>
@@ -228,8 +228,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("codeBlock")}
-          disabled={!editor.can().chain().focus().toggleCodeBlock().run()}
-          onPressedChange={() => editor.chain().focus().toggleCodeBlock().run()}
+          disabled={!editor.can().chain().focus().toggleMark("codeBlock").run()}
+          onPressedChange={() => editor.chain().focus().toggleMark("codeBlock").run()}
         >
           <CodeBlockIcon />
         </Toggle>
@@ -240,8 +240,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("heading", { level: 1 })}
-          disabled={!editor.can().chain().focus().toggleHeading({ level: 1 }).run()}
-          onPressedChange={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+          disabled={!editor.can().chain().focus().setNode("heading", { level: 1 }).run()}
+          onPressedChange={() => editor.chain().focus().setNode("heading", { level: 1 }).run()}
         >
           <TextHOne />
         </Toggle>
@@ -252,8 +252,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("heading", { level: 2 })}
-          disabled={!editor.can().chain().focus().toggleHeading({ level: 2 }).run()}
-          onPressedChange={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          disabled={!editor.can().chain().focus().setNode("heading", { level: 2 }).run()}
+          onPressedChange={() => editor.chain().focus().setNode("heading", { level: 2 }).run()}
         >
           <TextHTwo />
         </Toggle>
@@ -264,8 +264,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("heading", { level: 3 })}
-          disabled={!editor.can().chain().focus().toggleHeading({ level: 3 }).run()}
-          onPressedChange={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          disabled={!editor.can().chain().focus().setNode("heading", { level: 3 }).run()}
+          onPressedChange={() => editor.chain().focus().setNode("heading", { level: 3 }).run()}
         >
           <TextHThree />
         </Toggle>
@@ -276,7 +276,7 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("paragraph")}
-          onPressedChange={() => editor.chain().focus().setParagraph().run()}
+          onPressedChange={() => editor.chain().focus().setNode("paragraph").run()}
         >
           <ParagraphIcon />
         </Toggle>
@@ -335,8 +335,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("bulletList")}
-          disabled={!editor.can().chain().focus().toggleBulletList().run()}
-          onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
+          disabled={!editor.can().chain().focus().setNode("bulletList").run()}
+          onPressedChange={() => editor.chain().focus().setNode("bulletList").run()}
         >
           <ListBullets />
         </Toggle>
@@ -347,8 +347,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("orderedList")}
-          disabled={!editor.can().chain().focus().toggleOrderedList().run()}
-          onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+          disabled={!editor.can().chain().focus().setNode("orderedList").run()}
+          onPressedChange={() => editor.chain().focus().setNode("orderedList").run()}
         >
           <ListNumbers />
         </Toggle>
@@ -399,8 +399,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           variant="ghost"
           className="px-2"
-          disabled={!editor.can().chain().focus().setHardBreak().run()}
-          onClick={() => editor.chain().focus().setHardBreak().run()}
+          disabled={!editor.can().chain().focus().setNode("hardBreak").run()}
+          onClick={() => editor.chain().focus().setNode("hardBreak").run()}
         >
           <KeyReturn />
         </Button>
@@ -412,8 +412,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           variant="ghost"
           className="px-2"
-          disabled={!editor.can().chain().focus().setHorizontalRule().run()}
-          onClick={() => editor.chain().focus().setHorizontalRule().run()}
+          disabled={!editor.can().chain().focus().setNode("horizontalRule").run()}
+          onClick={() => editor.chain().focus().setNode("horizontalRule").run()}
         >
           <Minus />
         </Button>
@@ -425,8 +425,10 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           variant="ghost"
           className="px-2"
-          disabled={!editor.can().undo()}
-          onClick={() => editor.chain().focus().undo().run()}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          disabled={!(editor.can() as any).undo()}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onClick={() => (editor.chain().focus() as any).undo().run()}
         >
           <ArrowCounterClockwise />
         </Button>
@@ -438,8 +440,10 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           type="button"
           variant="ghost"
           className="px-2"
-          disabled={!editor.can().redo()}
-          onClick={() => editor.chain().focus().redo().run()}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          disabled={!(editor.can() as any).redo()}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          onClick={() => (editor.chain().focus() as any).redo().run()}
         >
           <ArrowClockwise />
         </Button>
@@ -464,7 +468,17 @@ export const RichInput = forwardRef<Editor, RichInputProps>(
   ) => {
     const editor = useEditor({
       extensions: [
-        StarterKit,
+        StarterKit.configure({
+          heading: {
+            levels: [1, 2, 3],
+          },
+          bulletList: {},
+          orderedList: {},
+          hardBreak: {},
+          horizontalRule: {},
+          history: {},
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        }) as any,
         Image,
         Underline,
         Highlight,

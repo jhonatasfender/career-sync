@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { twoFactorBackupSchema } from "@reactive-resume/dto";
 import { usePasswordToggle } from "@reactive-resume/hooks";

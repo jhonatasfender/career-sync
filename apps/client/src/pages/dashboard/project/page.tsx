@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-confusing-void-expression */
 
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Calendar, Code, Globe, PencilSimple, Plus, Tag, Trash } from "@phosphor-icons/react";
 import { Button } from "@reactive-resume/ui";
 import { Helmet } from "react-helmet-async";

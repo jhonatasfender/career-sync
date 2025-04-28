@@ -1,4 +1,4 @@
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import {
   FacebookLogo,
   GithubLogo,
@@ -186,9 +186,15 @@ export const ProfilePage = () => {
   const { open } = useDialog("profiles");
   const { data: profiles = [], isLoading, isError } = useProfiles();
 
-  const handleCreate = () => open("create", { id: "profiles" });
-  const handleEdit = (profile: Profile) => open("update", { id: "profiles", item: profile });
-  const handleDelete = (profile: Profile) => open("delete", { id: "profiles", item: profile });
+  const handleCreate = () => {
+    open("create", { id: "profiles" });
+  };
+  const handleEdit = (profile: Profile) => {
+    open("update", { id: "profiles", item: profile });
+  };
+  const handleDelete = (profile: Profile) => {
+    open("delete", { id: "profiles", item: profile });
+  };
 
   const data: Profile[] = profiles.map((p) => ({
     ...p,
