@@ -2,7 +2,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/core/macro";
 import { CaretDown, Flask, MagicWand, Plus } from "@phosphor-icons/react";
 import type { ResumeDto } from "@reactive-resume/dto";
-import { createResumeSchema } from "@reactive-resume/dto";
 import { idSchema, sampleResume } from "@reactive-resume/schema";
 import {
   AlertDialog,
@@ -44,7 +43,12 @@ import { useCreateResume, useDeleteResume, useUpdateResume } from "@/client/serv
 import { useImportResume } from "@/client/services/resume/import";
 import { useDialog } from "@/client/stores/dialog";
 
-const formSchema = createResumeSchema.extend({ id: idSchema.optional(), slug: z.string() });
+const formSchema = z.object({
+  id: idSchema.optional(),
+  title: z.string(),
+  slug: z.string(),
+  visibility: z.enum(["public", "private"]),
+});
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -65,7 +69,7 @@ export const ResumeDialog = () => {
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { title: "", slug: "" },
+    defaultValues: { title: "", slug: "", visibility: "private" },
   });
 
   useEffect(() => {
@@ -78,47 +82,70 @@ export const ResumeDialog = () => {
   }, [form.watch("title")]);
 
   const onSubmit = async (values: FormValues) => {
-    if (isCreate) {
-      await createResume({ slug: values.slug, title: values.title, visibility: "private" });
+    try {
+      if (isCreate) {
+        await createResume({
+          slug: values.slug,
+          title: values.title,
+          visibility: values.visibility,
+        });
+      }
+
+      if (isUpdate) {
+        if (!payload.item?.id) return;
+
+        await updateResume({
+          id: payload.item.id,
+          title: values.title,
+          slug: values.slug,
+          visibility: values.visibility,
+        });
+      }
+
+      if (isDuplicate) {
+        if (!payload.item?.id) return;
+
+        await duplicateResume({
+          title: values.title,
+          slug: values.slug,
+          data: payload.item.data,
+        });
+      }
+
+      if (isDelete) {
+        if (!payload.item?.id) return;
+
+        await deleteResume({ id: payload.item.id });
+      }
+
+      close();
+    } catch {
+      // Error is already handled by the service with toast
     }
-
-    if (isUpdate) {
-      if (!payload.item?.id) return;
-
-      await updateResume({
-        id: payload.item.id,
-        title: values.title,
-        slug: values.slug,
-      });
-    }
-
-    if (isDuplicate) {
-      if (!payload.item?.id) return;
-
-      await duplicateResume({
-        title: values.title,
-        slug: values.slug,
-        data: payload.item.data,
-      });
-    }
-
-    if (isDelete) {
-      if (!payload.item?.id) return;
-
-      await deleteResume({ id: payload.item.id });
-    }
-
-    close();
   };
 
   const onReset = () => {
-    if (isCreate) form.reset({ title: "", slug: "" });
+    if (isCreate) form.reset({ title: "", slug: "", visibility: "private" });
     if (isUpdate)
-      form.reset({ id: payload.item?.id, title: payload.item?.title, slug: payload.item?.slug });
+      form.reset({
+        id: payload.item?.id,
+        title: payload.item?.title,
+        slug: payload.item?.slug,
+        visibility: payload.item?.visibility ?? "private",
+      });
     if (isDuplicate)
-      form.reset({ title: `${payload.item?.title} (Copy)`, slug: `${payload.item?.slug}-copy` });
+      form.reset({
+        title: `${payload.item?.title} (Copy)`,
+        slug: `${payload.item?.slug}-copy`,
+        visibility: "private",
+      });
     if (isDelete)
-      form.reset({ id: payload.item?.id, title: payload.item?.title, slug: payload.item?.slug });
+      form.reset({
+        id: payload.item?.id,
+        title: payload.item?.title,
+        slug: payload.item?.slug,
+        visibility: payload.item?.visibility ?? "private",
+      });
   };
 
   const onGenerateRandomName = () => {

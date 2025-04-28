@@ -28,6 +28,7 @@ import {
 } from "@phosphor-icons/react";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { cn } from "@reactive-resume/utils";
+import CodeBlock from "@tiptap/extension-code-block";
 import { Highlight } from "@tiptap/extension-highlight";
 import { Image } from "@tiptap/extension-image";
 import { Link } from "@tiptap/extension-link";
@@ -228,8 +229,8 @@ const Toolbar = ({ editor }: { editor: Editor }) => {
           size="sm"
           type="button"
           pressed={editor.isActive("codeBlock")}
-          disabled={!editor.can().chain().focus().toggleMark("codeBlock").run()}
-          onPressedChange={() => editor.chain().focus().toggleMark("codeBlock").run()}
+          disabled={!editor.can().chain().focus().setNode("codeBlock").run()}
+          onPressedChange={() => editor.chain().focus().setNode("codeBlock").run()}
         >
           <CodeBlockIcon />
         </Toggle>
@@ -484,6 +485,7 @@ export const RichInput = forwardRef<Editor, RichInputProps>(
         Highlight,
         TextAlign.configure({ types: ["heading", "paragraph"] }),
         Link.extend({ inclusive: false }).configure({ openOnClick: false }),
+        CodeBlock,
       ],
       editorProps: {
         attributes: {

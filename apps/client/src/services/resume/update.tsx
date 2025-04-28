@@ -1,40 +1,44 @@
+import { t } from "@lingui/core/macro";
 import type { ResumeDto, UpdateResumeDto } from "@reactive-resume/dto";
+import { ErrorMessage } from "@reactive-resume/utils";
 import { useMutation } from "@tanstack/react-query";
 import type { AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import debounce from "lodash.debounce";
 
+import { useToast } from "@career-sync/client/hooks/use-toast";
 import { axios } from "@career-sync/client/libs/axios";
-import { queryClient } from "@career-sync/client/libs/query-client";
 
 export const updateResume = async (data: UpdateResumeDto) => {
-  const response = await axios.patch<ResumeDto, AxiosResponse<ResumeDto>, UpdateResumeDto>(
-    `/resume/${data.id}`,
-    data,
-  );
+  try {
+    const response = await axios.patch<ResumeDto, AxiosResponse<ResumeDto>, UpdateResumeDto>(
+      `/resume/${data.id}`,
+      data,
+    );
 
-  queryClient.setQueryData<ResumeDto>(["resume", { id: response.data.id }], response.data);
-
-  queryClient.setQueryData<ResumeDto[]>(["resumes"], (cache) => {
-    if (!cache) return [response.data];
-    return cache.map((resume) => {
-      if (resume.id === response.data.id) return response.data;
-      return resume;
-    });
-  });
-
-  return response.data;
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      const message = error.response?.data?.message || ErrorMessage.ResumeNotFound;
+      throw new Error(message);
+    }
+    throw new Error(ErrorMessage.ResumeNotFound);
+  }
 };
 
 export const debouncedUpdateResume = debounce(updateResume, 500);
 
 export const useUpdateResume = () => {
-  const {
-    error,
-    isPending: loading,
-    mutateAsync: updateResumeFn,
-  } = useMutation({
-    mutationFn: updateResume,
-  });
+  const { toast } = useToast();
 
-  return { updateResume: updateResumeFn, loading, error };
+  return useMutation({
+    mutationFn: updateResume,
+    onError: (error: Error) => {
+      toast({
+        variant: "error",
+        title: t`Error`,
+        description: error.message,
+      });
+    },
+  });
 };

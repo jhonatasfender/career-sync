@@ -1,12 +1,6 @@
 import { PrinterService } from "@career-sync/server/printer/printer.service";
 import { StorageService } from "@career-sync/server/storage/storage.service";
-import {
-  BadRequestException,
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  NotFoundException,
-} from "@nestjs/common";
+import { BadRequestException, Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { CreateResumeDto, ImportResumeDto, ResumeDto, UpdateResumeDto } from "@reactive-resume/dto";
 import { defaultResumeData, ResumeData } from "@reactive-resume/schema";
 import type { DeepPartial } from "@reactive-resume/utils";
@@ -98,12 +92,18 @@ export class ResumeService {
 
   public async update(userId: string, id: string, updateResumeDto: UpdateResumeDto) {
     try {
-      const { locked } = await this.prisma.resume.findUniqueOrThrow({
-        where: { id },
+      const resume = await this.prisma.resume.findUnique({
+        where: { userId_id: { userId, id } },
         select: { locked: true },
       });
 
-      if (locked) throw new BadRequestException(ErrorMessage.ResumeLocked);
+      if (!resume) {
+        throw new NotFoundException(ErrorMessage.ResumeNotFound);
+      }
+
+      if (resume.locked) {
+        throw new BadRequestException(ErrorMessage.ResumeLocked);
+      }
 
       return await this.prisma.resume.update({
         data: {
@@ -114,10 +114,11 @@ export class ResumeService {
         where: { userId_id: { userId, id } },
       });
     } catch (error) {
-      if (error.code === "P2025") {
-        Logger.error(error);
-        throw new InternalServerErrorException(error);
+      if (error instanceof NotFoundException || error instanceof BadRequestException) {
+        throw error;
       }
+      Logger.error(error);
+      throw new NotFoundException(ErrorMessage.ResumeNotFound);
     }
   }
 
