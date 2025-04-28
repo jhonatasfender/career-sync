@@ -1,5 +1,5 @@
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
-import type { Basics } from "@prisma/client";
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { Basics, Prisma } from "@prisma/client";
 import { PrismaService } from "nestjs-prisma";
 
 import { CreateBasicsDto } from "../dto/create-basics.dto";
@@ -11,57 +11,45 @@ export class BasicsService {
   constructor(private readonly prisma: PrismaService) {}
 
   private async checkUser(userId: string) {
-    const user = await this.prisma.user.findUnique({
-      where: { id: userId },
-      select: { id: true },
-    });
-    if (!user) {
-      throw new NotFoundException("Usuário não encontrado");
-    }
+    const exists = await this.prisma.user.count({ where: { id: userId } });
+    if (!exists) throw new NotFoundException("Usuário não encontrado");
   }
 
-  public async create(userId: string, dto: CreateBasicsDto): Promise<Basics> {
-    await this.checkUser(userId);
+  public findOneByUserId(userId: string): Promise<Basics | null> {
+    return this.prisma.basics.findUnique({ where: { userId } });
+  }
 
-    const existing = await this.prisma.basics.findUnique({ where: { userId } });
-    if (existing) {
-      throw new BadRequestException("Já existe dados básicos para esse usuário");
-    }
+  public async save(userId: string, dto: CreateBasicsDto): Promise<Basics> {
+    await this.checkUser(userId);
 
     const data = BasicsMapper.toPrismaCreate(userId, dto);
 
-    return this.prisma.basics.create({ data });
-  }
-
-  public async findOneByUserId(userId: string): Promise<Basics> {
-    const basics = await this.prisma.basics.findUnique({ where: { userId } });
-    if (!basics) {
-      throw new NotFoundException("Não há dados básicos para este usuário");
-    }
-    return basics;
+    return this.prisma.basics.upsert({
+      where: { userId },
+      create: data,
+      update: data,
+    });
   }
 
   public async update(userId: string, dto: UpdateBasicsDto): Promise<Basics> {
     await this.checkUser(userId);
 
-    const existing = await this.prisma.basics.findUnique({ where: { userId } });
-    if (!existing) {
-      throw new NotFoundException("Não há dados básicos cadastrado para este usuário");
-    }
+    const updateData = BasicsMapper.toPrismaUpdate(dto);
 
-    const data = BasicsMapper.toPrismaUpdate(dto);
-
-    return this.prisma.basics.update({
+    return this.prisma.basics.upsert({
       where: { userId },
-      data,
+      create: {
+        userId,
+        name: dto.name ?? "",
+        ...updateData,
+      } as Prisma.BasicsUncheckedCreateInput,
+      update: updateData,
     });
   }
 
   public async delete(userId: string): Promise<{ message: string }> {
     await this.checkUser(userId);
-
     await this.prisma.basics.delete({ where: { userId } });
-
     return { message: "Dados básicos excluídos com sucesso" };
   }
 }

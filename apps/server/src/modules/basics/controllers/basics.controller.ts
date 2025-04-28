@@ -15,17 +15,17 @@ export class BasicsController {
 
   @Get()
   public async findOne(@User("id") userId: string) {
-    return this.basicsService.findOneByUserId(userId);
+    return (await this.basicsService.findOneByUserId(userId)) ?? {};
   }
 
   @Post()
-  public async create(@User("id") userId: string, @Body() dto: CreateBasicsDto) {
-    return this.basicsService.create(userId, dto);
+  public async save(@User("id") userId: string, @Body() dto: CreateBasicsDto) {
+    return this.basicsService.save(userId, dto);
   }
 
   @Patch()
   public async update(@User("id") userId: string, @Body() dto: UpdateBasicsDto) {
-    return await this.basicsService.update(userId, dto);
+    return this.basicsService.update(userId, dto);
   }
 
   @Delete()

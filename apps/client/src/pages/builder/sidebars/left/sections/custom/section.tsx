@@ -12,7 +12,9 @@ import {
 } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
 import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
+import debounce from "lodash.debounce";
 
+import { useBasics } from "@career-sync/client/hooks/use-basics";
 import { useResumeStore } from "@career-sync/client/stores/resume";
 
 type CustomFieldProps = {
@@ -21,7 +23,7 @@ type CustomFieldProps = {
   onRemove: (id: string) => void;
 };
 
-export const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => {
+const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => {
   const controls = useDragControls();
 
   const handleChange = (key: "icon" | "name" | "value", value: string) => {
@@ -42,8 +44,8 @@ export const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => 
           size="icon"
           variant="ghost"
           className="shrink-0"
-          onPointerDown={(event) => {
-            controls.start(event);
+          onPointerDown={(e) => {
+            controls.start(e);
           }}
         >
           <DotsSixVertical />
@@ -61,11 +63,10 @@ export const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => 
             <Input
               value={field.icon}
               placeholder={t`Enter Phosphor Icon`}
-              onChange={(event) => {
-                onChange({ ...field, icon: event.target.value });
+              onChange={(e) => {
+                handleChange("icon", e.target.value);
               }}
             />
-
             <p className="text-xs opacity-80">
               {t`Visit `}
               <a
@@ -85,8 +86,8 @@ export const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => 
           className="mx-2"
           placeholder={t`Name`}
           value={field.name}
-          onChange={(event) => {
-            handleChange("name", event.target.value);
+          onChange={(e) => {
+            handleChange("name", e.target.value);
           }}
         />
 
@@ -94,8 +95,8 @@ export const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => 
           className="mx-2"
           placeholder={t`Value`}
           value={field.value}
-          onChange={(event) => {
-            handleChange("value", event.target.value);
+          onChange={(e) => {
+            handleChange("value", e.target.value);
           }}
         />
 
@@ -114,61 +115,50 @@ export const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => 
   );
 };
 
-type Props = {
-  className?: string;
-};
+type Props = { className?: string };
 
 export const CustomFieldsSection = ({ className }: Props) => {
-  const setValue = useResumeStore((state) => state.setValue);
-  const customFields = useResumeStore((state) => state.resume.data.basics.customFields);
+  const setValue = useResumeStore((s) => s.setValue);
+  const customFields = useResumeStore((s) => s.resume.data.basics.customFields);
+  const { exists, update } = useBasics();
 
-  const onAddCustomField = () => {
-    setValue("basics.customFields", [
-      ...customFields,
-      { id: createId(), icon: "envelope", name: "", value: "" },
-    ]);
+  const persist = debounce((fields: ICustomField[]) => {
+    if (exists) update.mutate({ customFields: fields });
+  }, 500);
+
+  const setAndPersist = (fields: ICustomField[]) => {
+    setValue("basics.customFields", fields);
+    persist(fields);
   };
 
-  const onChangeCustomField = (field: ICustomField) => {
-    const index = customFields.findIndex((item) => item.id === field.id);
-    const newCustomFields = JSON.parse(JSON.stringify(customFields));
-    newCustomFields[index] = field;
-
-    setValue("basics.customFields", newCustomFields);
+  const onAdd = () => {
+    setAndPersist([...customFields, { id: createId(), icon: "envelope", name: "", value: "" }]);
   };
 
-  const onReorderCustomFields = (values: ICustomField[]) => {
-    setValue("basics.customFields", values);
+  const onChange = (field: ICustomField) => {
+    const fields = customFields.map((f) => (f.id === field.id ? field : f));
+    setAndPersist(fields);
   };
 
-  const onRemoveCustomField = (id: string) => {
-    setValue(
-      "basics.customFields",
-      customFields.filter((field) => field.id !== id),
-    );
+  const onReorder = (fields: ICustomField[]) => {
+    setAndPersist(fields);
+  };
+
+  const onRemove = (id: string) => {
+    setAndPersist(customFields.filter((f) => f.id !== id));
   };
 
   return (
     <div className={cn("space-y-4", className)}>
       <AnimatePresence>
-        <Reorder.Group
-          axis="y"
-          className="space-y-4"
-          values={customFields}
-          onReorder={onReorderCustomFields}
-        >
+        <Reorder.Group axis="y" className="space-y-4" values={customFields} onReorder={onReorder}>
           {customFields.map((field) => (
-            <CustomField
-              key={field.id}
-              field={field}
-              onChange={onChangeCustomField}
-              onRemove={onRemoveCustomField}
-            />
+            <CustomField key={field.id} field={field} onChange={onChange} onRemove={onRemove} />
           ))}
         </Reorder.Group>
       </AnimatePresence>
 
-      <Button variant="link" onClick={onAddCustomField}>
+      <Button variant="link" onClick={onAdd}>
         <Plus className="mr-2" />
         <span>{t`Add a custom field`}</span>
       </Button>

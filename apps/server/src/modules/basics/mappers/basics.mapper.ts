@@ -1,31 +1,28 @@
+import type { Prisma } from "@prisma/client";
+
 import type { CreateBasicsDto } from "../dto/create-basics.dto";
 import type { UpdateBasicsDto } from "../dto/update-basics.dto";
 
 export class BasicsMapper {
-  public static toPrismaCreate(userId: string, dto: CreateBasicsDto) {
+  public static toPrismaCreate(
+    userId: string,
+    dto: CreateBasicsDto,
+  ): Prisma.BasicsUncheckedCreateInput {
     return {
       userId,
-      name: dto.name,
-      label: dto.label,
-      image: dto.image,
-      email: dto.email,
-      phone: dto.phone,
-      url: dto.url,
-      summary: dto.summary,
-      location: dto.location,
-    };
+      ...this.clean(dto),
+    } as Prisma.BasicsUncheckedCreateInput;
   }
 
-  public static toPrismaUpdate(dto: UpdateBasicsDto) {
-    return {
-      name: dto.name,
-      label: dto.label,
-      image: dto.image,
-      email: dto.email,
-      phone: dto.phone,
-      url: dto.url,
-      summary: dto.summary,
-      location: dto.location,
-    };
+  public static toPrismaUpdate(dto: UpdateBasicsDto): Prisma.BasicsUncheckedUpdateInput {
+    return this.clean(dto) as Prisma.BasicsUncheckedUpdateInput;
+  }
+
+  private static clean(obj: unknown) {
+    return Object.fromEntries(
+      Object.entries(obj as Record<string, unknown>).filter(
+        ([, v]) => v !== undefined && v !== null,
+      ),
+    );
   }
 }

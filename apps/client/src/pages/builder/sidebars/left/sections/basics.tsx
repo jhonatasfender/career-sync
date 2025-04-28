@@ -15,25 +15,24 @@ export const BasicsSection = () => {
 
   return (
     <section id="basics" className="grid gap-y-6">
-      <header className="flex items-center justify-between">
-        <div className="flex items-center gap-x-4">
-          <SectionIcon id="basics" size={18} />
-          <h2 className="line-clamp-1 text-2xl font-bold lg:text-3xl">{t`Basics`}</h2>
-        </div>
+      <header className="flex items-center gap-x-4">
+        <SectionIcon id="basics" size={18} />
+        <h2 className="text-2xl font-bold lg:text-3xl">{t`Basics`}</h2>
       </header>
 
       <main className="grid gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <PictureSection />
         </div>
+
         <div className="space-y-4 sm:col-span-2">
           <Label htmlFor="basics.name">{t`Full Name`}</Label>
           <Input
             id="basics.name"
             value={basics.name}
             hasError={!basicsSchema.pick({ name: true }).safeParse({ name: basics.name }).success}
-            onChange={(event) => {
-              setValue("basics.name", event.target.value);
+            onChange={(e) => {
+              setValue("basics.name", e.target.value);
             }}
           />
         </div>
@@ -43,8 +42,8 @@ export const BasicsSection = () => {
           <Input
             id="basics.headline"
             value={basics.headline}
-            onChange={(event) => {
-              setValue("basics.headline", event.target.value);
+            onChange={(e) => {
+              setValue("basics.headline", e.target.value);
             }}
           />
         </div>
@@ -58,8 +57,8 @@ export const BasicsSection = () => {
             hasError={
               !basicsSchema.pick({ email: true }).safeParse({ email: basics.email }).success
             }
-            onChange={(event) => {
-              setValue("basics.email", event.target.value);
+            onChange={(e) => {
+              setValue("basics.email", e.target.value);
             }}
           />
         </div>
@@ -70,8 +69,8 @@ export const BasicsSection = () => {
             id="basics.url"
             value={basics.url}
             placeholder="https://example.com"
-            onChange={(value) => {
-              setValue("basics.url", value);
+            onChange={(val) => {
+              setValue("basics.url", val);
             }}
           />
         </div>
@@ -80,10 +79,10 @@ export const BasicsSection = () => {
           <Label htmlFor="basics.phone">{t`Phone`}</Label>
           <Input
             id="basics.phone"
-            placeholder="+1 (123) 4567 7890"
+            placeholder="+55 (11) 91234-5678"
             value={basics.phone}
-            onChange={(event) => {
-              setValue("basics.phone", event.target.value);
+            onChange={(e) => {
+              setValue("basics.phone", e.target.value);
             }}
           />
         </div>
@@ -93,8 +92,8 @@ export const BasicsSection = () => {
           <Input
             id="basics.location"
             value={basics.location}
-            onChange={(event) => {
-              setValue("basics.location", event.target.value);
+            onChange={(e) => {
+              setValue("basics.location", e.target.value);
             }}
           />
         </div>
