@@ -1,9 +1,8 @@
 import path from "node:path";
 
-import { HttpException, Module } from "@nestjs/common";
-import { APP_INTERCEPTOR, APP_PIPE } from "@nestjs/core";
+import { Module } from "@nestjs/common";
+import { APP_PIPE } from "@nestjs/core";
 import { ServeStaticModule } from "@nestjs/serve-static";
-import { RavenInterceptor, RavenModule } from "nest-raven";
 import { ZodValidationPipe } from "nestjs-zod";
 
 import { ConfigModule } from "./config/config.module";
@@ -39,7 +38,6 @@ const imports = [
   ConfigModule,
   DatabaseModule,
   MailModule,
-  RavenModule,
   HealthModule,
 
   // Feature Modules
@@ -89,17 +87,6 @@ if (process.env.NODE_ENV === "production") {
     {
       provide: APP_PIPE,
       useClass: ZodValidationPipe,
-    },
-    {
-      provide: APP_INTERCEPTOR,
-      useValue: new RavenInterceptor({
-        filters: [
-          {
-            type: HttpException,
-            filter: (exception: HttpException) => exception.getStatus() < 500,
-          },
-        ],
-      }),
     },
   ],
 })

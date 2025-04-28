@@ -3,6 +3,8 @@ import { ConfigService } from "@nestjs/config";
 import { NestFactory } from "@nestjs/core";
 import type { NestExpressApplication } from "@nestjs/platform-express";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import * as Sentry from "@sentry/node";
+import { nodeProfilingIntegration } from "@sentry/profiling-node";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import helmet from "helmet";
@@ -19,6 +21,17 @@ async function bootstrap() {
   });
 
   const configService = app.get(ConfigService<Config>);
+
+  // Initialize Sentry
+  Sentry.init({
+    dsn: configService.get("SENTRY_DSN"),
+    environment: process.env.NODE_ENV,
+    integrations: [nodeProfilingIntegration()],
+    // Performance Monitoring
+    tracesSampleRate: 1, // Capture 100% of transactions
+    // Set sampling rate for profiling
+    profilesSampleRate: 1,
+  });
 
   const accessTokenSecret = configService.getOrThrow("ACCESS_TOKEN_SECRET");
   const publicUrl = configService.getOrThrow("PUBLIC_URL");
