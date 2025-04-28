@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-confusing-void-expression */
 import { t } from "@lingui/core/macro";
+import { Trans } from "@lingui/react";
 import { createId } from "@paralleldrive/cuid2";
 import { DotsSixVertical, Envelope, Plus, X } from "@phosphor-icons/react";
 import type { CustomField as ICustomField } from "@reactive-resume/schema";
@@ -12,9 +14,7 @@ import {
 } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
 import { AnimatePresence, Reorder, useDragControls } from "framer-motion";
-import debounce from "lodash.debounce";
 
-import { useBasics } from "@career-sync/client/hooks/use-basics";
 import { useResumeStore } from "@career-sync/client/stores/resume";
 
 type CustomFieldProps = {
@@ -59,25 +59,26 @@ const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => {
               </Button>
             </PopoverTrigger>
           </Tooltip>
+
           <PopoverContent side="bottom" align="start" className="flex flex-col gap-y-1.5 p-1.5">
             <Input
               value={field.icon}
               placeholder={t`Enter Phosphor Icon`}
-              onChange={(e) => {
-                handleChange("icon", e.target.value);
-              }}
+              onChange={(e) => handleChange("icon", e.target.value)}
             />
             <p className="text-xs opacity-80">
-              {t`Visit `}
-              <a
-                href="https://phosphoricons.com/"
-                target="_blank"
-                className="underline"
-                rel="noopener noreferrer nofollow"
-              >
-                {t`Phosphor Icons`}
-              </a>
-              {t` for a list of available icons`}
+              <Trans
+                id="Visit <0>Phosphor Icons</0> for a list of available icons"
+                components={[
+                  <a
+                    href="https://phosphoricons.com/"
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className="underline"
+                    aria-label="Phosphor Icons"
+                  />,
+                ]}
+              />
             </p>
           </PopoverContent>
         </Popover>
@@ -86,28 +87,17 @@ const CustomField = ({ field, onChange, onRemove }: CustomFieldProps) => {
           className="mx-2"
           placeholder={t`Name`}
           value={field.name}
-          onChange={(e) => {
-            handleChange("name", e.target.value);
-          }}
+          onChange={(e) => handleChange("name", e.target.value)}
         />
 
         <Input
           className="mx-2"
           placeholder={t`Value`}
           value={field.value}
-          onChange={(e) => {
-            handleChange("value", e.target.value);
-          }}
+          onChange={(e) => handleChange("value", e.target.value)}
         />
 
-        <Button
-          size="icon"
-          variant="ghost"
-          className="shrink-0"
-          onClick={() => {
-            onRemove(field.id);
-          }}
-        >
+        <Button size="icon" variant="ghost" className="shrink-0" onClick={() => onRemove(field.id)}>
           <X />
         </Button>
       </div>
@@ -120,32 +110,28 @@ type Props = { className?: string };
 export const CustomFieldsSection = ({ className }: Props) => {
   const setValue = useResumeStore((s) => s.setValue);
   const customFields = useResumeStore((s) => s.resume.data.basics.customFields);
-  const { exists, update } = useBasics();
-
-  const persist = debounce((fields: ICustomField[]) => {
-    if (exists) update.mutate({ customFields: fields });
-  }, 500);
-
-  const setAndPersist = (fields: ICustomField[]) => {
-    setValue("basics.customFields", fields);
-    persist(fields);
-  };
 
   const onAdd = () => {
-    setAndPersist([...customFields, { id: createId(), icon: "envelope", name: "", value: "" }]);
+    setValue("basics.customFields", [
+      ...customFields,
+      { id: createId(), icon: "envelope", name: "", value: "" },
+    ]);
   };
 
   const onChange = (field: ICustomField) => {
     const fields = customFields.map((f) => (f.id === field.id ? field : f));
-    setAndPersist(fields);
+    setValue("basics.customFields", fields);
   };
 
   const onReorder = (fields: ICustomField[]) => {
-    setAndPersist(fields);
+    setValue("basics.customFields", fields);
   };
 
   const onRemove = (id: string) => {
-    setAndPersist(customFields.filter((f) => f.id !== id));
+    setValue(
+      "basics.customFields",
+      customFields.filter((f) => f.id !== id),
+    );
   };
 
   return (

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-import { t } from "@lingui/macro";
+import { t } from "@lingui/core/macro";
 import { Button, ScrollArea } from "@reactive-resume/ui";
-import type { AxiosError } from "axios";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 
@@ -11,17 +10,17 @@ import { useResumeStore } from "@career-sync/client/stores/resume";
 import { BasicsSection } from "../../builder/sidebars/left/sections/basics";
 
 export const BasicPage = () => {
-  const { isLoading, isError, error, exists, create, update } = useBasics();
+  const { isLoading, isError, error, exists, save, patch } = useBasics();
   const basics = useResumeStore((s) => s.resume.data.basics);
 
   const handleSave = () => {
-    if (exists) update.mutate(basics);
-    else create.mutate(basics);
+    if (exists) patch.mutate(basics);
+    else save.mutate(basics);
   };
 
   if (isLoading) return <p>{t`Carregando dados básicos …`}</p>;
 
-  if (isError && (error as AxiosError).response?.status !== 404) {
+  if (isError) {
     return (
       <p>
         {t`Não foi possível carregar os dados básicos.`}

@@ -85,7 +85,7 @@ model Statistics {
 model Basics {
   id           String  @id @default(cuid())
   name         String
-  image        String?
+  picture      Json?
   email        String?
   phone        String?
   url          String?

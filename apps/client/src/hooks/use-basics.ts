@@ -8,10 +8,10 @@ import { useEffect } from "react";
 import { useResumeStore } from "@career-sync/client/stores/resume";
 
 import type { BasicsModel } from "../services/basics/basics";
-import { createBasics, deleteBasics, fetchBasics, updateBasics } from "../services/basics/basics";
+import { deleteBasics, fetchBasics, saveBasics, updateBasics } from "../services/basics/basics";
 
-const toBasics = (b: BasicsModel | null): Basics => {
-  if (!b) return defaultBasics;
+const toBasics = (b?: BasicsModel): Basics => {
+  if (!b || Object.keys(b).length === 0) return defaultBasics;
 
   return {
     name: b.name,
@@ -59,9 +59,6 @@ export function useBasics() {
   const query = useQuery({
     queryKey: ["basics"],
     queryFn: fetchBasics,
-    retry: (failureCount, error) => {
-      return (error as AxiosError).response?.status !== 404 && failureCount < 3;
-    },
   });
 
   useEffect(() => {
@@ -70,12 +67,12 @@ export function useBasics() {
     }
   }, [query.isSuccess, query.data, setResumeValue]);
 
-  const create = useMutation({
-    mutationFn: (b: Basics) => createBasics(fromBasics(b)),
+  const save = useMutation({
+    mutationFn: (b: Basics) => saveBasics(fromBasics(b)),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["basics"] }),
   });
 
-  const update = useMutation({
+  const patch = useMutation({
     mutationFn: (b: Basics) => updateBasics(fromBasics(b)),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["basics"] }),
   });
@@ -85,14 +82,16 @@ export function useBasics() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ["basics"] }),
   });
 
+  const exists = query.isSuccess && query.data && Object.keys(query.data).length > 0;
+
   return {
     isLoading: query.isLoading,
     isFetching: query.isFetching,
-    isError: query.isError && (query.error as AxiosError).response?.status !== 404,
+    isError: query.isError,
     error: query.error as AxiosError | null,
-    exists: query.data !== null,
-    create,
-    update,
+    exists,
+    save,
+    patch,
     remove,
   };
 }

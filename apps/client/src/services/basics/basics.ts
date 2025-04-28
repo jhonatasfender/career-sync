@@ -1,5 +1,3 @@
-import { isAxiosError } from "axios";
-
 import { axios } from "@career-sync/client/libs/axios";
 
 export type BasicsModel = {
@@ -9,7 +7,6 @@ export type BasicsModel = {
   phone?: string | null;
   location?: string | null;
   url?: string | null;
-
   picture?: {
     url?: string | null;
     size?: number | null;
@@ -21,7 +18,6 @@ export type BasicsModel = {
       grayscale?: boolean | null;
     } | null;
   } | null;
-
   customFields?:
     | {
         id: string;
@@ -32,19 +28,12 @@ export type BasicsModel = {
     | null;
 };
 
-export async function fetchBasics(): Promise<BasicsModel | null> {
-  try {
-    const { data } = await axios.get<BasicsModel>("/basics");
-    return data;
-  } catch (error) {
-    if (isAxiosError(error) && error.response?.status === 404) {
-      return null;
-    }
-    throw error;
-  }
+export async function fetchBasics(): Promise<BasicsModel> {
+  const { data } = await axios.get<BasicsModel>("/basics");
+  return data;
 }
 
-export async function createBasics(payload: BasicsModel) {
+export async function saveBasics(payload: BasicsModel) {
   const { data } = await axios.post<BasicsModel>("/basics", payload);
   return data;
 }
