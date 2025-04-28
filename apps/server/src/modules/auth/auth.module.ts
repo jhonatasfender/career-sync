@@ -97,7 +97,7 @@ export class AuthModule {
         },
       ],
       exports: [AuthService],
-      global: true
+      global: true,
     };
   }
 }
