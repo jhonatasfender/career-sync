@@ -22,7 +22,11 @@ export class CreateVolunteerDto {
   @IsString()
   public summary?: string;
 
+  @IsString()
   @IsOptional()
-  @IsString({ each: true })
-  public highlights?: string[];
+  public location: string;
+
+  @IsString()
+  @IsOptional()
+  public url: string;
 }

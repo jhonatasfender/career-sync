@@ -1,17 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import { defaultSections } from "@reactive-resume/schema";
 import { RichInput } from "@reactive-resume/ui";
 import { cn } from "@reactive-resume/utils";
 
+import { AiActions } from "@career-sync/client/components/ai-actions";
+import { useResumeStore } from "@career-sync/client/stores/resume";
+
 import { SectionIcon } from "./shared/section-icon";
 import { SectionOptions } from "./shared/section-options";
 
-import { AiActions } from "@/client/components/ai-actions";
-import { useResumeStore } from "@/client/stores/resume";
-
 export const SummarySection = () => {
   const setValue = useResumeStore((state) => state.setValue);
+
   const section = useResumeStore(
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     (state) => state.resume.data.sections.summary ?? defaultSections.summary,
   );
 
@@ -30,6 +31,7 @@ export const SummarySection = () => {
 
       <main className={cn(!section.visible && "opacity-50")}>
         <RichInput
+          key={section.content}
           content={section.content}
           footer={(editor) => (
             <AiActions

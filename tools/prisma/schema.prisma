@@ -219,8 +219,9 @@ model Volunteer {
   position     String
   startDate    DateTime?
   endDate      DateTime?
+  location     String?
+  url          String?
   summary      String?
-  highlights   String[]  @default([])
   userId       String
   user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -228,8 +229,9 @@ model Volunteer {
 model Reference {
   id          String  @id @default(cuid())
   name        String
-  reference   String
   description String?
+  url         String?
+  summary     String?
   userId      String
   user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

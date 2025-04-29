@@ -10,7 +10,8 @@ export class VolunteerMapper {
       startDate: dto.startDate,
       endDate: dto.endDate,
       summary: dto.summary,
-      highlights: dto.highlights ?? [],
+      url: dto.url,
+      location: dto.location,
     };
   }
 
@@ -21,7 +22,8 @@ export class VolunteerMapper {
       startDate: dto.startDate,
       endDate: dto.endDate,
       summary: dto.summary,
-      highlights: dto.highlights,
+      url: dto.url,
+      location: dto.location,
     };
   }
 }

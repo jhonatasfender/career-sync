@@ -20,7 +20,7 @@ export class SummaryController {
 
   @Post()
   public create(@User("id") userId: string, @Body() dto: CreateSummaryDto) {
-    return this.service.create(userId, dto);
+    return this.service.save(userId, dto);
   }
 
   @Patch()

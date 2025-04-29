@@ -8,6 +8,8 @@ export class ReferenceMapper {
       name: dto.name,
       reference: dto.reference,
       description: dto.description,
+      url: dto.url,
+      summary: dto.summary,
     };
   }
 
@@ -16,6 +18,8 @@ export class ReferenceMapper {
       name: dto.name,
       reference: dto.reference,
       description: dto.description,
+      url: dto.url,
+      summary: dto.summary,
     };
   }
 }

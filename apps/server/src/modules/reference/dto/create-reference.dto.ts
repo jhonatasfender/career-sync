@@ -10,4 +10,12 @@ export class CreateReferenceDto {
   @IsOptional()
   @IsString()
   public description?: string;
+
+  @IsOptional()
+  @IsString()
+  public url?: string;
+
+  @IsOptional()
+  @IsString()
+  public summary?: string;
 }
