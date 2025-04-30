@@ -1,0 +1,33 @@
+{
+  "extends": [
+    "../../.eslintrc.json",
+    "plugin:cypress/recommended"
+  ],
+  "plugins": ["cypress"],
+  "env": {
+    "cypress/globals": true
+  },
+  "rules": {
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off"
+  },
+  "parserOptions": {
+    "project": ["apps/e2e/tsconfig.json"]
+  },
+  "overrides": [
+    {
+      "files": ["cypress/support/types.ts"],
+      "rules": {
+        "@typescript-eslint/consistent-type-definitions": "off",
+        "@typescript-eslint/no-namespace": "off"
+      }
+    }
+  ]
+}

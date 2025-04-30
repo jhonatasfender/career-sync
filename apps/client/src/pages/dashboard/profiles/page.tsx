@@ -213,7 +213,13 @@ export const ProfilePage = () => {
         gridView={
           <>
             <div className="mb-4 flex justify-end">
-              <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+              <Button
+                variant="primary"
+                size="md"
+                className="gap-x-2"
+                data-cy="add-profile"
+                onClick={handleCreate}
+              >
                 <Plus weight="bold" />
                 <span>{t`Add Profile`}</span>
               </Button>
@@ -224,7 +230,13 @@ export const ProfilePage = () => {
         listView={
           <>
             <div className="mb-4 flex justify-end">
-              <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+              <Button
+                variant="primary"
+                size="md"
+                className="gap-x-2"
+                data-cy="add-profile"
+                onClick={handleCreate}
+              >
                 <Plus weight="bold" />
                 <span>{t`Add Profile`}</span>
               </Button>
