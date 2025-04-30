@@ -14,6 +14,12 @@ declare global {
        * @example cy.repeat(3, () => { cy.get('button').click() })
        */
       repeat(count: number, callback: () => void): void;
+
+      /**
+       * Custom command to type text in a contenteditable element
+       * @example cy.typeInContentEditable('Some text to type')
+       */
+      typeInContentEditable(text: string): Chainable<Element>;
     }
   }
 }

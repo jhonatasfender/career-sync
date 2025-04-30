@@ -6,6 +6,7 @@ describe("Login Page", () => {
     cy.intercept("GET", "**/api/summary").as("summary");
     cy.intercept("POST", "**/api/profile").as("createProfile");
     cy.intercept("GET", "**/api/experience").as("experience");
+    cy.intercept("POST", "**/api/experience").as("createExperience");
 
     cy.viewport(1920, 1080);
     cy.visit("http://localhost:5173");
@@ -58,10 +59,8 @@ describe("Login Page", () => {
     cy.get(".prose").should("be.visible");
     cy.get('[contenteditable="true"]').should("exist").and("be.visible");
 
-    cy.get('[contenteditable="true"]').should("be.visible").click();
-
     const summary = faker.lorem.paragraph().replace(/\n/g, " ");
-    cy.get('[contenteditable="true"]').should("be.visible").type(summary);
+    cy.typeInContentEditable(summary);
 
     cy.get('[contenteditable="true"]').should("contain", summary);
 
@@ -125,22 +124,46 @@ describe("Login Page", () => {
     cy.url().should("include", "/experience");
     cy.wait("@experience");
 
-    cy.get('button[data-cy="add-experience"]', { timeout: 10_000 })
-      .should("be.visible")
-      .should("not.be.disabled")
-      .click();
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-experience"]', { timeout: 10_000 })
+        .should("be.visible")
+        .should("not.be.disabled")
+        .click();
 
-    cy.get('input[name="company"]').type(faker.company.name());
-    cy.get('input[name="position"]').type(faker.person.jobTitle());
-    cy.get('input[name="startDate"]').type(faker.date.past().toISOString().split("T")[0]);
-    cy.get('input[name="endDate"]').type(faker.date.future().toISOString().split("T")[0]);
-    cy.get('input[id=":raj:-form-item"]').type(faker.internet.url());
+      const company = faker.company.name();
+      const position = faker.person.jobTitle();
+      const startDate = faker.date.past().toISOString().split("T")[0];
+      const endDate = faker.date.future().toISOString().split("T")[0];
+      const companyWebsite = faker.internet.url();
+      const experienceSummary = faker.lorem.paragraph();
 
-    const experienceSummary = faker.lorem.paragraph();
-    cy.get('[contenteditable="true"]').should("be.visible").click();
+      cy.get('input[name="company"]').type(company);
+      cy.get('input[name="position"]').type(position);
+      cy.get('input[name="startDate"]').type(startDate);
+      cy.get('input[name="endDate"]').type(endDate);
+      cy.get('div[role="dialog"]')
+        .contains("Company Website")
+        .parent()
+        .find("input")
+        .type(companyWebsite);
 
-    cy.get('[contenteditable="true"]').should("be.visible").type(experienceSummary);
+      cy.typeInContentEditable(experienceSummary);
 
-    cy.get('div[role="dialog"]').contains("button", "Create").click();
+      cy.get('div[role="dialog"]').contains("button", "Create").click();
+
+      cy.wait("@createExperience");
+      cy.wait("@experience");
+
+      cy.get(".group").contains("h3", company).should("be.visible");
+      cy.get(".group").contains("p", position).should("be.visible");
+      cy.get(".group").contains("p", `${startDate} - ${endDate}`).should("be.visible");
+      cy.get(".group").contains("p", experienceSummary).should("be.visible");
+      cy.get(".group")
+        .contains("a", "Visit Company Website")
+        .should("be.visible")
+        .should("have.attr", "href", companyWebsite)
+        .should("have.attr", "target", "_blank")
+        .should("have.attr", "rel", "noopener noreferrer");
+    });
   });
 });

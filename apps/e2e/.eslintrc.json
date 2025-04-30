@@ -28,6 +28,14 @@
         "@typescript-eslint/consistent-type-definitions": "off",
         "@typescript-eslint/no-namespace": "off"
       }
+    },
+    {
+      "files": ["cypress.config.ts"],
+      "rules": {
+        "@typescript-eslint/no-require-imports": "off",
+        "unicorn/prefer-module": "off",
+        "unused-imports/no-unused-vars": "off"
+      }
     }
   ]
 }

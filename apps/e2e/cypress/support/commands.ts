@@ -19,4 +19,8 @@ Cypress.Commands.add("repeat", (count: number, callback: () => void) => {
   }
 });
 
+Cypress.Commands.add("typeInContentEditable", (text: string) => {
+  cy.get('[contenteditable="true"]').should("be.visible").click().type(text);
+});
+
 // Add more custom commands here

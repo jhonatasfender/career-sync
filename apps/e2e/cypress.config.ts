@@ -1,11 +1,8 @@
-import path from "node:path";
+const path = require("node:path");
+const { nxE2EPreset } = require("@nx/cypress/plugins/cypress-preset");
+const { defineConfig } = require("cypress");
 
-import { nxE2EPreset } from "@nx/cypress/plugins/cypress-preset";
-import { defineConfig } from "cypress";
-
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
-
-export default defineConfig({
+module.exports = defineConfig({
   e2e: {
     ...nxE2EPreset(__dirname),
     supportFile: "./cypress/support/e2e.ts",
