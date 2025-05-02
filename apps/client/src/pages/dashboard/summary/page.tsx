@@ -1,4 +1,4 @@
-/* apps/client/src/pages/SummaryPage.tsx */
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 
 import { t } from "@lingui/core/macro";
 import { Button, ScrollArea } from "@reactive-resume/ui";
@@ -11,7 +11,7 @@ import { useResumeStore } from "@career-sync/client/stores/resume";
 
 export const SummaryPage = () => {
   const { isLoading, isError, error, exists, save, patch } = useSummary();
-  const content = useResumeStore((s) => s.resume.data.sections.summary.content);
+  const content = useResumeStore((s) => s.resume?.data?.sections?.summary?.content);
   const setValue = useResumeStore((s) => s.setValue);
 
   const handleSave = () => {
