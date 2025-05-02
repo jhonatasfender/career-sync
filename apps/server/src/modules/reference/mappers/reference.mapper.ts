@@ -6,7 +6,6 @@ export class ReferenceMapper {
     return {
       userId,
       name: dto.name,
-      reference: dto.reference,
       description: dto.description,
       url: dto.url,
       summary: dto.summary,
@@ -16,7 +15,6 @@ export class ReferenceMapper {
   public static toPrismaUpdate(dto: UpdateReferenceDto) {
     return {
       name: dto.name,
-      reference: dto.reference,
       description: dto.description,
       url: dto.url,
       summary: dto.summary,
