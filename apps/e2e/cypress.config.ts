@@ -4,6 +4,7 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
+    baseUrl: "http://localhost:5173",
     ...nxE2EPreset(__dirname),
     supportFile: "./cypress/support/e2e.ts",
     specPattern: "./cypress/e2e/**/*.cy.{js,jsx,ts,tsx}",

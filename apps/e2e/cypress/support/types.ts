@@ -20,6 +20,9 @@ declare global {
        * @example cy.typeInContentEditable('Some text to type')
        */
       typeInContentEditable(text: string): Chainable<Element>;
+
+      loginSession(email: string, password: string): Chainable<void>;
+      signupViaUI(): Chainable<void>;
     }
   }
 }
