@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 
 describe("Resume Builder: End-to-End Flow", () => {
   before(() => {
-    cy.signupViaUI();
+    cy.signup();
   });
 
   beforeEach(() => {
@@ -14,11 +14,25 @@ describe("Resume Builder: End-to-End Flow", () => {
     cy.intercept("GET", "**/api/experience").as("experience");
     cy.intercept("GET", "**/api/education").as("education");
     cy.intercept("GET", "**/api/skill").as("skills");
+    cy.intercept("GET", "**/api/language").as("languages");
+    cy.intercept("GET", "**/api/award").as("awards");
+    cy.intercept("GET", "**/api/certification").as("certifications");
+    cy.intercept("GET", "**/api/project").as("projects");
+    cy.intercept("GET", "**/api/publication").as("publications");
+    cy.intercept("GET", "**/api/volunteer").as("volunteers");
+    cy.intercept("GET", "**/api/reference").as("references");
 
     cy.intercept("POST", "**/api/profile").as("createProfile");
     cy.intercept("POST", "**/api/experience").as("createExperience");
     cy.intercept("POST", "**/api/education").as("createEducation");
     cy.intercept("POST", "**/api/skill").as("createSkills");
+    cy.intercept("POST", "**/api/language").as("createLanguage");
+    cy.intercept("POST", "**/api/award").as("createAward");
+    cy.intercept("POST", "**/api/certification").as("createCertification");
+    cy.intercept("POST", "**/api/project").as("createProject");
+    cy.intercept("POST", "**/api/publication").as("createPublication");
+    cy.intercept("POST", "**/api/volunteer").as("createVolunteer");
+    cy.intercept("POST", "**/api/reference").as("createReference");
   });
 
   it("Fills out Basic Information section", () => {
@@ -191,6 +205,269 @@ describe("Resume Builder: End-to-End Flow", () => {
       cy.get(".group")
         .contains("span", `${level * 20}%`)
         .should("be.visible");
+    });
+  });
+
+  it("Creates language entries", () => {
+    cy.visit("/dashboard/languages");
+    cy.wait("@languages");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-language"]').click();
+
+      const name = faker.helpers.arrayElement([
+        "English",
+        "Spanish",
+        "German",
+        "French",
+        "Italian",
+        "Japanese",
+        "Portuguese",
+      ]);
+      const desc = faker.hacker.phrase();
+      const level = faker.number.int({ min: 1, max: 5 });
+
+      cy.get('input[name="name"]').type(name);
+      cy.get('input[name="description"]').type(desc);
+
+      cy.get('[role="slider"]')
+        .focus()
+        .then(() => {
+          Cypress._.times(level - 1, () => cy.focused().type("{rightarrow}"));
+        });
+
+      cy.contains("button", "Create").click();
+
+      cy.wait("@createLanguage");
+      cy.wait("@languages");
+
+      cy.get(".group").contains("h3", name).should("be.visible");
+      cy.get(".group").contains("p", desc).should("be.visible");
+      cy.get(".group")
+        .contains("span", `${level * 20}%`)
+        .should("be.visible");
+    });
+  });
+
+  it("Creates award entries", () => {
+    cy.visit("/dashboard/awards");
+    cy.wait("@awards");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-awards"]').click();
+
+      const title = faker.company.catchPhrase();
+      const awarder = faker.company.name();
+      const date = faker.date.past().toISOString().split("T")[0];
+      const url = faker.internet.url();
+      const summary = faker.lorem.paragraph();
+
+      cy.get('input[name="title"]').type(title);
+      cy.get('input[name="awarder"]').type(awarder);
+      cy.get('input[name="date"]').type(date);
+      cy.get('div[role="dialog"]').contains("Website").parent().find("input").type(url);
+      cy.typeInContentEditable(summary);
+      cy.contains("button", "Create").click();
+
+      cy.wait("@createAward");
+      cy.wait("@awards");
+
+      cy.get(".group").contains("h3", title).should("be.visible");
+      cy.get(".group").contains("p", awarder).should("be.visible");
+      cy.get(".group").contains("p", date).should("be.visible");
+      cy.get(".group").contains("p", summary).should("be.visible");
+      cy.get(".group")
+        .contains("a", "Visit Website")
+        .should("be.visible")
+        .should("have.attr", "target", "_blank")
+        .should("have.attr", "rel", "noopener noreferrer");
+    });
+  });
+
+  it("Creates certification entries", () => {
+    cy.visit("/dashboard/certifications");
+    cy.wait("@certifications");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-certifications"]').click();
+
+      const certName = `${faker.company.buzzNoun()} Certification`;
+      const issuer = faker.company.name();
+      const date = faker.date.past().toISOString().split("T")[0];
+      const url = faker.internet.url();
+      const summary = faker.lorem.paragraph();
+
+      cy.get('input[name="name"]').type(certName);
+      cy.get('input[name="issuer"]').type(issuer);
+      cy.get('input[name="date"]').type(date);
+      cy.get('div[role="dialog"]').contains("Website").parent().find("input").type(url);
+      cy.typeInContentEditable(summary);
+
+      cy.contains("button", "Create").click();
+
+      cy.wait("@createCertification");
+      cy.wait("@certifications");
+
+      cy.get(".group").contains("h3", certName).should("be.visible");
+      cy.get(".group").contains("p", issuer).should("be.visible");
+      cy.get(".group").contains("p", date).should("be.visible");
+      cy.get(".group").contains("p", summary).should("be.visible");
+      cy.get(".group")
+        .contains("a", "Visit Website")
+        .should("be.visible")
+        .should("have.attr", "target", "_blank")
+        .should("have.attr", "rel", "noopener noreferrer");
+    });
+  });
+
+  it("Creates project entries", () => {
+    cy.visit("/dashboard/projects");
+    cy.wait("@projects");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-projects"]').click();
+
+      const name = `${faker.commerce.productName()} App`;
+      const description = faker.company.catchPhrase();
+      const startDate = faker.date.past().toISOString().split("T")[0];
+      const endDate = faker.date.future().toISOString().split("T")[0];
+      const url = faker.internet.url();
+      const summary = faker.lorem.paragraph();
+      const kw1 = faker.hacker.noun();
+      const kw2 = faker.hacker.verb();
+
+      cy.get('input[name="name"]').type(name);
+      cy.get('input[name="description"]').type(description);
+      cy.get('input[name="startDate"]').type(startDate);
+      cy.get('input[name="endDate"]').type(endDate);
+      cy.get('div[role="dialog"]').contains("Website").parent().find("input").type(url);
+      cy.typeInContentEditable(summary);
+      cy.get('input[data-cy="keywords-input"]').type(`${kw1}{enter}${kw2}{enter}`);
+
+      cy.contains("button", "Create").click();
+
+      cy.wait("@createProject");
+      cy.wait("@projects");
+
+      cy.get(".group").contains("h3", name).should("be.visible");
+      cy.get(".group").contains("p", description).should("be.visible");
+      cy.get(".group").contains("p", summary).should("be.visible");
+      cy.get(".group").contains("span", kw1).should("be.visible");
+      cy.get(".group").contains("span", kw2).should("be.visible");
+      cy.get(".group")
+        .contains("a", "Website")
+        .should("be.visible")
+        .should("have.attr", "target", "_blank")
+        .should("have.attr", "rel", "noopener noreferrer");
+    });
+  });
+
+  it("Creates publication entries", () => {
+    cy.visit("/dashboard/publications");
+    cy.wait("@publications");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-publications"]').click();
+
+      const title = faker.lorem.words(3);
+      const publisher = faker.company.name();
+      const date = faker.date.past().toISOString().split("T")[0];
+      const url = faker.internet.url();
+      const summary = faker.lorem.paragraph();
+
+      cy.get('input[name="name"]').type(title);
+      cy.get('input[name="publisher"]').type(publisher);
+      cy.get('input[name="date"]').type(date);
+      cy.get('div[role="dialog"]').contains("Website").parent().find("input").type(url);
+      cy.typeInContentEditable(summary);
+
+      cy.contains("button", "Create").click();
+
+      cy.wait("@createPublication");
+      cy.wait("@publications");
+
+      cy.get(".group").contains("h3", title).should("be.visible");
+      cy.get(".group").contains("p", publisher).should("be.visible");
+      cy.get(".group").find("span").contains(date).should("be.visible");
+      cy.get(".group").contains("p", summary).should("be.visible");
+      cy.get(".group")
+        .contains("a", "Website")
+        .should("be.visible")
+        .should("have.attr", "target", "_blank")
+        .should("have.attr", "rel", "noopener noreferrer");
+    });
+  });
+
+  it("Creates volunteer entries", () => {
+    cy.visit("/dashboard/volunteer");
+    cy.wait("@volunteers");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-volunteers"]').click();
+
+      const organization = `${faker.company.name()} Foundation`;
+      const position = faker.person.jobTitle();
+      const startDate = faker.date.past().toISOString().split("T")[0];
+      const endDate = faker.date.future().toISOString().split("T")[0];
+      const location = `${faker.location.city()}, ${faker.location.country()}`;
+      const url = faker.internet.url();
+      const summary = faker.lorem.paragraph();
+
+      cy.get('input[name="organization"]').type(organization);
+      cy.get('input[name="position"]').type(position);
+      cy.get('input[name="startDate"]').type(startDate);
+      cy.get('input[name="endDate"]').type(endDate);
+      cy.get('input[name="location"]').type(location);
+      cy.get('div[role="dialog"]').contains("Website").parent().find("input").type(url);
+      cy.typeInContentEditable(summary);
+
+      cy.contains("button", "Create").click();
+
+      cy.wait("@createVolunteer");
+      cy.wait("@volunteers");
+
+      cy.get(".group").contains("h3", organization).should("be.visible");
+      cy.get(".group").contains("p", position).should("be.visible");
+      cy.get(".group").find("span").contains(startDate).should("be.visible");
+      cy.get(".group").contains("p", summary).should("be.visible");
+      cy.get(".group")
+        .contains("a", "Website")
+        .should("be.visible")
+        .should("have.attr", "target", "_blank")
+        .should("have.attr", "rel", "noopener noreferrer");
+    });
+  });
+
+  it("Creates reference entries", () => {
+    cy.visit("/dashboard/references");
+    cy.wait("@references");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-references"]').click();
+
+      const refName = faker.person.fullName();
+      const description = faker.person.jobTitle();
+      const url = faker.internet.url();
+      const summary = faker.lorem.paragraph();
+
+      cy.get('input[name="name"]').type(refName);
+      cy.get('input[name="description"]').type(description);
+      cy.get('div[role="dialog"]').contains("Website").parent().find("input").type(url);
+      cy.typeInContentEditable(summary);
+
+      cy.contains("button", "Create").click();
+
+      cy.wait("@createReference");
+      cy.wait("@references");
+
+      cy.get(".group").contains("h3", refName).should("be.visible");
+      cy.get(".group").contains("p", description).should("be.visible");
+      cy.get(".group").contains("p", summary).should("be.visible");
+      cy.get(".group")
+        .contains("a", "Website")
+        .should("be.visible")
+        .should("have.attr", "target", "_blank")
+        .should("have.attr", "rel", "noopener noreferrer");
     });
   });
 });

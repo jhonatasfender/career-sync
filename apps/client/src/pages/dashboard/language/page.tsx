@@ -160,7 +160,13 @@ export const LanguagesPage = () => {
           gridView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-language"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Language`}</span>
                 </Button>
@@ -175,7 +181,13 @@ export const LanguagesPage = () => {
           listView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-language"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Language`}</span>
                 </Button>

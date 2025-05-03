@@ -22,7 +22,7 @@ declare global {
       typeInContentEditable(text: string): Chainable<Element>;
 
       loginSession(email: string, password: string): Chainable<void>;
-      signupViaUI(): Chainable<void>;
+      signup(): Chainable<void>;
     }
   }
 }

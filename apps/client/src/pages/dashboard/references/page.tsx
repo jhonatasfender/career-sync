@@ -178,7 +178,13 @@ export const ReferencesPage = () => {
           gridView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-references"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Reference`}</span>
                 </Button>
@@ -189,7 +195,13 @@ export const ReferencesPage = () => {
           listView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-references"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Reference`}</span>
                 </Button>

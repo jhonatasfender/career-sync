@@ -214,7 +214,11 @@ export const ProjectsDialog = () => {
               <FormItem>
                 <FormLabel>{t`Keywords`}</FormLabel>
                 <FormControl>
-                  <BadgeInput {...field} setPendingKeyword={setPendingKeyword} />
+                  <BadgeInput
+                    {...field}
+                    setPendingKeyword={setPendingKeyword}
+                    data-cy="keywords-input"
+                  />
                 </FormControl>
                 <FormDescription>
                   {t`You can add multiple keywords by separating them with a comma or pressing enter.`}

@@ -201,7 +201,13 @@ export const ProjectPage = () => {
           gridView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-projects"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Project`}</span>
                 </Button>
@@ -216,7 +222,13 @@ export const ProjectPage = () => {
           listView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-projects"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Project`}</span>
                 </Button>

@@ -18,7 +18,7 @@ Cypress.Commands.add("loginSession", (email: string, password: string) => {
   cy.visit("/dashboard");
 });
 
-Cypress.Commands.add("signupViaUI", () => {
+Cypress.Commands.add("signup", () => {
   const creds = { email: faker.internet.email(), password: faker.internet.password() };
 
   cy.session(creds.email, () => {

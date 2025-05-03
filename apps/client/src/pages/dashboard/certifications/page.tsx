@@ -164,7 +164,13 @@ export const CertificationsPage = () => {
           gridView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-certifications"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Certification`}</span>
                 </Button>
@@ -179,7 +185,13 @@ export const CertificationsPage = () => {
           listView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-certifications"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Certification`}</span>
                 </Button>

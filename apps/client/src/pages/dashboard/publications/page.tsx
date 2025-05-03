@@ -181,7 +181,13 @@ export const PublicationsPage = () => {
           gridView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-publications"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Publication`}</span>
                 </Button>
@@ -196,7 +202,13 @@ export const PublicationsPage = () => {
           listView={
             <>
               <div className="mb-4 flex justify-end">
-                <Button variant="primary" size="md" className="gap-x-2" onClick={handleCreate}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="gap-x-2"
+                  data-cy="add-publications"
+                  onClick={handleCreate}
+                >
                   <Plus weight="bold" />
                   <span>{t`Add Publication`}</span>
                 </Button>
