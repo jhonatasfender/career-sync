@@ -7,9 +7,9 @@ import { cn, fonts } from "@reactive-resume/utils";
 import { useCallback, useEffect, useState } from "react";
 import webfontloader from "webfontloader";
 
-import { SectionIcon } from "../shared/section-icon";
+import { useResumeStore } from "@career-sync/client/stores/resume";
 
-import { useResumeStore } from "@/client/stores/resume";
+import { SectionIcon } from "../shared/section-icon";
 
 const localFonts = ["Arial", "Cambria", "Garamond", "Times New Roman"];
 
@@ -38,8 +38,8 @@ export const TypographySection = () => {
   const [subsets, setSubsets] = useState<ComboboxOption[]>([]);
   const [variants, setVariants] = useState<ComboboxOption[]>([]);
 
-  const setValue = useResumeStore((state) => state.setValue);
-  const typography = useResumeStore((state) => state.resume.data.metadata.typography);
+  const setValue = useResumeStore((state) => state?.setValue);
+  const typography = useResumeStore((state) => state?.resume?.data?.metadata?.typography);
 
   const loadFontSuggestions = useCallback(() => {
     for (const font of fontSuggestions) {

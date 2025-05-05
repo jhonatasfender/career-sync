@@ -5,15 +5,15 @@ import Prism from "prismjs";
 import { Helmet } from "react-helmet-async";
 import CodeEditor from "react-simple-code-editor";
 
-import { SectionIcon } from "../shared/section-icon";
+import { useResumeStore } from "@career-sync/client/stores/resume";
 
-import { useResumeStore } from "@/client/stores/resume";
+import { SectionIcon } from "../shared/section-icon";
 
 export const CssSection = () => {
   const { isDarkMode } = useTheme();
 
-  const setValue = useResumeStore((state) => state.setValue);
-  const css = useResumeStore((state) => state.resume.data.metadata.css);
+  const setValue = useResumeStore((state) => state?.setValue);
+  const css = useResumeStore((state) => state?.resume?.data?.metadata?.css);
 
   return (
     <section id="css" className="grid gap-y-6">
@@ -46,7 +46,7 @@ export const CssSection = () => {
             tabSize={4}
             value={css.value}
             className="language-css font-mono"
-            highlight={(code) => Prism.highlight(code, Prism.languages.css, "css")}
+            highlight={(code) => Prism.highlight(code ?? "", Prism.languages.css, "css")}
             onValueChange={(value) => {
               setValue("metadata.css.value", value);
             }}

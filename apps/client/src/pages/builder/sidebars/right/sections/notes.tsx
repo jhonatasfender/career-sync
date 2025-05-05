@@ -1,13 +1,13 @@
 import { t } from "@lingui/core/macro";
 import { RichInput } from "@reactive-resume/ui";
 
-import { SectionIcon } from "../shared/section-icon";
+import { useResumeStore } from "@career-sync/client/stores/resume";
 
-import { useResumeStore } from "@/client/stores/resume";
+import { SectionIcon } from "../shared/section-icon";
 
 export const NotesSection = () => {
   const setValue = useResumeStore((state) => state.setValue);
-  const notes = useResumeStore((state) => state.resume.data.metadata.notes);
+  const notes = useResumeStore((state) => state?.resume?.data?.metadata?.notes);
 
   return (
     <section id="notes" className="grid gap-y-6">

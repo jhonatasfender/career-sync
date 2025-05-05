@@ -52,7 +52,7 @@ export const SectionDialog = <T extends SectionItem>({
 
   const setValue = useResumeStore((s) => s.setValue);
   const section = useResumeStore((s) =>
-    get(s.resume.data.sections, id),
+    get(s.resume?.data?.sections, id),
   ) as SectionWithItem<T> | null;
 
   const isCreate = mode === "create";
