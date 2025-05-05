@@ -21,6 +21,7 @@ describe("Resume Builder: End-to-End Flow", () => {
     cy.intercept("GET", "**/api/publication").as("publications");
     cy.intercept("GET", "**/api/volunteer").as("volunteers");
     cy.intercept("GET", "**/api/reference").as("references");
+    cy.intercept("GET", "**/api/interest").as("interests");
 
     cy.intercept("POST", "**/api/profile").as("createProfile");
     cy.intercept("POST", "**/api/experience").as("createExperience");
@@ -33,6 +34,7 @@ describe("Resume Builder: End-to-End Flow", () => {
     cy.intercept("POST", "**/api/publication").as("createPublication");
     cy.intercept("POST", "**/api/volunteer").as("createVolunteer");
     cy.intercept("POST", "**/api/reference").as("createReference");
+    cy.intercept("POST", "**/api/interest").as("createInterest");
   });
 
   it("Fills out Basic Information section", () => {
@@ -468,6 +470,30 @@ describe("Resume Builder: End-to-End Flow", () => {
         .should("be.visible")
         .should("have.attr", "target", "_blank")
         .should("have.attr", "rel", "noopener noreferrer");
+    });
+  });
+
+  it("Creates interest entries", () => {
+    cy.visit("/dashboard/interests");
+    cy.wait("@interests");
+
+    cy.repeat(3, () => {
+      cy.get('button[data-cy="add-interests"]').should("not.be.disabled").click();
+
+      const name = faker.hacker.noun();
+      const kw1 = faker.hacker.adjective();
+      const kw2 = faker.hacker.verb();
+
+      cy.get('input[name="name"]').type(name);
+      cy.get('input[data-cy="keywords-input"]').type(`${kw1}{enter}${kw2}{enter}`);
+
+      cy.contains("button", "Create").click();
+      cy.wait("@createInterest");
+      cy.wait("@interests");
+
+      cy.get(".group").contains("h3", name).should("be.visible");
+      cy.get(".group").contains("span", kw1).should("be.visible");
+      cy.get(".group").contains("span", kw2).should("be.visible");
     });
   });
 });
