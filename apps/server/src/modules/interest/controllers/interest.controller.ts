@@ -11,34 +11,34 @@ import { InterestService } from "../service/interest.service";
 @Controller("interest")
 @UseGuards(TwoFactorGuard)
 export class InterestController {
-  constructor(private readonly service: InterestService) {}
+  constructor(private readonly interestService: InterestService) {}
 
   @Get()
   public findAll(@User("id") userId: string) {
-    return this.service.findAllByUserId(userId);
+    return this.interestService.findAllByUserId(userId);
   }
 
   @Get(":id")
   public findOne(@User("id") userId: string, @Param("id") id: string) {
-    return this.service.findOneById(userId, id);
+    return this.interestService.findOneById(userId, id);
   }
 
   @Post()
   public create(@User("id") userId: string, @Body() dto: CreateInterestDto) {
-    return this.service.create(userId, dto);
+    return this.interestService.create(userId, dto);
   }
 
   @Patch(":id")
   public update(
     @User("id") userId: string,
-    @Param("id") id: string,
+    @Param("id") interestId: string,
     @Body() dto: UpdateInterestDto,
   ) {
-    return this.service.update(userId, id, dto);
+    return this.interestService.update(userId, interestId, dto);
   }
 
   @Delete(":id")
-  public delete(@User("id") userId: string, @Param("id") id: string) {
-    return this.service.delete(userId, id);
+  public delete(@User("id") userId: string, @Param("id") interestId: string) {
+    return this.interestService.delete(userId, interestId);
   }
 }

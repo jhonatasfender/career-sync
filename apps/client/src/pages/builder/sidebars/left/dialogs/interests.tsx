@@ -3,6 +3,14 @@ import { t } from "@lingui/core/macro";
 import { X } from "@phosphor-icons/react";
 import { defaultInterest, interestSchema } from "@reactive-resume/schema";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
   Badge,
   BadgeInput,
   FormControl,
@@ -18,19 +26,75 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import type { z } from "zod";
 
+import { useInterests } from "@career-sync/client/hooks/use-interests";
+import { InterestModel } from "@career-sync/client/services/interests/interests";
+import { useDialog } from "@career-sync/client/stores/dialog";
+
 import { SectionDialog } from "../sections/shared/section-dialog";
 
 const formSchema = interestSchema;
-
 type FormValues = z.infer<typeof formSchema>;
 
 export const InterestsDialog = () => {
+  const { mode = "create", payload, close } = useDialog<FormValues>("interests");
+  const { create, update, remove } = useInterests();
+
   const form = useForm<FormValues>({
-    defaultValues: defaultInterest,
+    defaultValues: mode === "update" && payload.item ? payload.item : defaultInterest,
     resolver: zodResolver(formSchema),
   });
 
   const [pendingKeyword, setPendingKeyword] = useState("");
+
+  const onSubmit = (values: FormValues) => {
+    const payloadForApi: Omit<InterestModel, "id"> = {
+      name: values.name,
+      keywords: values.keywords,
+    };
+
+    if (mode === "create") {
+      create.mutate(payloadForApi, {
+        onSuccess: close,
+      });
+    } else {
+      update.mutate(
+        {
+          id: (payload.item as FormValues).id,
+          payload: payloadForApi,
+        },
+        { onSuccess: close },
+      );
+    }
+  };
+
+  if (mode === "delete") {
+    return (
+      <AlertDialog open onOpenChange={close}>
+        <AlertDialogContent className="z-50">
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t`Delete Interest?`}</AlertDialogTitle>
+            <AlertDialogDescription>
+              {t`Are you sure you want to delete this interest? This action cannot be undone.`}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
+            <AlertDialogAction
+              variant="error"
+              onClick={() => {
+                if (payload.item?.id) {
+                  remove.mutate(payload.item.id, { onSuccess: close });
+                }
+              }}
+            >
+              {t`Delete`}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    );
+  }
 
   return (
     <SectionDialog<FormValues>
@@ -38,6 +102,7 @@ export const InterestsDialog = () => {
       form={form}
       defaultValues={defaultInterest}
       pendingKeyword={pendingKeyword}
+      onSubmit={onSubmit}
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <FormField

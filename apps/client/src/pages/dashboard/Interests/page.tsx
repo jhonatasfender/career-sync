@@ -5,59 +5,59 @@ import { Helmet } from "react-helmet-async";
 
 import { PageLayout } from "@career-sync/client/components/page-layout";
 import { useDialog } from "@career-sync/client/stores/dialog";
+import { Interests, useInterests } from "@career-sync/client/hooks/use-interests";
 
-type Interest = {
-  name: string;
-  keywords: string;
-};
+const InterestIcon = () => <Heart className="size-6" weight="duotone" />;
 
 const InterestGridView = ({
   data,
   handleEdit,
   handleDelete,
 }: {
-  data: Interest[];
-  handleEdit: (interest: Interest) => void;
-  handleDelete: (interest: Interest) => void;
-}) => {
-  return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {data.map((interest) => (
-        <div
-          key={interest.name}
-          className="group flex flex-col rounded-lg border bg-background p-6 shadow-sm transition-all hover:shadow-md"
-        >
-          <div className="flex items-center gap-4">
-            <div className="flex size-12 items-center justify-center rounded-full bg-secondary/50">
-              <Heart className="size-6" weight="duotone" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold">{interest.name}</h3>
-            </div>
-            <div className="flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
-              <button
-                className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"
-                title={t`Edit Interest`}
-                onClick={() => {
-                  handleEdit(interest);
-                }}
-              >
-                <PencilSimple className="size-4" weight="duotone" />
-              </button>
-              <button
-                className="rounded-full p-2 text-gray-500 hover:bg-red-100 hover:text-red-500"
-                title={t`Delete Interest`}
-                onClick={() => {
-                  handleDelete(interest);
-                }}
-              >
-                <Trash className="size-4" weight="duotone" />
-              </button>
-            </div>
+  data: Interests[];
+  handleEdit: (interest: Interests) => void;
+  handleDelete: (interest: Interests) => void;
+}) => (
+  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {data.map((interest) => (
+      <div
+        key={interest.id}
+        className="group flex flex-col rounded-lg border bg-background p-6 shadow-sm transition-all hover:shadow-md"
+      >
+        <div className="flex items-center gap-4">
+          <div className="flex size-12 items-center justify-center rounded-full bg-secondary/50">
+            <Heart className="size-6" weight="duotone" />
           </div>
-          <div className="mt-4">
+          <div className="flex-1">
+            <h3 className="font-semibold">{interest.name}</h3>
+          </div>
+
+          <div className="flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
+            <button
+              className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"
+              title={t`Edit Interest`}
+              onClick={() => {
+                handleEdit(interest);
+              }}
+            >
+              <PencilSimple className="size-4" weight="duotone" />
+            </button>
+            <button
+              className="rounded-full p-2 text-gray-500 hover:bg-red-100 hover:text-red-500"
+              title={t`Delete Interest`}
+              onClick={() => {
+                handleDelete(interest);
+              }}
+            >
+              <Trash className="size-4" weight="duotone" />
+            </button>
+          </div>
+        </div>
+
+        <div className="mt-4">
+          {interest.keywords.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {interest.keywords.split(", ").map((keyword) => (
+              {interest.keywords.map((keyword) => (
                 <span
                   key={keyword}
                   className="inline-flex items-center gap-1 rounded-full bg-secondary/50 px-2.5 py-1 text-xs text-gray-600"
@@ -67,27 +67,27 @@ const InterestGridView = ({
                 </span>
               ))}
             </div>
-          </div>
+          )}
         </div>
-      ))}
-    </div>
-  );
-};
+      </div>
+    ))}
+  </div>
+);
 
 const InterestListView = ({
   data,
   handleEdit,
   handleDelete,
 }: {
-  data: Interest[];
-  handleEdit: (interest: Interest) => void;
-  handleDelete: (interest: Interest) => void;
+  data: Interests[];
+  handleEdit: (interest: Interests) => void;
+  handleDelete: (interest: Interests) => void;
 }) => {
   return (
     <div className="space-y-4">
       {data.map((interest) => (
         <div
-          key={interest.name}
+          key={interest.id}
           className="flex items-center justify-between rounded-lg border bg-background p-4"
         >
           <div className="flex items-center gap-4">
@@ -97,7 +97,7 @@ const InterestListView = ({
             <div className="flex-1">
               <h3 className="font-semibold">{interest.name}</h3>
               <div className="mt-2 flex flex-wrap gap-2">
-                {interest.keywords.split(", ").map((keyword) => (
+                {interest.keywords.map((keyword) => (
                   <span
                     key={keyword}
                     className="inline-flex items-center gap-1 rounded-full bg-secondary/50 px-2.5 py-1 text-xs text-gray-600"
@@ -137,33 +137,20 @@ const InterestListView = ({
 
 export const InterestsPage = () => {
   const { open } = useDialog("interests");
+  const { data: interests = [], isLoading, isError } = useInterests();
 
   const handleCreate = () => {
     open("create", { id: "interests" });
   };
-
-  const handleEdit = (interest: Interest) => {
+  const handleEdit = (interest: Interests) => {
     open("update", { id: "interests", item: interest });
   };
-
-  const handleDelete = (interest: Interest) => {
+  const handleDelete = (interest: Interests) => {
     open("delete", { id: "interests", item: interest });
   };
 
-  const data: Interest[] = [
-    {
-      name: t`AI-Powered Recommendation System`,
-      keywords: t`Machine Learning, AI, Personalization`,
-    },
-    {
-      name: t`Blockchain-Based Voting Platform`,
-      keywords: t`Blockchain, Security, Decentralization`,
-    },
-    {
-      name: t`Real-Time Weather Forecasting App`,
-      keywords: t`Meteorology, Data Analysis, IoT`,
-    },
-  ];
+  if (isLoading) return <p>{t`Loading interests ...`}</p>;
+  if (isError) return <p>{t`Could not load interests...`}</p>;
 
   return (
     <>
@@ -184,7 +171,11 @@ export const InterestsPage = () => {
                   <span>{t`Add Interest`}</span>
                 </Button>
               </div>
-              <InterestGridView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
+              <InterestGridView
+                data={interests}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
             </>
           }
           listView={
@@ -195,7 +186,11 @@ export const InterestsPage = () => {
                   <span>{t`Add Interest`}</span>
                 </Button>
               </div>
-              <InterestListView data={data} handleEdit={handleEdit} handleDelete={handleDelete} />
+              <InterestListView
+                data={interests}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
             </>
           }
         />
