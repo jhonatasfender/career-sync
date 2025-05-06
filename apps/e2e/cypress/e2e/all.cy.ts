@@ -6,6 +6,7 @@ describe("Resume Builder: End-to-End Flow", () => {
   });
 
   beforeEach(() => {
+    cy.viewport(1920, 1080);
     const { email, password } = Cypress.env("creds");
     cy.loginSession(email, password);
 
