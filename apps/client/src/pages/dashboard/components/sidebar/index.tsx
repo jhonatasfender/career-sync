@@ -57,7 +57,7 @@ export const Sidebar = ({ setOpen }: Props) => {
 
       <div className="flex-1 overflow-y-auto px-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="space-y-1">
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {menuCategories.map((category) => (
               <SidebarCategory key={category.name} {...category} />
             ))}

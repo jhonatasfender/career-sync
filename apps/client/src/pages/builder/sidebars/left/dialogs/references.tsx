@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-confusing-void-expression */
-/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { t } from "@lingui/core/macro";
+import { createId } from "@paralleldrive/cuid2";
 import { defaultReference, referenceSchema } from "@reactive-resume/schema";
 import {
   AlertDialog,
@@ -22,7 +20,7 @@ import {
   RichInput,
 } from "@reactive-resume/ui";
 import { useForm } from "react-hook-form";
-import type { z } from "zod";
+import { z } from "zod";
 
 import { AiActions } from "@career-sync/client/components/ai-actions";
 import { useReferences } from "@career-sync/client/hooks/use-reference";
@@ -32,34 +30,42 @@ import { useDialog } from "@career-sync/client/stores/dialog";
 import { SectionDialog } from "../sections/shared/section-dialog";
 import { URLInput } from "../sections/shared/url-input";
 
-const formSchema = referenceSchema;
+const formSchema = referenceSchema.extend({
+  id: z.string(),
+  name: z.string(),
+  description: z.string(),
+  summary: z.string(),
+  url: z.object({ label: z.string(), href: z.string() }),
+  visible: z.boolean(),
+});
 
-type FormValues = z.input<typeof formSchema>;
+type FormValues = z.infer<typeof formSchema>;
 
 export const ReferencesDialog = () => {
   const { mode = "create", payload, close } = useDialog<FormValues>("references");
   const { create, update, remove } = useReferences();
 
-  const form = useForm<FormValues>({
-    defaultValues: mode === "update" && payload.item ? payload.item : defaultReference,
+  const form = useForm<FormValues, unknown, FormValues>({
+    defaultValues: {
+      ...defaultReference,
+      id: mode === "update" && payload.item?.id ? payload.item.id : createId(),
+      ...(mode === "update" && payload.item ? payload.item : {}),
+    },
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = (values: FormValues) => {
     const payloadForApi: Omit<ReferenceModel, "id"> = {
       name: values.name,
-      description: values.description || undefined,
-      url: values.url.href || undefined,
-      summary: values.summary || undefined,
+      description: values.description ?? undefined,
+      url: values.url.href ?? undefined,
+      summary: values.summary ?? undefined,
     };
 
     if (mode === "create") {
       create.mutate(payloadForApi, { onSuccess: close });
-    } else {
-      update.mutate(
-        { id: (payload.item as FormValues).id, payload: payloadForApi },
-        { onSuccess: close },
-      );
+    } else if (payload.item?.id) {
+      update.mutate({ id: payload.item.id, payload: payloadForApi }, { onSuccess: close });
     }
   };
 
@@ -77,9 +83,11 @@ export const ReferencesDialog = () => {
             <AlertDialogCancel>{t`Cancel`}</AlertDialogCancel>
             <AlertDialogAction
               variant="error"
-              onClick={() =>
-                payload.item?.id && remove.mutate(payload.item.id, { onSuccess: close })
-              }
+              onClick={() => {
+                if (payload.item?.id) {
+                  remove.mutate(payload.item.id, { onSuccess: close });
+                }
+              }}
             >
               {t`Delete`}
             </AlertDialogAction>
