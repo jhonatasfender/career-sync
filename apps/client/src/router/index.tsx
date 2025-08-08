@@ -13,6 +13,7 @@ import { builderLoader, BuilderPage } from "../pages/builder/page";
 import { AwardsPage } from "../pages/dashboard/awards/page";
 import { BasicPage } from "../pages/dashboard/basic/page";
 import { CertificationsPage } from "../pages/dashboard/certifications/page";
+import { ChatPage } from "../pages/dashboard/chat/page";
 import { EducationPage } from "../pages/dashboard/education/page";
 import { ExperiencePage } from "../pages/dashboard/experience/page";
 import { InterestsPage } from "../pages/dashboard/Interests/page";
@@ -92,8 +93,9 @@ export const routes = createRoutesFromElements(
           <Route path="interests" element={<InterestsPage />} />
           <Route path="volunteer" element={<VolunteerPage />} />
           <Route path="references" element={<ReferencesPage />} />
+          <Route path="chat" element={<ChatPage />} />
 
-          <Route index element={<Navigate replace to="/dashboard/resumes" />} />
+          <Route index element={<Navigate replace to="/dashboard/chat" />} />
         </Route>
       </Route>
     </Route>
@@ -103,7 +105,7 @@ export const routes = createRoutesFromElements(
         <Route element={<BuilderLayout />}>
           <Route path=":id" loader={builderLoader} element={<BuilderPage />} />
 
-          <Route index element={<Navigate replace to="/dashboard/resumes" />} />
+          <Route index element={<Navigate replace to="/dashboard/chat" />} />
         </Route>
       </Route>
     </Route>

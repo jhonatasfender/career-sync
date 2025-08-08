@@ -1,0 +1,118 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.vite/
+.nx/cache/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+tmp/
+temp/
+.tmp/
+
+# Lock files (generated)
+yarn.lock
+package-lock.json
+
+# Generated prisma files
+**/prisma/client/
+
+# Generated migration files
+**/migrations/
+
+# Docker volumes
+docker-data/
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+
+# Storybook
+storybook-static/
+
+# Generated locale files
+**/locale/
+**/messages/
+
+# Generated documentation
+docs/api/
+
+# Generated types (keep source types)
+**/*.d.ts
+!src/**/*.d.ts
+!libs/**/*.d.ts
+
+# Large data files
+*.csv
+*.json.gz
+*.tar.gz
+*.zip
+
+# Binary files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.ico
+*.svg
+*.woff
+*.woff2
+*.ttf
+*.eot
+
+# Minified files
+*.min.js
+*.min.css
+
+# Generated configuration
+**/*config.generated.*

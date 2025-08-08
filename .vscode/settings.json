@@ -5,5 +5,38 @@
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-  ]
+  ],
+
+  // GitHub Copilot Settings
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": false,
+    "markdown": true,
+    "json": true,
+    "jsonc": true,
+    "typescript": true,
+    "typescriptreact": true,
+    "javascript": true,
+    "javascriptreact": true,
+    "css": true,
+    "scss": true,
+    "less": true,
+    "sql": true,
+    "prisma": true,
+    "dockerfile": true,
+    "dockercompose": true
+  },
+  "github.copilot.chat.edits.suggestRelatedFilesFromGitHistory": true,
+  "github.copilot.chat.editor.temporalContext.enabled": true,
+
+  // Enable prompt files for GitHub Copilot
+  "chat.promptFiles": true,
+
+  // File associations for better Copilot context
+  "files.associations": {
+    "*.prisma": "prisma",
+    "*.config.ts": "typescript",
+    "*.config.js": "javascript"
+  }
 }
