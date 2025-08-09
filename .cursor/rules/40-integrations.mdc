@@ -1,0 +1,32 @@
+---
+description: Padrões de integração de envio (WhatsApp, Gmail, LinkedIn) e UX de compartilhamento
+globs:
+  - apps/client/src/pages/dashboard/chat/page.tsx
+alwaysApply: false
+---
+
+## Geração de links de envio (cliente)
+
+- WhatsApp
+  - Preferir `https://wa.me/<phone>?text=<mensagem_urlencode>`.
+  - Se telefone não fornecido, só copiar mensagem para a área de transferência e instruir o usuário a escolher o contato.
+
+- Gmail
+  - Preferir Gmail Compose: `https://mail.google.com/mail/?view=cm&fs=1&to=<to>&su=<subject>&body=<body>`; fallback `mailto:`.
+  - Evitar corpo > 10k chars; mover peças longas para anexos/links.
+
+- LinkedIn
+  - Mensagens não possuem deep‑link oficial com pré‑preenchimento confiável; abrir `https://www.linkedin.com/messaging/compose/` e copiar o texto para o clipboard.
+  - Para compartilhar link de portfólio, use `https://www.linkedin.com/sharing/share-offsite/?url=<url>`.
+
+## UX
+
+- Sempre mostrar pré‑visualização do texto final com contagem de caracteres.
+- Permitir seleção do nível de formalidade antes de gerar.
+- Copiar automaticamente para a área de transferência ao abrir o canal e mostrar toast de confirmação.
+
+## Backend
+
+- Preferir endpoints “on-the-fly” para gerar/preview conteúdo sem dependência de `Resume`.
+- Se necessário compor dados do usuário, utilizar chaves de entidades e ordenação; não depender de blobs JSON.
+

@@ -1,0 +1,43 @@
+---
+description: Diretrizes de tom por canal (WhatsApp, Gmail, LinkedIn) e preferência do usuário
+globs:
+  - apps/client/src/pages/dashboard/chat/page.tsx
+alwaysApply: false
+---
+
+## Tom por canal
+
+- WhatsApp
+  - Tom: profissional‑amigável. Evitar gírias; evitar excesso de formalidade.
+  - Estrutura: 4–6 linhas; saudação breve; valor principal; call‑to‑action curto; agradecimento.
+  - Evitar anexos pesados; preferir links.
+
+- Gmail (email)
+  - Tom: formal a semi‑formal. Assunto claro; saudação nominal; corpo com 2–4 parágrafos curtos; assinatura.
+  - Incluir anexos citados no corpo e resumo de qualificações com métricas.
+
+- LinkedIn
+  - Tom: profissional, conciso e cordial.
+  - Se for InMail/convite, manter <300 caracteres quando possível; focar motivação e fit.
+
+- Validação
+  - Garantir que o texto final não contenha PII indevida e respeite preferências do usuário (expressão selecionada).
+
+## Preferência do usuário (expressão)
+
+- `formal`: elevar registro lexical e evitar contrações.
+- `informal`: manter cortesia, mas com frases mais diretas e curtas.
+- `professional`: meio‑termo, priorizando clareza e impacto.
+- `casual`: somente no LinkedIn/WhatsApp se o usuário escolher explicitamente.
+
+## Esqueleto de mensagem
+
+- WhatsApp
+  - "Olá <Nome>, vi a vaga <Título> e acredito agregar em <competência>. Tenho experiência em <stack/resultado>. Podemos conversar? Obrigado, <Assinatura>."
+
+- Gmail (assunto)
+  - "Candidatura — <Título da Vaga> — <Seu Nome>"
+
+- LinkedIn
+  - "Olá <Nome>, gostei da vaga <Título>. Tenho <X> anos em <área> com resultados em <métrica>. Posso enviar um currículo direcionado? Obrigado(a)."
+

@@ -12,15 +12,15 @@ import {
 } from "@reactive-resume/ui";
 import { useState } from "react";
 
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  // TODO: Implement submit logic
-};
+import { toast } from "../../../hooks/use-toast";
+import { createApplication } from "../../../services/application/application";
 
 export const ChatPage = () => {
   const [message, setMessage] = useState("");
   const [selectedExpression, setSelectedExpression] = useState<string>("");
   const [selectedNetworks, setSelectedNetworks] = useState<string[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const [coverLetter, setCoverLetter] = useState<string | null>(null);
 
   const expressions = [
     { value: "formal", label: t`Formal` },
@@ -37,11 +37,41 @@ export const ChatPage = () => {
 
   const handleNetworkChange = (value: string) => {
     setSelectedNetworks((prev) => {
-      if (prev.includes(value)) {
-        return prev.filter((v) => v !== value);
-      }
+      if (prev.includes(value)) return prev.filter((v) => v !== value);
       return [...prev, value];
     });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!message?.trim()) {
+      toast({ variant: "error", title: t`Mensagem obrigatória` });
+      return;
+    }
+    if (!selectedExpression) {
+      toast({ variant: "error", title: t`Selecione a expressão` });
+      return;
+    }
+    if (selectedNetworks.length === 0) {
+      toast({ variant: "error", title: t`Selecione pelo menos um canal` });
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+      const resp = await createApplication({
+        message,
+        expression: selectedExpression as "formal" | "informal" | "professional" | "casual",
+        channels: selectedNetworks as ("email" | "whatsapp" | "linkedin")[],
+      });
+      setCoverLetter(resp.coverLetter ?? null);
+      toast({ variant: "success", title: t`Enviado com sucesso` });
+    } catch {
+      toast({ variant: "error", title: t`Falha ao enviar` });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -77,8 +107,8 @@ export const ChatPage = () => {
               {networks.map((network) => (
                 <div key={network.value} className="flex items-center space-x-2">
                   <Checkbox
-                    id={network.value}
                     checked={selectedNetworks.includes(network.value)}
+                    id={network.value}
                     onCheckedChange={() => {
                       handleNetworkChange(network.value);
                     }}
@@ -89,10 +119,16 @@ export const ChatPage = () => {
             </div>
           </div>
 
-          <Button type="submit" className="h-[36px]">
-            {t`Enviar`}
+          <Button className="h-[36px]" disabled={submitting} type="submit">
+            {submitting ? t`Enviando...` : t`Enviar`}
           </Button>
         </div>
+        {coverLetter && (
+          <div className="mt-4 rounded-md border p-4">
+            <label className="mb-2 block text-sm font-medium text-gray-700">{t`Carta de apresentação`}</label>
+            <div className="whitespace-pre-wrap text-sm leading-relaxed">{coverLetter}</div>
+          </div>
+        )}
       </form>
     </div>
   );

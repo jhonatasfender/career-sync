@@ -35,7 +35,7 @@ export type MenuCategory =
 
 export const getMenuCategories = (): MenuCategory[] => [
   {
-    path: "/dashboard/resumes",
+    path: "/dashboard/chat",
     name: t`Home`,
     icon: <House weight="duotone" />,
   },

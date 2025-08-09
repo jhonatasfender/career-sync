@@ -65,6 +65,8 @@ model Resume {
   user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   statistics Statistics?
 
+  items ResumeItem[]
+
   @@unique([userId, id])
   @@unique([userId, slug])
   @@index([userId])
@@ -203,14 +205,14 @@ model Project {
 }
 
 model Publication {
-  id          String    @id @default(cuid())
-  name        String
-  publisher   String
-  date        DateTime?
-  url         String?
-  summary     String?
-  userId      String
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id        String    @id @default(cuid())
+  name      String
+  publisher String
+  date      DateTime?
+  url       String?
+  summary   String?
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Volunteer {
@@ -254,4 +256,37 @@ enum Provider {
 enum Visibility {
   public
   private
+}
+
+enum ResumeEntityType {
+  EXPERIENCE
+  EDUCATION
+  SKILL
+  LANGUAGE
+  AWARD
+  CERTIFICATION
+  INTEREST
+  PROJECT
+  PUBLICATION
+  VOLUNTEER
+  REFERENCE
+  CUSTOM_SECTION
+  PROFILE
+  BASICS
+  SUMMARY
+}
+
+model ResumeItem {
+  id         String           @id @default(cuid())
+  resumeId   String
+  entityType ResumeEntityType
+  entityId   String
+  orderIndex Int              @default(0)
+  createdAt  DateTime         @default(now())
+
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  @@unique([resumeId, entityType, entityId])
+  @@index([resumeId])
+  @@index([entityType, entityId])
 }

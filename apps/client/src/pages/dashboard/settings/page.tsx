@@ -5,7 +5,6 @@ import { Helmet } from "react-helmet-async";
 
 import { AccountSettings } from "./sections/account";
 import { DangerZoneSettings } from "./sections/danger";
-import { OpenAISettings } from "./sections/openai";
 import { ProfileSettings } from "./sections/profile";
 import { SecuritySettings } from "./sections/security";
 
@@ -33,8 +32,6 @@ export const SettingsPage = () => (
           <SecuritySettings />
           <Separator />
           <ProfileSettings />
-          <Separator />
-          <OpenAISettings />
           <Separator />
           <DangerZoneSettings />
         </div>

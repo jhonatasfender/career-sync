@@ -1,0 +1,46 @@
+---
+description: Geração de currículo e carta a partir da vaga + perfil do usuário; constraints e padrões
+globs:
+  - apps/client/src/services/openai/**
+  - apps/client/src/stores/openai.ts
+  - apps/client/src/components/ai-actions.tsx
+  - apps/client/src/constants/llm.ts
+  - apps/server/src/modules/**/*
+alwaysApply: false
+---
+
+## Pipeline de geração (alta-nível)
+
+1) Entrada: descrição da vaga (texto livre) + perfil do usuário (experiências, skills, educação, idiomas, projetos, certificações).
+2) Análise: extrair requisitos e palavras‑chave da vaga; mapear com pontos fortes do perfil.
+3) Saída A: Currículo direcionado (seções reordenadas e descrições otimizadas, mantendo veracidade e dados do usuário).
+4) Saída B: Carta de apresentação específica à vaga (1 página, foco em resultados, métricas e alinhamento cultural).
+5) Ajuste de tom: aplicar regra de tom por canal e preferência do usuário.
+
+## Constraints
+
+- Veracidade: nunca inventar experiência/empresa/ano. Só reescrever e priorizar o que já existe no perfil.
+- Privacidade: não vazar dados sensíveis; reduzir PII ao mínimo necessário para a aplicação.
+- Internacionalização: respeitar o idioma do usuário/vaga quando indicado.
+
+## Uso de LLM no cliente (BYOK)
+
+- Obter credenciais via `useOpenAiStore` e chamar `openai().chat.completions.create(...)`.
+- Respeitar `DEFAULT_MODEL` e `maxTokens` quando definidos.
+- Em falha, mensagens amigáveis e sem vazar conteúdo do prompt.
+
+## Prompt base (esqueleto)
+
+Contexto:
+- Vaga: <descrição>
+- Perfil: <resumo estruturado do usuário>
+Tarefas:
+- Gerar currículo direcionado, enfatizando experiências/skills alinhadas à vaga, mantendo fatos.
+- Gerar carta de apresentação de até ~300-400 palavras, destacando fit e resultados.
+- Propor 3 variações de headline profissional.
+Formato de saída:
+- Estruturar resposta em seções claras (sem blobs desnecessários). Evitar inventar dados.
+
+@apps/client/src/services/openai/client.ts
+@apps/client/src/components/ai-actions.tsx
+

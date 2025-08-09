@@ -1,0 +1,140 @@
+erDiagram
+  User ||--o{ Resume : has
+  User ||--o{ Basics : has
+  User ||--o{ Summary : has
+  User ||--o{ Experience : has
+  User ||--o{ Education : has
+  User ||--o{ Skill : has
+  User ||--o{ Language : has
+  User ||--o{ Award : has
+  User ||--o{ Certification : has
+  User ||--o{ Interest : has
+  User ||--o{ Project : has
+  User ||--o{ Publication : has
+  User ||--o{ Volunteer : has
+  User ||--o{ Reference : has
+  User ||--o{ CustomSection : has
+  User ||--o{ Profile : has
+
+  %% Resume composition via a generic association table (normalized, without JSON)
+  Resume ||--o{ ResumeItem : contains
+
+  %% Entities (key fields only for brevity)
+  User {
+    string id PK
+    string name
+    string email
+  }
+
+  Resume {
+    string id PK
+    string title
+    string slug
+    string userId FK
+    string visibility
+    boolean locked
+  }
+
+  Basics {
+    string id PK
+    string userId FK
+    string email
+    string phone
+  }
+
+  Summary {
+    string id PK
+    string userId FK
+    string content
+  }
+
+  Experience {
+    string id PK
+    string userId FK
+    string company
+    string position
+  }
+
+  Education {
+    string id PK
+    string userId FK
+    string institution
+    string area
+  }
+
+  Skill {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  Language {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  Award {
+    string id PK
+    string userId FK
+    string title
+  }
+
+  Certification {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  Interest {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  Project {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  Publication {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  Volunteer {
+    string id PK
+    string userId FK
+    string organization
+  }
+
+  Reference {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  CustomSection {
+    string id PK
+    string userId FK
+    string name
+  }
+
+  Profile {
+    string id PK
+    string userId FK
+    string network
+    string username
+  }
+
+  ResumeItem {
+    string id PK
+    string resumeId FK
+    string entityType
+    string entityId
+    int orderIndex
+  }
+
+

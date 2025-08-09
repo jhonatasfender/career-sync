@@ -31,7 +31,8 @@
     "messages:extract": "pnpm exec lingui extract --clean --overwrite",
     "e2e": "nx e2e e2e --watch",
     "e2e:headless": "nx e2e e2e --headless",
-    "e2e:ci": "nx e2e e2e --headless --record --key $CYPRESS_RECORD_KEY"
+    "e2e:ci": "nx e2e e2e --headless",
+    "db:seed": "pnpm exec prisma db seed"
   },
   "devDependencies": {
     "@babel/core": "^7.26.7",
@@ -270,6 +271,7 @@
     "node": ">=20.13.1"
   },
   "prisma": {
-    "schema": "tools/prisma/schema.prisma"
+    "schema": "tools/prisma/schema.prisma",
+    "seed": "ts-node -P tools/prisma/tsconfig.json tools/prisma/seeds/seed.ts"
   }
 }

@@ -1,0 +1,28 @@
+---
+description: Como navegar e operar o monorepo Nx com pnpm e Docker
+globs:
+  - package.json
+  - nx.json
+  - apps/**/*
+  - libs/**/*
+  - docker-compose.yml
+alwaysApply: false
+---
+
+## Monorepo (Nx + pnpm)
+
+- Ferramentas: Nx, pnpm, Vite/React no front, NestJS no server, Prisma, Cypress E2E.
+- Comandos principais
+  - Dev: `pnpm dev` (equivale a `nx run-many -t serve --projects=docker,server,artboard,client --parallel=4`).
+  - Build: `pnpm build` (Nx run-many -t build). Start server: `pnpm start` (usa `dist/apps/server/main`).
+  - Lint: `pnpm lint`; Format: `pnpm format:check|write`.
+  - Testes unitários: `pnpm test`; E2E: `pnpm e2e:headless`.
+- Padrões
+  - Não editar arquivos em `dist/`. Gerar libs em `libs/*` e apps em `apps/*`.
+  - Node >= 20.13.1, gerenciador `pnpm@9` (ver `packageManager`).
+  - Siga geradores Nx para novos apps/libs e o estilo de código do repositório.
+
+- Migrações/Prisma
+  - Schema em `tools/prisma/schema.prisma`. Não usar JSON para composição; usar tabelas normalizadas.
+  - Criar migrations com `pnpm exec prisma migrate dev --name <name> --create-only` e gerar client com `pnpm exec prisma generate`.
+

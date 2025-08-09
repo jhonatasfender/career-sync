@@ -9,6 +9,7 @@ import { ConfigModule } from "./config/config.module";
 import { DatabaseModule } from "./database/database.module";
 import { HealthModule } from "./health/health.module";
 import { MailModule } from "./mail/mail.module";
+import { ApplicationModule } from "./modules/application/application.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { AwardModule } from "./modules/award/award.module";
 import { BasicsModule } from "./modules/basics/basics.module";
@@ -49,6 +50,7 @@ const imports = [
   FeatureModule,
   TranslationModule,
   ContributorsModule,
+  ApplicationModule,
 
   // Resume Modules
   BasicsModule,

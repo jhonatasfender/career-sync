@@ -1,0 +1,31 @@
+---
+description: Core behavior and goals for Career Sync project rules
+globs:
+alwaysApply: true
+---
+
+## Core: Diretrizes da IA para o projeto
+
+- Objetivo: Usuário insere a descrição da vaga; a IA cruza com o perfil cadastrado e gera (1) currículo direcionado e (2) carta de apresentação; depois prepara envio por WhatsApp, Gmail ou LinkedIn com tom ajustável por canal e preferência do usuário.
+
+- Conduta da IA
+  - Siga as regras deste diretório e o estado real do repositório; leia o código antes de editar.
+  - Atue incrementalmente, sem quebrar build/testes. Use nomes descritivos, early-returns e tratamento de erros.
+  - Não exponha PII; não registre chaves/segredos. Nunca commite credenciais.
+  - Pergunte ao usuário somente diante de bloqueios reais (ex.: decisão de produto, credenciais, escopo indefinido).
+
+- Execução/Qualidade
+  - Rode lint/testes do escopo alterado quando fizer mudanças substanciais.
+  - Preferir comandos Nx/pnpm e respeitar engines do projeto.
+
+- Integração com LLM
+  - No cliente, use `useOpenAiStore` para `apiKey`, `baseURL`, `model` e `maxTokens` e o cliente de `openai().chat.completions.create(...)`.
+  - Não replique chaves no servidor sem necessidade; mantenha fluxo BYOK (bring your own key) do usuário.
+
+ - Dados e composição
+   - Entidades (experiência, educação, etc.) pertencem ao `User` (mestre). A composição por currículo é normalizada via `ResumeItem` (sem JSON).
+   - `Resume` é legado e será descontinuado. Evite novas dependências diretas; preferir endpoints on-the-fly e/ou `ResumeItem` durante transição.
+   - Não introduzir blobs JSON para composição; usar registros relacionais com `entityType`, `entityId`, `orderIndex`.
+
+Referência: Regras do Cursor e formato `.mdc` com frontmatter, tipos de aplicação e melhores práticas. Veja documentação oficial.
+
