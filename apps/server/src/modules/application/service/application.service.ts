@@ -1,86 +1,15 @@
 import { HttpService } from "@nestjs/axios";
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "nestjs-prisma";
 
+import { DEFAULT_LLM_CONFIG, TONE_MAP } from "../config/llm.config";
 import { CreateApplicationDto } from "../dto/create-application.dto";
-
-type BuildProfileSummary = {
-  basics: {
-    name: string | null;
-    email: string | null;
-    phone: string | null;
-    url: string | null;
-    location: string | null;
-    headline: string | null;
-    summary: string | null;
-  } | null;
-  summary: { content: string | null } | null;
-  experiences: {
-    company: string;
-    position: string;
-    startDate: Date;
-    endDate: Date | null;
-    summary: string | null;
-    website: string | null;
-  }[];
-  skills: {
-    name: string;
-    keywords: string[];
-    level: number | null;
-    description: string | null;
-  }[];
-  educations: {
-    institution: string;
-    area: string;
-    studyType: string | null;
-    startDate: Date;
-    endDate: Date | null;
-    gpa: number | null;
-  }[];
-  projects: {
-    name: string;
-    description: string | null;
-    keywords: string[];
-    summary: string | null;
-    website: string | null;
-  }[];
-  certifications: {
-    name: string;
-    issuer: string;
-    date: Date | null;
-    summary: string | null;
-    website: string | null;
-  }[];
-  languages: {
-    name: string;
-    level: number | null;
-    description: string | null;
-  }[];
-  awards: {
-    title: string;
-    date: Date | null;
-    awarder: string | null;
-    summary: string | null;
-    website: string | null;
-  }[];
-  volunteer: {
-    organization: string;
-    position: string;
-    startDate: Date | null;
-    endDate: Date | null;
-    location: string | null;
-    summary: string | null;
-  }[];
-  profiles: {
-    network: string;
-    username: string;
-    url: string;
-    icon: string | null;
-  }[];
-};
+import { BuildProfileSummary, ChannelType, ExpressionType } from "../types";
 
 @Injectable()
 export class ApplicationService {
+  private readonly logger = new Logger(ApplicationService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly http: HttpService,
@@ -89,6 +18,40 @@ export class ApplicationService {
   private async checkUser(userId: string) {
     const exists = await this.prisma.user.count({ where: { id: userId } });
     if (!exists) throw new NotFoundException("Usuário não encontrado");
+  }
+
+  private validateUserProfile(user: BuildProfileSummary): void {
+    const hasBasics =
+      user.basics &&
+      [user.basics.name, user.basics.email, user.basics.headline, user.basics.summary].some(
+        (field) => field && field.trim() !== "",
+      );
+    const hasSummary = user.summary?.content?.trim() !== "";
+    const hasExperiences = user.experiences.length > 0;
+    const hasSkills = user.skills.length > 0;
+    const hasEducations = user.educations.length > 0;
+
+    if (!hasBasics) {
+      throw new NotFoundException(
+        "É necessário preencher as informações básicas (nome, email, headline ou resumo).",
+      );
+    }
+
+    if (!hasSummary) {
+      throw new NotFoundException("É necessário preencher o resumo do perfil.");
+    }
+
+    if (!hasExperiences) {
+      throw new NotFoundException("É necessário ter pelo menos uma experiência profissional.");
+    }
+
+    if (!hasSkills) {
+      throw new NotFoundException("É necessário ter pelo menos uma skill.");
+    }
+
+    if (!hasEducations) {
+      throw new NotFoundException("É necessário ter pelo menos uma formação educacional.");
+    }
   }
 
   private formatDate(date?: Date | null): string | null {
@@ -206,20 +169,13 @@ export class ApplicationService {
 
   private buildCoverLetterPrompt(params: {
     jobDescription?: string;
-    expression: "formal" | "informal" | "professional" | "casual";
+    expression: ExpressionType;
     baseProfile: string;
     userMessage: string;
     targetLanguage: string;
-    channels: ("email" | "whatsapp" | "linkedin")[];
+    channels: ChannelType[];
   }): string {
-    const toneMap: Record<string, string> = {
-      formal: "tom formal, vocabulário elevado e sem contrações",
-      informal: "tom informal, porém cortês e direto",
-      professional: "tom profissional, claro e objetivo",
-      casual: "tom casual, amigável e conciso",
-    };
-
-    const toneInstruction = toneMap[params.expression] ?? toneMap.professional;
+    const toneInstruction = TONE_MAP[params.expression] ?? TONE_MAP.professional;
 
     const parts: string[] = [
       "Context: job-specific cover letter generation.",
@@ -253,33 +209,30 @@ export class ApplicationService {
   }
 
   private async generateCoverLetterWithOllama(prompt: string): Promise<string> {
-    const baseUrl = process.env.OLLAMA_BASE_URL ?? "http://localhost:11434/v1";
-    const modelName = process.env.OLLAMA_MODEL ?? "llama3.2:latest";
-    const apiKey = process.env.OLLAMA_API_KEY;
-
-    const url = this.buildChatCompletionsUrl(baseUrl);
+    const url = this.buildChatCompletionsUrl(DEFAULT_LLM_CONFIG.baseUrl);
 
     const { data } = await this.http.axiosRef.post<{
       choices?: { message?: { content?: string } }[];
     }>(
       url,
       {
-        model: modelName,
+        model: DEFAULT_LLM_CONFIG.modelName,
         messages: [
           {
             role: "system",
-            content:
-              "You generate concise, professional cover letters. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages).",
+            content: DEFAULT_LLM_CONFIG.systemPrompt,
           },
           { role: "user", content: prompt },
         ],
-        temperature: 0.5,
-        max_tokens: 700,
+        temperature: DEFAULT_LLM_CONFIG.temperature,
+        max_tokens: DEFAULT_LLM_CONFIG.maxTokens,
       },
       {
         headers: {
           "Content-Type": "application/json",
-          ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
+          ...(DEFAULT_LLM_CONFIG.apiKey
+            ? { Authorization: `Bearer ${DEFAULT_LLM_CONFIG.apiKey}` }
+            : {}),
         },
       },
     );
@@ -355,6 +308,8 @@ export class ApplicationService {
 
     if (!user) throw new NotFoundException("Usuário não encontrado");
 
+    this.validateUserProfile(user);
+
     const baseProfile = this.buildProfileSummary({
       basics: user.basics
         ? {
@@ -381,17 +336,19 @@ export class ApplicationService {
 
     const prompt = this.buildCoverLetterPrompt({
       jobDescription: dto.jobDescription,
-      expression: dto.expression as "formal" | "informal" | "professional" | "casual",
+      expression: dto.expression as ExpressionType,
       baseProfile,
       userMessage: dto.message,
       targetLanguage: "auto",
-      channels: dto.channels as ("email" | "whatsapp" | "linkedin")[],
+      channels: dto.channels as ChannelType[],
     });
 
     let coverLetter: string | null = null;
     try {
       coverLetter = await this.generateCoverLetterWithOllama(prompt);
-    } catch {
+    } catch (error) {
+      this.logger.error("Erro ao gerar carta de apresentação:", error);
+      this.logger.error("Prompt:", prompt);
       coverLetter = null;
     }
 

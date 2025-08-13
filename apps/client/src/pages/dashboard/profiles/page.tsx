@@ -67,6 +67,7 @@ const ProfileGridView = ({
               <button
                 className="rounded-full p-2 text-gray-500 hover:bg-secondary/50 hover:text-primary"
                 title={t`Edit Profile`}
+                data-cy="edit-profile"
                 onClick={() => {
                   handleEdit(profile);
                 }}
@@ -76,6 +77,7 @@ const ProfileGridView = ({
               <button
                 className="rounded-full p-2 text-gray-500 hover:bg-red-100 hover:text-red-500"
                 title={t`Delete Profile`}
+                data-cy="delete-profile"
                 onClick={() => {
                   handleDelete(profile);
                 }}

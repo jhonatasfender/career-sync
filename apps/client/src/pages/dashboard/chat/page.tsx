@@ -67,8 +67,21 @@ export const ChatPage = () => {
       });
       setCoverLetter(resp.coverLetter ?? null);
       toast({ variant: "success", title: t`Enviado com sucesso` });
-    } catch {
-      toast({ variant: "error", title: t`Falha ao enviar` });
+    } catch (error: unknown) {
+      let errorMessage = t`Falha ao enviar`;
+
+      if (error && typeof error === "object" && "response" in error) {
+        const responseError = error as { response?: { data?: { message?: string } } };
+        if (responseError.response?.data?.message) {
+          errorMessage = responseError.response.data.message;
+        }
+      } else if (error && typeof error === "object" && "message" in error) {
+        const messageError = error as { message: string };
+        errorMessage = messageError.message;
+      }
+
+      toast({ variant: "error", title: errorMessage });
+      setCoverLetter(null);
     } finally {
       setSubmitting(false);
     }

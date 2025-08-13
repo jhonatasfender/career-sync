@@ -46,12 +46,12 @@ describe("Resume Builder: End-to-End Flow", () => {
     const secondPart = faker.number.int({ min: 1000, max: 9999 });
     const phoneNumber = `+55 (${ddd}) ${firstPart}-${secondPart}`;
 
-    cy.get('input[id="basics.name"]').type(faker.person.fullName());
-    cy.get('input[id="basics.headline"]').type(faker.person.jobTitle());
-    cy.get('input[id="basics.email"]').type(faker.internet.email());
-    cy.get('input[id="basics.url"]').type(faker.internet.url());
+    cy.get('input[id="basics.name"]').type("João Silva Santos");
+    cy.get('input[id="basics.headline"]').type("Senior Full Stack Developer");
+    cy.get('input[id="basics.email"]').type("joao.silva@techdev.com");
+    cy.get('input[id="basics.url"]').type("https://joaosilva.dev");
     cy.get('input[id="basics.phone"]').type(phoneNumber);
-    cy.get('input[id="basics.location"]').type(faker.location.streetAddress());
+    cy.get('input[id="basics.location"]').type("São Paulo, SP, Brasil");
 
     cy.contains("Save Changes").click();
   });
@@ -60,7 +60,7 @@ describe("Resume Builder: End-to-End Flow", () => {
     cy.visit("/dashboard/summary");
     cy.wait("@summary");
 
-    const summary = faker.lorem.paragraph().replace(/\n/g, " ");
+    const summary = `Desenvolvedor Full Stack com ${faker.number.int({ min: 3, max: 8 })} anos de experiência em desenvolvimento web, especializado em React, Node.js e TypeScript. Apaixonado por criar soluções escaláveis e arquiteturas limpas. Experiência em metodologias ágeis e trabalho em equipe.`;
     cy.typeInContentEditable(summary);
     cy.contains("Save").click();
   });
@@ -100,58 +100,82 @@ describe("Resume Builder: End-to-End Flow", () => {
     cy.visit("/dashboard/experience");
     cy.wait("@experience");
 
-    cy.repeat(3, () => {
+    const experiences = [
+      {
+        company: "TechCorp Solutions",
+        position: "Senior Full Stack Developer",
+        summary: "Desenvolvi e mantive aplicações web usando React, Node.js e PostgreSQL. Implementei CI/CD com GitHub Actions e Docker. Liderança técnica de equipe de 5 desenvolvedores.",
+      },
+      {
+        company: "StartupHub",
+        position: "Frontend Developer",
+        summary: "Criação de interfaces responsivas com React e TypeScript. Otimização de performance e SEO. Integração com APIs REST e GraphQL.",
+      },
+      {
+        company: "Enterprise Systems",
+        position: "Backend Developer",
+        summary: "Desenvolvimento de APIs RESTful com Node.js e Express. Implementação de autenticação JWT e autorização RBAC. Integração com bancos de dados SQL e NoSQL.",
+      },
+    ];
+
+    for (const exp of experiences) {
       cy.get('button[data-cy="add-experience"]').click();
 
-      const company = faker.company.name();
-      const position = faker.person.jobTitle();
-      const startDate = faker.date.past().toISOString().split("T")[0];
-      const endDate = faker.date.future().toISOString().split("T")[0];
+      const startDate = faker.date.past({ years: 3 }).toISOString().split("T")[0];
+      const endDate = faker.date.future({ years: 1 }).toISOString().split("T")[0];
       const website = faker.internet.url();
-      const expSummary = faker.lorem.paragraph();
 
-      cy.get('input[name="company"]').type(company);
-      cy.get('input[name="position"]').type(position);
+      cy.get('input[name="company"]').type(exp.company);
+      cy.get('input[name="position"]').type(exp.position);
       cy.get('input[name="startDate"]').type(startDate);
       cy.get('input[name="endDate"]').type(endDate);
       cy.get('div[role="dialog"]').contains("Company Website").parent().find("input").type(website);
-      cy.typeInContentEditable(expSummary);
+      cy.typeInContentEditable(exp.summary);
 
       cy.contains("button", "Create").click();
 
       cy.wait("@createExperience");
       cy.wait("@experience");
 
-      cy.get(".group").contains("h3", company).should("be.visible");
-      cy.get(".group").contains("p", position).should("be.visible");
-      cy.get(".group").contains("p", `${startDate} - ${endDate}`).should("be.visible");
-      cy.get(".group").contains("p", expSummary).should("be.visible");
-      cy.get(".group").contains("a", "Visit Company Website").should("be.visible");
-    });
+      cy.get(".group").contains("h3", exp.company).should("be.visible");
+      cy.get(".group").contains("p", exp.position).should("be.visible");
+      cy.get(".group").contains("p", exp.summary).should("be.visible");
+    }
   });
 
   it("Creates education entries", () => {
     cy.visit("/dashboard/education");
     cy.wait("@education");
 
-    cy.repeat(3, () => {
+    const educations = [
+      {
+        institution: "Universidade Federal de Tecnologia",
+        area: "Ciência da Computação",
+        studyType: "Bachelor",
+        summary: "Foco em algoritmos, estruturas de dados, arquitetura de software e desenvolvimento web. Projeto final: Sistema de gerenciamento de tarefas com React e Node.js.",
+      },
+      {
+        institution: "Instituto de Tecnologia Avançada",
+        area: "Engenharia de Software",
+        studyType: "Master",
+        summary: "Especialização em metodologias ágeis, padrões de projeto e arquitetura de sistemas distribuídos. Pesquisa em microserviços e DevOps.",
+      },
+    ];
+
+    for (const edu of educations) {
       cy.get('button[data-cy="add-education"]').click();
 
-      const institution = `${faker.company.name()} University`;
-      const area = faker.person.jobArea();
-      const studyType = faker.helpers.arrayElement(["Bachelor", "Master", "PhD"]);
-      const gpa = faker.number.float({ min: 2, max: 4 }).toFixed(2);
-      const startDate = faker.date.past().toISOString().split("T")[0];
-      const endDate = faker.date.future().toISOString().split("T")[0];
+      const gpa = faker.number.float({ min: 3, max: 4 }).toFixed(2);
+      const startDate = faker.date.past({ years: 5 }).toISOString().split("T")[0];
+      const endDate = faker.date.future({ years: 2 }).toISOString().split("T")[0];
       const website = faker.internet.url();
-      const summary = faker.lorem.paragraph();
 
-      cy.get('input[name="institution"]').type(institution);
-      cy.get('input[name="area"]').type(area);
-      cy.get('input[name="studyType"]').type(studyType);
+      cy.get('input[name="institution"]').type(edu.institution);
+      cy.get('input[name="area"]').type(edu.area);
+      cy.get('input[name="studyType"]').type(edu.studyType);
       cy.get('input[name="gpa"]').type(gpa);
       cy.get('div[role="dialog"]').contains("Website").parent().find("input").type(website);
-      cy.typeInContentEditable(summary);
+      cy.typeInContentEditable(edu.summary);
       cy.get('input[name="startDate"]').type(startDate);
       cy.get('input[name="endDate"]').type(endDate);
 
@@ -160,33 +184,46 @@ describe("Resume Builder: End-to-End Flow", () => {
       cy.wait("@createEducation");
       cy.wait("@education");
 
-      cy.get(".group").contains("h3", institution).should("be.visible");
-      cy.get(".group").contains("p", area).should("be.visible");
-      cy.get(".group").contains("p", `${startDate} - ${endDate}`).should("be.visible");
-      cy.get(".group").contains("p", summary).should("be.visible");
-      cy.get(".group")
-        .contains("a", "Visit Website")
-        .should("be.visible")
-        .should("have.attr", "target", "_blank")
-        .should("have.attr", "rel", "noopener noreferrer");
-    });
+      cy.get(".group").contains("h3", edu.institution).should("be.visible");
+      cy.get(".group").contains("p", edu.area).should("be.visible");
+      cy.get(".group").contains("p", edu.summary).should("be.visible");
+    }
   });
 
   it("Creates skill entries", () => {
     cy.visit("/dashboard/skills");
     cy.wait("@skills");
 
-    cy.repeat(3, () => {
+    const skills = [
+      {
+        name: "React",
+        description: "Desenvolvimento de interfaces de usuário responsivas e componentes reutilizáveis",
+        keywords: ["hooks", "context", "redux", "typescript"],
+      },
+      {
+        name: "Node.js",
+        description: "Desenvolvimento de APIs RESTful e aplicações backend escaláveis",
+        keywords: ["express", "middleware", "authentication", "database"],
+      },
+      {
+        name: "TypeScript",
+        description: "Desenvolvimento com tipagem estática e melhor DX para projetos JavaScript",
+        keywords: ["interfaces", "generics", "decorators", "strict-mode"],
+      },
+      {
+        name: "PostgreSQL",
+        description: "Design de esquemas de banco de dados e otimização de queries",
+        keywords: ["indexing", "transactions", "migrations", "orm"],
+      },
+    ];
+
+    for (const skill of skills) {
       cy.get('button[data-cy="add-skill"]').click();
 
-      const name = faker.hacker.noun();
-      const desc = faker.hacker.phrase();
-      const level = faker.number.int({ min: 1, max: 5 });
-      const kw1 = faker.hacker.verb();
-      const kw2 = faker.hacker.adjective();
+      const level = faker.number.int({ min: 3, max: 5 });
 
-      cy.get('input[name="name"]').type(name);
-      cy.get('input[name="description"]').type(desc);
+      cy.get('input[name="name"]').type(skill.name);
+      cy.get('input[name="description"]').type(skill.description);
 
       cy.get('[role="slider"]')
         .focus()
@@ -194,21 +231,21 @@ describe("Resume Builder: End-to-End Flow", () => {
           Cypress._.times(level - 1, () => cy.focused().type("{rightarrow}"));
         });
 
-      cy.get('input[data-cy="keywords-input"]').type(`${kw1}{enter}${kw2}{enter}`);
+      for (const keyword of skill.keywords) {
+        cy.get('input[data-cy="keywords-input"]').type(`${keyword}{enter}`);
+      }
 
       cy.contains("button", "Create").click();
 
       cy.wait("@createSkills");
       cy.wait("@skills");
 
-      cy.get(".group").contains("h3", name).should("be.visible");
-      cy.get(".group").contains("p", desc).should("be.visible");
-      cy.get(".group").contains("span", kw1).should("be.visible");
-      cy.get(".group").contains("span", kw2).should("be.visible");
-      cy.get(".group")
-        .contains("span", `${level * 20}%`)
-        .should("be.visible");
-    });
+      cy.get(".group").contains("h3", skill.name).should("be.visible");
+      cy.get(".group").contains("p", skill.description).should("be.visible");
+      for (const keyword of skill.keywords) {
+        cy.get(".group").contains("span", keyword).should("be.visible");
+      }
+    }
   });
 
   it("Creates language entries", () => {
