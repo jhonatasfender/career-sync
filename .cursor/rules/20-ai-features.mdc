@@ -22,6 +22,9 @@ alwaysApply: false
 - Veracidade: nunca inventar experiência/empresa/ano. Só reescrever e priorizar o que já existe no perfil.
 - Privacidade: não vazar dados sensíveis; reduzir PII ao mínimo necessário para a aplicação.
 - Internacionalização: respeitar o idioma do usuário/vaga quando indicado.
+- Consistência de canal e tom: respeitar `30-tone-by-channel` e `expression` do usuário.
+- Tamanho: carta ~300–400 palavras; mensagens para canais curtos (WhatsApp/LinkedIn) devem ser adaptáveis.
+- Reutilização de serviços no backend: prompts devem ser montados por `CoverLetterPromptBuilder` e texto base por `ProfileSummaryBuilder`.
 
 ## Uso de LLM no cliente (BYOK)
 
@@ -37,6 +40,7 @@ Contexto:
 Tarefas:
 - Gerar currículo direcionado, enfatizando experiências/skills alinhadas à vaga, mantendo fatos.
 - Gerar carta de apresentação de até ~300-400 palavras, destacando fit e resultados.
+- Detectar idioma predominante da descrição da vaga e responder estritamente nesse idioma.
 - Propor 3 variações de headline profissional.
 Formato de saída:
 - Estruturar resposta em seções claras (sem blobs desnecessários). Evitar inventar dados.

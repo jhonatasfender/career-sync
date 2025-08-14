@@ -236,6 +236,9 @@ importers:
       cookie-parser:
         specifier: ^1.4.7
         version: 1.4.7
+      date-fns:
+        specifier: 3.6.0
+        version: 3.6.0
       dayjs:
         specifier: ^1.11.13
         version: 1.11.13

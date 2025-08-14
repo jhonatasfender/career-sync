@@ -4,7 +4,7 @@ import { Body, Controller, Post, UseGuards } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 
 import { CreateApplicationDto } from "../dto/create-application.dto";
-import { ApplicationService } from "../service/application.service";
+import { ApplicationService } from "../services/application.service";
 
 @ApiTags("Application")
 @Controller("application")

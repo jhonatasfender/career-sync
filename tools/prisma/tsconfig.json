@@ -10,4 +10,3 @@
   "include": ["./seeds/**/*.ts"],
   "exclude": ["node_modules", "dist"]
 }
-

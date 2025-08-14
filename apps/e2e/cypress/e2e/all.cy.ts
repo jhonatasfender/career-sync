@@ -104,17 +104,20 @@ describe("Resume Builder: End-to-End Flow", () => {
       {
         company: "TechCorp Solutions",
         position: "Senior Full Stack Developer",
-        summary: "Desenvolvi e mantive aplicações web usando React, Node.js e PostgreSQL. Implementei CI/CD com GitHub Actions e Docker. Liderança técnica de equipe de 5 desenvolvedores.",
+        summary:
+          "Desenvolvi e mantive aplicações web usando React, Node.js e PostgreSQL. Implementei CI/CD com GitHub Actions e Docker. Liderança técnica de equipe de 5 desenvolvedores.",
       },
       {
         company: "StartupHub",
         position: "Frontend Developer",
-        summary: "Criação de interfaces responsivas com React e TypeScript. Otimização de performance e SEO. Integração com APIs REST e GraphQL.",
+        summary:
+          "Criação de interfaces responsivas com React e TypeScript. Otimização de performance e SEO. Integração com APIs REST e GraphQL.",
       },
       {
         company: "Enterprise Systems",
         position: "Backend Developer",
-        summary: "Desenvolvimento de APIs RESTful com Node.js e Express. Implementação de autenticação JWT e autorização RBAC. Integração com bancos de dados SQL e NoSQL.",
+        summary:
+          "Desenvolvimento de APIs RESTful com Node.js e Express. Implementação de autenticação JWT e autorização RBAC. Integração com bancos de dados SQL e NoSQL.",
       },
     ];
 
@@ -152,13 +155,15 @@ describe("Resume Builder: End-to-End Flow", () => {
         institution: "Universidade Federal de Tecnologia",
         area: "Ciência da Computação",
         studyType: "Bachelor",
-        summary: "Foco em algoritmos, estruturas de dados, arquitetura de software e desenvolvimento web. Projeto final: Sistema de gerenciamento de tarefas com React e Node.js.",
+        summary:
+          "Foco em algoritmos, estruturas de dados, arquitetura de software e desenvolvimento web. Projeto final: Sistema de gerenciamento de tarefas com React e Node.js.",
       },
       {
         institution: "Instituto de Tecnologia Avançada",
         area: "Engenharia de Software",
         studyType: "Master",
-        summary: "Especialização em metodologias ágeis, padrões de projeto e arquitetura de sistemas distribuídos. Pesquisa em microserviços e DevOps.",
+        summary:
+          "Especialização em metodologias ágeis, padrões de projeto e arquitetura de sistemas distribuídos. Pesquisa em microserviços e DevOps.",
       },
     ];
 
@@ -197,7 +202,8 @@ describe("Resume Builder: End-to-End Flow", () => {
     const skills = [
       {
         name: "React",
-        description: "Desenvolvimento de interfaces de usuário responsivas e componentes reutilizáveis",
+        description:
+          "Desenvolvimento de interfaces de usuário responsivas e componentes reutilizáveis",
         keywords: ["hooks", "context", "redux", "typescript"],
       },
       {

@@ -16,6 +16,7 @@ alwaysApply: true
 
 - Execução/Qualidade
   - Rode lint/testes do escopo alterado quando fizer mudanças substanciais.
+  - Para lint, execute na raiz: `pnpm lint --fix --verbose`.
   - Preferir comandos Nx/pnpm e respeitar engines do projeto.
 
 - Integração com LLM
@@ -28,4 +29,19 @@ alwaysApply: true
    - Não introduzir blobs JSON para composição; usar registros relacionais com `entityType`, `entityId`, `orderIndex`.
 
 Referência: Regras do Cursor e formato `.mdc` com frontmatter, tipos de aplicação e melhores práticas. Veja documentação oficial.
+
+
+## Application Core (Server)
+
+- Arquitetura orientada a objetos e separação de responsabilidades no módulo `application`:
+  - `ProfileValidator`: valida perfil do usuário e lança exceções claras (sem estados parciais).
+  - `ProfileSummaryBuilder`: monta resumo humano do perfil para grounding do prompt (sem inventar dados; apenas reordena e resume).
+  - `CoverLetterPromptBuilder`: compõe prompt com regras de tom por canal e expressão do usuário; não copiar a vaga, apenas alinhar fit.
+  - `LlmChatClient`: cliente de Chat Completions (OpenAI‑compatível) usando `DEFAULT_LLM_CONFIG`; nunca logar chaves; erros tratados com mensagens seguras.
+- `ApplicationService` deve orquestrar os serviços acima, sem duplicar lógica.
+- Sempre encapsular acesso ao Prisma em `repositories` (ex.: `ApplicationRepository`) para manter services focados em orquestração.
+- Responder sempre no idioma detectado da vaga; nunca inventar empresas/anos/skills.
+- Preferir endpoints on‑the‑fly para geração/preview; evitar dependência direta de `Resume` (usar dados normalizados do `User`).
+- Padronizar erros HTTP (ex.: `NotFoundException` quando perfil incompleto) e logs sem vazar prompt ou PII.
+ - Logging: registrar eventos em JSONL com hashes (SHA-256) e comprimentos; conteúdo só quando `ALLOW_PROMPT_LOG=true` e com PII reduzida. Arquivo padrão `logs/application.log`.
 

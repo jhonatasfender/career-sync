@@ -15,12 +15,13 @@ alwaysApply: false
 - Comandos principais
   - Dev: `pnpm dev` (equivale a `nx run-many -t serve --projects=docker,server,artboard,client --parallel=4`).
   - Build: `pnpm build` (Nx run-many -t build). Start server: `pnpm start` (usa `dist/apps/server/main`).
-  - Lint: `pnpm lint`; Format: `pnpm format:check|write`.
+  - Lint (na raiz): `pnpm lint --fix --verbose`; Format: `pnpm format:check|write`.
   - Testes unitários: `pnpm test`; E2E: `pnpm e2e:headless`.
 - Padrões
   - Não editar arquivos em `dist/`. Gerar libs em `libs/*` e apps em `apps/*`.
   - Node >= 20.13.1, gerenciador `pnpm@9` (ver `packageManager`).
   - Siga geradores Nx para novos apps/libs e o estilo de código do repositório.
+  - No backend, criar camada `repositories` por módulo para encapsular Prisma; services não devem montar selects gigantes.
 
 - Migrações/Prisma
   - Schema em `tools/prisma/schema.prisma`. Não usar JSON para composição; usar tabelas normalizadas.

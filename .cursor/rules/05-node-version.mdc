@@ -1,0 +1,22 @@
+---
+title: "Node 22 em todos os terminais"
+id: "05-node-version"
+type: "guide"
+scope: ["terminal", "commands"]
+summary: "Sempre ativar Node 22 via nvm antes de executar comandos do projeto."
+---
+
+- Sempre que abrir um novo terminal, ative o Node 22 antes de rodar qualquer comando do projeto (pnpm, nx, prisma, etc.):
+
+```bash
+nvm use 22
+```
+
+- Em execuções não interativas/automatizadas, garanta o carregamento do nvm e a seleção da versão:
+
+```bash
+export NVM_DIR="$HOME/.nvm"; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; nvm use 22 | cat
+```
+
+- Dica: o arquivo `.nvmrc` com `22` já está presente no repositório; `nvm use` irá selecionar automaticamente.
+
