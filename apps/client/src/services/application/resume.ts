@@ -5,12 +5,27 @@ export type CreateResumePayload = {
   expression: "formal" | "informal" | "professional" | "casual";
   jobDescription?: string;
   resumeType?: "comprehensive" | "targeted" | "executive";
+  template?:
+    | "azurill"
+    | "bronzor"
+    | "chikorita"
+    | "ditto"
+    | "gengar"
+    | "glalie"
+    | "kakuna"
+    | "leafish"
+    | "nosepass"
+    | "onyx"
+    | "pikachu"
+    | "rhyhorn";
 };
 
 export type CreateResumeResponse = {
   message: string;
   userId: string;
-  data: CreateResumePayload;
+  data: CreateResumePayload & {
+    template?: string;
+  };
   prompt: string;
   resume: string | null;
   pdfBuffer: string | null;

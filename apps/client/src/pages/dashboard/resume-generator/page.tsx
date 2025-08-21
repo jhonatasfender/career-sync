@@ -19,6 +19,7 @@ export const ResumeGeneratorPage = () => {
   const [selectedExpression, setSelectedExpression] = useState<string>("");
   const [jobDescription, setJobDescription] = useState("");
   const [selectedResumeType, setSelectedResumeType] = useState<string>("");
+  const [selectedTemplate, setSelectedTemplate] = useState<string>("onyx");
   const [submitting, setSubmitting] = useState(false);
   const [resumeData, setResumeData] = useState<CreateResumeResponse | null>(null);
 
@@ -33,6 +34,37 @@ export const ResumeGeneratorPage = () => {
     { value: "targeted", label: t`Direcionado` },
     { value: "comprehensive", label: t`Abrangente` },
     { value: "executive", label: t`Executivo` },
+  ];
+
+  const artboardTemplates = [
+    { value: "onyx", label: t`Onyx - Clássico`, description: t`Design elegante e profissional` },
+    {
+      value: "pikachu",
+      label: t`Pikachu - Moderno`,
+      description: t`Layout contemporâneo e dinâmico`,
+    },
+    {
+      value: "ditto",
+      label: t`Ditto - Flexível`,
+      description: t`Adaptável para diferentes perfis`,
+    },
+    {
+      value: "gengar",
+      label: t`Gengar - Elegante`,
+      description: t`Estilo sofisticado e minimalista`,
+    },
+    { value: "azurill", label: t`Azurill - Limpo`, description: t`Simples e direto ao ponto` },
+    { value: "bronzor", label: t`Bronzor - Robusto`, description: t`Forte e estruturado` },
+    { value: "chikorita", label: t`Chikorita - Fresco`, description: t`Vibrante e energético` },
+    { value: "glalie", label: t`Glalie - Cristalino`, description: t`Transparente e organizado` },
+    {
+      value: "kakuna",
+      label: t`Kakuna - Minimalista`,
+      description: t`Máximo de conteúdo, mínimo de distração`,
+    },
+    { value: "leafish", label: t`Leafish - Natural`, description: t`Orgânico e fluido` },
+    { value: "nosepass", label: t`Nosepass - Estável`, description: t`Consistente e confiável` },
+    { value: "rhyhorn", label: t`Rhyhorn - Sólido`, description: t`Forte presença visual` },
   ];
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -59,6 +91,19 @@ export const ResumeGeneratorPage = () => {
         expression: selectedExpression as "formal" | "informal" | "professional" | "casual",
         jobDescription: jobDescription || undefined,
         resumeType: selectedResumeType as "comprehensive" | "targeted" | "executive",
+        template: selectedTemplate as
+          | "azurill"
+          | "bronzor"
+          | "chikorita"
+          | "ditto"
+          | "gengar"
+          | "glalie"
+          | "kakuna"
+          | "leafish"
+          | "nosepass"
+          | "onyx"
+          | "pikachu"
+          | "rhyhorn",
       });
 
       setResumeData(result);
@@ -151,6 +196,25 @@ export const ResumeGeneratorPage = () => {
             </Select>
           </div>
 
+          <div className="flex-1">
+            <label className="mb-1 block text-sm font-medium text-gray-700">{t`Template Visual`}</label>
+            <Select value={selectedTemplate} onValueChange={setSelectedTemplate}>
+              <SelectTrigger>
+                <SelectValue placeholder={t`Selecione o template`} />
+              </SelectTrigger>
+              <SelectContent>
+                {artboardTemplates.map((template) => (
+                  <SelectItem key={template.value} value={template.value}>
+                    <div>
+                      <div className="font-medium">{template.label}</div>
+                      <div className="text-xs text-gray-500">{template.description}</div>
+                    </div>
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
           <Button className="h-[36px]" disabled={submitting} type="submit">
             {submitting ? t`Gerando...` : t`Gerar Currículo`}
           </Button>
@@ -160,7 +224,17 @@ export const ResumeGeneratorPage = () => {
       {resumeData?.resume && (
         <div className="mt-4 rounded-md border p-4">
           <div className="mb-4 flex items-center justify-between">
-            <label className="block text-sm font-medium text-gray-700">{t`Currículo Gerado`}</label>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">{t`Currículo Gerado`}</label>
+              {resumeData.data.template && (
+                <p className="mt-1 text-xs text-gray-500">
+                  {t`Template usado`}:{" "}
+                  <span className="font-medium">
+                    {artboardTemplates.find((t) => t.value === resumeData.data.template)?.label}
+                  </span>
+                </p>
+              )}
+            </div>
             {resumeData.pdfBuffer && (
               <Button
                 variant="outline"

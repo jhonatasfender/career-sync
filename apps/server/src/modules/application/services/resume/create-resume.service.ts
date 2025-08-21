@@ -127,7 +127,7 @@ export class CreateResumeService {
             volunteer: user.volunteer,
             profiles: user.profiles,
           },
-          "onyx",
+          dto.template ?? "onyx",
         );
         pdfBuffer = pdf.toString("base64");
       } catch (error) {
@@ -141,6 +141,7 @@ export class CreateResumeService {
       data: {
         expression: dto.expression,
         jobDescription: dto.jobDescription ?? null,
+        template: dto.template ?? "onyx",
       },
       prompt,
       resume,
