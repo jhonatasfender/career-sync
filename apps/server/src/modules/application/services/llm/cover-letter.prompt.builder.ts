@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 
-import { TONE_MAP } from "../config/llm.config";
-import { ChannelType, ExpressionType } from "../types";
+import { TONE_MAP } from "../../config/llm.config";
+import { ChannelType, ExpressionType } from "../../types";
 
 type BuildPromptParams = {
   jobDescription?: string;

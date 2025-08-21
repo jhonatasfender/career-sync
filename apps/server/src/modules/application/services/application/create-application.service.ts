@@ -1,13 +1,13 @@
 import { Injectable, Logger, NotFoundException } from "@nestjs/common";
 
-import { CreateApplicationDto } from "../dto/create-application.dto";
-import { ApplicationLoggingService } from "../logging/application.logging.service";
-import { ApplicationRepository } from "../repositories/application.repository";
-import { BuildProfileSummary, ChannelType, ExpressionType } from "../types";
-import { CoverLetterPromptBuilder } from "./cover-letter.prompt.builder";
-import { LlmChatClient } from "./llm.chat.client";
-import { ProfileSummaryBuilder } from "./profile.summary.builder";
-import { ProfileValidator } from "./profile.validator";
+import { CreateApplicationDto } from "../../dto/create-application.dto";
+import { ApplicationLoggingService } from "../../logging/application.logging.service";
+import { ApplicationRepository } from "../../repositories/application.repository";
+import { BuildProfileSummary, ChannelType, ExpressionType } from "../../types";
+import { ProfileValidator } from "../core/profile.validator";
+import { CoverLetterPromptBuilder } from "../llm/cover-letter.prompt.builder";
+import { LlmChatClient } from "../llm/llm.chat.client";
+import { ProfileSummaryBuilder } from "../llm/profile.summary.builder";
 
 @Injectable()
 export class CreateApplicationService {

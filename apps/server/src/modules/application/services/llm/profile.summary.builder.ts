@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { differenceInMonths, formatDuration, intervalToDuration } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-import { BuildProfileSummary } from "../types";
+import { BuildProfileSummary } from "../../types";
 
 @Injectable()
 export class ProfileSummaryBuilder {

@@ -1,10 +1,12 @@
 import { t } from "@lingui/core/macro";
 import {
   Books,
+  Brain,
   Briefcase,
   Buildings,
   Certificate,
   ChatCircle,
+  FilePdf,
   FolderNotch,
   GraduationCap,
   HandHeart,
@@ -136,6 +138,17 @@ export const getMenuCategories = (): MenuCategory[] => [
         path: "/dashboard/references",
         name: t`References`,
         icon: <ChatCircle weight="duotone" />,
+      },
+    ],
+  },
+  {
+    name: t`AI`,
+    icon: <Brain weight="duotone" />,
+    items: [
+      {
+        path: "/dashboard/resume-generator",
+        name: t`Resume Generator`,
+        icon: <FilePdf weight="duotone" />,
       },
     ],
   },

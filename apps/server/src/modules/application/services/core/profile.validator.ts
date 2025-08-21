@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
 
-import { BuildProfileSummary } from "../types";
+import { BuildProfileSummary } from "../../types";
 
 @Injectable()
 export class ProfileValidator {

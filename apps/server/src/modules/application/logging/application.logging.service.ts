@@ -220,7 +220,7 @@ export class ApplicationLoggingService {
   public async logLlmResponseMarkdown(params: {
     requestId: string;
     userId: string;
-    channels: string[];
+    channels?: string[];
     expression: string;
     prompt: string;
     coverLetter: string | null;

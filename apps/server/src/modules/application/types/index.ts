@@ -100,3 +100,4 @@ export type BuildProfileSummary = {
 // Tipos de carta de apresentação
 export type ExpressionType = "formal" | "informal" | "professional" | "casual";
 export type ChannelType = "email" | "whatsapp" | "linkedin";
+export type ResumeType = "comprehensive" | "targeted" | "executive";

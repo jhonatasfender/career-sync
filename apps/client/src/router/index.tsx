@@ -23,6 +23,7 @@ import { ProfilePage } from "../pages/dashboard/profiles/page";
 import { ProjectPage } from "../pages/dashboard/project/page";
 import { PublicationsPage } from "../pages/dashboard/publications/page";
 import { ReferencesPage } from "../pages/dashboard/references/page";
+import { ResumeGeneratorPage } from "../pages/dashboard/resume-generator/page";
 import { ResumesPage } from "../pages/dashboard/resumes/page";
 import { SettingsPage } from "../pages/dashboard/settings/page";
 import { SkillsPage } from "../pages/dashboard/skill/page";
@@ -93,6 +94,7 @@ export const routes = createRoutesFromElements(
           <Route path="interests" element={<InterestsPage />} />
           <Route path="volunteer" element={<VolunteerPage />} />
           <Route path="references" element={<ReferencesPage />} />
+          <Route path="resume-generator" element={<ResumeGeneratorPage />} />
           <Route path="chat" element={<ChatPage />} />
 
           <Route index element={<Navigate replace to="/dashboard/chat" />} />
