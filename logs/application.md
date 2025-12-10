@@ -1,4 +1,5 @@
 ### Application Request 1755136633059-slxenb
+
 - Timestamp: 2025-08-14T01:57:13.113Z
 - User: cmeanxw9e0004m3hfkilx402v
 - Channels: email
@@ -8,6 +9,7 @@
 - Model: deepseek-r1:latest
 
 #### Prompt
+
 ```text
 Context: job-specific cover letter generation.
 
@@ -65,7 +67,7 @@ Experiências (mais recentes primeiro):
           Com o aumento dos meus conhecimentos em JavaScript, assumi um projeto muito importante. Na primeira fase, modifiquei o estilo da aplicação, e na próxima etapa, refatorei o código.
           Realizei provas de conceito para escolhermos as tecnologias adequadas, e optamos por utilizar o NX para o monorepo, React + RxJS (para trabalhar com reatividade no front-end) e CBOR para a comunicação com o back-end, a fim de termos uma comunicação rápida.
           A aplicação é chamada de Xviewer e tem como objetivo ser um visualizador web de exames de raio-X. Também para aumentar a confiabilidade das aplicações, prezei bastante por testes unitários e testes de integração. Além disso, pude apresentar como trabalho com BDD utilizando Python.
-         
+
 - Analista Desenvolvedor Júnior @ Pixeon ([REDACTED_PHONE], duração: 1 ano 3 meses)
   Durante minha trajetória profissional, tive a oportunidade de liderar projetos de destaque, que me permitiram ampliar minhas habilidades e conhecimentos. Como responsável pelo frontend do projeto LGPD, desenvolvi soluções com React e Styled Components, enquanto no backend utilizei Java com Spring Boot.
           Posteriormente, atuei no projeto Weblaudos, onde aprimorei meus conhecimentos em CSS. Em seguida, assumi a liderança do projeto LTA, onde também utilizei minhas habilidades com React.
@@ -126,13 +128,17 @@ Parágrafo 4: encerramento curto com call-to-action discreto. Assinar com nome. 
 
 Não usar tópicos/listas e não incluir subtítulos como 'Posso contribuir' ou 'Diferenciais'.
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"deepseek-r1:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific cover letter generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the letter body (no headings like '\\''Cover Letter'\\'' and no quotes). Do not fabricate recruiter names; only greet personally if the recruiter'\\''s name is explicitly provided.\n\nPlanned delivery channels: email. Optimize tone/length to be usable when sent via these channels. Do not mention the channels explicitly in the letter.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording (e.g., avoid repeating '\\''excited'\\''/'\\''ansioso'\\''). Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\''). When supported by the profile, distinguish between overall experience and specific time with Java; if not confidently supported, avoid fabricating and prefer '\\''over X years'\\'' or omit the per‑stack figure.\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nJob Description:\n\n[empty]\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Jônatas Rodrigues Carvalho Turibio\nHeadline: Desenvolvedor Full-Stack\nLocalização: Foz do Iguaçu\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nResumo:\nDesenvolvedor full-stack com foco em Node.js e React. Experiência em monorepos Nx, NestJS, Prisma e práticas de CI/CD.\nExperiências (mais recentes primeiro):\n- Desenvolvedor Fullstack Sênior @ BLUECYBER Seguros ([REDACTED_PHONE], duração: 11 meses)\n  Intermediário de seguros cibernéticos entre corretoras e seguradoras; liderança da arquitetura dos projetos em JavaScript; implementação de funcionalidades em C#; monorepo com Nx; BFF em NestJS; Next.js para SEO; React no front-end; backend em .NET Core, Entity Framework (Code First) e Web API; PostgreSQL; microsserviços; mensageria e deploy com ferramentas da Azure.\n- Customer Service Specialist (CSS) @ NTT DATA Europe & Latam ([REDACTED_PHONE], duração: 7 meses)\n  Participação de projetos Android/iOS para a RD, contribuindo com os aplicativos da Drogasil e Droga Raia. Aplicação dos princípios de clean code, clean architecture e SOLID, elevando meu perfil para um profissional sênior.\n- Desenvolvedor Frontend @ GS3 Tecnologia ([REDACTED_PHONE], duração: 10 meses)\n  Arquitetura de Micro Frontends utilizando Module Federation (Webpack) em projetos Angular (12/13/14).\n- Analista Desenvolvedor Pleno @ Pixeon ([REDACTED_PHONE], duração: 1 ano 1 mês)\n  Com o avanço e destaque dentro da equipe, tive a oportunidade de assumir alguns projetos que me proporcionaram um grande crescimento profissional. Atuei em SLA, resolvendo bugs para a aplicação Aurora, que utiliza Java Swing.\n          Nesse mesmo projeto, trabalhei em demandas de codificação com Groovy, uma linguagem com a qual nunca havia trabalhado antes, mas consegui demonstrar uma boa resiliência.\n          Com o aumento dos meus conhecimentos em JavaScript, assumi um projeto muito importante. Na primeira fase, modifiquei o estilo da aplicação, e na próxima etapa, refatorei o código.\n          Realizei provas de conceito para escolhermos as tecnologias adequadas, e optamos por utilizar o NX para o monorepo, React + RxJS (para trabalhar com reatividade no front-end) e CBOR para a comunicação com o back-end, a fim de termos uma comunicação rápida.\n          A aplicação é chamada de Xviewer e tem como objetivo ser um visualizador web de exames de raio-X. Também para aumentar a confiabilidade das aplicações, prezei bastante por testes unitários e testes de integração. Além disso, pude apresentar como trabalho com BDD utilizando Python.\n         \n- Analista Desenvolvedor Júnior @ Pixeon ([REDACTED_PHONE], duração: 1 ano 3 meses)\n  Durante minha trajetória profissional, tive a oportunidade de liderar projetos de destaque, que me permitiram ampliar minhas habilidades e conhecimentos. Como responsável pelo frontend do projeto LGPD, desenvolvi soluções com React e Styled Components, enquanto no backend utilizei Java com Spring Boot.\n          Posteriormente, atuei no projeto Weblaudos, onde aprimorei meus conhecimentos em CSS. Em seguida, assumi a liderança do projeto LTA, onde também utilizei minhas habilidades com React.\n- Analista de Sistema Pleno @ Capgemini ([REDACTED_PHONE], duração: 11 meses)\n  Desenvolvimento de funcionalidades com Java (Kumuluz, Quarkus), Node.js e React; DevOps com Kubernetes, Docker, Jenkins e ArgoCD; observabilidade com InfluxDB, Prometheus e Grafana.\n- Desenvolvedor SW 4 @ SONDA ([REDACTED_PHONE], duração: 4 meses)\n  Evoluções e manutenção de sistemas legados com Java; Angular (6/7/9); PHP com Laravel e Drupal 8.\n- Desenvolvedor Java @ CONNECT DF ([REDACTED_PHONE], duração: 3 meses)\n  Serviços para o SEBRAE: Java Spring, Angular 8 e ReactJS; integração contínua com Docker, Jenkins e Rancher.\n- Desenvolvedor AOSP @ Output - Pax Vida ([REDACTED_PHONE], duração: 3 meses)\n  Android Open Source Project; alterações no template na camada HIDL (HAL Interface Design Language).\n- Desenvolvedor Pleno @ Faros Educacional ([REDACTED_PHONE], duração: 1 ano 5 meses)\n  Essa empresa tinha o objetivo de ser uma agência/fábrica de software, e era a junção de duas empresas, a Icon e a Faros. Durante minha passagem por lá, trabalhei em diversos projetos, utilizando as seguintes linguagens:\n          - C# (projeto SGUS)\n          - Ruby (projeto Redimine)\n          - Angular V2+ (projetos Trilhas e Atendimento)\n          - NodeJs + Ionic (projeto Conhecigame)\n          - PHP (projetos Conselhos, Transparência, Moodle, Eleições, entre outros)\n          - Extjs e Sencha Architect (sistemas da CODEVASF)\n- Programador Java Training @ Polisys Informática ([REDACTED_PHONE], duração: 1 mês)\n  Sistemas com Spring Boot e aplicações web com AngularJS.\n- Desenvolvedor Freelancer @ Insert Web ([REDACTED_PHONE], duração: 9 meses)\n  Desenvolvimento de sistemas com PHP (CodeIgniter) e Ionic.\n- Programador PHP @ CNM - Confederação Nacional de Municípios ([REDACTED_PHONE], duração: 8 meses)\n  Sistemas com CodeIgniter e Laravel; Angular/TypeScript; aplicativos híbridos com Ionic; manutenções; geoprocessamento e visualização de dados.\n- Programador PHP @ Micromed Biotecnologia LTDA ([REDACTED_PHONE], duração: 1 ano 6 meses)\n  Migração da intranet de Access para PHP (Phalcon 2.0); AdvPL, Protheus, Zend Framework 2; PostgreSQL; web services (SOAP/REST); SCRUM; SVN.\nTempo total de experiência (todas as experiências): 9 anos 7 meses\nSkills: JavaScript, TypeScript, PHP, Java, C#, Python, React, Angular, Next.js, RxJS, Styled Components, Micro Frontends (MFE), Webpack Module Federation, Ext JS, Sencha Architect, Ionic, Node.js, NestJS, Spring Boot, Quarkus\n\nUser note (additional instructions):\n\n<p>🚨 Urgent Opportunity – Java with Hadoop 🚨<br><br>Role: Java with Hadoop<br>Location: Mount Laurel, NJ (Onsite)<br><br>Job Description:<br>We are seeking a highly skilled Java Developer with strong Hadoop expertise. The ideal candidate will have:<br>Strong experience in Java 8, Spring Framework (Spring MVC, Spring Boot, Spring Security – OAuth, LDAP), Spring Data (JPA, JDBC)<br>Hands-on experience with REST APIs<br>Proven experience with Big Data platforms such as Hadoop and Spark<br>Expertise in multithreaded application development and microservices architecture<br>Familiarity with tools like Maven, Jenkins, Gradle, Git, Nexus<br>Experience in Hadoop administration<br>Cloud expertise (Azure, AWS, or GCP) – including services like IaaS, AKS, ADLS, ADF<br>Proficiency with configuration management tools such as Salt, Terraform, Ansible, or Chef<br>Scripting and engineering experience with Bash, Shell, Python<br>Strong problem-solving skills and an engineering mindset<br>Excellent verbal and written communication skills<br><br>Interested?<br> Please send your updated resume to <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br> 📩 Subject Line: Java with Hadoop – Mount Laurel NJ</p>\n\nTask:\n\nWrite a cover letter (~280-360 words) in tom profissional, claro e objetivo, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty). Follow this structure (no lists or subtitles):\n\nAssunto: <título alinhado à vaga>\n\n\n\nParágrafo 1: 2-3 frases apresentando quem sou, anos totais de experiência e o motivo do match com a vaga.\n\n\n\nParágrafo 2: um parágrafo corrido explicando por que posso contribuir (match com os requisitos), integrando 3-5 pontos relevantes sem usar bullets.\n\n\n\nParágrafo 3: um parágrafo corrido com diferenciais e pontos a evoluir com plano claro (sem promessas vagas), sem listas.\n\n\n\nParágrafo 4: encerramento curto com call-to-action discreto. Assinar com nome. Incluir contatos (telefone/email/links) apenas se constarem no perfil fornecido. Se existir nome do recrutador explicitamente, iniciar com saudação personalizada.\n\n\n\nNão usar tópicos/listas e não incluir subtítulos como '\\''Posso contribuir'\\'' ou '\\''Diferenciais'\\''."}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "deepseek-r1:latest",
@@ -152,6 +158,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755136633059-slxenb
+
 - Timestamp: 2025-08-14T02:01:19.336Z
 - Cover letter length: 2151 • SHA256: 6a9110ea366a06634397446fb14787f2b50f9e4ce11250a7252d1dd55c4b080e
 
@@ -174,9 +181,11 @@ Jônatas Rodrigues Carvalho Turibio
 📧 Email: [REDACTED_EMAIL]
 📱 Phone: [REDACTED_PHONE]
 ```
+
 ---
 
 #### LLM Response — 1755717932488-jzbe32
+
 - Timestamp: 2025-08-20T19:26:19.804Z
 - Cover letter length: 1567 • SHA256: ff582165ea3248d240f86de4d6b824e1b9d5001c69d7a1bdbf7dc298a73fd248
 
@@ -236,9 +245,11 @@ Nenhum
 
 GitHub: https://www.github.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755732565491-fzwp4y
+
 - Timestamp: 2025-08-20T23:29:25.504Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -248,6 +259,7 @@ GitHub: https://www.github.com/in/francisco-dev/
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -427,13 +439,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>Teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -453,6 +469,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755732565491-fzwp4y
+
 - Timestamp: 2025-08-20T23:30:34.278Z
 - Cover letter length: 1161 • SHA256: 32d14d451ef3c5cf6913e41687d394c3c36faac1f23335e9e0dc274aff18f50a
 
@@ -498,9 +515,11 @@ Não disponível
 
 GitHub: https://www.github.com/in/francisco-dev/, teste: http://teste
 ```
+
 ---
 
 ### Application Request 1755732640246-chqg1n
+
 - Timestamp: 2025-08-20T23:30:40.253Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -510,6 +529,7 @@ GitHub: https://www.github.com/in/francisco-dev/, teste: http://teste
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -689,13 +709,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>Teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -715,6 +739,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755732640246-chqg1n
+
 - Timestamp: 2025-08-20T23:31:22.795Z
 - Cover letter length: 1446 • SHA256: 972d709fb350085ecb16efa367193f31d25f09bba601430be9e2efc39b945982
 
@@ -770,9 +795,11 @@ Não disponível
 
 GitHub: https://www.github.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755732841621-pn8yf1
+
 - Timestamp: 2025-08-20T23:34:01.635Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -782,6 +809,7 @@ GitHub: https://www.github.com/in/francisco-dev/
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -961,13 +989,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -987,6 +1019,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755732841621-pn8yf1
+
 - Timestamp: 2025-08-20T23:34:52.177Z
 - Cover letter length: 1500 • SHA256: adbd0806281a5d320b2dbfbb7a30bbac25875a207c4f748e814a6f8485b818a6
 
@@ -1041,9 +1074,11 @@ Nenhum voluntariado relevante.
 - LinkedIn: https://www.linkedin.com/in/francisco-dev
 - GitHub: https://github.com/in/francisco-dev
 ```
+
 ---
 
 ### Application Request 1755732896170-sj2eka
+
 - Timestamp: 2025-08-20T23:34:56.178Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -1053,6 +1088,7 @@ Nenhum voluntariado relevante.
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -1232,13 +1268,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -1258,6 +1298,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755732896170-sj2eka
+
 - Timestamp: 2025-08-20T23:35:34.360Z
 - Cover letter length: 1223 • SHA256: 16fdeb6782a2830103370e889ef4e49c5af9d5a76fef5179da4895fc84a66630
 
@@ -1274,7 +1315,7 @@ Desenvolvedor Java Pleno com 3 anos de experiência em desenvolvimento de sistem
 
 - Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)
   Desenvolvi landingpages e um website de vendas de seguros com next e react js.
-  
+
 - Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)
   Desenvolvedor senior desenvolvendo APIs escalaveis e testes unitários.
 
@@ -1306,9 +1347,11 @@ Não disponível
 
 GitHub: https://www.github.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755732999243-kjnpqs
+
 - Timestamp: 2025-08-20T23:36:39.263Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -1318,6 +1361,7 @@ GitHub: https://www.github.com/in/francisco-dev/
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -1497,13 +1541,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -1523,6 +1571,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755732999243-kjnpqs
+
 - Timestamp: 2025-08-20T23:37:13.482Z
 - Cover letter length: 1152 • SHA256: bad088b5023c82a80f6bdec7318d406dd2e0b307440887da407c89a22e3e6886
 
@@ -1565,9 +1614,11 @@ Nenhum
 **PERFIS PROFISSIONAIS**
 GitHub: https://www.github.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755733038626-fcbdjk
+
 - Timestamp: 2025-08-20T23:37:18.633Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -1577,6 +1628,7 @@ GitHub: https://www.github.com/in/francisco-dev/
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -1756,13 +1808,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -1782,6 +1838,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755733038626-fcbdjk
+
 - Timestamp: 2025-08-20T23:38:03.270Z
 - Cover letter length: 1510 • SHA256: 5552c086660082cbbacc9cc6b432f3e06060dd47d36125f566ce63a3d8b842b9
 
@@ -1832,9 +1889,11 @@ Português
 - teste (teste)
 - teste2 (teste2)
 ```
+
 ---
 
 ### Application Request 1755733129781-swr4xs
+
 - Timestamp: 2025-08-20T23:38:49.787Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -1844,6 +1903,7 @@ Português
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -2023,13 +2083,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -2049,6 +2113,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755733129781-swr4xs
+
 - Timestamp: 2025-08-20T23:39:31.671Z
 - Cover letter length: 1470 • SHA256: c4fb0246ef073bf0955da0b1197974d00433790b6132322ebb45c739b4bc1117
 
@@ -2106,9 +2171,11 @@ Nenhum
 
 - GitHub: https://www.github.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755733179107-3hxqmo
+
 - Timestamp: 2025-08-20T23:39:39.113Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -2118,6 +2185,7 @@ Nenhum
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -2297,13 +2365,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -2323,6 +2395,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755733179107-3hxqmo
+
 - Timestamp: 2025-08-20T23:40:24.388Z
 - Cover letter length: 1430 • SHA256: d1a7b765bb6b2b4d3dc79744b6751f4ad353574155cb9fd0aba7532b053b8836
 
@@ -2375,9 +2448,11 @@ Não disponível
 
 GitHub: https://www.github.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755733345667-u7n17o
+
 - Timestamp: 2025-08-20T23:42:25.678Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -2387,6 +2462,7 @@ GitHub: https://www.github.com/in/francisco-dev/
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -2566,13 +2642,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo direcionado e focado na vaga específica in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -2592,6 +2672,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755733345667-u7n17o
+
 - Timestamp: 2025-08-20T23:43:28.056Z
 - Cover letter length: 2014 • SHA256: b6bd707c202d2f39b99d813197e37311b3e1940421435fd2ad4d66295a82ba94
 
@@ -2660,9 +2741,11 @@ Não tenho experiências voluntárias relevantes.
 
 GitHub: https://www.github.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755733416861-qccunv
+
 - Timestamp: 2025-08-20T23:43:36.866Z
 - User: cm9hp80720000gk3gykahk5f4
 - Channels: email
@@ -2672,6 +2755,7 @@ GitHub: https://www.github.com/in/francisco-dev/
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -2851,13 +2935,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nPlanned delivery channels: email. Optimize format/length to be usable when sent via these channels.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>aga: Analista Desenvolvedor Java Pleno (Hibrido - SP) - CLT<br><br>👉Interessados devem encaminhar CV atualizado juntamente com a pretensão salarial para o e-mail: <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"mailto:[REDACTED_EMAIL]\"><strong>[REDACTED_EMAIL]</strong></a><br><br>🔹 Sobre a Vaga:<br>Estamos em busca de um Analista Desenvolvimento Java Pleno para se juntar à nossa equipe em um formato hibrido. Se você tem experiência e deseja crescer em um ambiente dinâmico e desafiador, esta é a sua chance!<br><br>Requisitos:<br>-Escolaridade: Graduação completa em Tecnologia da Informação ou qualquer curso de nível superior com pós-graduação na área de Tecnologia da Informação.<br><br>🔹 Requisitos Técnicos Obrigatórios:<br>* Desenvolvimento e análise de sistemas em aplicações Web utilizando modelo de arquitetura MVC.<br>* Desenvolvimento e manutenção de sistemas utilizando as seguintes linguagens: PLSQL, Java, JavaScript, HTML e XML.<br>* Containers e Gerenciamento: Docker e Kubernetes.<br>* Desenvolvimento de sistemas com persistência em Bancos de Dados relacionais Oracle, SQL Server, DB2, , Redis.<br>* UML (casos de uso e demais diagramas);<br>* Arquitetura orientada a serviços (SOA).<br>* APIs<br>* Conhecimento de Frameworks de marcado como Spring (Spring-cloud), Angular, React, Vue, BootStrap entre outros;<br>* Intregração Contínua (CI) / Deployment Contínuo (CD).<br>* JSON / REST.<br><br>🔹 Horário de Trabalho e escala:<br>09h às 18h (1hr de almoço)<br>2x presencial e 3x home-office<br><br>🔹 Endereço: Rua Libero Badaró, 425 - Centro - SP<br><br>🔹 Benefícios de Trabalhar Conosco:<br>🍔Vale Alimentação/Refeição | Wiipo Flex<br>🏋‍♀TotalPass | Bem-estar para todos os colaboradores, todos os dias<br>👓 Parceria SESC | Saúde, Lazer, Turismo &amp; Esportes, Assistência Social e Alimentação<br>📕 Parcerias Educacionais | Aldeia, UDF, EBAC, ESPM, IPOG, VC_TB e WO.<br>🤍Seguro de vida<br><br>Todas as vagas são afirmativas!<br><br>E aí, se identificou com a vaga?<br>Não perca tempo e candidate-se!<br><br>Junte-se a nós e faça parte de uma equipe que valoriza inovação e excelência!</p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>teste</p>\n\nTask:\n\nGenerate a currículo direcionado e focado na vaga específica in tom informal, porém cortês e direto, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -2877,6 +2965,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755733416861-qccunv
+
 - Timestamp: 2025-08-20T23:44:26.595Z
 - Cover letter length: 1742 • SHA256: 6ed415a394d6115dbde64ddefd8cc2aa2d877379d2e24ebe85d5647406d29c92
 
@@ -2938,18 +3027,21 @@ Experiências voluntárias relevantes: não disponível
 
 Links para LinkedIn, GitHub, portfolio: https://www.github.com/in/francisco-dev/, http://teste
 ```
+
 ---
 
 ### Application Request 1755792074327-d1wfkj
+
 - Timestamp: 2025-08-21T16:01:14.347Z
 - User: cm9hp80720000gk3gykahk5f4
-- Channels: 
+- Channels:
 - Expression: professional
 - Job description length: 671
 - Prompt length: 5815 • SHA256: bcb7e8abb06f0f072616251bd34f66fc5a62f1863361726315295b0f09a72bed
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -3127,13 +3219,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>A Smart Research está revolucionando o processo de recrutamento para pesquisas de mercado e estamos à procura de um desenvolvedor React Native talentoso para se juntar à nossa equipe.</p><p><br></p><p><strong>Requisitos da vaga</strong></p><p><br></p><p>Experiência avançada com React.js e React Native;</p><p>Experiência com TypeScript;</p><p>Experiência com NextJS e TailwindCSS</p><p>Experiência com consumo de API'\\''s REST;</p><p>Conhecimento de ferramentas de teste como Jest e Testing-Library</p><p>Conhecimento de NodeJS;</p><p>Noções básicas de UI e UX;</p><p>Familiaridade com deploy de apps nas principais lojas;</p><p>Familiaridade com CI e CD;</p><p><br></p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>Mesmo que meu cirrucolo nao tenha os requisitos, adicione no texto geral.</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom profissional, claro e objetivo, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -3153,33 +3249,39 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### Error — 1755792074327-d1wfkj
+
 - Timestamp: 2025-08-21T16:01:14.404Z
 - User: cm9hp80720000gk3gykahk5f4
-- Channels: 
+- Channels:
 - Expression: professional
 - Prompt length: 5815 • SHA256: bcb7e8abb06f0f072616251bd34f66fc5a62f1863361726315295b0f09a72bed
 - Message: connect ECONNREFUSED 127.0.0.1:11434
+
 ---
 
 #### LLM Response — 1755792074327-d1wfkj
+
 - Timestamp: 2025-08-21T16:01:14.404Z
 - Cover letter length: 0 • SHA256: n/a
 
 ```text
 [null]
 ```
+
 ---
 
 ### Application Request 1755792100102-z9nv7n
+
 - Timestamp: 2025-08-21T16:01:40.107Z
 - User: cm9hp80720000gk3gykahk5f4
-- Channels: 
+- Channels:
 - Expression: professional
 - Job description length: 671
 - Prompt length: 5815 • SHA256: bcb7e8abb06f0f072616251bd34f66fc5a62f1863361726315295b0f09a72bed
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -3357,13 +3459,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>A Smart Research está revolucionando o processo de recrutamento para pesquisas de mercado e estamos à procura de um desenvolvedor React Native talentoso para se juntar à nossa equipe.</p><p><br></p><p><strong>Requisitos da vaga</strong></p><p><br></p><p>Experiência avançada com React.js e React Native;</p><p>Experiência com TypeScript;</p><p>Experiência com NextJS e TailwindCSS</p><p>Experiência com consumo de API'\\''s REST;</p><p>Conhecimento de ferramentas de teste como Jest e Testing-Library</p><p>Conhecimento de NodeJS;</p><p>Noções básicas de UI e UX;</p><p>Familiaridade com deploy de apps nas principais lojas;</p><p>Familiaridade com CI e CD;</p><p><br></p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>Mesmo que meu cirrucolo nao tenha os requisitos, adicione no texto geral.</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom profissional, claro e objetivo, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -3383,6 +3489,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755792100102-z9nv7n
+
 - Timestamp: 2025-08-21T16:02:54.637Z
 - Cover letter length: 1783 • SHA256: 2b47634169ad2b57e5c4dd32823101d4dd2a2937254503a09bb628ef6907332d
 
@@ -3443,18 +3550,21 @@ Não disponível.
 
 LinkedIn: https://www.linkedin.com/in/francisco-dev/
 ```
+
 ---
 
 ### Application Request 1755792198332-k67h5e
+
 - Timestamp: 2025-08-21T16:03:18.338Z
 - User: cm9hp80720000gk3gykahk5f4
-- Channels: 
+- Channels:
 - Expression: professional
 - Job description length: 671
 - Prompt length: 5815 • SHA256: bcb7e8abb06f0f072616251bd34f66fc5a62f1863361726315295b0f09a72bed
 - Model: llama3.2:latest
 
 #### Prompt
+
 ```text
 Context: job-specific resume generation.
 
@@ -3632,13 +3742,17 @@ Instruções específicas:
 
 - Cada experiência deve ser descrita apenas uma vez
 ```
+
 #### HTTP request (cURL)
+
 ```bash
 curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
   -H 'Content-Type: application/json' \
   -d '{"model":"llama3.2:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<p>A Smart Research está revolucionando o processo de recrutamento para pesquisas de mercado e estamos à procura de um desenvolvedor React Native talentoso para se juntar à nossa equipe.</p><p><br></p><p><strong>Requisitos da vaga</strong></p><p><br></p><p>Experiência avançada com React.js e React Native;</p><p>Experiência com TypeScript;</p><p>Experiência com NextJS e TailwindCSS</p><p>Experiência com consumo de API'\\''s REST;</p><p>Conhecimento de ferramentas de teste como Jest e Testing-Library</p><p>Conhecimento de NodeJS;</p><p>Noções básicas de UI e UX;</p><p>Familiaridade com deploy de apps nas principais lojas;</p><p>Familiaridade com CI e CD;</p><p><br></p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Teste\nHeadline: teste\nLocalização: Brasilia\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nWebsite: https://teste\nResumo:\n<p>chico</p>\nExperiências (mais recentes primeiro):\n- Desenvolvedor Frontend Junior @ Bluecyber ([REDACTED_PHONE], duração: 3 anos 1 mês)\n  <p>Desenvolvi landingpages e um website de vendas de seguros com next e react js.</p>\n- Desenvolvedor Backend Senior @ MRE ([REDACTED_PHONE], duração: 3 anos 7 meses)\n  <p>Desenvolvedor senior desenvolvendo apis escalaveis e testes unitarios</p>\nTempo total de experiência (todas as experiências): 3 anos 7 meses\nSkills: JavaScript\nProjetos relevantes:\n- teste (https://teste)\n  <p>teste</p>\nEducação:\n- Tipo em Analise e Desenvolvimento de Sistemas — Estacio ([REDACTED_PHONE])\nCertificações:\n- teste (teste, [REDACTED_PHONE])\nIdiomas: teste\nPrêmios:\n- teste (teste)\n- teste2 (teste2)\nPerfis:\n- GitHub: https://www.github.com/in/francisco-dev/\n- teste: http://teste\n\nUser note (additional instructions):\n\n<p>Mesmo que meu cirrucolo nao tenha os requisitos, adicione no texto geral.</p>\n\nTask:\n\nGenerate a currículo abrangente com todas as experiências relevantes in tom profissional, claro e objetivo, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\n2-3 frases destacando anos de experiência, especialização principal e fit com a vaga\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez"}],"temperature":0.5,"max_tokens":1200}'
 ```
+
 #### Request body (sanitized)
+
 ```json
 {
   "model": "llama3.2:latest",
@@ -3658,6 +3772,7 @@ curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
 ```
 
 #### LLM Response — 1755792198332-k67h5e
+
 - Timestamp: 2025-08-21T16:04:05.053Z
 - Cover letter length: 1751 • SHA256: be6a614dc92b3cb39a4bd971408c18af07196b79905af72cd5eb896681a180d5
 
@@ -3722,5 +3837,354 @@ Experiências voluntárias relevantes: Nenhuma.
 
 Links para LinkedIn, GitHub, portfolio: https://www.github.com/in/francisco-dev/, http://teste
 ```
+
 ---
 
+### Application Request 1755887153195-yjr0zr
+
+- Timestamp: 2025-08-22T18:25:53.239Z
+- User: cmen4w6te0002m3pfqqtwybvi
+- Channels:
+- Expression: professional
+- Job description length: 5829
+- Prompt length: 17497 • SHA256: c7005f0ffe8310e35d458c12191e480032a40a531c0209c376cc7eee6fdafcca
+- Model: deepseek-r1:latest
+
+#### Prompt
+
+```text
+Context: job-specific resume generation.
+
+Detect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from 'User note (additional instructions)'. If still undetectable, default to Portuguese (pt-BR).
+
+Write as the candidate, in first-person singular (I). Do not write from the employer's perspective.
+
+Ground all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.
+
+If a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.
+
+Do not copy or paraphrase the job description; reference it only to align the candidate's fit.
+
+Prefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.
+
+Return only the resume content in a structured format. Do not fabricate recruiter names or company details.
+
+Carefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.
+
+Avoid clichés or overly eager wording. Maintain a confident, professional tone.
+
+Be concise and avoid filler. Prioritize precise, verifiable facts from the profile.
+
+Compute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use 'over X years').
+
+If dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).
+
+Do not expose chain-of-thought. Provide only final answer content (no '<think>', analysis, steps, or reasoning).
+
+CRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.
+
+CRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.
+
+Job Description:
+
+<img src="https://media.licdn.com/dms/image/v2/C4E03AQH8ThYWwVbCLg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/[REDACTED_PHONE]?e=[REDACTED_PHONE]&amp;v=beta&amp;t=coyjUsgSKaflDbKAP11ktYK_1CU23SfXEFi4IWlEwu8" alt="View Ryan Partlan’s  graphic link"><p><a target="_self" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU  update-components-actor__meta-link" href="https://www.linkedin.com/in/ryan-partlan-45334821b?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAADdm0H8B5avlZf9XIUqnqmyaWXNcjfRad4g"><strong>Ryan PartlanRyan Partlan</strong>  • 3rd+Premium • 3rd+Information Technology Recruiter at A-Line Staffing SolutionsInformation Technology Recruiter at A-Line Staffing Solutions</a>22h •  22 hours ago • Visible to anyone on or off LinkedIn</p><p><strong>Follow</strong></p><p>🚀 Now Hiring: Sr. React Developer (Remote | $50–60/hr on W-2, NO C2C)<br>We’re looking for a Sr. React Developer to join our team! This role will focus on building scalable, customer-facing applications with ReactJS, Redux, D3, and NodeJS.<br>💻 What you’ll do:<br>Develop full-stack applications (React/Node)<br>Create responsive, accessible, modern UIs<br>Lead design discussions &amp; mentor other developers<br>Ensure performance, scalability, and security<br>✅ What we’re looking for:<br>5+ years of development experience<br>Strong skills in React, Redux, NodeJS, JavaScript, HTML, CSS<br>Full-stack development experience<br>Excellent communication and problem-solving skills<br>📍 Remote Role | 💵 $50–60/hr on W-2<br>If you’re passionate about building modern applications and leading technical solutions, let’s connect!<br><a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23reactjs&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#ReactJS</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23redux&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#Redux</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23nodejs&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#NodeJS</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23javascript&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#JavaScript</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23fullstack&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#FullStack</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23remotejobs&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#RemoteJobs</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23webdevelopment&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#WebDevelopment</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23hiringnow&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#HiringNow</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23softwareengineer&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#SoftwareEngineer</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23techjobs&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#TechJobs</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23frontenddeveloper&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#FrontendDeveloper</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23mern&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#MERN</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23mean&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#MEAN</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23developerjobs&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#DeveloperJobs</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23itjobs&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#ITJobs</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23contractjobs&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#ContractJobs</strong></a> <a target="_blank" rel="noopener noreferrer nofollow" class="rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU " href="https://www.linkedin.com/search/results/all/?keywords=%23remotework&amp;origin=HASH_TAG_FROM_FEED"><strong>hashtag#RemoteWork</strong></a></p>
+
+Candidate Profile (facts only, no fabrication):
+
+Nome: Jônatas Rodrigues Carvalho Turibio
+Headline: Desenvolvedor Full-Stack
+Localização: Foz do Iguaçu
+Email: [REDACTED_EMAIL]
+Telefone: [REDACTED_PHONE]
+Resumo:
+Desenvolvedor Fullstack Sênior com mais de 7 anos de experiência, apaixonado por tecnologia e inovação. Tenho uma sólida trajetória em desenvolvimento de software, com expertise em:
+        - JavaScript (sênior): Experiência abrangendo React, Angular, Next.js, Node.js e NestJS para desenvolvimento de aplicações front-end e back-end.
+        - PHP (sênior): Experiência com Laravel, CodeIgniter e Drupal, entregando soluções robustas e eficientes.
+        - Java (pleno): Atuação com Spring Boot, Quarkus e JUnit em projetos backend.
+        - Python (júnior) e C# (júnior): Experiência prática em projetos pontuais, com base em .NET Core, Entity Framework e Web API.
+        - Participei de projetos complexos utilizando arquitetura de micro front-ends (MFE) e microservices, demonstrando capacidade de adaptação e evolução constante. Minha experiência engloba metodologias ágeis, práticas de DevOps e ferramentas de monitoramento com Kubernetes, Docker, Jenkins, ArgoCD, Rancher, Helm, InfluxDB, Prometheus e Grafana.
+        - No campo de bancos de dados, trabalho com SQL Server, MySQL, PostgreSQL e MongoDB. Além disso, estou em constante aprimoramento, estudando novas tecnologias e práticas do setor, e fortalecendo minha comunicação em inglês.
+Experiências (mais recentes primeiro):
+- Desenvolvedor Fullstack Sênior @ BLUECYBER Seguros ([REDACTED_PHONE], duração: 11 meses)
+  Intermediário de seguros cibernéticos entre corretoras e seguradoras; liderança da arquitetura dos projetos em JavaScript; implementação de funcionalidades em C#; monorepo com Nx; BFF em NestJS; Next.js para SEO; React no front-end; backend em .NET Core, Entity Framework (Code First) e Web API; PostgreSQL; microsserviços; mensageria e deploy com ferramentas da Azure.
+- Customer Service Specialist (CSS) @ NTT DATA Europe & Latam ([REDACTED_PHONE], duração: 7 meses)
+  Participação de projetos Android/iOS para a RD, contribuindo com os aplicativos da Drogasil e Droga Raia. Aplicação dos princípios de clean code, clean architecture e SOLID, elevando meu perfil para um profissional sênior.
+- Desenvolvedor Frontend @ GS3 Tecnologia ([REDACTED_PHONE], duração: 10 meses)
+  Arquitetura de Micro Frontends utilizando Module Federation (Webpack) em projetos Angular (12/13/14).
+- Analista Desenvolvedor Pleno @ Pixeon ([REDACTED_PHONE], duração: 1 ano 1 mês)
+  Com o avanço e destaque dentro da equipe, tive a oportunidade de assumir alguns projetos que me proporcionaram um grande crescimento profissional. Atuei em SLA, resolvendo bugs para a aplicação Aurora, que utiliza Java Swing.
+          Nesse mesmo projeto, trabalhei em demandas de codificação com Groovy, uma linguagem com a qual nunca havia trabalhado antes, mas consegui demonstrar uma boa resiliência.
+          Com o aumento dos meus conhecimentos em JavaScript, assumi um projeto muito importante. Na primeira fase, modifiquei o estilo da aplicação, e na próxima etapa, refatorei o código.
+          Realizei provas de conceito para escolhermos as tecnologias adequadas, e optamos por utilizar o NX para o monorepo, React + RxJS (para trabalhar com reatividade no front-end) e CBOR para a comunicação com o back-end, a fim de termos uma comunicação rápida.
+          A aplicação é chamada de Xviewer e tem como objetivo ser um visualizador web de exames de raio-X. Também para aumentar a confiabilidade das aplicações, prezei bastante por testes unitários e testes de integração. Além disso, pude apresentar como trabalho com BDD utilizando Python.
+
+- Analista Desenvolvedor Júnior @ Pixeon ([REDACTED_PHONE], duração: 1 ano 3 meses)
+  Durante minha trajetória profissional, tive a oportunidade de liderar projetos de destaque, que me permitiram ampliar minhas habilidades e conhecimentos. Como responsável pelo frontend do projeto LGPD, desenvolvi soluções com React e Styled Components, enquanto no backend utilizei Java com Spring Boot.
+          Posteriormente, atuei no projeto Weblaudos, onde aprimorei meus conhecimentos em CSS. Em seguida, assumi a liderança do projeto LTA, onde também utilizei minhas habilidades com React.
+- Analista de Sistema Pleno @ Capgemini ([REDACTED_PHONE], duração: 11 meses)
+  Desenvolvimento de funcionalidades com Java (Kumuluz, Quarkus), Node.js e React; DevOps com Kubernetes, Docker, Jenkins e ArgoCD; observabilidade com InfluxDB, Prometheus e Grafana.
+- Desenvolvedor SW 4 @ SONDA ([REDACTED_PHONE], duração: 4 meses)
+  Evoluções e manutenção de sistemas legados com Java; Angular (6/7/9); PHP com Laravel e Drupal 8.
+- Desenvolvedor Java @ CONNECT DF ([REDACTED_PHONE], duração: 3 meses)
+  Serviços para o SEBRAE: Java Spring, Angular 8 e ReactJS; integração contínua com Docker, Jenkins e Rancher.
+- Desenvolvedor AOSP @ Output - Pax Vida ([REDACTED_PHONE], duração: 3 meses)
+  Android Open Source Project; alterações no template na camada HIDL (HAL Interface Design Language).
+- Desenvolvedor Pleno @ Faros Educacional ([REDACTED_PHONE], duração: 1 ano 5 meses)
+  Essa empresa tinha o objetivo de ser uma agência/fábrica de software, e era a junção de duas empresas, a Icon e a Faros. Durante minha passagem por lá, trabalhei em diversos projetos, utilizando as seguintes linguagens:
+          - C# (projeto SGUS)
+          - Ruby (projeto Redimine)
+          - Angular V2+ (projetos Trilhas e Atendimento)
+          - NodeJs + Ionic (projeto Conhecigame)
+          - PHP (projetos Conselhos, Transparência, Moodle, Eleições, entre outros)
+          - Extjs e Sencha Architect (sistemas da CODEVASF)
+- Programador Java Training @ Polisys Informática ([REDACTED_PHONE], duração: 1 mês)
+  Sistemas com Spring Boot e aplicações web com AngularJS.
+- Desenvolvedor Freelancer @ Insert Web ([REDACTED_PHONE], duração: 9 meses)
+  Desenvolvimento de sistemas com PHP (CodeIgniter) e Ionic.
+- Programador PHP @ CNM - Confederação Nacional de Municípios ([REDACTED_PHONE], duração: 8 meses)
+  Sistemas com CodeIgniter e Laravel; Angular/TypeScript; aplicativos híbridos com Ionic; manutenções; geoprocessamento e visualização de dados.
+- Programador PHP @ Micromed Biotecnologia LTDA ([REDACTED_PHONE], duração: 1 ano 6 meses)
+  Migração da intranet de Access para PHP (Phalcon 2.0); AdvPL, Protheus, Zend Framework 2; PostgreSQL; web services (SOAP/REST); SCRUM; SVN.
+Tempo total de experiência (todas as experiências): 9 anos 7 meses
+Skills: JavaScript, TypeScript, PHP, Java, C#, Python, React, Angular, Next.js, RxJS, Styled Components, Micro Frontends (MFE), Webpack Module Federation, Ext JS, Sencha Architect, Ionic, Node.js, NestJS, Spring Boot, Quarkus
+
+User note (additional instructions):
+
+<p>essa vaga o currículo tem que ser em inglês</p>
+
+Task:
+
+Generate a currículo direcionado e focado na vaga específica in tom profissional, claro e objetivo, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).
+
+
+
+Follow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):
+
+
+
+**INFORMAÇÕES PESSOAIS**
+
+Nome completo, email, telefone, localização, website (se disponível)
+
+
+
+**RESUMO PROFISSIONAL**
+
+Parágrafo detalhado (4-6 frases) destacando:
+
+- Anos totais de experiência profissional
+
+- Especialização principal e áreas de expertise
+
+- Principais conquistas e resultados alcançados
+
+- Soft skills e competências comportamentais
+
+- Objetivo profissional e fit com a vaga
+
+- Diferenciais competitivos do candidato
+
+- Visão de futuro e aspirações profissionais
+
+
+
+**EXPERIÊNCIA PROFISSIONAL**
+
+Listar experiências mais relevantes à vaga (máximo 4-5), com:
+
+- Cargo, empresa, período (duração calculada)
+
+- 2-3 conquistas mensuráveis por experiência
+
+- Tecnologias e ferramentas utilizadas
+
+- Impacto nos resultados da empresa
+
+
+
+**EDUCAÇÃO**
+
+Formação acadêmica relevante (instituição, curso, período)
+
+
+
+**COMPETÊNCIAS TÉCNICAS**
+
+Skills mais relevantes à vaga, agrupadas por categoria
+
+
+
+**PROJETOS DESTACADOS**
+
+Projetos mais relevantes (máximo 3) com descrição e tecnologias
+
+
+
+**CERTIFICAÇÕES**
+
+Certificações relevantes (máximo 5) com emissor e data
+
+
+
+**IDIOMAS**
+
+Idiomas com nível de proficiência
+
+
+
+**PRÊMIOS E RECONHECIMENTOS**
+
+Prêmios relevantes (máximo 3) com contexto
+
+
+
+**VOLUNTARIADO**
+
+Experiências voluntárias relevantes (se houver)
+
+
+
+**PERFIS PROFISSIONAIS**
+
+Links para LinkedIn, GitHub, portfolio (se disponíveis)
+
+
+
+Instruções específicas:
+
+- Priorizar experiências e skills mais relevantes à vaga
+
+- Usar linguagem ativa e orientada a resultados
+
+- Incluir métricas e números quando disponíveis no perfil
+
+- Adaptar tom ao tipo de expressão solicitado
+
+- Manter formato limpo e profissional
+
+- Não inventar dados, datas ou experiências
+
+- Focar na relevância para a posição específica
+
+- NUNCA duplicar ou repetir informações entre seções
+
+- Cada experiência deve ser descrita apenas uma vez
+
+- Ser DESCRITIVO e VERBOSO: expandir detalhes relevantes
+
+- Incluir contexto, desafios e soluções implementadas
+
+- Explicar o 'porquê' e 'como' das conquistas
+
+- Detalhar soft skills e competências comportamentais
+
+- Conectar experiências com objetivos da vaga
+
+- Usar exemplos específicos e situações reais
+
+- Demonstrar crescimento profissional e evolução
+
+- Incluir reflexões sobre aprendizado e desenvolvimento
+```
+
+#### HTTP request (cURL)
+
+```bash
+curl -sS -X POST 'http://localhost:11434/v1/chat/completions' \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"deepseek-r1:latest","messages":[{"role":"system","content":"You are a cover-letter generator. Follow the user'\\''s format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."},{"role":"user","content":"Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from '\\''User note (additional instructions)'\\''. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer'\\''s perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate'\\''s fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use '\\''over X years'\\'').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '\\''<think>'\\'', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<img src=\"https://media.licdn.com/dms/image/v2/C4E03AQH8ThYWwVbCLg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/[REDACTED_PHONE]?e=[REDACTED_PHONE]&amp;v=beta&amp;t=coyjUsgSKaflDbKAP11ktYK_1CU23SfXEFi4IWlEwu8\" alt=\"View Ryan Partlan’s  graphic link\"><p><a target=\"_self\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU  update-components-actor__meta-link\" href=\"https://www.linkedin.com/in/ryan-partlan-45334821b?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAADdm0H8B5avlZf9XIUqnqmyaWXNcjfRad4g\"><strong>Ryan PartlanRyan Partlan</strong>  • 3rd+Premium • 3rd+Information Technology Recruiter at A-Line Staffing SolutionsInformation Technology Recruiter at A-Line Staffing Solutions</a>22h •  22 hours ago • Visible to anyone on or off LinkedIn</p><p><strong>Follow</strong></p><p>🚀 Now Hiring: Sr. React Developer (Remote | $50–60/hr on W-2, NO C2C)<br>We’re looking for a Sr. React Developer to join our team! This role will focus on building scalable, customer-facing applications with ReactJS, Redux, D3, and NodeJS.<br>💻 What you’ll do:<br>Develop full-stack applications (React/Node)<br>Create responsive, accessible, modern UIs<br>Lead design discussions &amp; mentor other developers<br>Ensure performance, scalability, and security<br>✅ What we’re looking for:<br>5+ years of development experience<br>Strong skills in React, Redux, NodeJS, JavaScript, HTML, CSS<br>Full-stack development experience<br>Excellent communication and problem-solving skills<br>📍 Remote Role | 💵 $50–60/hr on W-2<br>If you’re passionate about building modern applications and leading technical solutions, let’s connect!<br><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23reactjs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#ReactJS</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23redux&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#Redux</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23nodejs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#NodeJS</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23javascript&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#JavaScript</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23fullstack&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#FullStack</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23remotejobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#RemoteJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23webdevelopment&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#WebDevelopment</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23hiringnow&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#HiringNow</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23softwareengineer&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#SoftwareEngineer</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23techjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#TechJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23frontenddeveloper&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#FrontendDeveloper</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23mern&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#MERN</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23mean&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#MEAN</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23developerjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#DeveloperJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23itjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#ITJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23contractjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#ContractJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23remotework&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#RemoteWork</strong></a></p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Jônatas Rodrigues Carvalho Turibio\nHeadline: Desenvolvedor Full-Stack\nLocalização: Foz do Iguaçu\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nResumo:\nDesenvolvedor Fullstack Sênior com mais de 7 anos de experiência, apaixonado por tecnologia e inovação. Tenho uma sólida trajetória em desenvolvimento de software, com expertise em:\n        - JavaScript (sênior): Experiência abrangendo React, Angular, Next.js, Node.js e NestJS para desenvolvimento de aplicações front-end e back-end.\n        - PHP (sênior): Experiência com Laravel, CodeIgniter e Drupal, entregando soluções robustas e eficientes.\n        - Java (pleno): Atuação com Spring Boot, Quarkus e JUnit em projetos backend.\n        - Python (júnior) e C# (júnior): Experiência prática em projetos pontuais, com base em .NET Core, Entity Framework e Web API.\n        - Participei de projetos complexos utilizando arquitetura de micro front-ends (MFE) e microservices, demonstrando capacidade de adaptação e evolução constante. Minha experiência engloba metodologias ágeis, práticas de DevOps e ferramentas de monitoramento com Kubernetes, Docker, Jenkins, ArgoCD, Rancher, Helm, InfluxDB, Prometheus e Grafana.\n        - No campo de bancos de dados, trabalho com SQL Server, MySQL, PostgreSQL e MongoDB. Além disso, estou em constante aprimoramento, estudando novas tecnologias e práticas do setor, e fortalecendo minha comunicação em inglês.\nExperiências (mais recentes primeiro):\n- Desenvolvedor Fullstack Sênior @ BLUECYBER Seguros ([REDACTED_PHONE], duração: 11 meses)\n  Intermediário de seguros cibernéticos entre corretoras e seguradoras; liderança da arquitetura dos projetos em JavaScript; implementação de funcionalidades em C#; monorepo com Nx; BFF em NestJS; Next.js para SEO; React no front-end; backend em .NET Core, Entity Framework (Code First) e Web API; PostgreSQL; microsserviços; mensageria e deploy com ferramentas da Azure.\n- Customer Service Specialist (CSS) @ NTT DATA Europe & Latam ([REDACTED_PHONE], duração: 7 meses)\n  Participação de projetos Android/iOS para a RD, contribuindo com os aplicativos da Drogasil e Droga Raia. Aplicação dos princípios de clean code, clean architecture e SOLID, elevando meu perfil para um profissional sênior.\n- Desenvolvedor Frontend @ GS3 Tecnologia ([REDACTED_PHONE], duração: 10 meses)\n  Arquitetura de Micro Frontends utilizando Module Federation (Webpack) em projetos Angular (12/13/14).\n- Analista Desenvolvedor Pleno @ Pixeon ([REDACTED_PHONE], duração: 1 ano 1 mês)\n  Com o avanço e destaque dentro da equipe, tive a oportunidade de assumir alguns projetos que me proporcionaram um grande crescimento profissional. Atuei em SLA, resolvendo bugs para a aplicação Aurora, que utiliza Java Swing.\n          Nesse mesmo projeto, trabalhei em demandas de codificação com Groovy, uma linguagem com a qual nunca havia trabalhado antes, mas consegui demonstrar uma boa resiliência.\n          Com o aumento dos meus conhecimentos em JavaScript, assumi um projeto muito importante. Na primeira fase, modifiquei o estilo da aplicação, e na próxima etapa, refatorei o código.\n          Realizei provas de conceito para escolhermos as tecnologias adequadas, e optamos por utilizar o NX para o monorepo, React + RxJS (para trabalhar com reatividade no front-end) e CBOR para a comunicação com o back-end, a fim de termos uma comunicação rápida.\n          A aplicação é chamada de Xviewer e tem como objetivo ser um visualizador web de exames de raio-X. Também para aumentar a confiabilidade das aplicações, prezei bastante por testes unitários e testes de integração. Além disso, pude apresentar como trabalho com BDD utilizando Python.\n         \n- Analista Desenvolvedor Júnior @ Pixeon ([REDACTED_PHONE], duração: 1 ano 3 meses)\n  Durante minha trajetória profissional, tive a oportunidade de liderar projetos de destaque, que me permitiram ampliar minhas habilidades e conhecimentos. Como responsável pelo frontend do projeto LGPD, desenvolvi soluções com React e Styled Components, enquanto no backend utilizei Java com Spring Boot.\n          Posteriormente, atuei no projeto Weblaudos, onde aprimorei meus conhecimentos em CSS. Em seguida, assumi a liderança do projeto LTA, onde também utilizei minhas habilidades com React.\n- Analista de Sistema Pleno @ Capgemini ([REDACTED_PHONE], duração: 11 meses)\n  Desenvolvimento de funcionalidades com Java (Kumuluz, Quarkus), Node.js e React; DevOps com Kubernetes, Docker, Jenkins e ArgoCD; observabilidade com InfluxDB, Prometheus e Grafana.\n- Desenvolvedor SW 4 @ SONDA ([REDACTED_PHONE], duração: 4 meses)\n  Evoluções e manutenção de sistemas legados com Java; Angular (6/7/9); PHP com Laravel e Drupal 8.\n- Desenvolvedor Java @ CONNECT DF ([REDACTED_PHONE], duração: 3 meses)\n  Serviços para o SEBRAE: Java Spring, Angular 8 e ReactJS; integração contínua com Docker, Jenkins e Rancher.\n- Desenvolvedor AOSP @ Output - Pax Vida ([REDACTED_PHONE], duração: 3 meses)\n  Android Open Source Project; alterações no template na camada HIDL (HAL Interface Design Language).\n- Desenvolvedor Pleno @ Faros Educacional ([REDACTED_PHONE], duração: 1 ano 5 meses)\n  Essa empresa tinha o objetivo de ser uma agência/fábrica de software, e era a junção de duas empresas, a Icon e a Faros. Durante minha passagem por lá, trabalhei em diversos projetos, utilizando as seguintes linguagens:\n          - C# (projeto SGUS)\n          - Ruby (projeto Redimine)\n          - Angular V2+ (projetos Trilhas e Atendimento)\n          - NodeJs + Ionic (projeto Conhecigame)\n          - PHP (projetos Conselhos, Transparência, Moodle, Eleições, entre outros)\n          - Extjs e Sencha Architect (sistemas da CODEVASF)\n- Programador Java Training @ Polisys Informática ([REDACTED_PHONE], duração: 1 mês)\n  Sistemas com Spring Boot e aplicações web com AngularJS.\n- Desenvolvedor Freelancer @ Insert Web ([REDACTED_PHONE], duração: 9 meses)\n  Desenvolvimento de sistemas com PHP (CodeIgniter) e Ionic.\n- Programador PHP @ CNM - Confederação Nacional de Municípios ([REDACTED_PHONE], duração: 8 meses)\n  Sistemas com CodeIgniter e Laravel; Angular/TypeScript; aplicativos híbridos com Ionic; manutenções; geoprocessamento e visualização de dados.\n- Programador PHP @ Micromed Biotecnologia LTDA ([REDACTED_PHONE], duração: 1 ano 6 meses)\n  Migração da intranet de Access para PHP (Phalcon 2.0); AdvPL, Protheus, Zend Framework 2; PostgreSQL; web services (SOAP/REST); SCRUM; SVN.\nTempo total de experiência (todas as experiências): 9 anos 7 meses\nSkills: JavaScript, TypeScript, PHP, Java, C#, Python, React, Angular, Next.js, RxJS, Styled Components, Micro Frontends (MFE), Webpack Module Federation, Ext JS, Sencha Architect, Ionic, Node.js, NestJS, Spring Boot, Quarkus\n\nUser note (additional instructions):\n\n<p>essa vaga o currículo tem que ser em inglês</p>\n\nTask:\n\nGenerate a currículo direcionado e focado na vaga específica in tom profissional, claro e objetivo, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\nParágrafo detalhado (4-6 frases) destacando:\n\n- Anos totais de experiência profissional\n\n- Especialização principal e áreas de expertise\n\n- Principais conquistas e resultados alcançados\n\n- Soft skills e competências comportamentais\n\n- Objetivo profissional e fit com a vaga\n\n- Diferenciais competitivos do candidato\n\n- Visão de futuro e aspirações profissionais\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez\n\n- Ser DESCRITIVO e VERBOSO: expandir detalhes relevantes\n\n- Incluir contexto, desafios e soluções implementadas\n\n- Explicar o '\\''porquê'\\'' e '\\''como'\\'' das conquistas\n\n- Detalhar soft skills e competências comportamentais\n\n- Conectar experiências com objetivos da vaga\n\n- Usar exemplos específicos e situações reais\n\n- Demonstrar crescimento profissional e evolução\n\n- Incluir reflexões sobre aprendizado e desenvolvimento"}],"temperature":0.5,"max_tokens":1200}'
+```
+
+#### Request body (sanitized)
+
+```json
+{
+  "model": "deepseek-r1:latest",
+  "messages": [
+    {
+      "role": "system",
+      "content": "You are a cover-letter generator. Follow the user's format exactly. Do not invent facts. Detect the predominant language of the job description and reply strictly in that language (do not switch languages). Do not reveal chain-of-thought or internal reasoning; provide only the final answer content. If you would normally include a reasoning section like <think>...</think>, omit it and provide only the final letter body. Do not include code fences or markdown fences. Do not claim experience with any tool/technology that is not present in the candidate profile; at most, mention readiness to learn without implying past hands-on work. Be concise and avoid filler."
+    },
+    {
+      "role": "user",
+      "content": "Context: job-specific resume generation.\n\nDetect the predominant language of the job description and respond strictly in that language. If the job description is empty, detect the language from 'User note (additional instructions)'. If still undetectable, default to Portuguese (pt-BR).\n\nWrite as the candidate, in first-person singular (I). Do not write from the employer's perspective.\n\nGround all content strictly on the candidate profile below; do not invent companies, roles, years, or skills.\n\nIf a technology, tool, or experience (e.g., Hadoop, Spark, Terraform) is not present in the candidate profile, do not claim prior experience with it. You may at most mention readiness to learn without implying past hands-on work.\n\nDo not copy or paraphrase the job description; reference it only to align the candidate's fit.\n\nPrefer 2-3 concrete achievements from the profile with measurable outcomes when available; if none, describe impact without fabricating numbers.\n\nReturn only the resume content in a structured format. Do not fabricate recruiter names or company details.\n\nCarefully analyze the experiences provided below and prioritize the most relevant ones to the job requirements.\n\nAvoid clichés or overly eager wording. Maintain a confident, professional tone.\n\nBe concise and avoid filler. Prioritize precise, verifiable facts from the profile.\n\nCompute and mention total years of experience based on the dates in the candidate profile (sum relevant overlapping periods conservatively; if uncertain, use 'over X years').\n\nIf dates are present, compute duration per role as years and months and use them to quantify experience (without inventing missing dates).\n\nDo not expose chain-of-thought. Provide only final answer content (no '<think>', analysis, steps, or reasoning).\n\nCRITICAL: Do not repeat or duplicate any information. Each experience, skill, or detail should be mentioned only once.\n\nCRITICAL: Follow the exact structure below. Do not add extra sections or repeat content across sections.\n\nJob Description:\n\n<img src=\"https://media.licdn.com/dms/image/v2/C4E03AQH8ThYWwVbCLg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/[REDACTED_PHONE]?e=[REDACTED_PHONE]&amp;v=beta&amp;t=coyjUsgSKaflDbKAP11ktYK_1CU23SfXEFi4IWlEwu8\" alt=\"View Ryan Partlan’s  graphic link\"><p><a target=\"_self\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU  update-components-actor__meta-link\" href=\"https://www.linkedin.com/in/ryan-partlan-45334821b?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAADdm0H8B5avlZf9XIUqnqmyaWXNcjfRad4g\"><strong>Ryan PartlanRyan Partlan</strong>  • 3rd+Premium • 3rd+Information Technology Recruiter at A-Line Staffing SolutionsInformation Technology Recruiter at A-Line Staffing Solutions</a>22h •  22 hours ago • Visible to anyone on or off LinkedIn</p><p><strong>Follow</strong></p><p>🚀 Now Hiring: Sr. React Developer (Remote | $50–60/hr on W-2, NO C2C)<br>We’re looking for a Sr. React Developer to join our team! This role will focus on building scalable, customer-facing applications with ReactJS, Redux, D3, and NodeJS.<br>💻 What you’ll do:<br>Develop full-stack applications (React/Node)<br>Create responsive, accessible, modern UIs<br>Lead design discussions &amp; mentor other developers<br>Ensure performance, scalability, and security<br>✅ What we’re looking for:<br>5+ years of development experience<br>Strong skills in React, Redux, NodeJS, JavaScript, HTML, CSS<br>Full-stack development experience<br>Excellent communication and problem-solving skills<br>📍 Remote Role | 💵 $50–60/hr on W-2<br>If you’re passionate about building modern applications and leading technical solutions, let’s connect!<br><a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23reactjs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#ReactJS</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23redux&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#Redux</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23nodejs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#NodeJS</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23javascript&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#JavaScript</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23fullstack&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#FullStack</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23remotejobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#RemoteJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23webdevelopment&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#WebDevelopment</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23hiringnow&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#HiringNow</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23softwareengineer&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#SoftwareEngineer</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23techjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#TechJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23frontenddeveloper&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#FrontendDeveloper</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23mern&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#MERN</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23mean&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#MEAN</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23developerjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#DeveloperJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23itjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#ITJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23contractjobs&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#ContractJobs</strong></a> <a target=\"_blank\" rel=\"noopener noreferrer nofollow\" class=\"rvxSAhdspoaQIXROVGmqmgSjAEonUrxjJfTUU \" href=\"https://www.linkedin.com/search/results/all/?keywords=%23remotework&amp;origin=HASH_TAG_FROM_FEED\"><strong>hashtag#RemoteWork</strong></a></p>\n\nCandidate Profile (facts only, no fabrication):\n\nNome: Jônatas Rodrigues Carvalho Turibio\nHeadline: Desenvolvedor Full-Stack\nLocalização: Foz do Iguaçu\nEmail: [REDACTED_EMAIL]\nTelefone: [REDACTED_PHONE]\nResumo:\nDesenvolvedor Fullstack Sênior com mais de 7 anos de experiência, apaixonado por tecnologia e inovação. Tenho uma sólida trajetória em desenvolvimento de software, com expertise em:\n        - JavaScript (sênior): Experiência abrangendo React, Angular, Next.js, Node.js e NestJS para desenvolvimento de aplicações front-end e back-end.\n        - PHP (sênior): Experiência com Laravel, CodeIgniter e Drupal, entregando soluções robustas e eficientes.\n        - Java (pleno): Atuação com Spring Boot, Quarkus e JUnit em projetos backend.\n        - Python (júnior) e C# (júnior): Experiência prática em projetos pontuais, com base em .NET Core, Entity Framework e Web API.\n        - Participei de projetos complexos utilizando arquitetura de micro front-ends (MFE) e microservices, demonstrando capacidade de adaptação e evolução constante. Minha experiência engloba metodologias ágeis, práticas de DevOps e ferramentas de monitoramento com Kubernetes, Docker, Jenkins, ArgoCD, Rancher, Helm, InfluxDB, Prometheus e Grafana.\n        - No campo de bancos de dados, trabalho com SQL Server, MySQL, PostgreSQL e MongoDB. Além disso, estou em constante aprimoramento, estudando novas tecnologias e práticas do setor, e fortalecendo minha comunicação em inglês.\nExperiências (mais recentes primeiro):\n- Desenvolvedor Fullstack Sênior @ BLUECYBER Seguros ([REDACTED_PHONE], duração: 11 meses)\n  Intermediário de seguros cibernéticos entre corretoras e seguradoras; liderança da arquitetura dos projetos em JavaScript; implementação de funcionalidades em C#; monorepo com Nx; BFF em NestJS; Next.js para SEO; React no front-end; backend em .NET Core, Entity Framework (Code First) e Web API; PostgreSQL; microsserviços; mensageria e deploy com ferramentas da Azure.\n- Customer Service Specialist (CSS) @ NTT DATA Europe & Latam ([REDACTED_PHONE], duração: 7 meses)\n  Participação de projetos Android/iOS para a RD, contribuindo com os aplicativos da Drogasil e Droga Raia. Aplicação dos princípios de clean code, clean architecture e SOLID, elevando meu perfil para um profissional sênior.\n- Desenvolvedor Frontend @ GS3 Tecnologia ([REDACTED_PHONE], duração: 10 meses)\n  Arquitetura de Micro Frontends utilizando Module Federation (Webpack) em projetos Angular (12/13/14).\n- Analista Desenvolvedor Pleno @ Pixeon ([REDACTED_PHONE], duração: 1 ano 1 mês)\n  Com o avanço e destaque dentro da equipe, tive a oportunidade de assumir alguns projetos que me proporcionaram um grande crescimento profissional. Atuei em SLA, resolvendo bugs para a aplicação Aurora, que utiliza Java Swing.\n          Nesse mesmo projeto, trabalhei em demandas de codificação com Groovy, uma linguagem com a qual nunca havia trabalhado antes, mas consegui demonstrar uma boa resiliência.\n          Com o aumento dos meus conhecimentos em JavaScript, assumi um projeto muito importante. Na primeira fase, modifiquei o estilo da aplicação, e na próxima etapa, refatorei o código.\n          Realizei provas de conceito para escolhermos as tecnologias adequadas, e optamos por utilizar o NX para o monorepo, React + RxJS (para trabalhar com reatividade no front-end) e CBOR para a comunicação com o back-end, a fim de termos uma comunicação rápida.\n          A aplicação é chamada de Xviewer e tem como objetivo ser um visualizador web de exames de raio-X. Também para aumentar a confiabilidade das aplicações, prezei bastante por testes unitários e testes de integração. Além disso, pude apresentar como trabalho com BDD utilizando Python.\n         \n- Analista Desenvolvedor Júnior @ Pixeon ([REDACTED_PHONE], duração: 1 ano 3 meses)\n  Durante minha trajetória profissional, tive a oportunidade de liderar projetos de destaque, que me permitiram ampliar minhas habilidades e conhecimentos. Como responsável pelo frontend do projeto LGPD, desenvolvi soluções com React e Styled Components, enquanto no backend utilizei Java com Spring Boot.\n          Posteriormente, atuei no projeto Weblaudos, onde aprimorei meus conhecimentos em CSS. Em seguida, assumi a liderança do projeto LTA, onde também utilizei minhas habilidades com React.\n- Analista de Sistema Pleno @ Capgemini ([REDACTED_PHONE], duração: 11 meses)\n  Desenvolvimento de funcionalidades com Java (Kumuluz, Quarkus), Node.js e React; DevOps com Kubernetes, Docker, Jenkins e ArgoCD; observabilidade com InfluxDB, Prometheus e Grafana.\n- Desenvolvedor SW 4 @ SONDA ([REDACTED_PHONE], duração: 4 meses)\n  Evoluções e manutenção de sistemas legados com Java; Angular (6/7/9); PHP com Laravel e Drupal 8.\n- Desenvolvedor Java @ CONNECT DF ([REDACTED_PHONE], duração: 3 meses)\n  Serviços para o SEBRAE: Java Spring, Angular 8 e ReactJS; integração contínua com Docker, Jenkins e Rancher.\n- Desenvolvedor AOSP @ Output - Pax Vida ([REDACTED_PHONE], duração: 3 meses)\n  Android Open Source Project; alterações no template na camada HIDL (HAL Interface Design Language).\n- Desenvolvedor Pleno @ Faros Educacional ([REDACTED_PHONE], duração: 1 ano 5 meses)\n  Essa empresa tinha o objetivo de ser uma agência/fábrica de software, e era a junção de duas empresas, a Icon e a Faros. Durante minha passagem por lá, trabalhei em diversos projetos, utilizando as seguintes linguagens:\n          - C# (projeto SGUS)\n          - Ruby (projeto Redimine)\n          - Angular V2+ (projetos Trilhas e Atendimento)\n          - NodeJs + Ionic (projeto Conhecigame)\n          - PHP (projetos Conselhos, Transparência, Moodle, Eleições, entre outros)\n          - Extjs e Sencha Architect (sistemas da CODEVASF)\n- Programador Java Training @ Polisys Informática ([REDACTED_PHONE], duração: 1 mês)\n  Sistemas com Spring Boot e aplicações web com AngularJS.\n- Desenvolvedor Freelancer @ Insert Web ([REDACTED_PHONE], duração: 9 meses)\n  Desenvolvimento de sistemas com PHP (CodeIgniter) e Ionic.\n- Programador PHP @ CNM - Confederação Nacional de Municípios ([REDACTED_PHONE], duração: 8 meses)\n  Sistemas com CodeIgniter e Laravel; Angular/TypeScript; aplicativos híbridos com Ionic; manutenções; geoprocessamento e visualização de dados.\n- Programador PHP @ Micromed Biotecnologia LTDA ([REDACTED_PHONE], duração: 1 ano 6 meses)\n  Migração da intranet de Access para PHP (Phalcon 2.0); AdvPL, Protheus, Zend Framework 2; PostgreSQL; web services (SOAP/REST); SCRUM; SVN.\nTempo total de experiência (todas as experiências): 9 anos 7 meses\nSkills: JavaScript, TypeScript, PHP, Java, C#, Python, React, Angular, Next.js, RxJS, Styled Components, Micro Frontends (MFE), Webpack Module Federation, Ext JS, Sencha Architect, Ionic, Node.js, NestJS, Spring Boot, Quarkus\n\nUser note (additional instructions):\n\n<p>essa vaga o currículo tem que ser em inglês</p>\n\nTask:\n\nGenerate a currículo direcionado e focado na vaga específica in tom profissional, claro e objetivo, emphasizing role fit, measurable outcomes when available, and cultural alignment. Do not invent facts. Reply strictly in the detected language of the job description (or pt-BR if undetectable/empty).\n\n\n\nFollow this structure EXACTLY (no lists or subtitles, use natural paragraphs, NO DUPLICATION):\n\n\n\n**INFORMAÇÕES PESSOAIS**\n\nNome completo, email, telefone, localização, website (se disponível)\n\n\n\n**RESUMO PROFISSIONAL**\n\nParágrafo detalhado (4-6 frases) destacando:\n\n- Anos totais de experiência profissional\n\n- Especialização principal e áreas de expertise\n\n- Principais conquistas e resultados alcançados\n\n- Soft skills e competências comportamentais\n\n- Objetivo profissional e fit com a vaga\n\n- Diferenciais competitivos do candidato\n\n- Visão de futuro e aspirações profissionais\n\n\n\n**EXPERIÊNCIA PROFISSIONAL**\n\nListar experiências mais relevantes à vaga (máximo 4-5), com:\n\n- Cargo, empresa, período (duração calculada)\n\n- 2-3 conquistas mensuráveis por experiência\n\n- Tecnologias e ferramentas utilizadas\n\n- Impacto nos resultados da empresa\n\n\n\n**EDUCAÇÃO**\n\nFormação acadêmica relevante (instituição, curso, período)\n\n\n\n**COMPETÊNCIAS TÉCNICAS**\n\nSkills mais relevantes à vaga, agrupadas por categoria\n\n\n\n**PROJETOS DESTACADOS**\n\nProjetos mais relevantes (máximo 3) com descrição e tecnologias\n\n\n\n**CERTIFICAÇÕES**\n\nCertificações relevantes (máximo 5) com emissor e data\n\n\n\n**IDIOMAS**\n\nIdiomas com nível de proficiência\n\n\n\n**PRÊMIOS E RECONHECIMENTOS**\n\nPrêmios relevantes (máximo 3) com contexto\n\n\n\n**VOLUNTARIADO**\n\nExperiências voluntárias relevantes (se houver)\n\n\n\n**PERFIS PROFISSIONAIS**\n\nLinks para LinkedIn, GitHub, portfolio (se disponíveis)\n\n\n\nInstruções específicas:\n\n- Priorizar experiências e skills mais relevantes à vaga\n\n- Usar linguagem ativa e orientada a resultados\n\n- Incluir métricas e números quando disponíveis no perfil\n\n- Adaptar tom ao tipo de expressão solicitado\n\n- Manter formato limpo e profissional\n\n- Não inventar dados, datas ou experiências\n\n- Focar na relevância para a posição específica\n\n- NUNCA duplicar ou repetir informações entre seções\n\n- Cada experiência deve ser descrita apenas uma vez\n\n- Ser DESCRITIVO e VERBOSO: expandir detalhes relevantes\n\n- Incluir contexto, desafios e soluções implementadas\n\n- Explicar o 'porquê' e 'como' das conquistas\n\n- Detalhar soft skills e competências comportamentais\n\n- Conectar experiências com objetivos da vaga\n\n- Usar exemplos específicos e situações reais\n\n- Demonstrar crescimento profissional e evolução\n\n- Incluir reflexões sobre aprendizado e desenvolvimento"
+    }
+  ],
+  "temperature": 0.5,
+  "max_tokens": 1200
+}
+```
+
+#### LLM Response — 1755887153195-yjr0zr
+
+- Timestamp: 2025-08-22T18:43:17.985Z
+- Cover letter length: 5805 • SHA256: 270584198501da287679ae3ee4ad8ab7d9803cdefc4d7430174e3946aba737bf
+
+```text
+**INFORMAÇÕES PESSOAIS**
+
+John Doe, [REDACTED_EMAIL], +55 XX XXXXXXXXXX, located in Rio de Janeiro, Brazil. [Website URL] (if available)
+
+**RESUMO PROFISSIONAL**
+I am a dedicated software developer with over nine years of professional experience across various domains including Java, PHP, JavaScript/TypeScript, and front-end technologies such as React, Angular, Next.js, and Node.js. My expertise lies in developing scalable web applications, migrating legacy systems to modern frameworks, implementing DevOps practices like CI/CD (Jenkins, Docker), and enhancing system reliability through observability tools like Grafana, Prometheus, and InfluxDB. I have a proven track record of delivering impactful solutions with measurable outcomes, including leading critical projects that improved user experience and operational efficiency.
+
+My core competencies include strong problem-solving skills honed in diverse environments from healthcare to financial systems; adaptability demonstrated by my ability to quickly learn new languages like Groovy and implement best practices such as BDD testing. I prioritize technical excellence, embrace agile methodologies (SCRUM), and thrive in collaborative settings where continuous improvement drives innovation.
+
+I am seeking a role that leverages my full-stack skills and proven project management abilities to contribute directly to your company's success while fostering growth through modernization projects.
+
+**EXPERIÊNCIA PROFISSIONAL**
+
+At Insert Web, I worked on PHP-based systems with CodeIgniter, developing features for the LGPD system. This involved refactoring code in Java (Spring Boot) and managing Angular/TypeScript components to ensure seamless integration across technologies.
+Cargo: Desenvolvedor Pleno
+Empresa: Capgemini e Faros Educacional (juntos)
+Período: [REDACTED_PHONE] (duration: 1 year 5 months)
+
+At Faros Educacional, I led the frontend development of the LGPD project using React and Styled Components. This required creating a user-friendly interface for compliance regulations while ensuring code maintainability through automated testing.
+Cargo: Desenvolvedor Pleno
+Empresa: Capgemini (acquired by Faros Educacional)
+Período: [REDACTED_PHONE] (duration: 1 year 5 months)
+
+At Micromed Biotecnologia, I was responsible for migrating a legacy Access intranet to PHP/CodeIgniter and implementing Angular/TypeScript frontend integration. This involved working with web services in SOAP/REST.
+Cargo: Programador PHP
+Empresa: CNM (Confederação Nacional de Municípios)
+Período: [REDACTED_PHONE] (duration: 8 months)
+
+At Faros Educacional, I worked on multiple projects including a Groovy-based web application that required quick learning and effective integration with existing systems.
+Cargo: Desenvolvedor Pleno
+Empresa: Output - Pax Vida (Output), SonaFrame (Output)
+Período: [REDACTED_PHONE] (duration: 3 months)
+
+At Faros Educacional, I implemented and maintained software solutions using various technologies including Java, Node.js + Ionic, PHP, AngularJS, and Extjs/Sencha Architect. I worked on projects like Conhecigame (NodeJs + Ionic) which was a gamification platform for educational content.
+Cargo: Programador PHP
+Empresa: Faros Educacional (junctura de Icon e Faros)
+Período: [REDACTED_PHONE] (duration: not specified)
+
+**EMPRESA:** Output
+**CARGO:** Desenvolvedor Pleno
+**PERÍODO:** [REDACTED_PHONE]
+
+At Output, I worked on projects involving SonaFrame and Pax Vida. My responsibilities included developing a web application using Groovy (Spring Boot), integrating it with existing systems, and ensuring the code was maintainable through best practices like clean architecture.
+
+**EMPRESA:** Faros Educacional
+**CARGO:** Programador PHP
+**PERÍODO:** [REDACTED_PHONE]
+
+During this period, I actively participated in projects at Faros Educacional. This included contributing to the Conhecigame platform developed with Node.js + Ionic (React Native), creating interactive educational content using Extjs/Sencha Architect for a healthcare management system, and implementing PHP solutions within the CNM environment.
+
+**PROJETO INDIVIDUAL / OPEN SOURCE:**
+I have utilized my skills independently or in small teams to develop projects involving Java Spring Boot microservices, Node.js + Express APIs, React/Next.js front-end applications with TypeScript, and PHP-based web services. These include building a personal dashboard (Java), a data analytics API (Node.js), a responsive admin panel (React), and an internal tool prototype (PHP).
+
+**TECNOLOGIAS E HABILIDADES**
+
+*   **Linguagens de Programação:** Java (Spring Boot, Hibernate), PHP (CodeIgniter/Laravel-like structure), JavaScript/TypeScript (ES6+ features, TypeScript typing), Groovy.
+*   **Front-End:** React, AngularJS/Angular, Next.js, Vue.js (basic knowledge), HTML5/CSS3 (Styled Components, Bootstrap, Extjs UI framework).
+*   **Back-End e Banco de Dados:** RESTful APIs (Java/Node.js/Groovy), SOAP web services, SQL databases (MySQL, PostgreSQL - schema design and queries), NoSQL databases (Redis for caching).
+*   **DevOps e Infraestrutura:** Jenkins (CI/CD pipeline setup), Docker (containerization of applications), Git/GitHub (collaboration, version control best practices).
+*   **Metodologias de Desenvolvimento:** SCRUM.
+*   **Habilidades Complementares:** BDD testing principles, problem-solving in complex environments, adaptability to new technologies and frameworks.
+
+**OBJETIVO PROFISSIONAL**
+I am eager to apply my full-stack development skills to challenging projects at your company. I seek opportunities for growth, innovation through technology modernization, and making significant contributions to impactful solutions while collaborating effectively within a team environment.
+```
+
+---

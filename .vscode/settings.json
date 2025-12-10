@@ -38,5 +38,9 @@
     "*.prisma": "prisma",
     "*.config.ts": "typescript",
     "*.config.js": "javascript"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "https-sonar-useniu-com-br",
+    "projectKey": "projeto-omni_accio_AYkGdwwyhHqU5FMlFGJJ"
   }
 }
