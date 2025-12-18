@@ -270,6 +270,6 @@ Os logs incluem informações detalhadas sobre:
 ## Notas Importantes
 
 - O token OAuth2 é salvo em `token.json` (não commitado)
-- O token expira após algum tempo; o script solicitará nova autorização quando necessário
+- Se o token expirar/for revogado (ex.: erro `invalid_grant`), o script remove o `token.json` e solicita uma nova autorização automaticamente
 - Os emails são enviados como se você estivesse enviando manualmente
 - Não há limite de envio além dos limites normais do Gmail

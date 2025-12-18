@@ -4,6 +4,7 @@ import path from "node:path";
 import axios, { type AxiosInstance } from "axios";
 import type { google } from "googleapis";
 
+import { reauthenticateClient } from "./gmail-auth.js";
 import { logger } from "./logger.js";
 import type { CoverLetterData } from "./markdown-parser.js";
 
@@ -28,9 +29,31 @@ export class GmailService {
   private setupAuthInterceptor(): void {
     this.axiosInstance.interceptors.request.use(
       async (config) => {
-        const credentials = await this.auth.getAccessToken();
-        if (credentials.token) {
-          config.headers.Authorization = `Bearer ${credentials.token}`;
+        try {
+          const credentials = await this.auth.getAccessToken();
+          if (credentials.token) {
+            config.headers.Authorization = `Bearer ${credentials.token}`;
+          }
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+
+          // Caso mais comum quando o refresh_token expira/revoga: invalid_grant.
+          // Nesse caso, removemos o token salvo e forçamos uma nova autorização interativa.
+          if (message.includes("invalid_grant")) {
+            logger.warn("Token OAuth inválido/expirado (invalid_grant). Reautenticando...", {
+              originalError: message,
+            });
+
+            await reauthenticateClient(this.auth);
+
+            const credentials = await this.auth.getAccessToken();
+            if (credentials.token) {
+              config.headers.Authorization = `Bearer ${credentials.token}`;
+            }
+            return config;
+          }
+
+          throw error;
         }
         return config;
       },

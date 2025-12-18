@@ -23,6 +23,45 @@ const SCOPES = [
 
 const TOKEN_PATH = path.join(process.cwd(), "token.json");
 
+function isInvalidGrantError(error: unknown): boolean {
+  // Normalmente vem como GaxiosError com message "invalid_grant"
+  if (error instanceof Error && error.message.includes("invalid_grant")) return true;
+
+  const maybeAny = error as {
+    response?: { data?: unknown };
+    code?: string;
+    message?: string;
+  };
+
+  if (typeof maybeAny?.message === "string" && maybeAny.message.includes("invalid_grant"))
+    return true;
+
+  const data = maybeAny?.response?.data as { error?: unknown } | undefined;
+  if (typeof data?.error === "string" && data.error.includes("invalid_grant")) return true;
+
+  if (maybeAny?.code === "invalid_grant") return true;
+
+  return false;
+}
+
+export function deleteStoredToken(): void {
+  if (!existsSync(TOKEN_PATH)) return;
+  try {
+    unlinkSync(TOKEN_PATH);
+    logger.info("Token removido para forçar reautenticação", { tokenPath: TOKEN_PATH });
+  } catch (error) {
+    logger.warn("Falha ao remover token para reautenticação", {
+      tokenPath: TOKEN_PATH,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+export async function reauthenticateClient(oAuth2Client: OAuth2Client): Promise<OAuth2Client> {
+  deleteStoredToken();
+  return getNewToken(oAuth2Client);
+}
+
 function loadCredentials() {
   logger.info("Iniciando carregamento de credenciais...");
   const credentialFiles = [
@@ -180,10 +219,21 @@ export async function getAuthenticatedClient(): Promise<OAuth2Client> {
       logger.info("Token reutilizado com sucesso");
       return oAuth2Client;
     } catch (error) {
-      logger.warn("Erro ao carregar token existente, gerando novo", {
-        error: error instanceof Error ? error.message : String(error),
-        tokenPath: TOKEN_PATH,
-      });
+      const invalidGrant = isInvalidGrantError(error);
+      logger.warn(
+        invalidGrant
+          ? "Token existente inválido/expirado (invalid_grant), gerando novo"
+          : "Erro ao carregar token existente, gerando novo",
+        {
+          error: error instanceof Error ? error.message : String(error),
+          tokenPath: TOKEN_PATH,
+          invalidGrant,
+        },
+      );
+
+      if (invalidGrant) {
+        deleteStoredToken();
+      }
     }
   } else {
     logger.info("Token não encontrado, será necessário gerar novo", { tokenPath: TOKEN_PATH });

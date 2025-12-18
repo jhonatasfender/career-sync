@@ -211,9 +211,7 @@ async function main() {
   }
 }
 
-try {
-  await main();
-} catch (error: unknown) {
+main().catch((error: unknown) => {
   logger.error("Erro fatal", { error });
   process.exit(1);
-}
+});
